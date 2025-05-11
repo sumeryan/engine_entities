@@ -1,5 +1,3 @@
-version: '3.8' # Especifica a versão do Docker Compose
-
 services:
   web:
     build: . # Constrói a imagem a partir do Dockerfile no diretório atual

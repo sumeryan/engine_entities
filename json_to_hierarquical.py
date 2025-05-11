@@ -9,6 +9,7 @@ It handles string normalization, field type mapping, entity creation, and hierar
 
 import unicodedata
 import re
+import specific_mapping
 
 def normalize_string(text):
     """
@@ -331,48 +332,38 @@ def process_fields_for_hierarchy(fields_metadata, all_doctypes_data, process_nes
 
     return processed_nodes
 
-def add_paths_recursively(node, current_path="", visited_nodes=None):
+def add_paths_recursively(node, current_path=""):
     """
-    Recursively adds the 'path' property to each node in the hierarchy.
+    Adiciona recursivamente a propriedade 'path' a cada nó na hierarquia.
 
     Args:
-        node (dict): The current node to process.
-        current_path (str): The accumulated path to the parent node.
-        visited_nodes (set): Set of visited nodes to avoid cycles.
+        node (dict): O nó atual a ser processado.
+        current_path (str): O caminho acumulado até o nó pai.
     """
-
-    if visited_nodes is None:
-        visited_nodes = set()  # Initialize the set of visited nodes if not provided
-
-    # Removed the global declaration of visited_nodes
-    if "name" not in node:
-        return
-
-    node_name = node.get("name")
-
-    if node_name in visited_nodes:
-        return
-    visited_nodes.add(node_name)
     if not isinstance(node, dict):
         return
 
     node_key = node.get("key")
     if not node_key:
-        return # Cannot determine the path without a key
+        # Não é possível determinar o caminho sem uma chave
+        return
 
-    # Calculate the new path for this node
+    # Calcula o novo caminho para este nó
     new_path = f"{current_path}.{node_key}" if current_path else node_key
-
-    # Add the path only if it's not a root node (current_path exists)
+    # Adiciona o path apenas se não for um nó raiz (current_path existe)
     if current_path:
         node["path"] = new_path
 
-    # Process children recursively
+    node["dragandrop"] = True # Adiciona a propriedade drag and drop
+
+    # Processa os filhos recursivamente
     children = node.get("children")
     if isinstance(children, list):
+        node["dragandrop"] = False
+        node["path"] = new_path
         for child in children:
-            add_paths_recursively(child, new_path, visited_nodes)
-
+            add_paths_recursively(child, new_path)
+            
 def create_hierarchical_doctype_structure(doctypes_with_fields, child_parent_mapping):
     """
     Creates a hierarchical JSON structure of DocTypes and their fields (Refactored v2).
@@ -429,15 +420,16 @@ def create_hierarchical_doctype_structure(doctypes_with_fields, child_parent_map
     # - Contract -> Contract Item
     # - Contract -> Contract Measurement
     # - Contract -> Contract Measurement Record
-    specific_mapping = {"child": "Contract Item", "parent": "Contract"}
-    specific_mapping = {"child": "Contract Measurement", "parent": "Contract"}
-    specific_mapping = {"child": "Contract Measurement Record", "parent": "Contract"}
-    mapping_exists = any(
-        m.get("child") == specific_mapping["child"] and m.get("parent") == specific_mapping["parent"]
-        for m in child_parent_mapping if isinstance(m, dict)
-    )
-    if not mapping_exists:
-        child_parent_mapping.append(specific_mapping) # Directly modifies the list (or a copy if you prefer immutability)
+    specific_mappings = specific_mapping.get_specific_mapping()
+
+    for mapping in specific_mappings:
+        mapping_exists = any(
+            m.get("child") == mapping["child"] and m.get("parent") == mapping["parent"]
+            for m in child_parent_mapping if isinstance(m, dict)
+        )
+        if not mapping_exists:
+            print(f"Info: Adding specific mapping {mapping}...")
+            child_parent_mapping.append(mapping) # Directly modifies the list (or a copy if you prefer immutability)
 
     # Continue processing the mappings (including the added one, if applicable)
     for mapping in child_parent_mapping:
@@ -495,7 +487,10 @@ def create_hierarchical_doctype_structure(doctypes_with_fields, child_parent_map
              root_nodes.append(nodes[doctype_name])
 
     # Add the 'path' property recursively 
+    print("Info: Adding paths to root nodes...")
+    print(f"Info: Found {len(root_nodes)} root nodes.")
     for root_node in root_nodes:
+        print(f"Info: Adding path to root node '{root_node.get('description')}'...")
         add_paths_recursively(root_node) # Start recursion for each root
 
     return {"entities": root_nodes}

@@ -1,0 +1,1664 @@
+{
+    "all_doctypes": {
+        "Asset": [
+            {
+                "fieldname": "nomeativo",
+                "label": "Nome do ativo",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "operadoresoumotoristas",
+                "label": "Operadores ou motoristas",
+                "fieldtype": "Table",
+                "options": "Asset Operator",
+                "hidden": 0
+            }
+        ],
+        "Category": [
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "City": [
+            {
+                "fieldname": "municipio",
+                "label": "Município",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "uf",
+                "label": "UF",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Contract": [
+            {
+                "fieldname": "inicioservicosprevisto",
+                "label": "Início dos serviços conf. contrato",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "valortotal",
+                "label": "Valor total do contrato",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "datafinal",
+                "label": "Data final do contrato",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Objeto",
+                "fieldtype": "Small Text",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "contrato",
+                "label": "Nº do Contrato",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "terminoservicosprevisto",
+                "label": "Término serviços conf. contrato",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "datainicial",
+                "label": "Data inicial do contrato",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "medicaofim",
+                "label": "Dia final",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "vertical",
+                "label": "Vertical",
+                "fieldtype": "Link",
+                "options": "Vertical",
+                "hidden": 0
+            },
+            {
+                "fieldname": "categoria",
+                "label": "Categoria",
+                "fieldtype": "Link",
+                "options": "Category",
+                "hidden": 0
+            },
+            {
+                "fieldname": "terminoservicos",
+                "label": "Término previsto dos serviços",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "percentualreidi",
+                "label": "Percentual",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "subsidiaria",
+                "label": "Subsidiaria",
+                "fieldtype": "Link",
+                "options": "Subsidiary",
+                "hidden": 0
+            },
+            {
+                "fieldname": "uuidkartado",
+                "label": "Chave",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "inicioservicos",
+                "label": "Início real dos serviços",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "responsavel",
+                "label": "Responsável",
+                "fieldtype": "Link",
+                "options": "Person",
+                "hidden": 0
+            },
+            {
+                "fieldname": "contratada",
+                "label": "Contratada",
+                "fieldtype": "Link",
+                "options": "Contracted Company",
+                "hidden": 0
+            },
+            {
+                "fieldname": "medicaopormes",
+                "label": "Medição mês cheio",
+                "fieldtype": "Check",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "obra",
+                "label": "Obra",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "medicaoinicio",
+                "label": "Dia inicial",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Contract Adjustment": [
+            {
+                "fieldname": "datafinal",
+                "label": "Data final do contrato",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "datainicial",
+                "label": "Data inicial do contrato",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "obra",
+                "label": "Obra",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "contrato",
+                "label": "Nº do contrato",
+                "fieldtype": "Link",
+                "options": "Contract",
+                "hidden": 0
+            },
+            {
+                "fieldname": "contratada",
+                "label": "Contratada",
+                "fieldtype": "Link",
+                "options": "Contracted Company",
+                "hidden": 0
+            },
+            {
+                "fieldname": "tabelareajustes",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Adjustment Data",
+                "hidden": 0
+            }
+        ],
+        "Contract Item": [
+            {
+                "fieldname": "rodovias",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Item Highway",
+                "hidden": 0
+            },
+            {
+                "fieldname": "tablepedidossap",
+                "label": "Lista",
+                "fieldtype": "Table",
+                "options": "Contract Item Order",
+                "hidden": 0
+            },
+            {
+                "fieldname": "rgt",
+                "label": "Right",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "valorunitario",
+                "label": "Valor unitário",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "tableassets",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Item Asset",
+                "hidden": 0
+            },
+            {
+                "fieldname": "tablemaodeobra",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Item Work Role",
+                "hidden": 0
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "lft",
+                "label": "Left",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "contrato",
+                "label": "Nº do contrato",
+                "fieldtype": "Link",
+                "options": "Contract",
+                "hidden": 0
+            },
+            {
+                "fieldname": "fm_modeloformula",
+                "label": "Modelo de fórmula",
+                "fieldtype": "Link",
+                "options": "Formula Template",
+                "hidden": 0
+            },
+            {
+                "fieldname": "f_calculomedicaoservico",
+                "label": "Fórmula",
+                "fieldtype": "Long Text",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "parent_contract_item",
+                "label": "Parent Contract Item",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0
+            },
+            {
+                "fieldname": "tabcidades",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Item City",
+                "hidden": 0
+            },
+            {
+                "fieldname": "codigo",
+                "label": "Código",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "old_parent",
+                "label": "Old Parent",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0
+            },
+            {
+                "fieldname": "unidade",
+                "label": "Unidade",
+                "fieldtype": "Link",
+                "options": "Unit",
+                "hidden": 0
+            },
+            {
+                "fieldname": "is_group",
+                "label": "Is Group",
+                "fieldtype": "Check",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Contract Measurement": [
+            {
+                "fieldname": "medicaoliquida",
+                "label": "Medição líquida do REIDI (Vl. bruto NF) [D] = [B]+[C]",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "data_ejak",
+                "label": "Data inicial do contrato",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "data_final_do_contrato",
+                "label": "Data final do contrato",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "ftdacumulado",
+                "label": "Faturamento direto (FTD) acumulado ",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "contrato",
+                "label": "Nº do contrato",
+                "fieldtype": "Link",
+                "options": "Contract",
+                "hidden": 0
+            },
+            {
+                "fieldname": "descontoreidi",
+                "label": "Desconto do REIDI [C] = -3,65% . [B]",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "medicaoequivalente",
+                "label": "Medição equivalente líquida do REIDI [F] = [A]+(E)",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "valorcontrato",
+                "label": "Valor do contrato",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "saldopercentual",
+                "label": "Saldo Contratual (%)",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "saldo",
+                "label": "Saldo Contratual (R$)",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "table_juun",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Asset",
+                "hidden": 0
+            },
+            {
+                "fieldname": "medicaoacumulada",
+                "label": "Medição acumulada atual",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "valortotalvigente",
+                "label": "Valor Total Vigente",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "datafinalmedicao",
+                "label": "Data final medição",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "obra",
+                "label": "Obra",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "table_iqgd",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Work Role",
+                "hidden": 0
+            },
+            {
+                "fieldname": "faturamentodireto",
+                "label": "Faturamento direto (FTD) na fase atual",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "caucaocontratual",
+                "label": "Caução Contratual [G] =  5% . [F]",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "medicaoatualdescontoftd",
+                "label": "Medição atual com desconto de FTD (B)",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "table_husa",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Retention",
+                "hidden": 0
+            }
+        ],
+        "Contract Measurement Record": [
+            {
+                "fieldname": "datafinal",
+                "label": "Data final",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "table_rtgv",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Record Time",
+                "hidden": 0
+            },
+            {
+                "fieldname": "origem",
+                "label": "Origem",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "contrato",
+                "label": "Contrato",
+                "fieldtype": "Link",
+                "options": "Contract",
+                "hidden": 0
+            },
+            {
+                "fieldname": "kminicial",
+                "label": "KM inicial",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "rodovia",
+                "label": "Rodovia",
+                "fieldtype": "Link",
+                "options": "Highway",
+                "hidden": 0
+            },
+            {
+                "fieldname": "datainicial",
+                "label": "Data inicial",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "boletimmedicao",
+                "label": "Boletim de medição",
+                "fieldtype": "Link",
+                "options": "Contract Measurement",
+                "hidden": 0
+            },
+            {
+                "fieldname": "table_lfhu",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Record Material",
+                "hidden": 0
+            },
+            {
+                "fieldname": "kmfinal",
+                "label": "KM final",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "table_lsrc",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Record Asset",
+                "hidden": 0
+            },
+            {
+                "fieldname": "table_ktkj",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Record Work Role",
+                "hidden": 0
+            }
+        ],
+        "Contract Test": [
+            {
+                "fieldname": "nome",
+                "label": "Nome",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "itemcontrato",
+                "label": "Item",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0
+            },
+            {
+                "fieldname": "valoritem",
+                "label": "Valor item",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Contracted Company": [
+            {
+                "fieldname": "razaosocial",
+                "label": "Razão Social",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "endereco",
+                "label": "Endereço",
+                "fieldtype": "Small Text",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "cnpj",
+                "label": "CNPJ",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "nome",
+                "label": "Nome",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Depth Period Setting": [
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "mensal",
+                "label": "Fechamento mensal",
+                "fieldtype": "Check",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "diafinal",
+                "label": "Dia final",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "diainicial",
+                "label": "Dia inicial",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Formula": [
+            {
+                "fieldname": "formula",
+                "label": "Formula",
+                "fieldtype": "Long Text",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "open",
+                "label": "Open",
+                "fieldtype": "Button",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Formula Template": [
+            {
+                "fieldname": "nome",
+                "label": "Nome",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "formula",
+                "label": "Fórmula",
+                "fieldtype": "Long Text",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "configurar",
+                "label": "Configurar",
+                "fieldtype": "Button",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrrção",
+                "fieldtype": "Small Text",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Highway": [
+            {
+                "fieldname": "cidades",
+                "label": "",
+                "fieldtype": "Table",
+                "options": "Highway City",
+                "hidden": 0
+            },
+            {
+                "fieldname": "nome",
+                "label": "Nome",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "sigla",
+                "label": "Sigla",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Holiday": [
+            {
+                "fieldname": "data",
+                "label": "Data",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "cidade",
+                "label": "Cidade (Apenas para feriados municipais)",
+                "fieldtype": "Link",
+                "options": "City",
+                "hidden": 0
+            }
+        ],
+        "Item Classification": [
+            {
+                "fieldname": "codigo",
+                "label": "Código",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "cidades",
+                "label": "Cidades",
+                "fieldtype": "Table",
+                "options": "Item Classification Tax",
+                "hidden": 0
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Classificação de serviço",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Material": [
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "codigo",
+                "label": "Código",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Measurement Report": [
+            {
+                "fieldname": "workflow_state",
+                "label": "Status",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "nº_do_contrato",
+                "label": "Nº do contrato",
+                "fieldtype": "Link",
+                "options": "Contract",
+                "hidden": 0
+            },
+            {
+                "fieldname": "data",
+                "label": "Data",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "boletim_de_medição",
+                "label": "Boletim de medição",
+                "fieldtype": "Attach",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Person": [
+            {
+                "fieldname": "departamento",
+                "label": "Departamento",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "nome",
+                "label": "Nome",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "telefone",
+                "label": "Telefone/Celular",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            },
+            {
+                "fieldname": "email",
+                "label": "Email",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Retention Type": [
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0
+            }
+        ],
+        "Asset Operator": [
+            {
+                "fieldname": "operador",
+                "label": "Operador/motorista",
+                "fieldtype": "Link",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Asset Operator"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0,
+                "parent": "Asset Operator"
+            }
+        ],
+        "Contract Adjustment Data": [
+            {
+                "fieldname": "datareajuste",
+                "label": "Data de reajuste",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Adjustment Data"
+            },
+            {
+                "fieldname": "valorreajuste",
+                "label": "Valor do reajuste",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Adjustment Data"
+            },
+            {
+                "fieldname": "itemcontrato",
+                "label": "Item do contrato",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Adjustment Data"
+            },
+            {
+                "fieldname": "saldo",
+                "label": "Saldo do item do contrato",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Adjustment Data"
+            },
+            {
+                "fieldname": "indicereajuste",
+                "label": "Indice de reajuste",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Adjustment Data"
+            }
+        ],
+        "Contract Item Asset": [
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Asset"
+            },
+            {
+                "fieldname": "valormensal",
+                "label": "Valor mensal",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Asset"
+            },
+            {
+                "fieldname": "asset",
+                "label": "Máquina, equipamento ou veículos",
+                "fieldtype": "Link",
+                "options": "Asset",
+                "hidden": 0,
+                "parent": "Contract Item Asset"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Asset"
+            }
+        ],
+        "Contract Item City": [
+            {
+                "fieldname": "iss",
+                "label": "ISS",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item City"
+            },
+            {
+                "fieldname": "kmfinal",
+                "label": "KM Final",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item City"
+            },
+            {
+                "fieldname": "kminicial",
+                "label": "KM Inicial",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item City"
+            },
+            {
+                "fieldname": "participacaopercentual",
+                "label": "Participação %",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item City"
+            },
+            {
+                "fieldname": "cidade",
+                "label": "Cidade",
+                "fieldtype": "Link",
+                "options": "City",
+                "hidden": 0,
+                "parent": "Contract Item City"
+            }
+        ],
+        "Contract Item Highway": [
+            {
+                "fieldname": "kmfinal",
+                "label": "KM Final",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Highway"
+            },
+            {
+                "fieldname": "rodovia",
+                "label": "Rodovia",
+                "fieldtype": "Link",
+                "options": "Highway",
+                "hidden": 0,
+                "parent": "Contract Item Highway"
+            },
+            {
+                "fieldname": "kminicial",
+                "label": "KM Inicial",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Highway"
+            }
+        ],
+        "Contract Item Order": [
+            {
+                "fieldname": "valortotal",
+                "label": "Valor total",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Order"
+            },
+            {
+                "fieldname": "pedidosap",
+                "label": "Nº do pedido SAP",
+                "fieldtype": "Link",
+                "options": "SAP Order",
+                "hidden": 0,
+                "parent": "Contract Item Order"
+            }
+        ],
+        "Contract Item Work Role": [
+            {
+                "fieldname": "valortotalmensal",
+                "label": "Valor total mensal",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Work Role"
+            },
+            {
+                "fieldname": "pagamentohora",
+                "label": "Pagamento por hora",
+                "fieldtype": "Check",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Work Role"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Work Role"
+            },
+            {
+                "fieldname": "funcao",
+                "label": "Função",
+                "fieldtype": "Link",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Contract Item Work Role"
+            },
+            {
+                "fieldname": "valorporhora",
+                "label": "Valor por hora",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Item Work Role"
+            }
+        ],
+        "Contract Measurement Asset": [
+            {
+                "fieldname": "maquina_equipamento_ou_ferramenta",
+                "label": "Maquina, equipamento ou ferramenta",
+                "fieldtype": "Link",
+                "options": "Asset",
+                "hidden": 0,
+                "parent": "Contract Measurement Asset"
+            },
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Asset"
+            },
+            {
+                "fieldname": "quantidade_medida",
+                "label": "Quantidade medida",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Asset"
+            },
+            {
+                "fieldname": "data_e_hora",
+                "label": "Data e hora",
+                "fieldtype": "Datetime",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Asset"
+            }
+        ],
+        "Contract Measurement City": [
+            {
+                "fieldname": "valoriss",
+                "label": "ISS",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement City"
+            },
+            {
+                "fieldname": "municipio",
+                "label": "Municipio",
+                "fieldtype": "Link",
+                "options": "City",
+                "hidden": 0,
+                "parent": "Contract Measurement City"
+            },
+            {
+                "fieldname": "pedidosap",
+                "label": "Pedido SAP",
+                "fieldtype": "Link",
+                "options": "SAP Order",
+                "hidden": 0,
+                "parent": "Contract Measurement City"
+            },
+            {
+                "fieldname": "data",
+                "label": "Data",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement City"
+            },
+            {
+                "fieldname": "valor",
+                "label": "Valor",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement City"
+            }
+        ],
+        "Contract Measurement FTD": [
+            {
+                "fieldname": "data",
+                "label": "Data emissão",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "unidade",
+                "label": "Unidade",
+                "fieldtype": "Link",
+                "options": "Unit",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "fornecedor",
+                "label": "Fornecedor",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "linhasap",
+                "label": "Linha SAP",
+                "fieldtype": "Int",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "nº_pedido_sap",
+                "label": "Nº pedido SAP",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "valor",
+                "label": "Valor total da nota fiscal",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "nf_nº",
+                "label": "NF Nº",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "elementopep",
+                "label": "Elemento PEP",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "descricaonota",
+                "label": "Material ou projeto",
+                "fieldtype": "Small Text",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            },
+            {
+                "fieldname": "datadesconto",
+                "label": "Desconto em (Informe o primeiro dia do mês de desconto)",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement FTD"
+            }
+        ],
+        "Contract Measurement Record Asset": [
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Asset"
+            },
+            {
+                "fieldname": "quantidade_medida",
+                "label": "Quantidade medida",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Record Asset"
+            },
+            {
+                "fieldname": "data_e_hora",
+                "label": "Data e hora",
+                "fieldtype": "Datetime",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Record Asset"
+            },
+            {
+                "fieldname": "maquina_equipamento_ou_ferramenta",
+                "label": "Maquina, equipamento ou ferramenta",
+                "fieldtype": "Link",
+                "options": "Asset",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Asset"
+            }
+        ],
+        "Contract Measurement Record Material": [
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Record Material"
+            },
+            {
+                "fieldname": "codigomaterial",
+                "label": "Código do material",
+                "fieldtype": "Link",
+                "options": "Material",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Material"
+            },
+            {
+                "fieldname": "material",
+                "label": "Material",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Record Material"
+            }
+        ],
+        "Contract Measurement Record Time": [
+            {
+                "fieldname": "horainicial",
+                "label": "Hora inicial",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time"
+            },
+            {
+                "fieldname": "funcao",
+                "label": "Função",
+                "fieldtype": "Link",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time"
+            },
+            {
+                "fieldname": "horafinal",
+                "label": "Hora final",
+                "fieldtype": "Data",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Int",
+                "options": "1",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time"
+            }
+        ],
+        "Contract Measurement Record Work Role": [
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role"
+            },
+            {
+                "fieldname": "data_e_hora",
+                "label": "Data e hora",
+                "fieldtype": "Datetime",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role"
+            },
+            {
+                "fieldname": "funcao",
+                "label": "Função",
+                "fieldtype": "Link",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role"
+            },
+            {
+                "fieldname": "quantidade_medida",
+                "label": "Quantidade medida",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role"
+            },
+            {
+                "fieldname": "funcaoitem",
+                "label": "Função do item",
+                "fieldtype": "Link",
+                "options": "Contract Item Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role"
+            }
+        ],
+        "Contract Measurement Result": [
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Result"
+            },
+            {
+                "fieldname": "datafinal",
+                "label": "Data final",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Result"
+            },
+            {
+                "fieldname": "data_incial",
+                "label": "Data incial",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Result"
+            },
+            {
+                "fieldname": "f_formula",
+                "label": "Fórmula",
+                "fieldtype": "Small Text",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Result"
+            },
+            {
+                "fieldname": "valor",
+                "label": "Valor",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Result"
+            }
+        ],
+        "Contract Measurement Retention": [
+            {
+                "fieldname": "valor",
+                "label": "Valor",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Retention"
+            },
+            {
+                "fieldname": "data",
+                "label": "Data",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Retention"
+            },
+            {
+                "fieldname": "tiporetencao",
+                "label": "Tipo de retenção",
+                "fieldtype": "Link",
+                "options": "Retention Type",
+                "hidden": 0,
+                "parent": "Contract Measurement Retention"
+            }
+        ],
+        "Contract Measurement SAP Order": [
+            {
+                "fieldname": "datafinal",
+                "label": "Data final da medição",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order"
+            },
+            {
+                "fieldname": "datainicial",
+                "label": "Data inicial da medição",
+                "fieldtype": "Date",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order"
+            },
+            {
+                "fieldname": "valormedido",
+                "label": "Valor medido",
+                "fieldtype": "Currency",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order"
+            },
+            {
+                "fieldname": "pedido_sap",
+                "label": "Pedido SAP",
+                "fieldtype": "Link",
+                "options": "SAP Order",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order"
+            }
+        ],
+        "Contract Measurement Work Role": [
+            {
+                "fieldname": "funcaoitem",
+                "label": "Função do item",
+                "fieldtype": "Link",
+                "options": "Contract Item Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement Work Role"
+            },
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Work Role"
+            },
+            {
+                "fieldname": "funcao",
+                "label": "Função",
+                "fieldtype": "Link",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement Work Role"
+            },
+            {
+                "fieldname": "data_e_hora",
+                "label": "Data e hora",
+                "fieldtype": "Datetime",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Work Role"
+            },
+            {
+                "fieldname": "quantidade_medida",
+                "label": "Quantidade medida",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Contract Measurement Work Role"
+            }
+        ],
+        "Highway City": [
+            {
+                "fieldname": "kminicial",
+                "label": "KM Inicial",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Highway City"
+            },
+            {
+                "fieldname": "kmfinal",
+                "label": "KM Final",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Highway City"
+            },
+            {
+                "fieldname": "cidade",
+                "label": "Cidade",
+                "fieldtype": "Link",
+                "options": "City",
+                "hidden": 0,
+                "parent": "Highway City"
+            }
+        ],
+        "Item Classification Tax": [
+            {
+                "fieldname": "iss",
+                "label": "ISS",
+                "fieldtype": "Float",
+                "options": null,
+                "hidden": 0,
+                "parent": "Item Classification Tax"
+            },
+            {
+                "fieldname": "cidade",
+                "label": "Cidade",
+                "fieldtype": "Link",
+                "options": "City",
+                "hidden": 0,
+                "parent": "Item Classification Tax"
+            }
+        ]
+    },
+    "parents_mapping": [
+        {
+            "child": "Asset Operator",
+            "parent": "Asset",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Adjustment Data",
+            "parent": "Contract Adjustment",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item Highway",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item Order",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item Asset",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item Work Role",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item City",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Asset",
+            "parent": "Contract Measurement",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Work Role",
+            "parent": "Contract Measurement",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Retention",
+            "parent": "Contract Measurement",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Record Time",
+            "parent": "Contract Measurement Record",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Record Material",
+            "parent": "Contract Measurement Record",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Record Asset",
+            "parent": "Contract Measurement Record",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Record Work Role",
+            "parent": "Contract Measurement Record",
+            "type": "Table"
+        },
+        {
+            "child": "Highway City",
+            "parent": "Highway",
+            "type": "Table"
+        },
+        {
+            "child": "Item Classification Tax",
+            "parent": "Item Classification",
+            "type": "Table"
+        }
+    ]
+}

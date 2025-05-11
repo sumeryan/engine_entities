@@ -11,6 +11,7 @@ import api_client
 import os
 import json_to_hierarquical
 import api_client_data
+import json
 
 def get_main_doctypes_with_fields(api_base_url, api_token): 
     """
@@ -155,6 +156,20 @@ def get_hierarchical_doctype_structure():
     print("\n--- Starting Internal Generation V2 ---")
 
     doctypes = process_doctypes() 
+
+    # REMOVE THIS
+    output_dir = "output"
+    output_filename = "output_doctypes.json"
+    print(f"Path: {os.path.join(output_dir, output_filename)}")
+    try:
+        with open(os.path.join(output_dir, output_filename), "w", encoding="utf-8") as f:
+            json.dump(doctypes, f, indent=4, ensure_ascii=False)
+        print(f"\n************************")
+        print(f"File {output_filename} saved successfully in {output_dir}.")
+    except Exception as e:
+        print(f"Error saving the file: {e}")
+    # REMOVE THIS
+
 
     print("\n--- Creating hierarchical structure ---")
     hierarquical_json = json_to_hierarquical.create_hierarchical_doctype_structure(

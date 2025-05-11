@@ -14,7 +14,6 @@ from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
 from flask_cors import CORS # Import CORS
 from get_doctypes import get_hierarchical_doctype_structure
-from json_to_entity_transformer import create_hierarchical_doctype_structure
 
 # Load environment variables from .env file
 load_dotenv()
@@ -22,7 +21,8 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": [
     "http://localhost:3000",
-    "https://arteris-editor.meb.services"
+    "https://arteris-editor.meb.services",
+    "http://localhost:5174"
 ]}})
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'uma-chave-secreta-padrao') # Use a secure secret key
 # Change async_mode to 'threading' to avoid the need for eventlet/gevent

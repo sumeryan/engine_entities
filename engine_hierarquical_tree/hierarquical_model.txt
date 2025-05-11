@@ -1,0 +1,52 @@
+{
+    "entities": [
+        {
+            "key": [NOME DA PROPRIEDADE DE DOCTYPE],
+            "description": [NOME DO DOCTYPE OU LABEL PARA CAMPOS DO DOCTYPE],
+            "fieldname": [NULO PARA DOCTYPE E FIELDNAME PARA CAMPOS],
+            "type": [SE DOCTYPE "doctype" SE CAMPO "string", "numeric", "date", "datetime", "boolean", "select" OU "text"],
+            "path": "", <- PREENCHER COM STRING VAZIA
+            "dragandrop": true/false [FALSO PARA DOCTYPE E VERDADEIRO PARA CAMPOS],
+            "children": [ <- [CAMPOS DE DOCTYPE, OU AINDA RELACAO PAI E FILHO PELO "option" DO DOCTYPE, OU AINDA SPECIEFIED_MAPPING],
+                {
+                    "key": "...",
+                    "description": "...",
+                    "fieldname": "...",
+                    "type": "...",
+                    "path": "",
+                    "dragandrop": ...,
+                    "children": [], <- [VAZIO PARA CAMPOS DE DOCTYPE SALVO SE HOUVER VALOR EM OPTION]
+                },
+                {
+                    "key": "...",
+                    "description": "...",
+                    "fieldname": "...",
+                    "type": "...",
+                    "path": "",
+                    "dragandrop": ...,
+                    "children": [
+                        {
+                            "key": "...",
+                            "description": "...",
+                            "fieldname": "...",
+                            "type": "...",
+                            "path": "",
+                            "dragandrop": ...,
+                            "children": []
+                        },
+                        {
+                            "key": "...",
+                            "description": "...",
+                            "fieldname": "...",
+                            "type": "...",
+                            "path": "",
+                            "dragandrop": ...,
+                            "children": []
+                        },
+                        ...
+                    ],
+                }
+            ],"
+        },
+    ]
+}

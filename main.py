@@ -33,7 +33,7 @@ def main():
     hierarchical_entity = get_doctypes.get_hierarchical_doctype_structure()
     
     print("Hierarchical structure loaded:")
-    print(hierarchical_entity)
+    # print(hierarchical_entity)
     print("\nChecking for circular references...")
     try:
         json.dumps(hierarchical_entity)
