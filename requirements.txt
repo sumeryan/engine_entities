@@ -1,0 +1,6 @@
+# Adicione as dependências do seu projeto aqui
+requests
+python-dotenv
+Flask
+Flask-SocketIO
+Flask-CORS

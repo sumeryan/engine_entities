@@ -1,0 +1,3054 @@
+{
+    "entities": [
+        {
+            "key": "Asset",
+            "description": "Asset",
+            "fieldname": "Asset",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Nome_do_ativo",
+                    "description": "Nome do ativo",
+                    "fieldname": "nomeativo",
+                    "type": "string"
+                },
+                {
+                    "key": "Asset_Operator",
+                    "description": "Asset Operator",
+                    "fieldname": "Asset Operator",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Quantidade",
+                            "description": "Quantidade",
+                            "fieldname": "quantidade",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Work_Role",
+                            "description": "Work Role",
+                            "fieldname": "Work Role",
+                            "type": "doctype",
+                            "children": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Category",
+            "description": "Category",
+            "fieldname": "Category",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Descricao",
+                    "description": "Descrição",
+                    "fieldname": "descricao",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "key": "City",
+            "description": "City",
+            "fieldname": "City",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Municipio",
+                    "description": "Município",
+                    "fieldname": "municipio",
+                    "type": "string"
+                },
+                {
+                    "key": "UF",
+                    "description": "UF",
+                    "fieldname": "uf",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "key": "Contract",
+            "description": "Contract",
+            "fieldname": "Contract",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Inicio_dos_servicos_conf_contrato",
+                    "description": "Início dos serviços conf. contrato",
+                    "fieldname": "inicioservicosprevisto",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Valor_total_do_contrato",
+                    "description": "Valor total do contrato",
+                    "fieldname": "valortotal",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Data_final_do_contrato",
+                    "description": "Data final do contrato",
+                    "fieldname": "datafinal",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Objeto",
+                    "description": "Objeto",
+                    "fieldname": "descricao",
+                    "type": "string"
+                },
+                {
+                    "key": "No_do_Contrato",
+                    "description": "Nº do Contrato",
+                    "fieldname": "contrato",
+                    "type": "string"
+                },
+                {
+                    "key": "Termino_servicos_conf_contrato",
+                    "description": "Término serviços conf. contrato",
+                    "fieldname": "terminoservicosprevisto",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Data_inicial_do_contrato",
+                    "description": "Data inicial do contrato",
+                    "fieldname": "datainicial",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Dia_final",
+                    "description": "Dia final",
+                    "fieldname": "medicaofim",
+                    "type": "string"
+                },
+                {
+                    "key": "Termino_previsto_dos_servicos",
+                    "description": "Término previsto dos serviços",
+                    "fieldname": "terminoservicos",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Percentual",
+                    "description": "Percentual",
+                    "fieldname": "percentualreidi",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Chave",
+                    "description": "Chave",
+                    "fieldname": "uuidkartado",
+                    "type": "string"
+                },
+                {
+                    "key": "Inicio_real_dos_servicos",
+                    "description": "Início real dos serviços",
+                    "fieldname": "inicioservicos",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Medicao_mes_cheio",
+                    "description": "Medição mês cheio",
+                    "fieldname": "medicaopormes",
+                    "type": "boolean"
+                },
+                {
+                    "key": "Obra",
+                    "description": "Obra",
+                    "fieldname": "obra",
+                    "type": "string"
+                },
+                {
+                    "key": "Dia_inicial",
+                    "description": "Dia inicial",
+                    "fieldname": "medicaoinicio",
+                    "type": "string"
+                },
+                {
+                    "key": "Vertical",
+                    "description": "Vertical",
+                    "fieldname": "Vertical",
+                    "type": "doctype",
+                    "children": []
+                },
+                {
+                    "key": "Category",
+                    "description": "Category",
+                    "fieldname": "Category",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Descricao",
+                            "description": "Descrição",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "Subsidiary",
+                    "description": "Subsidiary",
+                    "fieldname": "Subsidiary",
+                    "type": "doctype",
+                    "children": []
+                },
+                {
+                    "key": "Person",
+                    "description": "Person",
+                    "fieldname": "Person",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Departamento",
+                            "description": "Departamento",
+                            "fieldname": "departamento",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Nome",
+                            "description": "Nome",
+                            "fieldname": "nome",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Telefone_Celular",
+                            "description": "Telefone/Celular",
+                            "fieldname": "telefone",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Email",
+                            "description": "Email",
+                            "fieldname": "email",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "Contracted_Company",
+                    "description": "Contracted Company",
+                    "fieldname": "Contracted Company",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Razao_Social",
+                            "description": "Razão Social",
+                            "fieldname": "razaosocial",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Endereco",
+                            "description": "Endereço",
+                            "fieldname": "endereco",
+                            "type": "string"
+                        },
+                        {
+                            "key": "CNPJ",
+                            "description": "CNPJ",
+                            "fieldname": "cnpj",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Nome",
+                            "description": "Nome",
+                            "fieldname": "nome",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Measurement_Record",
+                    "description": "Contract Measurement Record",
+                    "fieldname": "Contract Measurement Record",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Data_final",
+                            "description": "Data final",
+                            "fieldname": "datafinal",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Origem",
+                            "description": "Origem",
+                            "fieldname": "origem",
+                            "type": "string"
+                        },
+                        {
+                            "key": "KM_inicial",
+                            "description": "KM inicial",
+                            "fieldname": "kminicial",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Data_inicial",
+                            "description": "Data inicial",
+                            "fieldname": "datainicial",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "KM_final",
+                            "description": "KM final",
+                            "fieldname": "kmfinal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Contract",
+                            "description": "Contract",
+                            "fieldname": "Contract",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Inicio_dos_servicos_conf_contrato",
+                                    "description": "Início dos serviços conf. contrato",
+                                    "fieldname": "inicioservicosprevisto",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "key": "Valor_total_do_contrato",
+                                    "description": "Valor total do contrato",
+                                    "fieldname": "valortotal",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Data_final_do_contrato",
+                                    "description": "Data final do contrato",
+                                    "fieldname": "datafinal",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "key": "Objeto",
+                                    "description": "Objeto",
+                                    "fieldname": "descricao",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "No_do_Contrato",
+                                    "description": "Nº do Contrato",
+                                    "fieldname": "contrato",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Termino_servicos_conf_contrato",
+                                    "description": "Término serviços conf. contrato",
+                                    "fieldname": "terminoservicosprevisto",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "key": "Data_inicial_do_contrato",
+                                    "description": "Data inicial do contrato",
+                                    "fieldname": "datainicial",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "key": "Dia_final",
+                                    "description": "Dia final",
+                                    "fieldname": "medicaofim",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Vertical",
+                                    "description": "Vertical",
+                                    "fieldname": "vertical",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Categoria",
+                                    "description": "Categoria",
+                                    "fieldname": "categoria",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Termino_previsto_dos_servicos",
+                                    "description": "Término previsto dos serviços",
+                                    "fieldname": "terminoservicos",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "key": "Percentual",
+                                    "description": "Percentual",
+                                    "fieldname": "percentualreidi",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Subsidiaria",
+                                    "description": "Subsidiaria",
+                                    "fieldname": "subsidiaria",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Chave",
+                                    "description": "Chave",
+                                    "fieldname": "uuidkartado",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Inicio_real_dos_servicos",
+                                    "description": "Início real dos serviços",
+                                    "fieldname": "inicioservicos",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "key": "Responsavel",
+                                    "description": "Responsável",
+                                    "fieldname": "responsavel",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Contratada",
+                                    "description": "Contratada",
+                                    "fieldname": "contratada",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Medicao_mes_cheio",
+                                    "description": "Medição mês cheio",
+                                    "fieldname": "medicaopormes",
+                                    "type": "boolean"
+                                },
+                                {
+                                    "key": "Obra",
+                                    "description": "Obra",
+                                    "fieldname": "obra",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Dia_inicial",
+                                    "description": "Dia inicial",
+                                    "fieldname": "medicaoinicio",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "Highway",
+                            "description": "Highway",
+                            "fieldname": "Highway",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Nome",
+                                    "description": "Nome",
+                                    "fieldname": "nome",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Sigla",
+                                    "description": "Sigla",
+                                    "fieldname": "sigla",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "Contract_Measurement",
+                            "description": "Contract Measurement",
+                            "fieldname": "Contract Measurement",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Medicao_liquida_do_REIDI_Vl_bruto_NF_D_B_C",
+                                    "description": "Medição líquida do REIDI (Vl. bruto NF) [D] = [B]+[C]",
+                                    "fieldname": "medicaoliquida",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Data_inicial_do_contrato",
+                                    "description": "Data inicial do contrato",
+                                    "fieldname": "data_ejak",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Data_final_do_contrato",
+                                    "description": "Data final do contrato",
+                                    "fieldname": "data_final_do_contrato",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Faturamento_direto_FTD_acumulado",
+                                    "description": "Faturamento direto (FTD) acumulado ",
+                                    "fieldname": "ftdacumulado",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "No_do_contrato",
+                                    "description": "Nº do contrato",
+                                    "fieldname": "contrato",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Desconto_do_REIDI_C_3_65_B",
+                                    "description": "Desconto do REIDI [C] = -3,65% . [B]",
+                                    "fieldname": "descontoreidi",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Medicao_equivalente_liquida_do_REIDI_F_A_E",
+                                    "description": "Medição equivalente líquida do REIDI [F] = [A]+(E)",
+                                    "fieldname": "medicaoequivalente",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Valor_do_contrato",
+                                    "description": "Valor do contrato",
+                                    "fieldname": "valorcontrato",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Saldo_Contratual",
+                                    "description": "Saldo Contratual (%)",
+                                    "fieldname": "saldopercentual",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Saldo_Contratual_R",
+                                    "description": "Saldo Contratual (R$)",
+                                    "fieldname": "saldo",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Medicao_acumulada_atual",
+                                    "description": "Medição acumulada atual",
+                                    "fieldname": "medicaoacumulada",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Valor_Total_Vigente",
+                                    "description": "Valor Total Vigente",
+                                    "fieldname": "valortotalvigente",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Data_final_medicao",
+                                    "description": "Data final medição",
+                                    "fieldname": "datafinalmedicao",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "key": "Obra",
+                                    "description": "Obra",
+                                    "fieldname": "obra",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Faturamento_direto_FTD_na_fase_atual",
+                                    "description": "Faturamento direto (FTD) na fase atual",
+                                    "fieldname": "faturamentodireto",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Caucao_Contratual_G_5_F",
+                                    "description": "Caução Contratual [G] =  5% . [F]",
+                                    "fieldname": "caucaocontratual",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Medicao_atual_com_desconto_de_FTD_B",
+                                    "description": "Medição atual com desconto de FTD (B)",
+                                    "fieldname": "medicaoatualdescontoftd",
+                                    "type": "numeric"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "Contract_Measurement_Record_Time",
+                            "description": "Contract Measurement Record Time",
+                            "fieldname": "Contract Measurement Record Time",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Hora_inicial",
+                                    "description": "Hora inicial",
+                                    "fieldname": "horainicial",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Hora_final",
+                                    "description": "Hora final",
+                                    "fieldname": "horafinal",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Quantidade",
+                                    "description": "Quantidade",
+                                    "fieldname": "quantidade",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Work_Role",
+                                    "description": "Work Role",
+                                    "fieldname": "Work Role",
+                                    "type": "doctype",
+                                    "children": []
+                                }
+                            ]
+                        },
+                        {
+                            "key": "Contract_Measurement_Record_Material",
+                            "description": "Contract Measurement Record Material",
+                            "fieldname": "Contract Measurement Record Material",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Quantidade",
+                                    "description": "Quantidade",
+                                    "fieldname": "quantidade",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Material",
+                                    "description": "Material",
+                                    "fieldname": "material",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Material",
+                                    "description": "Material",
+                                    "fieldname": "Material",
+                                    "type": "doctype",
+                                    "children": [
+                                        {
+                                            "key": "Descricao",
+                                            "description": "Descrição",
+                                            "fieldname": "descricao",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Codigo",
+                                            "description": "Código",
+                                            "fieldname": "codigo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "key": "Contract_Measurement_Record_Asset",
+                            "description": "Contract Measurement Record Asset",
+                            "fieldname": "Contract Measurement Record Asset",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Quantidade_medida",
+                                    "description": "Quantidade medida",
+                                    "fieldname": "quantidade_medida",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Data_e_hora",
+                                    "description": "Data e hora",
+                                    "fieldname": "data_e_hora",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "key": "Contract_Item",
+                                    "description": "Contract Item",
+                                    "fieldname": "Contract Item",
+                                    "type": "doctype",
+                                    "children": [
+                                        {
+                                            "key": "Right",
+                                            "description": "Right",
+                                            "fieldname": "rgt",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "Valor_unitario",
+                                            "description": "Valor unitário",
+                                            "fieldname": "valorunitario",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "Descricao",
+                                            "description": "Descrição",
+                                            "fieldname": "descricao",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Left",
+                                            "description": "Left",
+                                            "fieldname": "lft",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "Quantidade",
+                                            "description": "Quantidade",
+                                            "fieldname": "quantidade",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "No_do_contrato",
+                                            "description": "Nº do contrato",
+                                            "fieldname": "contrato",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Parent_Contract_Item",
+                                            "description": "Parent Contract Item",
+                                            "fieldname": "parent_contract_item",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Codigo",
+                                            "description": "Código",
+                                            "fieldname": "codigo",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Old_Parent",
+                                            "description": "Old Parent",
+                                            "fieldname": "old_parent",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Unidade",
+                                            "description": "Unidade",
+                                            "fieldname": "unidade",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Is_Group",
+                                            "description": "Is Group",
+                                            "fieldname": "is_group",
+                                            "type": "boolean"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "key": "Asset",
+                                    "description": "Asset",
+                                    "fieldname": "Asset",
+                                    "type": "doctype",
+                                    "children": [
+                                        {
+                                            "key": "Nome_do_ativo",
+                                            "description": "Nome do ativo",
+                                            "fieldname": "nomeativo",
+                                            "type": "string"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "key": "Contract_Measurement_Record_Work_Role",
+                            "description": "Contract Measurement Record Work Role",
+                            "fieldname": "Contract Measurement Record Work Role",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Data_e_hora",
+                                    "description": "Data e hora",
+                                    "fieldname": "data_e_hora",
+                                    "type": "datetime"
+                                },
+                                {
+                                    "key": "Quantidade_medida",
+                                    "description": "Quantidade medida",
+                                    "fieldname": "quantidade_medida",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Contract_Item",
+                                    "description": "Contract Item",
+                                    "fieldname": "Contract Item",
+                                    "type": "doctype",
+                                    "children": [
+                                        {
+                                            "key": "Right",
+                                            "description": "Right",
+                                            "fieldname": "rgt",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "Valor_unitario",
+                                            "description": "Valor unitário",
+                                            "fieldname": "valorunitario",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "Descricao",
+                                            "description": "Descrição",
+                                            "fieldname": "descricao",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Left",
+                                            "description": "Left",
+                                            "fieldname": "lft",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "Quantidade",
+                                            "description": "Quantidade",
+                                            "fieldname": "quantidade",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "No_do_contrato",
+                                            "description": "Nº do contrato",
+                                            "fieldname": "contrato",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Parent_Contract_Item",
+                                            "description": "Parent Contract Item",
+                                            "fieldname": "parent_contract_item",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Codigo",
+                                            "description": "Código",
+                                            "fieldname": "codigo",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Old_Parent",
+                                            "description": "Old Parent",
+                                            "fieldname": "old_parent",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Unidade",
+                                            "description": "Unidade",
+                                            "fieldname": "unidade",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Is_Group",
+                                            "description": "Is Group",
+                                            "fieldname": "is_group",
+                                            "type": "boolean"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "key": "Work_Role",
+                                    "description": "Work Role",
+                                    "fieldname": "Work Role",
+                                    "type": "doctype",
+                                    "children": []
+                                },
+                                {
+                                    "key": "Contract_Item_Work_Role",
+                                    "description": "Contract Item Work Role",
+                                    "fieldname": "Contract Item Work Role",
+                                    "type": "doctype",
+                                    "children": [
+                                        {
+                                            "key": "Valor_total_mensal",
+                                            "description": "Valor total mensal",
+                                            "fieldname": "valortotalmensal",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "Pagamento_por_hora",
+                                            "description": "Pagamento por hora",
+                                            "fieldname": "pagamentohora",
+                                            "type": "boolean"
+                                        },
+                                        {
+                                            "key": "Quantidade",
+                                            "description": "Quantidade",
+                                            "fieldname": "quantidade",
+                                            "type": "numeric"
+                                        },
+                                        {
+                                            "key": "Funcao",
+                                            "description": "Função",
+                                            "fieldname": "funcao",
+                                            "type": "string"
+                                        },
+                                        {
+                                            "key": "Valor_por_hora",
+                                            "description": "Valor por hora",
+                                            "fieldname": "valorporhora",
+                                            "type": "numeric"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Contract_Adjustment",
+            "description": "Contract Adjustment",
+            "fieldname": "Contract Adjustment",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Data_final_do_contrato",
+                    "description": "Data final do contrato",
+                    "fieldname": "datafinal",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Data_inicial_do_contrato",
+                    "description": "Data inicial do contrato",
+                    "fieldname": "datainicial",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Obra",
+                    "description": "Obra",
+                    "fieldname": "obra",
+                    "type": "string"
+                },
+                {
+                    "key": "Contract",
+                    "description": "Contract",
+                    "fieldname": "Contract",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Inicio_dos_servicos_conf_contrato",
+                            "description": "Início dos serviços conf. contrato",
+                            "fieldname": "inicioservicosprevisto",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Valor_total_do_contrato",
+                            "description": "Valor total do contrato",
+                            "fieldname": "valortotal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Data_final_do_contrato",
+                            "description": "Data final do contrato",
+                            "fieldname": "datafinal",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Objeto",
+                            "description": "Objeto",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        },
+                        {
+                            "key": "No_do_Contrato",
+                            "description": "Nº do Contrato",
+                            "fieldname": "contrato",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Termino_servicos_conf_contrato",
+                            "description": "Término serviços conf. contrato",
+                            "fieldname": "terminoservicosprevisto",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Data_inicial_do_contrato",
+                            "description": "Data inicial do contrato",
+                            "fieldname": "datainicial",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Dia_final",
+                            "description": "Dia final",
+                            "fieldname": "medicaofim",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Vertical",
+                            "description": "Vertical",
+                            "fieldname": "vertical",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Categoria",
+                            "description": "Categoria",
+                            "fieldname": "categoria",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Termino_previsto_dos_servicos",
+                            "description": "Término previsto dos serviços",
+                            "fieldname": "terminoservicos",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Percentual",
+                            "description": "Percentual",
+                            "fieldname": "percentualreidi",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Subsidiaria",
+                            "description": "Subsidiaria",
+                            "fieldname": "subsidiaria",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Chave",
+                            "description": "Chave",
+                            "fieldname": "uuidkartado",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Inicio_real_dos_servicos",
+                            "description": "Início real dos serviços",
+                            "fieldname": "inicioservicos",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Responsavel",
+                            "description": "Responsável",
+                            "fieldname": "responsavel",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Contratada",
+                            "description": "Contratada",
+                            "fieldname": "contratada",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Medicao_mes_cheio",
+                            "description": "Medição mês cheio",
+                            "fieldname": "medicaopormes",
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "Obra",
+                            "description": "Obra",
+                            "fieldname": "obra",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Dia_inicial",
+                            "description": "Dia inicial",
+                            "fieldname": "medicaoinicio",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "Contracted_Company",
+                    "description": "Contracted Company",
+                    "fieldname": "Contracted Company",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Razao_Social",
+                            "description": "Razão Social",
+                            "fieldname": "razaosocial",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Endereco",
+                            "description": "Endereço",
+                            "fieldname": "endereco",
+                            "type": "string"
+                        },
+                        {
+                            "key": "CNPJ",
+                            "description": "CNPJ",
+                            "fieldname": "cnpj",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Nome",
+                            "description": "Nome",
+                            "fieldname": "nome",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Adjustment_Data",
+                    "description": "Contract Adjustment Data",
+                    "fieldname": "Contract Adjustment Data",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Data_de_reajuste",
+                            "description": "Data de reajuste",
+                            "fieldname": "datareajuste",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Valor_do_reajuste",
+                            "description": "Valor do reajuste",
+                            "fieldname": "valorreajuste",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Saldo_do_item_do_contrato",
+                            "description": "Saldo do item do contrato",
+                            "fieldname": "saldo",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Indice_de_reajuste",
+                            "description": "Indice de reajuste",
+                            "fieldname": "indicereajuste",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Contract_Item",
+                            "description": "Contract Item",
+                            "fieldname": "Contract Item",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Right",
+                                    "description": "Right",
+                                    "fieldname": "rgt",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Valor_unitario",
+                                    "description": "Valor unitário",
+                                    "fieldname": "valorunitario",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Descricao",
+                                    "description": "Descrição",
+                                    "fieldname": "descricao",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Left",
+                                    "description": "Left",
+                                    "fieldname": "lft",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Quantidade",
+                                    "description": "Quantidade",
+                                    "fieldname": "quantidade",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "No_do_contrato",
+                                    "description": "Nº do contrato",
+                                    "fieldname": "contrato",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Parent_Contract_Item",
+                                    "description": "Parent Contract Item",
+                                    "fieldname": "parent_contract_item",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Codigo",
+                                    "description": "Código",
+                                    "fieldname": "codigo",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Old_Parent",
+                                    "description": "Old Parent",
+                                    "fieldname": "old_parent",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Unidade",
+                                    "description": "Unidade",
+                                    "fieldname": "unidade",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Is_Group",
+                                    "description": "Is Group",
+                                    "fieldname": "is_group",
+                                    "type": "boolean"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Contract_Item",
+            "description": "Contract Item",
+            "fieldname": "Contract Item",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Right",
+                    "description": "Right",
+                    "fieldname": "rgt",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Valor_unitario",
+                    "description": "Valor unitário",
+                    "fieldname": "valorunitario",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Descricao",
+                    "description": "Descrição",
+                    "fieldname": "descricao",
+                    "type": "string"
+                },
+                {
+                    "key": "Left",
+                    "description": "Left",
+                    "fieldname": "lft",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Quantidade",
+                    "description": "Quantidade",
+                    "fieldname": "quantidade",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Codigo",
+                    "description": "Código",
+                    "fieldname": "codigo",
+                    "type": "string"
+                },
+                {
+                    "key": "Is_Group",
+                    "description": "Is Group",
+                    "fieldname": "is_group",
+                    "type": "boolean"
+                },
+                {
+                    "key": "Contract",
+                    "description": "Contract",
+                    "fieldname": "Contract",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Inicio_dos_servicos_conf_contrato",
+                            "description": "Início dos serviços conf. contrato",
+                            "fieldname": "inicioservicosprevisto",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Valor_total_do_contrato",
+                            "description": "Valor total do contrato",
+                            "fieldname": "valortotal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Data_final_do_contrato",
+                            "description": "Data final do contrato",
+                            "fieldname": "datafinal",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Objeto",
+                            "description": "Objeto",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        },
+                        {
+                            "key": "No_do_Contrato",
+                            "description": "Nº do Contrato",
+                            "fieldname": "contrato",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Termino_servicos_conf_contrato",
+                            "description": "Término serviços conf. contrato",
+                            "fieldname": "terminoservicosprevisto",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Data_inicial_do_contrato",
+                            "description": "Data inicial do contrato",
+                            "fieldname": "datainicial",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Dia_final",
+                            "description": "Dia final",
+                            "fieldname": "medicaofim",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Vertical",
+                            "description": "Vertical",
+                            "fieldname": "vertical",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Categoria",
+                            "description": "Categoria",
+                            "fieldname": "categoria",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Termino_previsto_dos_servicos",
+                            "description": "Término previsto dos serviços",
+                            "fieldname": "terminoservicos",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Percentual",
+                            "description": "Percentual",
+                            "fieldname": "percentualreidi",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Subsidiaria",
+                            "description": "Subsidiaria",
+                            "fieldname": "subsidiaria",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Chave",
+                            "description": "Chave",
+                            "fieldname": "uuidkartado",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Inicio_real_dos_servicos",
+                            "description": "Início real dos serviços",
+                            "fieldname": "inicioservicos",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Responsavel",
+                            "description": "Responsável",
+                            "fieldname": "responsavel",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Contratada",
+                            "description": "Contratada",
+                            "fieldname": "contratada",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Medicao_mes_cheio",
+                            "description": "Medição mês cheio",
+                            "fieldname": "medicaopormes",
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "Obra",
+                            "description": "Obra",
+                            "fieldname": "obra",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Dia_inicial",
+                            "description": "Dia inicial",
+                            "fieldname": "medicaoinicio",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Item",
+                    "description": "Contract Item",
+                    "fieldname": "Contract Item",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Right",
+                            "description": "Right",
+                            "fieldname": "rgt",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Valor_unitario",
+                            "description": "Valor unitário",
+                            "fieldname": "valorunitario",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Descricao",
+                            "description": "Descrição",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Left",
+                            "description": "Left",
+                            "fieldname": "lft",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Quantidade",
+                            "description": "Quantidade",
+                            "fieldname": "quantidade",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "No_do_contrato",
+                            "description": "Nº do contrato",
+                            "fieldname": "contrato",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Parent_Contract_Item",
+                            "description": "Parent Contract Item",
+                            "fieldname": "parent_contract_item",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Codigo",
+                            "description": "Código",
+                            "fieldname": "codigo",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Old_Parent",
+                            "description": "Old Parent",
+                            "fieldname": "old_parent",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Unidade",
+                            "description": "Unidade",
+                            "fieldname": "unidade",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Is_Group",
+                            "description": "Is Group",
+                            "fieldname": "is_group",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Item",
+                    "description": "Contract Item",
+                    "fieldname": "Contract Item",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Right",
+                            "description": "Right",
+                            "fieldname": "rgt",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Valor_unitario",
+                            "description": "Valor unitário",
+                            "fieldname": "valorunitario",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Descricao",
+                            "description": "Descrição",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Left",
+                            "description": "Left",
+                            "fieldname": "lft",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Quantidade",
+                            "description": "Quantidade",
+                            "fieldname": "quantidade",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "No_do_contrato",
+                            "description": "Nº do contrato",
+                            "fieldname": "contrato",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Parent_Contract_Item",
+                            "description": "Parent Contract Item",
+                            "fieldname": "parent_contract_item",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Codigo",
+                            "description": "Código",
+                            "fieldname": "codigo",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Old_Parent",
+                            "description": "Old Parent",
+                            "fieldname": "old_parent",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Unidade",
+                            "description": "Unidade",
+                            "fieldname": "unidade",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Is_Group",
+                            "description": "Is Group",
+                            "fieldname": "is_group",
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                {
+                    "key": "Unit",
+                    "description": "Unit",
+                    "fieldname": "Unit",
+                    "type": "doctype",
+                    "children": []
+                },
+                {
+                    "key": "Contract_Item_Highway",
+                    "description": "Contract Item Highway",
+                    "fieldname": "Contract Item Highway",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "KM_Final",
+                            "description": "KM Final",
+                            "fieldname": "kmfinal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "KM_Inicial",
+                            "description": "KM Inicial",
+                            "fieldname": "kminicial",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Highway",
+                            "description": "Highway",
+                            "fieldname": "Highway",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Nome",
+                                    "description": "Nome",
+                                    "fieldname": "nome",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Sigla",
+                                    "description": "Sigla",
+                                    "fieldname": "sigla",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Item_Order",
+                    "description": "Contract Item Order",
+                    "fieldname": "Contract Item Order",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Valor_total",
+                            "description": "Valor total",
+                            "fieldname": "valortotal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "SAP_Order",
+                            "description": "SAP Order",
+                            "fieldname": "SAP Order",
+                            "type": "doctype",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Item_Asset",
+                    "description": "Contract Item Asset",
+                    "fieldname": "Contract Item Asset",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Descricao",
+                            "description": "Descrição",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Valor_mensal",
+                            "description": "Valor mensal",
+                            "fieldname": "valormensal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Quantidade",
+                            "description": "Quantidade",
+                            "fieldname": "quantidade",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Asset",
+                            "description": "Asset",
+                            "fieldname": "Asset",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Nome_do_ativo",
+                                    "description": "Nome do ativo",
+                                    "fieldname": "nomeativo",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Item_Work_Role",
+                    "description": "Contract Item Work Role",
+                    "fieldname": "Contract Item Work Role",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Valor_total_mensal",
+                            "description": "Valor total mensal",
+                            "fieldname": "valortotalmensal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Pagamento_por_hora",
+                            "description": "Pagamento por hora",
+                            "fieldname": "pagamentohora",
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "Quantidade",
+                            "description": "Quantidade",
+                            "fieldname": "quantidade",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Valor_por_hora",
+                            "description": "Valor por hora",
+                            "fieldname": "valorporhora",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Work_Role",
+                            "description": "Work Role",
+                            "fieldname": "Work Role",
+                            "type": "doctype",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Item_City",
+                    "description": "Contract Item City",
+                    "fieldname": "Contract Item City",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "ISS",
+                            "description": "ISS",
+                            "fieldname": "iss",
+                            "type": "string"
+                        },
+                        {
+                            "key": "KM_Final",
+                            "description": "KM Final",
+                            "fieldname": "kmfinal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "KM_Inicial",
+                            "description": "KM Inicial",
+                            "fieldname": "kminicial",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Participacao",
+                            "description": "Participação %",
+                            "fieldname": "participacaopercentual",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "City",
+                            "description": "City",
+                            "fieldname": "City",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Municipio",
+                                    "description": "Município",
+                                    "fieldname": "municipio",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "UF",
+                                    "description": "UF",
+                                    "fieldname": "uf",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Contract_Measurement",
+            "description": "Contract Measurement",
+            "fieldname": "Contract Measurement",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Medicao_liquida_do_REIDI_Vl_bruto_NF_D_B_C",
+                    "description": "Medição líquida do REIDI (Vl. bruto NF) [D] = [B]+[C]",
+                    "fieldname": "medicaoliquida",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Data_inicial_do_contrato",
+                    "description": "Data inicial do contrato",
+                    "fieldname": "data_ejak",
+                    "type": "string"
+                },
+                {
+                    "key": "Data_final_do_contrato",
+                    "description": "Data final do contrato",
+                    "fieldname": "data_final_do_contrato",
+                    "type": "string"
+                },
+                {
+                    "key": "Faturamento_direto_FTD_acumulado",
+                    "description": "Faturamento direto (FTD) acumulado ",
+                    "fieldname": "ftdacumulado",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Desconto_do_REIDI_C_3_65_B",
+                    "description": "Desconto do REIDI [C] = -3,65% . [B]",
+                    "fieldname": "descontoreidi",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Medicao_equivalente_liquida_do_REIDI_F_A_E",
+                    "description": "Medição equivalente líquida do REIDI [F] = [A]+(E)",
+                    "fieldname": "medicaoequivalente",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Valor_do_contrato",
+                    "description": "Valor do contrato",
+                    "fieldname": "valorcontrato",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Saldo_Contratual",
+                    "description": "Saldo Contratual (%)",
+                    "fieldname": "saldopercentual",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Saldo_Contratual_R",
+                    "description": "Saldo Contratual (R$)",
+                    "fieldname": "saldo",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Medicao_acumulada_atual",
+                    "description": "Medição acumulada atual",
+                    "fieldname": "medicaoacumulada",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Valor_Total_Vigente",
+                    "description": "Valor Total Vigente",
+                    "fieldname": "valortotalvigente",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Data_final_medicao",
+                    "description": "Data final medição",
+                    "fieldname": "datafinalmedicao",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Obra",
+                    "description": "Obra",
+                    "fieldname": "obra",
+                    "type": "string"
+                },
+                {
+                    "key": "Faturamento_direto_FTD_na_fase_atual",
+                    "description": "Faturamento direto (FTD) na fase atual",
+                    "fieldname": "faturamentodireto",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Caucao_Contratual_G_5_F",
+                    "description": "Caução Contratual [G] =  5% . [F]",
+                    "fieldname": "caucaocontratual",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Medicao_atual_com_desconto_de_FTD_B",
+                    "description": "Medição atual com desconto de FTD (B)",
+                    "fieldname": "medicaoatualdescontoftd",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Contract",
+                    "description": "Contract",
+                    "fieldname": "Contract",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Inicio_dos_servicos_conf_contrato",
+                            "description": "Início dos serviços conf. contrato",
+                            "fieldname": "inicioservicosprevisto",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Valor_total_do_contrato",
+                            "description": "Valor total do contrato",
+                            "fieldname": "valortotal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Data_final_do_contrato",
+                            "description": "Data final do contrato",
+                            "fieldname": "datafinal",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Objeto",
+                            "description": "Objeto",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        },
+                        {
+                            "key": "No_do_Contrato",
+                            "description": "Nº do Contrato",
+                            "fieldname": "contrato",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Termino_servicos_conf_contrato",
+                            "description": "Término serviços conf. contrato",
+                            "fieldname": "terminoservicosprevisto",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Data_inicial_do_contrato",
+                            "description": "Data inicial do contrato",
+                            "fieldname": "datainicial",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Dia_final",
+                            "description": "Dia final",
+                            "fieldname": "medicaofim",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Vertical",
+                            "description": "Vertical",
+                            "fieldname": "vertical",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Categoria",
+                            "description": "Categoria",
+                            "fieldname": "categoria",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Termino_previsto_dos_servicos",
+                            "description": "Término previsto dos serviços",
+                            "fieldname": "terminoservicos",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Percentual",
+                            "description": "Percentual",
+                            "fieldname": "percentualreidi",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Subsidiaria",
+                            "description": "Subsidiaria",
+                            "fieldname": "subsidiaria",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Chave",
+                            "description": "Chave",
+                            "fieldname": "uuidkartado",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Inicio_real_dos_servicos",
+                            "description": "Início real dos serviços",
+                            "fieldname": "inicioservicos",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Responsavel",
+                            "description": "Responsável",
+                            "fieldname": "responsavel",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Contratada",
+                            "description": "Contratada",
+                            "fieldname": "contratada",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Medicao_mes_cheio",
+                            "description": "Medição mês cheio",
+                            "fieldname": "medicaopormes",
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "Obra",
+                            "description": "Obra",
+                            "fieldname": "obra",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Dia_inicial",
+                            "description": "Dia inicial",
+                            "fieldname": "medicaoinicio",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Measurement_Asset",
+                    "description": "Contract Measurement Asset",
+                    "fieldname": "Contract Measurement Asset",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Quantidade_medida",
+                            "description": "Quantidade medida",
+                            "fieldname": "quantidade_medida",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Data_e_hora",
+                            "description": "Data e hora",
+                            "fieldname": "data_e_hora",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Asset",
+                            "description": "Asset",
+                            "fieldname": "Asset",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Nome_do_ativo",
+                                    "description": "Nome do ativo",
+                                    "fieldname": "nomeativo",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "Contract_Item",
+                            "description": "Contract Item",
+                            "fieldname": "Contract Item",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Right",
+                                    "description": "Right",
+                                    "fieldname": "rgt",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Valor_unitario",
+                                    "description": "Valor unitário",
+                                    "fieldname": "valorunitario",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Descricao",
+                                    "description": "Descrição",
+                                    "fieldname": "descricao",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Left",
+                                    "description": "Left",
+                                    "fieldname": "lft",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Quantidade",
+                                    "description": "Quantidade",
+                                    "fieldname": "quantidade",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "No_do_contrato",
+                                    "description": "Nº do contrato",
+                                    "fieldname": "contrato",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Parent_Contract_Item",
+                                    "description": "Parent Contract Item",
+                                    "fieldname": "parent_contract_item",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Codigo",
+                                    "description": "Código",
+                                    "fieldname": "codigo",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Old_Parent",
+                                    "description": "Old Parent",
+                                    "fieldname": "old_parent",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Unidade",
+                                    "description": "Unidade",
+                                    "fieldname": "unidade",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Is_Group",
+                                    "description": "Is Group",
+                                    "fieldname": "is_group",
+                                    "type": "boolean"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Measurement_Work_Role",
+                    "description": "Contract Measurement Work Role",
+                    "fieldname": "Contract Measurement Work Role",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Data_e_hora",
+                            "description": "Data e hora",
+                            "fieldname": "data_e_hora",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Quantidade_medida",
+                            "description": "Quantidade medida",
+                            "fieldname": "quantidade_medida",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Contract_Item_Work_Role",
+                            "description": "Contract Item Work Role",
+                            "fieldname": "Contract Item Work Role",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Valor_total_mensal",
+                                    "description": "Valor total mensal",
+                                    "fieldname": "valortotalmensal",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Pagamento_por_hora",
+                                    "description": "Pagamento por hora",
+                                    "fieldname": "pagamentohora",
+                                    "type": "boolean"
+                                },
+                                {
+                                    "key": "Quantidade",
+                                    "description": "Quantidade",
+                                    "fieldname": "quantidade",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Funcao",
+                                    "description": "Função",
+                                    "fieldname": "funcao",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Valor_por_hora",
+                                    "description": "Valor por hora",
+                                    "fieldname": "valorporhora",
+                                    "type": "numeric"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "Contract_Item",
+                            "description": "Contract Item",
+                            "fieldname": "Contract Item",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Right",
+                                    "description": "Right",
+                                    "fieldname": "rgt",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Valor_unitario",
+                                    "description": "Valor unitário",
+                                    "fieldname": "valorunitario",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Descricao",
+                                    "description": "Descrição",
+                                    "fieldname": "descricao",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Left",
+                                    "description": "Left",
+                                    "fieldname": "lft",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "Quantidade",
+                                    "description": "Quantidade",
+                                    "fieldname": "quantidade",
+                                    "type": "numeric"
+                                },
+                                {
+                                    "key": "No_do_contrato",
+                                    "description": "Nº do contrato",
+                                    "fieldname": "contrato",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Parent_Contract_Item",
+                                    "description": "Parent Contract Item",
+                                    "fieldname": "parent_contract_item",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Codigo",
+                                    "description": "Código",
+                                    "fieldname": "codigo",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Old_Parent",
+                                    "description": "Old Parent",
+                                    "fieldname": "old_parent",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Unidade",
+                                    "description": "Unidade",
+                                    "fieldname": "unidade",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "Is_Group",
+                                    "description": "Is Group",
+                                    "fieldname": "is_group",
+                                    "type": "boolean"
+                                }
+                            ]
+                        },
+                        {
+                            "key": "Work_Role",
+                            "description": "Work Role",
+                            "fieldname": "Work Role",
+                            "type": "doctype",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "key": "Contract_Measurement_Retention",
+                    "description": "Contract Measurement Retention",
+                    "fieldname": "Contract Measurement Retention",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Valor",
+                            "description": "Valor",
+                            "fieldname": "valor",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Data",
+                            "description": "Data",
+                            "fieldname": "data",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Retention_Type",
+                            "description": "Retention Type",
+                            "fieldname": "Retention Type",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Descricao",
+                                    "description": "Descrição",
+                                    "fieldname": "descricao",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Contract_Test",
+            "description": "Contract Test",
+            "fieldname": "Contract Test",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Nome",
+                    "description": "Nome",
+                    "fieldname": "nome",
+                    "type": "string"
+                },
+                {
+                    "key": "Valor_item",
+                    "description": "Valor item",
+                    "fieldname": "valoritem",
+                    "type": "string"
+                },
+                {
+                    "key": "Contract_Item",
+                    "description": "Contract Item",
+                    "fieldname": "Contract Item",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Right",
+                            "description": "Right",
+                            "fieldname": "rgt",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Valor_unitario",
+                            "description": "Valor unitário",
+                            "fieldname": "valorunitario",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Descricao",
+                            "description": "Descrição",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Left",
+                            "description": "Left",
+                            "fieldname": "lft",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Quantidade",
+                            "description": "Quantidade",
+                            "fieldname": "quantidade",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "No_do_contrato",
+                            "description": "Nº do contrato",
+                            "fieldname": "contrato",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Parent_Contract_Item",
+                            "description": "Parent Contract Item",
+                            "fieldname": "parent_contract_item",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Codigo",
+                            "description": "Código",
+                            "fieldname": "codigo",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Old_Parent",
+                            "description": "Old Parent",
+                            "fieldname": "old_parent",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Unidade",
+                            "description": "Unidade",
+                            "fieldname": "unidade",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Is_Group",
+                            "description": "Is Group",
+                            "fieldname": "is_group",
+                            "type": "boolean"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Contracted_Company",
+            "description": "Contracted Company",
+            "fieldname": "Contracted Company",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Razao_Social",
+                    "description": "Razão Social",
+                    "fieldname": "razaosocial",
+                    "type": "string"
+                },
+                {
+                    "key": "Endereco",
+                    "description": "Endereço",
+                    "fieldname": "endereco",
+                    "type": "string"
+                },
+                {
+                    "key": "CNPJ",
+                    "description": "CNPJ",
+                    "fieldname": "cnpj",
+                    "type": "string"
+                },
+                {
+                    "key": "Nome",
+                    "description": "Nome",
+                    "fieldname": "nome",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "key": "Depth_Period_Setting",
+            "description": "Depth Period Setting",
+            "fieldname": "Depth Period Setting",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Descricao",
+                    "description": "Descrição",
+                    "fieldname": "descricao",
+                    "type": "string"
+                },
+                {
+                    "key": "Fechamento_mensal",
+                    "description": "Fechamento mensal",
+                    "fieldname": "mensal",
+                    "type": "boolean"
+                },
+                {
+                    "key": "Dia_final",
+                    "description": "Dia final",
+                    "fieldname": "diafinal",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Dia_inicial",
+                    "description": "Dia inicial",
+                    "fieldname": "diainicial",
+                    "type": "numeric"
+                }
+            ]
+        },
+        {
+            "key": "Formula",
+            "description": "Formula",
+            "fieldname": "Formula",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Formula",
+                    "description": "Formula",
+                    "fieldname": "formula",
+                    "type": "string"
+                },
+                {
+                    "key": "Open",
+                    "description": "Open",
+                    "fieldname": "open",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "key": "Formula_Template",
+            "description": "Formula Template",
+            "fieldname": "Formula Template",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Nome",
+                    "description": "Nome",
+                    "fieldname": "nome",
+                    "type": "string"
+                },
+                {
+                    "key": "Formula",
+                    "description": "Fórmula",
+                    "fieldname": "formula",
+                    "type": "string"
+                },
+                {
+                    "key": "Configurar",
+                    "description": "Configurar",
+                    "fieldname": "configurar",
+                    "type": "string"
+                },
+                {
+                    "key": "Descrrcao",
+                    "description": "Descrrção",
+                    "fieldname": "descricao",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "key": "Highway",
+            "description": "Highway",
+            "fieldname": "Highway",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Nome",
+                    "description": "Nome",
+                    "fieldname": "nome",
+                    "type": "string"
+                },
+                {
+                    "key": "Sigla",
+                    "description": "Sigla",
+                    "fieldname": "sigla",
+                    "type": "string"
+                },
+                {
+                    "key": "Highway_City",
+                    "description": "Highway City",
+                    "fieldname": "Highway City",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "KM_Inicial",
+                            "description": "KM Inicial",
+                            "fieldname": "kminicial",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "KM_Final",
+                            "description": "KM Final",
+                            "fieldname": "kmfinal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "City",
+                            "description": "City",
+                            "fieldname": "City",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Municipio",
+                                    "description": "Município",
+                                    "fieldname": "municipio",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "UF",
+                                    "description": "UF",
+                                    "fieldname": "uf",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Holiday",
+            "description": "Holiday",
+            "fieldname": "Holiday",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Data",
+                    "description": "Data",
+                    "fieldname": "data",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Descricao",
+                    "description": "Descrição",
+                    "fieldname": "descricao",
+                    "type": "string"
+                },
+                {
+                    "key": "City",
+                    "description": "City",
+                    "fieldname": "City",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Municipio",
+                            "description": "Município",
+                            "fieldname": "municipio",
+                            "type": "string"
+                        },
+                        {
+                            "key": "UF",
+                            "description": "UF",
+                            "fieldname": "uf",
+                            "type": "string"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Item_Classification",
+            "description": "Item Classification",
+            "fieldname": "Item Classification",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Codigo",
+                    "description": "Código",
+                    "fieldname": "codigo",
+                    "type": "string"
+                },
+                {
+                    "key": "Classificacao_de_servico",
+                    "description": "Classificação de serviço",
+                    "fieldname": "descricao",
+                    "type": "string"
+                },
+                {
+                    "key": "Item_Classification_Tax",
+                    "description": "Item Classification Tax",
+                    "fieldname": "Item Classification Tax",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "ISS",
+                            "description": "ISS",
+                            "fieldname": "iss",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "City",
+                            "description": "City",
+                            "fieldname": "City",
+                            "type": "doctype",
+                            "children": [
+                                {
+                                    "key": "Municipio",
+                                    "description": "Município",
+                                    "fieldname": "municipio",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "UF",
+                                    "description": "UF",
+                                    "fieldname": "uf",
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Material",
+            "description": "Material",
+            "fieldname": "Material",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Descricao",
+                    "description": "Descrição",
+                    "fieldname": "descricao",
+                    "type": "string"
+                },
+                {
+                    "key": "Codigo",
+                    "description": "Código",
+                    "fieldname": "codigo",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "key": "Measurement_Report",
+            "description": "Measurement Report",
+            "fieldname": "Measurement Report",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Status",
+                    "description": "Status",
+                    "fieldname": "workflow_state",
+                    "type": "string"
+                },
+                {
+                    "key": "Data",
+                    "description": "Data",
+                    "fieldname": "data",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Boletim_de_medicao",
+                    "description": "Boletim de medição",
+                    "fieldname": "boletim_de_medição",
+                    "type": "file"
+                },
+                {
+                    "key": "Contract",
+                    "description": "Contract",
+                    "fieldname": "Contract",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Inicio_dos_servicos_conf_contrato",
+                            "description": "Início dos serviços conf. contrato",
+                            "fieldname": "inicioservicosprevisto",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Valor_total_do_contrato",
+                            "description": "Valor total do contrato",
+                            "fieldname": "valortotal",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Data_final_do_contrato",
+                            "description": "Data final do contrato",
+                            "fieldname": "datafinal",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Objeto",
+                            "description": "Objeto",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        },
+                        {
+                            "key": "No_do_Contrato",
+                            "description": "Nº do Contrato",
+                            "fieldname": "contrato",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Termino_servicos_conf_contrato",
+                            "description": "Término serviços conf. contrato",
+                            "fieldname": "terminoservicosprevisto",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Data_inicial_do_contrato",
+                            "description": "Data inicial do contrato",
+                            "fieldname": "datainicial",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Dia_final",
+                            "description": "Dia final",
+                            "fieldname": "medicaofim",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Vertical",
+                            "description": "Vertical",
+                            "fieldname": "vertical",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Categoria",
+                            "description": "Categoria",
+                            "fieldname": "categoria",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Termino_previsto_dos_servicos",
+                            "description": "Término previsto dos serviços",
+                            "fieldname": "terminoservicos",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Percentual",
+                            "description": "Percentual",
+                            "fieldname": "percentualreidi",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Subsidiaria",
+                            "description": "Subsidiaria",
+                            "fieldname": "subsidiaria",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Chave",
+                            "description": "Chave",
+                            "fieldname": "uuidkartado",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Inicio_real_dos_servicos",
+                            "description": "Início real dos serviços",
+                            "fieldname": "inicioservicos",
+                            "type": "datetime"
+                        },
+                        {
+                            "key": "Responsavel",
+                            "description": "Responsável",
+                            "fieldname": "responsavel",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Contratada",
+                            "description": "Contratada",
+                            "fieldname": "contratada",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Medicao_mes_cheio",
+                            "description": "Medição mês cheio",
+                            "fieldname": "medicaopormes",
+                            "type": "boolean"
+                        },
+                        {
+                            "key": "Obra",
+                            "description": "Obra",
+                            "fieldname": "obra",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Dia_inicial",
+                            "description": "Dia inicial",
+                            "fieldname": "medicaoinicio",
+                            "type": "string"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Person",
+            "description": "Person",
+            "fieldname": "Person",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Departamento",
+                    "description": "Departamento",
+                    "fieldname": "departamento",
+                    "type": "string"
+                },
+                {
+                    "key": "Nome",
+                    "description": "Nome",
+                    "fieldname": "nome",
+                    "type": "string"
+                },
+                {
+                    "key": "Telefone_Celular",
+                    "description": "Telefone/Celular",
+                    "fieldname": "telefone",
+                    "type": "string"
+                },
+                {
+                    "key": "Email",
+                    "description": "Email",
+                    "fieldname": "email",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "key": "Retention_Type",
+            "description": "Retention Type",
+            "fieldname": "Retention Type",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Descricao",
+                    "description": "Descrição",
+                    "fieldname": "descricao",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "key": "Contract_Measurement_City",
+            "description": "Contract Measurement City",
+            "fieldname": "Contract Measurement City",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "ISS",
+                    "description": "ISS",
+                    "fieldname": "valoriss",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Data",
+                    "description": "Data",
+                    "fieldname": "data",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Valor",
+                    "description": "Valor",
+                    "fieldname": "valor",
+                    "type": "numeric"
+                },
+                {
+                    "key": "City",
+                    "description": "City",
+                    "fieldname": "City",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Municipio",
+                            "description": "Município",
+                            "fieldname": "municipio",
+                            "type": "string"
+                        },
+                        {
+                            "key": "UF",
+                            "description": "UF",
+                            "fieldname": "uf",
+                            "type": "string"
+                        }
+                    ]
+                },
+                {
+                    "key": "SAP_Order",
+                    "description": "SAP Order",
+                    "fieldname": "SAP Order",
+                    "type": "doctype",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "key": "Contract_Measurement_FTD",
+            "description": "Contract Measurement FTD",
+            "fieldname": "Contract Measurement FTD",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Data_emissao",
+                    "description": "Data emissão",
+                    "fieldname": "data",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Fornecedor",
+                    "description": "Fornecedor",
+                    "fieldname": "fornecedor",
+                    "type": "string"
+                },
+                {
+                    "key": "Linha_SAP",
+                    "description": "Linha SAP",
+                    "fieldname": "linhasap",
+                    "type": "numeric"
+                },
+                {
+                    "key": "No_pedido_SAP",
+                    "description": "Nº pedido SAP",
+                    "fieldname": "nº_pedido_sap",
+                    "type": "string"
+                },
+                {
+                    "key": "Valor_total_da_nota_fiscal",
+                    "description": "Valor total da nota fiscal",
+                    "fieldname": "valor",
+                    "type": "numeric"
+                },
+                {
+                    "key": "NF_No",
+                    "description": "NF Nº",
+                    "fieldname": "nf_nº",
+                    "type": "string"
+                },
+                {
+                    "key": "Elemento_PEP",
+                    "description": "Elemento PEP",
+                    "fieldname": "elementopep",
+                    "type": "string"
+                },
+                {
+                    "key": "Material_ou_projeto",
+                    "description": "Material ou projeto",
+                    "fieldname": "descricaonota",
+                    "type": "string"
+                },
+                {
+                    "key": "Quantidade",
+                    "description": "Quantidade",
+                    "fieldname": "quantidade",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Desconto_em_Informe_o_primeiro_dia_do_mes_de_desconto",
+                    "description": "Desconto em (Informe o primeiro dia do mês de desconto)",
+                    "fieldname": "datadesconto",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Unit",
+                    "description": "Unit",
+                    "fieldname": "Unit",
+                    "type": "doctype",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "key": "Contract_Measurement_Result",
+            "description": "Contract Measurement Result",
+            "fieldname": "Contract Measurement Result",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Data_final",
+                    "description": "Data final",
+                    "fieldname": "datafinal",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Data_incial",
+                    "description": "Data incial",
+                    "fieldname": "data_incial",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Valor",
+                    "description": "Valor",
+                    "fieldname": "valor",
+                    "type": "numeric"
+                },
+                {
+                    "key": "Contract_Item",
+                    "description": "Contract Item",
+                    "fieldname": "Contract Item",
+                    "type": "doctype",
+                    "children": [
+                        {
+                            "key": "Right",
+                            "description": "Right",
+                            "fieldname": "rgt",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Valor_unitario",
+                            "description": "Valor unitário",
+                            "fieldname": "valorunitario",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Descricao",
+                            "description": "Descrição",
+                            "fieldname": "descricao",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Left",
+                            "description": "Left",
+                            "fieldname": "lft",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "Quantidade",
+                            "description": "Quantidade",
+                            "fieldname": "quantidade",
+                            "type": "numeric"
+                        },
+                        {
+                            "key": "No_do_contrato",
+                            "description": "Nº do contrato",
+                            "fieldname": "contrato",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Parent_Contract_Item",
+                            "description": "Parent Contract Item",
+                            "fieldname": "parent_contract_item",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Codigo",
+                            "description": "Código",
+                            "fieldname": "codigo",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Old_Parent",
+                            "description": "Old Parent",
+                            "fieldname": "old_parent",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Unidade",
+                            "description": "Unidade",
+                            "fieldname": "unidade",
+                            "type": "string"
+                        },
+                        {
+                            "key": "Is_Group",
+                            "description": "Is Group",
+                            "fieldname": "is_group",
+                            "type": "boolean"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "Contract_Measurement_SAP_Order",
+            "description": "Contract Measurement SAP Order",
+            "fieldname": "Contract Measurement SAP Order",
+            "type": "doctype",
+            "children": [
+                {
+                    "key": "Data_final_da_medicao",
+                    "description": "Data final da medição",
+                    "fieldname": "datafinal",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Data_inicial_da_medicao",
+                    "description": "Data inicial da medição",
+                    "fieldname": "datainicial",
+                    "type": "datetime"
+                },
+                {
+                    "key": "Valor_medido",
+                    "description": "Valor medido",
+                    "fieldname": "valormedido",
+                    "type": "numeric"
+                },
+                {
+                    "key": "SAP_Order",
+                    "description": "SAP Order",
+                    "fieldname": "SAP Order",
+                    "type": "doctype",
+                    "children": []
+                }
+            ]
+        }
+    ]
+}

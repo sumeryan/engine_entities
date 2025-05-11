@@ -1,0 +1,28 @@
+version: '3.8' # Especifica a versão do Docker Compose
+
+services:
+  web:
+    build: . # Constrói a imagem a partir do Dockerfile no diretório atual
+    container_name: arteris_entity_generator_web # Nome do container
+    ports:
+      - "8088:8088" # Mapeia a porta 5000 do host para a porta 5000 do container
+    volumes:
+      # Monta o diretório atual no container para refletir mudanças no código (útil para desenvolvimento)
+      # Em produção, você pode remover ou ajustar isso conforme necessário.
+      - .:/app
+    environment:
+      # Define variáveis de ambiente para o container
+      # FLASK_ENV=development pode ser útil para debug, mas use production para deploy
+      - FLASK_ENV=production
+      # Certifique-se de que as variáveis da API Arteris estejam disponíveis.
+      # Você pode passá-las aqui diretamente (não recomendado para segredos)
+      # ou usar um arquivo .env que o docker-compose lê automaticamente.
+      # Exemplo:
+      # - ARTERIS_API_BASE_URL=${ARTERIS_API_BASE_URL}
+      # - ARTERIS_API_TOKEN=${ARTERIS_API_TOKEN}
+      # - FLASK_SECRET_KEY=${FLASK_SECRET_KEY} # É bom definir uma chave secreta
+    # Se você usar um arquivo .env na raiz do projeto, o Docker Compose o carregará automaticamente.
+    # Exemplo de .env:
+    # ARTERIS_API_BASE_URL=https://sua-api.com/api/resource
+    # ARTERIS_API_TOKEN=token seu_api_key:seu_api_secret
+    # FLASK_SECRET_KEY=uma_chave_secreta_muito_segura_aqui
