@@ -1,20 +1,22 @@
+"""
+Powered by Renoir
+Author: Igor Daniel G Goncalves - igor.goncalves@renoirgroup.com
+
+Flask Web Application Module.
+This module provides a web interface and API endpoints for the entity generation process.
+It includes Flask routes, Socket.IO event handlers, and error handling.
+"""
+
 import os
 import sys
 from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
-from flask_cors import CORS # Importar CORS
-# import eventlet # REMOVIDO: Não usaremos eventlet por enquanto
-
-# Garante que o eventlet seja usado
-# eventlet.monkey_patch() # REMOVIDO: Monkey-patching pode causar o RecursionError
-
-# Importa as funções dos módulos existentes
-from get_doctypes import process_arteris_doctypes
-from api_client_data import get_keys, get_data_from_key
+from flask_cors import CORS # Import CORS
+from get_doctypes import get_hierarchical_doctype_structure
 from json_to_entity_transformer import create_hierarchical_doctype_structure
 
-# Carrega variáveis de ambiente do arquivo .env
+# Load environment variables from .env file
 load_dotenv()
 
 app = Flask(__name__)
@@ -22,151 +24,136 @@ CORS(app, resources={r"/api/*": {"origins": [
     "http://localhost:3000",
     "https://arteris-editor.meb.services"
 ]}})
-app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'uma-chave-secreta-padrao') # Use uma chave secreta segura
-# Mudando async_mode para 'threading' para evitar a necessidade de eventlet/gevent
-socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*") # Permitir CORS para SocketIO também (opcional, mas bom ter)
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'uma-chave-secreta-padrao') # Use a secure secret key
+# Change async_mode to 'threading' to avoid the need for eventlet/gevent
+socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*") # Allow CORS for SocketIO too (optional, but good to have)
 
-# Configurar CORS para Flask
-# Permitir requisições especificamente de http://localhost:3000 para as rotas Flask
+# Configure CORS for Flask
+# Allow requests specifically from http://localhost:3000 for Flask routes
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 
-# Variável global para armazenar o JSON gerado
+# Global variable to store the generated JSON
 generated_json_data = None
 
-# --- Captura de Logs ---
+# --- Log Capture ---
 class SocketIOHandler:
-    """Um manipulador para redirecionar prints para o Socket.IO."""
+    """A handler to redirect prints to Socket.IO."""
     def write(self, message):
-        # Emite a mensagem apenas se não for uma string vazia ou apenas espaços/newlines
+        # Emit the message only if it's not an empty string or just spaces/newlines
         if message.strip():
             socketio.emit('log_message', {'data': message.strip()})
 
     def flush(self):
-        # Necessário pela interface de stream, mas não faz nada aqui
+        # Required by the stream interface, but doesn't do anything here
         pass
 
-# Redireciona stdout para o nosso handler
+# Redirect stdout to our handler
 original_stdout = sys.stdout
 sys.stdout = SocketIOHandler()
 
-import traceback # Adicionar import no topo se não existir (já existe na linha 149, mas melhor garantir)
+import traceback # Add import at the top if it doesn't exist (already exists on line 149, but better to make sure)
 
-# --- Função Auxiliar para Geração ---
+# --- Helper Function for Generation ---
 def _generate_entity_structure():
     """
-    Função auxiliar que encapsula a lógica de busca e transformação.
-    Retorna a estrutura de entidades ou lança uma exceção em caso de erro.
+    Helper function that encapsulates the search and transformation logic.
+    Returns the entity structure or raises an exception in case of error.
     """
-    print("--- Iniciando Geração Interna ---")
-    # Obtém a URL base e o token das variáveis de ambiente
+    print("--- Starting Internal Generation ---")
+    # Get the base URL and token from environment variables
     api_base_url = os.getenv("ARTERIS_API_BASE_URL")
     api_token = os.getenv("ARTERIS_API_TOKEN")
 
     if not api_base_url or not api_token:
-        error_msg = "Erro: Variáveis de ambiente ARTERIS_API_BASE_URL ou ARTERIS_API_TOKEN não definidas."
+        error_msg = "Error: Environment variables ARTERIS_API_BASE_URL or ARTERIS_API_TOKEN not defined."
         print(error_msg)
-        raise ValueError(error_msg) # Lança exceção para ser capturada
+        raise ValueError(error_msg) # Raise exception to be caught
 
-    # --- Etapa 1: Processar DocTypes e Fields ---
-    print("--- Buscando DocTypes e Fields ---")
-    all_doctypes, child_parent_mapping, doctypes_with_fields = process_arteris_doctypes(api_base_url, api_token)
+    # Get entity structure
+    print("--- Transforming Metadata to Entities ---")
+    entity_structure = get_hierarchical_doctype_structure()
 
-    if all_doctypes is None:
-         error_msg = "Falha ao buscar DocTypes."
-         print(error_msg)
-         raise ConnectionError(error_msg) # Lança exceção específica
-
-    print("\n--- Busca de Metadados concluída ---")
-
-    # --- Etapa 2: Transformar em Entidades ---
-    print("--- Transformando Metadados em Entidades ---")
-    entity_structure = create_hierarchical_doctype_structure(
-        doctypes_with_fields,
-        child_parent_mapping
-    )
-
-    print(f"Encontrados {len(entity_structure.get('entities', []))} DocTypes no módulo Arteris.")
-    print("Estrutura de entidades gerada com sucesso.")
-    print("\n--- Geração Interna Concluída ---")
+    print(f"Found {len(entity_structure.get('entities', []))} DocTypes in the Arteris module.")
+    print("Entity structure generated successfully.")
+    print("\n--- Internal Generation Completed ---")
     return entity_structure
 
-# --- Rotas Flask ---
+# --- Flask Routes ---
 @app.route('/')
 def index():
-    """Renderiza a página inicial."""
+    """Renders the home page."""
     return render_template('index.html')
 
 @app.route('/get_generated_json')
 def get_generated_json():
-    """Retorna o JSON gerado mais recentemente."""
+    """Returns the most recently generated JSON."""
     global generated_json_data
     if generated_json_data:
-        # Retorna o JSON como uma resposta JSON para ser processado pelo JS
+        # Returns the JSON as a JSON response to be processed by JS
         return jsonify(generated_json_data)
     else:
-        return jsonify({"error": "Nenhum JSON foi gerado ainda."}), 404
+        return jsonify({"error": "No JSON has been generated yet."}), 404
 
 @app.route('/api/generate_entity_structure', methods=['GET'])
 def api_generate_entity_structure():
-    """Endpoint da API para gerar e retornar a estrutura de entidades."""
+    """API endpoint to generate and return the entity structure."""
     try:
         entity_structure = _generate_entity_structure()
-        # Retorna diretamente a lista de entidades
+        # Returns directly the list of entities
         return jsonify(entity_structure.get('entities', []))
-    except ValueError as e: # Erro de configuração
+    except ValueError as e: # Configuration error
         return jsonify({"error": str(e)}), 400 # Bad Request
-    except ConnectionError as e: # Erro ao buscar dados
+    except ConnectionError as e: # Error fetching data
         return jsonify({"error": str(e)}), 503 # Service Unavailable
-    except Exception as e: # Outros erros inesperados
-        print(f"Erro inesperado na API: {e}")
-        traceback.print_exc() # Log completo no servidor
-        return jsonify({"error": "Erro interno do servidor ao gerar estrutura."}), 500 # Internal Server Error
+    except Exception as e: # Other unexpected errors
+        print(f"Unexpected error in API: {e}")
+        traceback.print_exc() # Complete log on the server
+        return jsonify({"error": "Internal server error generating structure."}), 500 # Internal Server Error
 
-# --- Eventos Socket.IO ---
+# --- Socket.IO Events ---
 @socketio.on('connect')
 def handle_connect():
-    """Lida com novas conexões de clientes."""
-    print("Cliente conectado") # Isso será enviado via Socket.IO
-    emit('log_message', {'data': 'Conectado ao servidor.'})
+    """Handles new client connections."""
+    print("Client connected") # This will be sent via Socket.IO
+    emit('log_message', {'data': 'Connected to server.'})
 
 @socketio.on('disconnect')
 def handle_disconnect():
-    """Lida com desconexões de clientes."""
-    print("Cliente desconectado") # Isso também será enviado via Socket.IO
+    """Handles client disconnections."""
+    print("Client disconnected") # This will also be sent via Socket.IO
 
 @socketio.on('start_generation')
-def handle_start_generation(message): # message não é usado, mas mantido pela assinatura do evento
-    """Inicia o processo de geração de entidades via Socket.IO."""
+def handle_start_generation(message): # message is not used, but kept for the event signature
+    """Starts the entity generation process via Socket.IO."""
     global generated_json_data
-    generated_json_data = None # Limpa o JSON anterior
+    generated_json_data = None # Clear previous JSON
     emit('generation_started')
-    print("--- Iniciando Geração de Entidades (via Socket.IO) ---") # Log inicial
+    print("--- Starting Entity Generation (via Socket.IO) ---") # Initial log
 
     try:
-        # Chama a função auxiliar refatorada
+        # Call the refactored helper function
         entity_structure = _generate_entity_structure()
-        generated_json_data = entity_structure # Armazena o JSON gerado globalmente
-        print("\n--- Geração Concluída (via Socket.IO) ---")
-        # Emite sucesso e opcionalmente os dados (decidi não enviar dados grandes via socket)
+        generated_json_data = entity_structure # Store the generated JSON globally
+        print("\n--- Generation Completed (via Socket.IO) ---")
+        # Emit success and optionally the data (decided not to send large data via socket)
         emit('generation_complete', {'success': True})
 
-    except (ValueError, ConnectionError) as e: # Captura erros específicos lançados pela helper
-        error_msg = f"Erro durante a geração: {e}"
+    except (ValueError, ConnectionError) as e: # Catch specific errors thrown by the helper
+        error_msg = f"Error during generation: {e}"
         print(error_msg)
-        emit('generation_error', {'error': str(e)}) # Envia erro específico ao cliente
-    except Exception as e: # Captura outros erros inesperados
-        error_msg = f"Erro inesperado durante a geração: {e}"
+        emit('generation_error', {'error': str(e)}) # Send specific error to client
+    except Exception as e: # Catch other unexpected errors
+        error_msg = f"Unexpected error during generation: {e}"
         print(error_msg)
-        traceback.print_exc() # Log completo no servidor
-        emit('generation_error', {'error': "Erro interno do servidor."}) # Mensagem genérica
+        traceback.print_exc() # Complete log on the server
+        emit('generation_error', {'error': "Internal server error."}) # Generic message
     finally:
-        emit('generation_finished') # Sinaliza o fim, mesmo com erro
+        emit('generation_finished') # Signal the end, even with error
 
-# --- Ponto de Entrada ---
+# --- Entry Point ---
 if __name__ == '__main__':
-    print("Iniciando servidor Flask com Socket.IO (modo threading)...")
-    # Usa socketio.run, que agora usará o servidor de desenvolvimento do Flask/Werkzeug
-    # com suporte a threading para SocketIO.
-    # Voltando para a porta 5000, conforme mapeamento do docker-compose.
-    socketio.run(app, host='0.0.0.0', port=8088, debug=True, allow_unsafe_werkzeug=True) # debug=True e allow_unsafe_werkzeug=True para desenvolvimento
-    
+    print("Starting Flask server with Socket.IO (threading mode)...")
+    # Use socketio.run, which will now use the Flask/Werkzeug development server
+    # with threading support for SocketIO.
+    # Going back to port 5000, as per docker-compose mapping.
+    socketio.run(app, host='0.0.0.0', port=8088, debug=True, allow_unsafe_werkzeug=True) # debug=True and allow_unsafe_werkzeug=True for development

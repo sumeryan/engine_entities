@@ -1,22 +1,30 @@
+"""
+Powered by Renoir
+Author: Igor Daniel G Goncalves - igor.goncalves@renoirgroup.com
+
+API Client module for interacting with the Arteris API.
+This module provides functions to fetch DocTypes and their fields from the Arteris API.
+"""
+
 import requests
 import json
 
 def get_arteris_doctypes(api_base_url, api_token):
     """
-    Busca todos os DocTypes da API Arteris que pertencem ao módulo 'Arteris' e não são do tipo Child Item .
+    Fetches all DocTypes from the Arteris API that belong to the 'Arteris' module and are not Child Items.
 
     Args:
-        api_base_url (str): A URL base da API de recursos (ex: 'https://host/api/resource').
-        api_token (str): O token de autorização no formato 'token key:secret'.
+        api_base_url (str): The base URL of the resource API (e.g., 'https://host/api/resource').
+        api_token (str): The authorization token in the format 'token key:secret'.
 
     Returns:
-        list or None: Uma lista de dicionários, onde cada dicionário representa um DocType
-                      encontrado (contendo pelo menos a chave 'name').
-                      Retorna None em caso de erro na requisição ou na decodificação JSON.
+        list or None: A list of dictionaries, where each dictionary represents a DocType
+                      found (containing at least the 'name' key).
+                      Returns None in case of an error in the request or JSON decoding.
     """
     doctype_url = f"{api_base_url}/DocType"
     params = {
-        # Filtra para buscar apenas DocTypes do módulo específico 'Arteris' e que não são tabelas (Child Item)
+        # Filter to fetch only DocTypes from the specific 'Arteris' module that are not tables (Child Item)
         # "filters": json.dumps([["module", "=", "Arteris"],["istable","!=","1"],["name","like","%Meas%"]])
         # "filters": json.dumps([["module", "=", "Arteris"],["istable","!=","1"],["name","=","Asset"]])
         "filters": json.dumps([["module", "=", "Arteris"],["istable","!=","1"]])
@@ -24,39 +32,39 @@ def get_arteris_doctypes(api_base_url, api_token):
     headers = {"Authorization": api_token}
 
     try:
-        print(f"Buscando DocTypes ...")
+        print(f"Fetching DocTypes...")
         response = requests.get(doctype_url, headers=headers, params=params, timeout=30)
-        response.raise_for_status() # Lança HTTPError para respostas 4xx/5xx
+        response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
         data = response.json()
-        print("Lista de DocTypes recebida com sucesso!")
-        # Retorna diretamente a lista contida na chave 'data' da resposta JSON
+        print("DocTypes list received successfully!")
+        # Returns directly the list contained in the 'data' key of the JSON response
         return data.get("data", [])
     except requests.exceptions.RequestException as e:
-        # Captura erros de conexão, timeout, etc.
-        print(f"Erro ao buscar DocTypes da API: {e}")
+        # Captures connection errors, timeouts, etc.
+        print(f"Error fetching DocTypes from API: {e}")
         return None
     except json.JSONDecodeError:
-        # Captura erro se a resposta não for um JSON válido
-        print("Erro ao decodificar a resposta JSON dos DocTypes.")
+        # Captures error if the response is not valid JSON
+        print("Error decoding DocTypes JSON response.")
         return None
     
 def get_arteris_doctypes_child(api_base_url, api_token):
     """
-    Busca todos os DocTypes da API Arteris que pertencem ao módulo 'Arteris' do tipo Child Item .
+    Fetches all DocTypes from the Arteris API that belong to the 'Arteris' module and are Child Items.
 
     Args:
-        api_base_url (str): A URL base da API de recursos (ex: 'https://host/api/resource').
-        api_token (str): O token de autorização no formato 'token key:secret'.
+        api_base_url (str): The base URL of the resource API (e.g., 'https://host/api/resource').
+        api_token (str): The authorization token in the format 'token key:secret'.
 
     Returns:
-        list or None: Uma lista de dicionários, onde cada dicionário representa um DocType
-                      encontrado (contendo pelo menos a chave 'name').
-                      Retorna None em caso de erro na requisição ou na decodificação JSON.
+        list or None: A list of dictionaries, where each dictionary represents a DocType
+                      found (containing at least the 'name' key).
+                      Returns None in case of an error in the request or JSON decoding.
     """
 
     doctype_url = f"{api_base_url}/DocType"
     params = {
-        # Filtra para buscar apenas DocTypes do módulo específico 'Arteris' e que não são tabelas (Child Item)
+        # Filter to fetch only DocTypes from the specific 'Arteris' module that are tables (Child Item)
         # "filters": json.dumps([["module", "=", "Arteris"],["istable","=","1"],["name","like","%Meas%"]])
         # "filters": json.dumps([["module", "=", "Arteris"],["istable","=","1"],["name","=","Asset Operator"]])
         "filters": json.dumps([["module", "=", "Arteris"],["istable","=","1"]])
@@ -64,74 +72,75 @@ def get_arteris_doctypes_child(api_base_url, api_token):
     headers = {"Authorization": api_token}
 
     try:
-        print(f"Buscando DocTypes ...")
+        print(f"Fetching DocTypes...")
         response = requests.get(doctype_url, headers=headers, params=params, timeout=30)
-        response.raise_for_status() # Lança HTTPError para respostas 4xx/5xx
+        response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
         data = response.json()
-        print("Lista de DocTypes recebida com sucesso!")
-        # Retorna diretamente a lista contida na chave 'data' da resposta JSON
+        print("DocTypes list received successfully!")
+        # Returns directly the list contained in the 'data' key of the JSON response
         return data.get("data", [])
     except requests.exceptions.RequestException as e:
-        # Captura erros de conexão, timeout, etc.
-        print(f"Erro ao buscar DocTypes da API: {e}")
+        # Captures connection errors, timeouts, etc.
+        print(f"Error fetching DocTypes from API: {e}")
         return None
     except json.JSONDecodeError:
-        # Captura erro se a resposta não for um JSON válido
-        print("Erro ao decodificar a resposta JSON dos DocTypes.")
+        # Captures error if the response is not valid JSON
+        print("Error decoding DocTypes JSON response.")
         return None    
 
 def get_docfields_for_doctype(api_base_url, api_token, doctype_name, child=False):
     """
-    Busca os DocFields (metadados dos campos) para um DocType específico.
+    Fetches DocFields (field metadata) for a specific DocType.
 
-    Filtra para excluir campos do tipo 'Section Break' e 'Column Break' e
-    seleciona apenas 'fieldname', 'label' e 'fieldtype'.
+    Filters to exclude fields of type 'Section Break' and 'Column Break' and
+    selects only 'fieldname', 'label', and 'fieldtype'.
 
     Args:
-        api_base_url (str): A URL base da API de recursos.
-        api_token (str): O token de autorização.
-        doctype_name (str): O nome do DocType para o qual buscar os campos.
+        api_base_url (str): The base URL of the resource API.
+        api_token (str): The authorization token.
+        doctype_name (str): The name of the DocType for which to fetch fields.
+        child (bool, optional): Indicates if the DocType is a Child Item. Defaults to False.
 
     Returns:
-        list or None: Uma lista de dicionários, onde cada dicionário representa um DocField
-                      (contendo 'fieldname', 'label', 'fieldtype').
-                      Retorna None em caso de erro na requisição ou na decodificação JSON.
-                      Retorna uma lista vazia se nenhum campo for encontrado após os filtros.
+        list or None: A list of dictionaries, where each dictionary represents a DocField
+                      (containing 'fieldname', 'label', 'fieldtype').
+                      Returns None in case of an error in the request or JSON decoding.
+                      Returns an empty list if no fields are found after filtering.
     """
 
     docfield_url = f"{api_base_url}/DocField"
     params = {
-        # Define quais campos do DocField queremos retornar
-        # Se child=True adiciona "parent" aos fields
+        # Define which DocField fields we want to return
+        # If child=True adds "parent" to fields
         "fields": json.dumps(["fieldname", "label", "fieldtype", "options", "hidden"] + (["parent"] if child else [])),
-        # Define os filtros:
+        # Define filters:
         "filters": json.dumps([
-            ["parent", "=", doctype_name],          # Campo pertence ao DocType pai especificado
-            ["fieldtype", "!=", "Section Break"], # Exclui quebras de seção
-            ["fieldtype", "!=", "Column Break"],  # Exclui quebras de coluna
-            ["fieldtype", "!=", "Tab Break"]
+            ["parent", "=", doctype_name],        # Field belongs to the specified parent DocType
+            ["fieldtype", "!=", "Section Break"], # Excludes section breaks
+            ["fieldtype", "!=", "Column Break"],  # Excludes column breaks
+            ["fieldtype", "!=", "Tab Break"]      # Excludes tab breaks
         ]),
-        # Parâmetro 'parent' parece ser necessário pela API DocField,
-        # mesmo já filtrando por 'parent' em 'filters'.
+        # 'parent' parameter seems to be necessary for the DocField API,
+        # even though we're already filtering by 'parent' in 'filters'.
         "parent": "DocType"
     }
             
     headers = {"Authorization": api_token}
 
     try:
-        print(f"Buscando DocFields para: {doctype_name}...")
+        print(f"Fetching DocFields for: {doctype_name}...")
         response = requests.get(docfield_url, headers=headers, params=params, timeout=30)
-        response.raise_for_status() # Lança HTTPError para respostas 4xx/5xx
+        response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
         data = response.json()
         docfields = data.get("data", [])
-        print(f"DocFields para {doctype_name} recebidos com sucesso!")
-        # Retorna a lista de campos da chave 'data'
+        print(f"DocFields for {doctype_name} received successfully!")
+        # Returns the list of fields from the 'data' key
         return data.get("data", [])
     except requests.exceptions.RequestException as e:
-        # Captura erros de conexão, timeout, etc.
-        print(f"Erro ao buscar DocFields para {doctype_name}: {e}")
+        # Captures connection errors, timeouts, etc.
+        print(f"Error fetching DocFields for {doctype_name}: {e}")
         return None
     except json.JSONDecodeError:
-        # Captura erro se a resposta não for um JSON válido
-        print(f"Erro ao decodificar a resposta JSON dos DocFields para {doctype_name}.")
+        # Captures error if the response is not valid JSON
+        print(f"Error decoding DocFields JSON response for {doctype_name}.")
         return None

@@ -1,15 +1,19 @@
 """
-Script principal para orquestrar a busca de metadados e dados da API Arteris.
+Powered by Renoir
+Author: Igor Daniel G Goncalves - igor.goncalves@renoirgroup.com
 
-Este script executa as seguintes etapas:
-1. Carrega configurações da API do arquivo .env.
-2. Busca a lista de DocTypes do módulo 'Arteris' usando api_client.
-3. Para cada DocType, busca seus DocFields usando api_client.
-4. Transforma os metadados coletados (DocTypes e DocFields) na estrutura
-   de entidades JSON usando transformer.
-5. Para cada DocType com DocFields, busca os dados reais correspondentes
-   usando api_client.
-6. Armazena os resultados em dicionários em memória e imprime exemplos.
+Main Script Module.
+This module orchestrates the fetching of metadata and data from the Arteris API.
+
+This script performs the following steps:
+1. Loads API configuration from the .env file.
+2. Fetches the list of DocTypes from the 'Arteris' module using api_client.
+3. For each DocType, fetches its DocFields using api_client.
+4. Transforms the collected metadata (DocTypes and DocFields) into the entity
+   JSON structure using transformer.
+5. For each DocType with DocFields, fetches the corresponding real data
+   using api_client.
+6. Stores the results in in-memory dictionaries and prints examples.
 """
 
 import get_doctypes 
@@ -17,22 +21,27 @@ from dotenv import load_dotenv
 import json
 import os
 
-# Carrega variáveis de ambiente do arquivo .env na raiz do projeto
+# Load environment variables from the .env file in the project root
 load_dotenv()
 
 def main():
-
+    """
+    Main function that orchestrates the process of fetching and transforming 
+    DocTypes and their fields into a hierarchical entity structure.
+    """
+    # Get the hierarchical structure of DocTypes
     hierarchical_entity = get_doctypes.get_hierarchical_doctype_structure()
     
-    print("Estrutura hierárquica carregada:")
+    print("Hierarchical structure loaded:")
     print(hierarchical_entity)
-    print("\nVerificando referências circulares...")
+    print("\nChecking for circular references...")
     try:
         json.dumps(hierarchical_entity)
-        print("Nenhuma referência circular detectada.")
+        print("No circular references detected.")
     except Exception as e:
-        print(f"Erro de referência circular detectado: {e}")
+        print(f"Circular reference error detected: {e}")
 
+    # Save the hierarchical structure to a JSON file
     output_dir = "output"
     output_filename = "output_hierarchical.json"
     print(f"Path: {os.path.join(output_dir, output_filename)}")
@@ -40,10 +49,10 @@ def main():
         with open(os.path.join(output_dir, output_filename), "w", encoding="utf-8") as f:
             json.dump(hierarchical_entity, f, indent=4, ensure_ascii=False)
         print(f"\n************************")
-        print(f"Arquivo {output_filename} salvo com sucesso em {output_dir}.")
+        print(f"File {output_filename} saved successfully in {output_dir}.")
     except Exception as e:
-        print(f"Erro ao salvar o arquivo: {e}")
+        print(f"Error saving the file: {e}")
 
-# Ponto de entrada do script
+# Script entry point
 if __name__ == "__main__":
     main()

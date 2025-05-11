@@ -1,3 +1,12 @@
+"""
+Powered by Renoir
+Author: Igor Daniel G Goncalves - igor.goncalves@renoirgroup.com
+
+DocTypes Processing Module.
+This module handles the retrieval and processing of DocTypes and their fields from the Arteris API.
+It provides functionality to build a hierarchical structure of DocTypes.
+"""
+
 import api_client 
 import os
 import json_to_hierarquical
@@ -5,66 +14,89 @@ import api_client_data
 
 def get_main_doctypes_with_fields(api_base_url, api_token): 
     """
-    Função para buscar os DocTypes principais e seus campos.
+    Retrieves main DocTypes and their fields.
+    
+    Args:
+        api_base_url (str): The base URL of the Arteris API.
+        api_token (str): The API token for authentication.
+        
+    Returns:
+        dict or None: A dictionary mapping DocType names to their fields,
+                      or None if the retrieval fails.
     """
 
     doctypes_with_fields = {} 
 
-    # Buscar doctypes principais
+    # Fetch main DocTypes
     all_doctypes = api_client.get_arteris_doctypes(api_base_url, api_token)
     if all_doctypes is None:
-        return None # Retorna None para indicar falha
+        return None # Return None to indicate failure
 
-    # Buscar os DocFields para cada DocType
+    # Fetch DocFields for each DocType
     for doc in all_doctypes:
         doctype_name = doc.get("name")
         docfields = api_client.get_docfields_for_doctype(api_base_url, api_token, doctype_name)
         if docfields is not None:
             doctypes_with_fields[doctype_name] = docfields
         else:
-            doctypes_with_fields[doctype_name] = None # Marca erro
+            doctypes_with_fields[doctype_name] = None # Mark error
 
     return doctypes_with_fields
 
 def get_child_doctypes_with_fields(api_base_url, api_token): 
     """
-    Função para buscar os DocTypes filhos e seus campos.
+    Retrieves child DocTypes and their fields.
+    
+    Args:
+        api_base_url (str): The base URL of the Arteris API.
+        api_token (str): The API token for authentication.
+        
+    Returns:
+        dict or None: A dictionary mapping child DocType names to their fields,
+                      or None if the retrieval fails.
     """
 
     doctypes_with_fields = {} 
 
-    # Buscar doctypes filhos
+    # Fetch child DocTypes
     all_doctypes_child = api_client.get_arteris_doctypes_child(api_base_url, api_token)
     if all_doctypes_child is None:
-        return None # Retorna None para indicar falha
+        return None # Return None to indicate failure
 
-    # Buscar os DocFields para cada DocType
+    # Fetch DocFields for each DocType
     for doc in all_doctypes_child:
         doctype_name = doc.get("name")
         docfields = api_client.get_docfields_for_doctype(api_base_url, api_token, doctype_name, True)
         if docfields is not None:
             doctypes_with_fields[doctype_name] = docfields
         else:
-            doctypes_with_fields[doctype_name] = None # Marca erro
+            doctypes_with_fields[doctype_name] = None # Mark error
 
     return doctypes_with_fields
 
 def get_parent_mapping(doctypes_with_fields):
     """
-    Função para mapear os DocTypes filhos para seus respectivos pais.
+    Maps child DocTypes to their respective parent DocTypes.
+    
+    Args:
+        doctypes_with_fields (dict): Dictionary mapping DocType names to their fields.
+        
+    Returns:
+        list: A list of dictionaries, each containing 'child', 'parent', and 'type' keys
+              to define the relationship between DocTypes.
     """
 
-    child_parent_mapping = [] # Lista para mapear child -> parent
+    child_parent_mapping = [] # List to map child -> parent
 
-    # Itera sobre cada DocType que pode ser um "Parent"
+    # Iterate over each DocType that can be a "Parent"
     for doctype_name, fields in doctypes_with_fields.items():
         if not fields:
-            continue # Não é um erro, apenas não tem campos de tabela
+            continue # Not an error, just no table fields
 
-        # Percorre a lista de dicionários 'fields'
+        # Iterate through the 'fields' list of dictionaries
         for f in fields:
-            # Verifica se o item tem um fieldname e se o fieldtype é "Table"
-            # if (f.get("fieldtype") == "Table" or f.get("fieldtype") == "Link") f.get("fieldname") and f.get("options"): # Referencia curcular por conta do link
+            # Check if the item has a fieldname and if the fieldtype is "Table"
+            # if (f.get("fieldtype") == "Table" or f.get("fieldtype") == "Link") f.get("fieldname") and f.get("options"): # Circular reference because of link
             if f.get("fieldname") and f.get("fieldtype") == "Table" and f.get("options"):
                 child_parent_mapping.append(
                     {
@@ -78,26 +110,30 @@ def get_parent_mapping(doctypes_with_fields):
 
 def process_doctypes(): 
     """
-    Função para processar os DocTypes e seus campos.
+    Processes DocTypes and their fields.
+    
+    Returns:
+        dict: A dictionary containing main DocTypes, child DocTypes, all DocTypes,
+              and parent-child mapping information.
     """
 
-    # Obtém a URL base e o token das variáveis de ambiente
+    # Get the base URL and token from environment variables
     api_base_url = os.getenv("ARTERIS_API_BASE_URL")
     api_token = os.getenv("ARTERIS_API_TOKEN")
 
-    print("\n--- Iniciando Mapeamento de DocTypes e Fields ---")
+    print("\n--- Starting DocTypes and Fields Mapping ---")
     print(f"Base URL: {api_base_url}")
     print(f"Token: {api_token}")
 
-    # Lista para armazenar os DocTypes e seus campos
+    # List to store DocTypes and their fields
     main_doctypes = get_main_doctypes_with_fields(api_base_url, api_token)
 
-    # Lista para armazenar os DocTypes filhos e seus campos
+    # List to store child DocTypes and their fields
     child_doctypes = get_child_doctypes_with_fields(api_base_url, api_token)
 
-    # Uniao de todos os DocTypes
+    # Union of all DocTypes
     all_doctypes = main_doctypes.copy()
-    all_doctypes.update(child_doctypes) # Atualiza o dicionário com os DocTypes filhos
+    all_doctypes.update(child_doctypes) # Update the dictionary with child DocTypes
 
     parents_mapping = get_parent_mapping(all_doctypes)
 
@@ -110,15 +146,17 @@ def process_doctypes():
 
 def get_hierarchical_doctype_structure():
     """"
-    Função para obter a estrutura hierárquica dos DocTypes.
-    Retorna um dicionário JSON com a estrutura hierárquica.
+    Gets the hierarchical structure of DocTypes.
+    
+    Returns:
+        dict: A JSON dictionary with the hierarchical structure.
     """
 
-    print("\n--- Iniciando Geração Interna V2 ---")
+    print("\n--- Starting Internal Generation V2 ---")
 
     doctypes = process_doctypes() 
 
-    print("\n--- Criar estrutura hierárquica ---")
+    print("\n--- Creating hierarchical structure ---")
     hierarquical_json = json_to_hierarquical.create_hierarchical_doctype_structure(
         doctypes["all_doctypes"],
         doctypes["parents_mapping"]
@@ -127,16 +165,19 @@ def get_hierarchical_doctype_structure():
 
 def get_data():
     """
-    Recurperar os dados do Framework
+    Retrieves data from the framework.
+    
+    Returns:
+        list: A list of dictionaries containing DocType data.
     """
 
     doctypes = process_doctypes() 
 
-    # Obtém a URL base e o token das variáveis de ambiente
+    # Get the base URL and token from environment variables
     api_base_url = os.getenv("ARTERIS_API_BASE_URL")
     api_token = os.getenv("ARTERIS_API_TOKEN")
 
-    # Obtem os IDs dos DocTypes
+    # Get DocType IDs
     doctypes_with_keys = []
     for doctype in doctypes["main_doctypes"]:
         doctype_name = doctype.get("name")
@@ -145,7 +186,7 @@ def get_data():
             doctypes_with_keys.append({"doctype": doctype_name, "keys": keys})
 
 
-    # Obtem a lista de dados dos DocTypes
+    # Get list of DocType data
     all_doctype_data = []
     for doctype in doctypes_with_keys:
         doctype_name = doctype.get("doctype")
@@ -157,4 +198,3 @@ def get_data():
                     all_doctype_data.append({"doctype": doctype_name, "key": key, "data": data})
 
     return all_doctype_data
-    

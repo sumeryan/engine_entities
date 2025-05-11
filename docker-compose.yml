@@ -3,7 +3,7 @@ version: '3.8' # Especifica a versão do Docker Compose
 services:
   web:
     build: . # Constrói a imagem a partir do Dockerfile no diretório atual
-    container_name: arteris_entity_generator_web # Nome do container
+    container_name: engine_entities # Nome do container
     ports:
       - "8088:8088" # Mapeia a porta 5000 do host para a porta 5000 do container
     volumes:
