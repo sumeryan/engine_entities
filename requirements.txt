@@ -4,3 +4,4 @@ python-dotenv
 Flask
 Flask-SocketIO
 Flask-CORS
+anytree

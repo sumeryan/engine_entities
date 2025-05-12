@@ -2,6 +2,7 @@ import json
 import os
 from anytree import Node, RenderTree, PreOrderIter
 from anytree.exporter.jsonexporter import JsonExporter
+import engine_hierarquical_tree.dcotyp_translate as dcotyp_translate
 
 def load_json_file(file_path):
     """Load JSON data from file"""
@@ -13,17 +14,18 @@ def save_json_file(data, file_path):
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-def build_hierarchical_tree():
+def build_tree(doctypes_data, specified_mapping_data):
     """Main function to build the hierarchical tree structure"""
     # Load the JSON files
-    doctypes_data = load_json_file('doctypes.json')
-    specified_mapping_data = load_json_file('specified_mapping.json')
+    # doctypes_data = load_json_file('doctypes.json')
+    # specified_mapping_data = load_json_file('specified_mapping.json')
     
-    # Load the translation dictionary
-    try:
-        translations = load_json_file('doctype_translations.json')
-    except:
-        translations = {}  # If translation file doesn't exist, use empty dict
+    # # Load the translation dictionary
+    # try:
+    #     translations = load_json_file('doctype_translations.json')
+    # except:
+    #     translations = {}  # If translation file doesn't exist, use empty dict
+    translations = dcotyp_translate.get_translations()
     
     # Create hierarchical structure
     hierarchical_data = {"entities": []}
@@ -80,7 +82,7 @@ def build_hierarchical_tree():
     # Apply mandatory mappings as the final step to ensure they take precedence
     apply_specified_mappings(hierarchical_data, specified_mapping_data, translations)
     
-    return hierarchical_data
+    return hierarchical_data["entities"]
 
 def create_doctype_entity(doctype_name, doctypes_data, mandatory_parents, mandatory_children, processed_doctypes, translations=None):
     """Create entity for a doctype including its fields and child doctypes"""

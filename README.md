@@ -23,7 +23,6 @@ This project connects to the Arteris API to extract DocType metadata and transfo
   - `get_doctypes.py`: Functions to process and retrieve DocTypes
   - `api_client.py`: API client for Arteris DocTypes
   - `api_client_data.py`: API client for Arteris data
-  - `json_to_hierarquical.py`: Transforms DocTypes into hierarchical entity structure
 
 ## Requirements
 

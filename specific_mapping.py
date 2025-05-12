@@ -7,7 +7,8 @@ def get_specific_mapping():
     specific_mappings = [
         {"child": "Contract Item", "parent": "Contract"},
         {"child": "Contract Measurement", "parent": "Contract"},
-        {"child": "Contract Measurement Record", "parent": "Contract"}
+        {"child": "Contract Measurement Record", "parent": "Contract"},
+        {"child": "Contract Adjustment", "parent": "Contract"}    
     ]
 
     # Placeholder for specific mapping logic

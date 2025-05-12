@@ -9,9 +9,10 @@ It provides functionality to build a hierarchical structure of DocTypes.
 
 import api_client 
 import os
-import json_to_hierarquical
 import api_client_data
 import json
+import specific_mapping
+import engine_hierarquical_tree.hierarchical_tree
 
 def get_main_doctypes_with_fields(api_base_url, api_token): 
     """
@@ -157,25 +158,17 @@ def get_hierarchical_doctype_structure():
 
     doctypes = process_doctypes() 
 
-    # REMOVE THIS
-    output_dir = "output"
-    output_filename = "output_doctypes.json"
-    print(f"Path: {os.path.join(output_dir, output_filename)}")
-    try:
-        with open(os.path.join(output_dir, output_filename), "w", encoding="utf-8") as f:
-            json.dump(doctypes, f, indent=4, ensure_ascii=False)
-        print(f"\n************************")
-        print(f"File {output_filename} saved successfully in {output_dir}.")
-    except Exception as e:
-        print(f"Error saving the file: {e}")
-    # REMOVE THIS
-
+    all_doctypes={
+        "all_doctypes": doctypes["all_doctypes"]
+        }
+    specific_map = json.loads(json.dumps(specific_mapping.get_specific_mapping()))
 
     print("\n--- Creating hierarchical structure ---")
-    hierarquical_json = json_to_hierarquical.create_hierarchical_doctype_structure(
-        doctypes["all_doctypes"],
-        doctypes["parents_mapping"]
+    hierarquical_json = engine_hierarquical_tree.hierarchical_tree.build_tree(
+        all_doctypes,
+        specific_map
     )
+
     return hierarquical_json
 
 def get_data():
