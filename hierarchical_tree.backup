@@ -81,8 +81,6 @@ def build_tree(doctypes_data, specified_mapping_data):
     
     # Apply mandatory mappings as the final step to ensure they take precedence
     apply_specified_mappings(hierarchical_data, specified_mapping_data, translations)
-
-    update_all_paths(hierarchical_data)
     
     return hierarchical_data["entities"]
 

@@ -161,6 +161,11 @@ def get_hierarchical_doctype_structure():
     all_doctypes={
         "all_doctypes": doctypes["all_doctypes"]
         }
+    
+    # Gravar all_doctypes em um arquivo JSON
+    with open("all_doctypes.json", "w", encoding="utf-8") as f:
+        json.dump(all_doctypes, f, indent=4, ensure_ascii=False)
+
     specific_map = json.loads(json.dumps(specific_mapping.get_specific_mapping()))
 
     print("\n--- Creating hierarchical structure ---")

@@ -13,7 +13,8 @@ from flask import Flask, render_template, jsonify, request
 from flask_socketio import SocketIO, emit
 from dotenv import load_dotenv
 from flask_cors import CORS # Import CORS
-from get_doctypes import get_hierarchical_doctype_structure
+import get_doctypes 
+import requests
 
 # Load environment variables from .env file
 load_dotenv()
@@ -71,12 +72,47 @@ def _generate_entity_structure():
 
     # Get entity structure
     print("--- Transforming Metadata to Entities ---")
-    entity_structure = get_hierarchical_doctype_structure()
+    entity_structure = get_doctypes.get_hierarchical_doctype_structure()
 
-    print(f"Found {len(entity_structure.get('entities', []))} DocTypes in the Arteris module.")
     print("Entity structure generated successfully.")
     print("\n--- Internal Generation Completed ---")
     return entity_structure
+
+@app.route('/api/update_formula', methods=['POST'])
+def update_formula():
+    """
+    Updates a formula in the Arteris API.
+
+    Args:
+        formula_id (str): The ID of the formula to update.
+        formula_value (str): The new formula value.
+
+    Returns:
+        dict: The response from the API.
+    """
+
+    # Extrair os dados do request.json
+    data = request.json
+    formula_id = data.get('formula_id')
+    formula_value = data.get('formula_value')
+
+    url = f"https://arteris.meb.services/api/resource/Formula%20Group%20Field/{formula_id}"
+    headers = {
+        'Authorization': 'token be2ff702de81b65:ba84415a14e57fd',
+        'Content-Type': 'application/json',
+        'Cookie': 'full_name=Guest; sid=Guest; system_user=no; user_id=Guest; user_lang=en'
+    }
+    payload = {
+        "formula": formula_value
+    }
+
+    try:
+        response = requests.put(url, headers=headers, json=payload)
+        response.raise_for_status()  # Raise an HTTPError for bad responses (4xx and 5xx)
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error updating formula: {e}")
+        raise
 
 # --- Flask Routes ---
 @app.route('/')
@@ -94,13 +130,14 @@ def get_generated_json():
     else:
         return jsonify({"error": "No JSON has been generated yet."}), 404
 
+
 @app.route('/api/generate_entity_structure', methods=['GET'])
 def api_generate_entity_structure():
     """API endpoint to generate and return the entity structure."""
     try:
         entity_structure = _generate_entity_structure()
         # Returns directly the list of entities
-        return jsonify(entity_structure.get('entities', []))
+        return jsonify(entity_structure)
     except ValueError as e: # Configuration error
         return jsonify({"error": str(e)}), 400 # Bad Request
     except ConnectionError as e: # Error fetching data

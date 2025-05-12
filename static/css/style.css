@@ -1,0 +1,11 @@
+.log-container {
+    max-height: 400px; /* Altura máxima para a caixa de logs */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
+    font-family: monospace; /* Fonte monoespaçada para logs */
+    white-space: pre-wrap; /* Mantém espaços e quebras de linha */
+    word-wrap: break-word; /* Quebra palavras longas */
+}
+
+#logOutput {
+    margin: 0; /* Remove margem padrão do <pre> */
+}
