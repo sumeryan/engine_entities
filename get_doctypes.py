@@ -11,7 +11,7 @@ import api_client
 import os
 import api_client_data
 import json
-import specific_mapping
+import mappings
 import engine_hierarquical_tree.hierarchical_tree
 
 def get_main_doctypes_with_fields(api_base_url, api_token): 
@@ -161,12 +161,21 @@ def get_hierarchical_doctype_structure():
     all_doctypes={
         "all_doctypes": doctypes["all_doctypes"]
         }
-    
+
+    ignore_list = mappings.get_ignore_mapping()
+    for doctype in list(all_doctypes["all_doctypes"].keys()):  # Iterar sobre uma cópia das chaves
+        print(f"Check ingone DocType: {doctype}")
+        # Remove ignored DocTypes
+        if doctype in ignore_list:
+            print(f"DocType {doctype} is in the ignore list. Removing...")
+            del all_doctypes["all_doctypes"][doctype]
+            continue
+
     # Gravar all_doctypes em um arquivo JSON
     with open("all_doctypes.json", "w", encoding="utf-8") as f:
         json.dump(all_doctypes, f, indent=4, ensure_ascii=False)
 
-    specific_map = json.loads(json.dumps(specific_mapping.get_specific_mapping()))
+    specific_map = json.loads(json.dumps(mappings.get_specific_mapping()))
 
     print("\n--- Creating hierarchical structure ---")
     hierarquical_json = engine_hierarquical_tree.hierarchical_tree.build_tree(
@@ -184,30 +193,158 @@ def get_data():
         list: A list of dictionaries containing DocType data.
     """
 
-    doctypes = process_doctypes() 
+    # All doctypes
+    all_doctypes = process_doctypes() 
+
+    # Store main DocTypes in a separate dictionary
+    # and remove them from the all_doctypes dictionary
+    main_doctypes = mappings.get_main_data()
+
+    # Remove main parent and child doctypes from all_doctypes
+    for m in main_doctypes:
+        m["doctype_with_fields"] = all_doctypes["all_doctypes"][m["doctype"]]
+        del all_doctypes["all_doctypes"][m["doctype"]]
+        # Move child main DocTypes to main_data_doctypes
+        for c in m["childs"]:
+            c["doctype_with_fields"] = all_doctypes["all_doctypes"][m["doctype"]]
+            del all_doctypes["all_doctypes"][c["doctype"]]
+
+    # Remove all files and folders from data folder
+    clear_data("data")
+
+    #---all_doctypes---
+    # Get keys for all_doctypes
+    all_doctype_data = []
+    for d in all_doctypes["all_doctypes"]:
+        data = get_doctype_keys_data(d.get("name"))
+        all_doctype_data.append(data)
+
+    # ---main_doctypes---
+    # Get keys for main_doctypes
+    for m in main_doctypes:
+        
+        # RETORNAR APOS O TESTE DO STEERING
+        # result = get_doctype_keys_data(m["doctype"])
+
+        # REMOVER APOS O TESTE DO STEERING
+        result = get_doctype_keys_data(m["doctype"],f"[[\"{c["key"]}\",\"=\",\"{"0196b01a-2163-7cb2-93b9-c8b1342e3a4e"}\"]]")
+
+        data, keys = result
+        all_doctype_data.append(data)
+
+        for k in keys:
+
+            # Create directory with key name in data
+            key_dir = os.path.join("data", normalize_string(k))
+            if not os.path.exists(key_dir):
+                os.makedirs(key_dir)
+
+            # Get keys for child doctype
+            for c in m["childs"]:
+                result = get_doctype_keys_data(c["doctype"],f"[[\"{c["key"]}\",\"=\",\"{k}\"]]")
+                data, keys = result
+                # Write data result for child with main key
+                save_data(f"data/{normalize_string(k)}", data, c["doctype"])
+
+                # REMOVER ASPOS O TESTE DO STEERING
+                all_doctype_data.append(data)
+
+    return all_doctype_data
+
+def get_doctype_keys_data(doctype_name, filters=None):
+    """
+    Retrieves keys and data for a specific DocType.
+    """
+    keys = get_doctype_keys(doctype_name, filters)
+    data = get_doctype_data(keys, doctype_name)
+    save_data("data", data, doctype_name)    
+    return data, keys
+
+def get_doctype_keys(doctype_name, filters=None):
+    """
+    Retrieves keys for all DocTypes.
+    
+    Returns:
+        list: A list of keys for all DocTypes.
+    """
 
     # Get the base URL and token from environment variables
     api_base_url = os.getenv("ARTERIS_API_BASE_URL")
     api_token = os.getenv("ARTERIS_API_TOKEN")
 
-    # Get DocType IDs
-    doctypes_with_keys = []
-    for doctype in doctypes["main_doctypes"]:
-        doctype_name = doctype.get("name")
-        if doctype_name:
-            keys = api_client.get_keys(api_base_url, api_token, doctype_name)
-            doctypes_with_keys.append({"doctype": doctype_name, "keys": keys})
+    # Get keys for all DocTypes
+    keys = api_client_data.get_keys(api_base_url, api_token, filters)
 
+    return keys
 
-    # Get list of DocType data
-    all_doctype_data = []
-    for doctype in doctypes_with_keys:
-        doctype_name = doctype.get("doctype")
-        keys = doctype.get("keys")
-        if keys:
-            for key in keys:
-                data = api_client_data.get_data_from_key(api_base_url, api_token, doctype_name, key)
-                if data:
-                    all_doctype_data.append({"doctype": doctype_name, "key": key, "data": data})
+def clear_data(path):
+    """
+    Clears the data directory by removing all files and folders.
+    
+    Args:
+        path (str): The path to the data directory.
+    """
+    # Remove all files and folders from data folder    
+    for file in os.listdir(path):
+        file_path = os.path.join(path, file)
+        try:
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+            if os.path.isdir(file_path):
+                os.rmdir(file_path)
+        except Exception as e:
+            print(f"Error removing file {file_path}: {e}")
 
-    return all_doctype_data
+def save_data(path, data, filename):
+    """
+    Saves data to a JSON file.
+    
+    Args:
+        data (list): The data to be saved.
+        doctype_name (str): The name of the DocType.
+    """
+    # Create directory for each doctype
+    if not os.path.exists(f"{path}/{normalize_string(filename)}"):
+        os.makedirs(f"{path}/{normalize_string(filename)}")
+    
+    # Save data to JSON file
+    with open(f"{path}/{normalize_string(filename)}.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+
+def get_doctype_data(keys, doctype_name):
+    """
+    Retrieves data from the framework based on provided keys.
+    """
+
+    # Get the base URL and token from environment variables
+    api_base_url = os.getenv("ARTERIS_API_BASE_URL")
+    api_token = os.getenv("ARTERIS_API_TOKEN")
+
+    if keys:
+        for k in keys:
+            data = api_client_data.get_data_from_key(api_base_url, api_token, doctype_name, k)
+    return data
+
+def normalize_string(s):
+    """Normalize string for path usage by removing special characters and standardizing format"""
+    if not s:
+        return ""
+    
+    # Replace accented characters with non-accented equivalents
+    import unicodedata
+    s = unicodedata.normalize('NFKD', s).encode('ASCII', 'ignore').decode('ASCII')
+    
+    # Replace spaces and special characters with underscores
+    import re
+    s = re.sub(r'[^a-zA-Z0-9_]', '_', s)
+    
+    # Replace multiple underscores with single underscore
+    s = re.sub(r'_{2,}', '_', s)
+    
+    # Remove leading and trailing underscores
+    s = s.strip('_')
+    
+    # Convert to lowercase for consistency
+    s = s.lower()
+    
+    return s
