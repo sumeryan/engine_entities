@@ -137,6 +137,12 @@ def process_doctypes():
     all_doctypes = main_doctypes.copy()
     all_doctypes.update(child_doctypes) # Update the dictionary with child DocTypes
 
+    # remove where in ignore mapping
+    ignore_mapping = mappings.get_ignore_mapping()
+    for c in list(all_doctypes):
+        if c in ignore_mapping:
+            del all_doctypes[c]
+
     parents_mapping = get_parent_mapping(all_doctypes)
 
     return {
@@ -145,45 +151,6 @@ def process_doctypes():
         "all_doctypes": all_doctypes,
         "parents_mapping": parents_mapping
     }
-
-def get_hierarchical_doctype_structure():
-    """"
-    Gets the hierarchical structure of DocTypes.
-    
-    Returns:
-        dict: A JSON dictionary with the hierarchical structure.
-    """
-
-    print("\n--- Starting Internal Generation V2 ---")
-
-    doctypes = process_doctypes() 
-
-    all_doctypes={
-        "all_doctypes": doctypes["all_doctypes"]
-        }
-
-    ignore_list = mappings.get_ignore_mapping()
-    for doctype in list(all_doctypes["all_doctypes"].keys()):  # Iterar sobre uma cópia das chaves
-        print(f"Check ingone DocType: {doctype}")
-        # Remove ignored DocTypes
-        if doctype in ignore_list:
-            print(f"DocType {doctype} is in the ignore list. Removing...")
-            del all_doctypes["all_doctypes"][doctype]
-            continue
-
-    # Gravar all_doctypes em um arquivo JSON
-    with open("all_doctypes.json", "w", encoding="utf-8") as f:
-        json.dump(all_doctypes, f, indent=4, ensure_ascii=False)
-
-    specific_map = json.loads(json.dumps(mappings.get_specific_mapping()))
-
-    print("\n--- Creating hierarchical structure ---")
-    hierarquical_json = engine_hierarquical_tree.hierarchical_tree.build_tree(
-        all_doctypes,
-        specific_map
-    )
-
-    return hierarquical_json
 
 def get_data():
     """
@@ -206,7 +173,7 @@ def get_data():
         del all_doctypes["all_doctypes"][m["doctype"]]
         # Move child main DocTypes to main_data_doctypes
         for c in m["childs"]:
-            c["doctype_with_fields"] = all_doctypes["all_doctypes"][m["doctype"]]
+            c["doctype_with_fields"] = all_doctypes["all_doctypes"][c["doctype"]]
             del all_doctypes["all_doctypes"][c["doctype"]]
 
     # Remove all files and folders from data folder
@@ -216,8 +183,9 @@ def get_data():
     # Get keys for all_doctypes
     all_doctype_data = []
     for d in all_doctypes["all_doctypes"]:
-        data = get_doctype_keys_data(d.get("name"))
-        all_doctype_data.append(data)
+        result = get_doctype_keys_data(d)
+        data, keys = result
+        all_doctype_data.append({f"{d}": data})
 
     # ---main_doctypes---
     # Get keys for main_doctypes
@@ -227,10 +195,11 @@ def get_data():
         # result = get_doctype_keys_data(m["doctype"])
 
         # REMOVER APOS O TESTE DO STEERING
-        result = get_doctype_keys_data(m["doctype"],f"[[\"{c["key"]}\",\"=\",\"{"0196b01a-2163-7cb2-93b9-c8b1342e3a4e"}\"]]")
-
+        filter = f"[[\"{m["key"]}\",\"=\",\"{"0196b01a-2163-7cb2-93b9-c8b1342e3a4e"}\"]]"
+        name = m["doctype"]
+        result = get_doctype_keys_data(name,filter)
         data, keys = result
-        all_doctype_data.append(data)
+        all_doctype_data.append({f"{m["doctype"]}": data})
 
         for k in keys:
 
@@ -247,7 +216,10 @@ def get_data():
                 save_data(f"data/{normalize_string(k)}", data, c["doctype"])
 
                 # REMOVER ASPOS O TESTE DO STEERING
-                all_doctype_data.append(data)
+                all_doctype_data.append({f"{c["doctype"]}": data})
+
+    # Save all_doctype_data
+    save_data("data", all_doctype_data, "all_doctypes")
 
     return all_doctype_data
 
@@ -273,7 +245,7 @@ def get_doctype_keys(doctype_name, filters=None):
     api_token = os.getenv("ARTERIS_API_TOKEN")
 
     # Get keys for all DocTypes
-    keys = api_client_data.get_keys(api_base_url, api_token, filters)
+    keys = api_client_data.get_keys(api_base_url, api_token, doctype_name, filters)
 
     return keys
 
@@ -303,10 +275,6 @@ def save_data(path, data, filename):
         data (list): The data to be saved.
         doctype_name (str): The name of the DocType.
     """
-    # Create directory for each doctype
-    if not os.path.exists(f"{path}/{normalize_string(filename)}"):
-        os.makedirs(f"{path}/{normalize_string(filename)}")
-    
     # Save data to JSON file
     with open(f"{path}/{normalize_string(filename)}.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
@@ -320,10 +288,12 @@ def get_doctype_data(keys, doctype_name):
     api_base_url = os.getenv("ARTERIS_API_BASE_URL")
     api_token = os.getenv("ARTERIS_API_TOKEN")
 
+    doctype_data = []
     if keys:
         for k in keys:
             data = api_client_data.get_data_from_key(api_base_url, api_token, doctype_name, k)
-    return data
+            doctype_data.append(data)
+    return doctype_data
 
 def normalize_string(s):
     """Normalize string for path usage by removing special characters and standardizing format"""
@@ -348,3 +318,40 @@ def normalize_string(s):
     s = s.lower()
     
     return s
+
+def get_hierarchical_doctype_structure():
+    """"
+    Gets the hierarchical structure of DocTypes.
+    
+    Returns:
+        dict: A JSON dictionary with the hierarchical structure.
+    """
+
+    print("\n--- Starting Internal Generation V2 ---")
+
+    doctypes = process_doctypes() 
+
+    all_doctypes={
+        "all_doctypes": doctypes["all_doctypes"]
+        }
+
+    # Gravar all_doctypes em um arquivo JSON
+    with open("output/all_doctypes.json", "w", encoding="utf-8") as f:
+        json.dump(all_doctypes, f, indent=4, ensure_ascii=False)
+
+    specific_map = json.loads(json.dumps(mappings.get_specific_mapping()))
+
+    print("\n--- Creating hierarchical structure ---")
+    hierarquical_json = engine_hierarquical_tree.hierarchical_tree.build_tree(
+        all_doctypes,
+        specific_map
+    )
+
+    # Gravar tree em um arquivo JSON
+    with open("output/hierarquical_doctypes.json", "w", encoding="utf-8") as f:
+        json.dump(all_doctypes, f, indent=4, ensure_ascii=False)
+
+    return hierarquical_json
+
+if __name__ == "__main__":
+    get_hierarchical_doctype_structure()

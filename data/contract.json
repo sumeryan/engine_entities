@@ -1,0 +1,25 @@
+[
+    {
+        "name": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
+        "contrato": "CW34468",
+        "contratada": "0196afce-6e3d-7cf3-a9cc-24b0dd79a22d",
+        "datainicial": "2023-12-18",
+        "datafinal": "2028-12-18",
+        "subsidiaria": "0196afcd-6bc9-7f80-8ea8-dedbef386278",
+        "responsavel": "0196a0e8-f0d5-7b43-af4c-607726636edc",
+        "obra": "Manutenção da Rodovia - Roçada",
+        "descricao": "OBJETO: Execução de serviços de conservação de rotina nas Rodovias do Trecho 01 administradas pela Viapaulista S.A., inclusive ruas laterais, marginais, acessos, entroncamentos, dispositivos, OAE´s, praças de pedágio, balanças, postos da Polícia Militar Rodoviária e bases operacionais de apoio aos usuários (S.A.U / B.S.O).",
+        "valortotal": 36932798.15,
+        "vertical": "Conserva",
+        "categoria": "ADM",
+        "inicioservicosprevisto": "2023-12-18",
+        "inicioservicos": "2023-12-18",
+        "terminoservicosprevisto": "2028-12-18",
+        "terminoservicos": "2028-12-18",
+        "percentualreidi": 0.0,
+        "medicaopormes": 1,
+        "percentualcalcao": 0.0,
+        "grupoformulas": "0196c31f-2847-7a70-999a-66b6b8510709",
+        "doctype": "Contract"
+    }
+]

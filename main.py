@@ -11,6 +11,7 @@ load_dotenv()
 # Paths and filenames
 OUTPUT_DIR = "output"
 HIERARCHICAL_FILE = os.path.join(OUTPUT_DIR, "output_hierarchical.json")
+DATA_FILE = os.path.join(OUTPUT_DIR, "output_hierarchical.json")
 DATA_MAP_FILE = 'data.json'  # opcional
 
 # Funções de conversão para o novo JSON de saída
@@ -20,7 +21,6 @@ def assign_codes(node, counter=[1]):
     counter[0] += 1
     for child in node.get('children', []):
         assign_codes(child, counter)
-
 
 def build_data_node(node, data_map):
     code = node['code']
@@ -34,12 +34,10 @@ def build_data_node(node, data_map):
         data_node['childs'] = childs
     return data_node
 
-
 def collect_referencia(node, ref_dict):
     ref_dict[node['code']] = node.get('path', '')
     for child in node.get('children', []):
         collect_referencia(child, ref_dict)
-
 
 def convert_hierarchical_to_teste():
     # Carrega o JSON hierárquico
@@ -89,27 +87,33 @@ def main():
     """
     Função principal que gera a hierarquia e em seguida converte para o formato teste_
     """
-    # Gera hierarquia
-    hierarchical_entity = get_doctypes.get_hierarchical_doctype_structure()
 
-    print("Hierarchical structure loaded:")
-    print("Checking for circular references...")
-    try:
-        json.dumps(hierarchical_entity)
-        print("No circular references detected.")
-    except Exception as e:
-        print(f"Circular reference error detected: {e}")
+    doctypes = get_doctypes.get_data()
 
-    # Garante diretório de saída
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    with open("data/", 'w', encoding='utf-8') as f:
+        json.dump(doctypes, f, indent=4, ensure_ascii=False)
 
-    # Salva hierarquia
-    with open(HIERARCHICAL_FILE, 'w', encoding='utf-8') as f:
-        json.dump(hierarchical_entity, f, indent=4, ensure_ascii=False)
-    print(f"Arquivo hierárquico salvo em: {HIERARCHICAL_FILE}")
+    # # Gera hierarquia
+    # hierarchical_entity = get_doctypes.get_hierarchical_doctype_structure()
 
-    # Converte e gera novo JSON de saída
-    convert_hierarchical_to_teste()
+    # print("Hierarchical structure loaded:")
+    # print("Checking for circular references...")
+    # try:
+    #     json.dumps(hierarchical_entity)
+    #     print("No circular references detected.")
+    # except Exception as e:
+    #     print(f"Circular reference error detected: {e}")
+
+    # # Garante diretório de saída
+    # os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+    # # Salva hierarquia
+    # with open(HIERARCHICAL_FILE, 'w', encoding='utf-8') as f:
+    #     json.dump(hierarchical_entity, f, indent=4, ensure_ascii=False)
+    # print(f"Arquivo hierárquico salvo em: {HIERARCHICAL_FILE}")
+
+    # # Converte e gera novo JSON de saída
+    # convert_hierarchical_to_teste()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,122 @@
+[
+    {
+        "name": "Mairiporã-SP",
+        "uf": "SP",
+        "municipio": "Mairiporã",
+        "doctype": "City"
+    },
+    {
+        "name": "Vargem-SP",
+        "uf": "SP",
+        "municipio": "Vargem",
+        "doctype": "City"
+    },
+    {
+        "name": "Cambuí-MG",
+        "uf": "MG",
+        "municipio": "Cambuí",
+        "doctype": "City"
+    },
+    {
+        "name": "São Gonçalo do Sapucaí-MG",
+        "uf": "MG",
+        "municipio": "São Gonçalo do Sapucaí",
+        "doctype": "City"
+    },
+    {
+        "name": "Carmo da Cachoeira-MG",
+        "uf": "MG",
+        "municipio": "Carmo da Cachoeira",
+        "doctype": "City"
+    },
+    {
+        "name": "Santo Antônio do Amparo-MG",
+        "uf": "MG",
+        "municipio": "Santo Antônio do Amparo",
+        "doctype": "City"
+    },
+    {
+        "name": "Carmópolis de Minas-MG",
+        "uf": "MG",
+        "municipio": "Carmópolis de Minas",
+        "doctype": "City"
+    },
+    {
+        "name": "Itatiaiuçu-MG",
+        "uf": "MG",
+        "municipio": "Itatiaiuçu",
+        "doctype": "City"
+    },
+    {
+        "name": "Curitiba-PR",
+        "uf": "PR",
+        "municipio": "Curitiba",
+        "doctype": "City"
+    },
+    {
+        "name": "Ribeirão Preto-SP",
+        "uf": "SP",
+        "municipio": "Ribeirão Preto",
+        "doctype": "City"
+    },
+    {
+        "name": "Jardinópolis-SP",
+        "uf": "SP",
+        "municipio": "Jardinópolis",
+        "doctype": "City"
+    },
+    {
+        "name": "Brodówski-SP",
+        "uf": "SP",
+        "municipio": "Brodówski",
+        "doctype": "City"
+    },
+    {
+        "name": "Restinga-SP",
+        "uf": "SP",
+        "municipio": "Restinga",
+        "doctype": "City"
+    },
+    {
+        "name": "Franca-SP",
+        "uf": "SP",
+        "municipio": "Franca",
+        "doctype": "City"
+    },
+    {
+        "name": "Patrocínio Paulista-SP",
+        "uf": "SP",
+        "municipio": "Patrocínio Paulista",
+        "doctype": "City"
+    },
+    {
+        "name": "Itirapuã-SP",
+        "uf": "SP",
+        "municipio": "Itirapuã",
+        "doctype": "City"
+    },
+    {
+        "name": "Batatais-SP",
+        "uf": "SP",
+        "municipio": "Batatais",
+        "doctype": "City"
+    },
+    {
+        "name": "Americo Brasiliense-SP",
+        "uf": "SP",
+        "municipio": "Americo Brasiliense",
+        "doctype": "City"
+    },
+    {
+        "name": "Antonina-PR",
+        "uf": "PR",
+        "municipio": "Antonina",
+        "doctype": "City"
+    },
+    {
+        "name": "Araquari-SC",
+        "uf": "SC",
+        "municipio": "Araquari",
+        "doctype": "City"
+    }
+]

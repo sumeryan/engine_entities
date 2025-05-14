@@ -9,7 +9,7 @@ This module provides functions to retrieve entity keys and data from the Arteris
 import requests
 import json
 
-def get_keys(api_base_url, api_token, doctype_name):
+def get_keys(api_base_url, api_token, doctype_name, filters=None):
     """
     Fetches the keys of a specific DocType from the Arteris API.
     
@@ -23,6 +23,9 @@ def get_keys(api_base_url, api_token, doctype_name):
                       Returns None in case of an error in the request or JSON decoding.
     """
     resource_url = f"{api_base_url}/{doctype_name}"
+    if filters:
+        resource_url=f"{resource_url}?filters={filters}"
+    
     params = {}
     headers = {"Authorization": api_token}
 

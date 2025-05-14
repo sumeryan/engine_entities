@@ -1,0 +1,73 @@
+[
+    {
+        "name": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+        "codigo": "400115",
+        "descricao": "Serviços de Conserva",
+        "doctype": "Item Classification",
+        "cidades": [
+            {
+                "name": "0196b5bf-7c53-7401-953e-68d52fb9c255",
+                "cidade": "Batatais-SP",
+                "iss": 5.0,
+                "parent": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+                "doctype": "Item Classification Tax"
+            },
+            {
+                "name": "0196ba60-0f28-7592-9836-3826d26aeb0f",
+                "cidade": "Ribeirão Preto-SP",
+                "iss": 5.0,
+                "parent": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+                "doctype": "Item Classification Tax"
+            },
+            {
+                "name": "0196ba60-0f28-7592-9836-383c510fd4cf",
+                "cidade": "Jardinópolis-SP",
+                "iss": 5.0,
+                "parent": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+                "doctype": "Item Classification Tax"
+            },
+            {
+                "name": "0196ba60-0f28-7592-9836-384c358f8720",
+                "cidade": "Brodówski-SP",
+                "iss": 5.0,
+                "parent": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+                "doctype": "Item Classification Tax"
+            },
+            {
+                "name": "0196ba60-0f28-7592-9836-3853e0117a06",
+                "cidade": "Batatais-SP",
+                "iss": 5.0,
+                "parent": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+                "doctype": "Item Classification Tax"
+            },
+            {
+                "name": "0196ba60-0f28-7592-9836-386e442a24c5",
+                "cidade": "Restinga-SP",
+                "iss": 5.0,
+                "parent": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+                "doctype": "Item Classification Tax"
+            },
+            {
+                "name": "0196ba60-0f28-7592-9836-387d7e32ebc2",
+                "cidade": "Franca-SP",
+                "iss": 5.0,
+                "parent": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+                "doctype": "Item Classification Tax"
+            },
+            {
+                "name": "0196ba60-0f28-7592-9836-388f1656fca5",
+                "cidade": "Patrocínio Paulista-SP",
+                "iss": 5.0,
+                "parent": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+                "doctype": "Item Classification Tax"
+            },
+            {
+                "name": "0196ba60-0f28-7592-9836-389872148fc5",
+                "cidade": "Itirapuã-SP",
+                "iss": 5.0,
+                "parent": "0196b5bf-7c52-7313-854d-22e8ecf09035",
+                "doctype": "Item Classification Tax"
+            }
+        ]
+    }
+]

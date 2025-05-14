@@ -52,15 +52,15 @@ def get_main_data():
 
     main_doctypes = [
         {
-            {
-                "doctype": "Contract",
-                "key": "name",
-                "childs": [
-                    {"doctype": "Contract Adjustment", "key": "contrato"},
-                    {"doctype": "Contract Item", "key": "contrato"},
-                    {"doctype": "Contract Measurement", "key": "contrato"},
-                    {"doctype": "Contract Measurement Record", "key": "contrato"},
-                ]
-            }
+            "doctype": "Contract",
+            "key": "name",
+            "childs": [
+                {"doctype": "Contract Adjustment", "key": "contrato"},
+                {"doctype": "Contract Item", "key": "contrato"},
+                {"doctype": "Contract Measurement", "key": "contrato"},
+                {"doctype": "Contract Measurement Record", "key": "contrato"},
+            ]
         }
     ]
+
+    return main_doctypes
