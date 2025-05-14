@@ -1,3 +1,5 @@
+// static/js/main.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const generateButton = document.getElementById('generateButton');
     const viewJsonButton = document.getElementById('viewJsonButton');
@@ -8,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const buttonSpinner = document.getElementById('buttonSpinner');
 
     // Conecta ao servidor Socket.IO
-    // Use a URL correta se o servidor Flask estiver em outro lugar
     const socket = io();
 
     let isGenerating = false; // Flag para controlar o estado da geração
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateButton.disabled = generating;
         buttonSpinner.style.display = generating ? 'inline-block' : 'none';
         if (!generating) {
-            hideMessages(); // Esconde mensagens de status/erro ao terminar
+            // Se finalizou, mantém mensagem de sucesso ou erro visível
         }
     }
 
@@ -63,19 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     viewJsonButton.addEventListener('click', () => {
-        // Abre uma nova janela/tab para visualizar o JSON
-        window.open('/get_generated_json', '_blank');
+        // Abre a nova rota /teste
+        window.open('/teste', '_blank');
     });
 
     // --- Socket.IO Event Handlers ---
     socket.on('connect', () => {
-        console.log('Conectado ao servidor Socket.IO');
-        addLog('Conectado ao servidor.');
+        addLog('Conectado ao servidor Socket.IO.');
     });
 
     socket.on('disconnect', () => {
-        console.log('Desconectado do servidor Socket.IO');
-        addLog('Desconectado do servidor.');
+        addLog('Desconectado do servidor Socket.IO.');
         if (isGenerating) {
             showError('Conexão perdida durante a geração.');
             setGeneratingState(false);
@@ -87,28 +86,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     socket.on('generation_started', () => {
-        console.log('Geração iniciada pelo servidor.');
         // Status já foi definido no clique do botão
     });
 
     socket.on('generation_complete', (msg) => {
-        console.log('Geração concluída com sucesso.');
         addLog('--- Geração Concluída com Sucesso ---');
         showStatus('Geração concluída com sucesso!');
-        viewJsonButton.style.display = 'block'; // Mostra o botão para visualizar
+        viewJsonButton.style.display = 'inline-block'; // Mostra o botão para visualizar
+        setGeneratingState(false);
     });
 
     socket.on('generation_error', (msg) => {
-        console.error('Erro na geração:', msg.error);
         addLog('--- ERRO DURANTE A GERAÇÃO ---');
         addLog('Erro: ' + msg.error);
         showError(msg.error);
+        setGeneratingState(false);
     });
 
     socket.on('generation_finished', () => {
-        console.log('Processo de geração finalizado (com ou sem sucesso).');
-        setGeneratingState(false);
-        // Não esconde a mensagem final (sucesso ou erro) aqui
+        // Sinal de término, pode-se desabilitar spinner
+        buttonSpinner.style.display = 'none';
     });
-
 });

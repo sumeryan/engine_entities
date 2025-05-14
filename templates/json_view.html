@@ -31,19 +31,19 @@
             <button id="downloadButton" class="btn btn-secondary btn-sm">Baixar JSON</button>
         </div>
 
-        <pre id="jsonData"></pre>
+        <pre id="jsonData">Carregando...</pre>
     </div>
 
     <script>
         const jsonDataElement = document.getElementById('jsonData');
         const copyButton = document.getElementById('copyButton');
         const downloadButton = document.getElementById('downloadButton');
-        let jsonDataString = ''; // Variável para armazenar o JSON como string
+        let jsonDataString = ''; // Armazena o JSON como string
 
-        // Função para buscar e exibir o JSON
+        // Função para buscar e exibir o JSON de /teste
         async function loadJson() {
             try {
-                const response = await fetch('/get_generated_json');
+                const response = await fetch('/teste');
                 if (!response.ok) {
                     const errorData = await response.json();
                     throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
@@ -61,11 +61,9 @@
         // Copiar JSON para a área de transferência
         copyButton.addEventListener('click', () => {
             if (!jsonDataString) return;
-            navigator.clipboard.writeText(jsonDataString).then(() => {
-                alert('JSON copiado para a área de transferência!');
-            }).catch(err => {
-                alert('Erro ao copiar JSON: ' + err);
-            });
+            navigator.clipboard.writeText(jsonDataString)
+                .then(() => alert('JSON copiado para a área de transferência!'))
+                .catch(err => alert('Erro ao copiar JSON: ' + err));
         });
 
         // Baixar JSON como arquivo
@@ -75,7 +73,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'entity_structure.json'; // Nome do arquivo
+            a.download = 'teste_output.json'; // Nome sugerido para o novo formato
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -83,7 +81,7 @@
         });
 
         // Carrega o JSON quando a página é carregada
-        loadJson();
+        window.addEventListener('DOMContentLoaded', loadJson);
     </script>
 </body>
 </html>

@@ -9,188 +9,221 @@ It includes Flask routes, Socket.IO event handlers, and error handling.
 
 import os
 import sys
-from flask import Flask, render_template, jsonify, request
-from flask_socketio import SocketIO, emit
-from dotenv import load_dotenv
-from flask_cors import CORS # Import CORS
-import get_doctypes 
-import requests
+import json
+import traceback
+from datetime import datetime
 
-# Load environment variables from .env file
+from flask import Flask, render_template, jsonify, request, Response
+from flask_socketio import SocketIO, emit
+from flask_cors import CORS
+from dotenv import load_dotenv
+
+import get_doctypes
+import api_client
+import requests
+import api_client_data  # opcional: mapeamento de data.json
+
+# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False  # Preserve insertion order in JSON
+# Configure CORS for Flask routes
 CORS(app, resources={r"/api/*": {"origins": [
     "http://localhost:3000",
     "https://arteris-editor.meb.services",
     "http://localhost:5174"
 ]}})
-app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'uma-chave-secreta-padrao') # Use a secure secret key
-# Change async_mode to 'threading' to avoid the need for eventlet/gevent
-socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*") # Allow CORS for SocketIO too (optional, but good to have)
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', 'uma-chave-secreta-padrao')
+# Setup SocketIO with threading mode
+socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*")
 
-# Configure CORS for Flask
-# Allow requests specifically from http://localhost:3000 for Flask routes
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
-
-# Global variable to store the generated JSON
-generated_json_data = None
-
-# --- Log Capture ---
+# Redirect stdout to Socket.IO logs
 class SocketIOHandler:
-    """A handler to redirect prints to Socket.IO."""
     def write(self, message):
-        # Emit the message only if it's not an empty string or just spaces/newlines
         if message.strip():
             socketio.emit('log_message', {'data': message.strip()})
-
-    def flush(self):
-        # Required by the stream interface, but doesn't do anything here
-        pass
-
-# Redirect stdout to our handler
+    def flush(self): pass
 original_stdout = sys.stdout
 sys.stdout = SocketIOHandler()
 
-import traceback # Add import at the top if it doesn't exist (already exists on line 149, but better to make sure)
+# Global store for generated JSON
+generated_json_data = None
 
-# --- Helper Function for Generation ---
+# Paths for saving intermediate JSON
+OUTPUT_DIR = "output"
+HIERARCHICAL_FILE = os.path.join(OUTPUT_DIR, "output_hierarchical.json")
+DATA_MAP_FILE = 'data.json'
+
+# --- Conversion helper functions ---
+def assign_codes(node, counter=[1]):
+    code = f"e{counter[0]:05d}v"
+    node['code'] = code
+    counter[0] += 1
+    for child in node.get('children', []):
+        assign_codes(child, counter)
+
+def build_data_node(node, data_map):
+    code = node['code']
+    data_node = {
+        'path': code,
+        'formulas': [],
+        'data': data_map.get(code, [])
+    }
+    children = [build_data_node(c, data_map) for c in node.get('children', [])]
+    if children:
+        data_node['childs'] = children
+    return data_node
+
+def collect_referencia(node, ref_dict):
+    ref_dict[node['code']] = node.get('path', '')
+    for child in node.get('children', []):
+        collect_referencia(child, ref_dict)
+
+def convert_hierarchical_to_teste(schema):
+    # Assign unique codes
+    for entry in schema:
+        assign_codes(entry)
+    # Build reference map
+    ref_dict = {}
+    for entry in schema:
+        collect_referencia(entry, ref_dict)
+    # Load optional data map
+    data_map = {}
+    if os.path.isfile(DATA_MAP_FILE):
+        with open(DATA_MAP_FILE, 'r', encoding='utf-8') as f:
+            data_map = json.load(f)
+    # Build 'dados' tree
+    dados = [build_data_node(entry, data_map) for entry in schema]
+    # Return only referencia and dados, matching teste_YYYYMMDD.json
+    return { 'referencia': [ref_dict], 'dados': dados }
+
+# --- Internal generation helper ---
 def _generate_entity_structure():
-    """
-    Helper function that encapsulates the search and transformation logic.
-    Returns the entity structure or raises an exception in case of error.
-    """
     print("--- Starting Internal Generation ---")
-    # Get the base URL and token from environment variables
-    api_base_url = os.getenv("ARTERIS_API_BASE_URL")
+    api_base = os.getenv("ARTERIS_API_BASE_URL")
     api_token = os.getenv("ARTERIS_API_TOKEN")
-
-    if not api_base_url or not api_token:
-        error_msg = "Error: Environment variables ARTERIS_API_BASE_URL or ARTERIS_API_TOKEN not defined."
-        print(error_msg)
-        raise ValueError(error_msg) # Raise exception to be caught
-
-    # Get entity structure
+    if not api_base or not api_token:
+        msg = "Error: ARTERIS_API_BASE_URL or ARTERIS_API_TOKEN not defined"
+        print(msg)
+        raise ValueError(msg)
     print("--- Transforming Metadata to Entities ---")
-    entity_structure = get_doctypes.get_hierarchical_doctype_structure()
-
+    struct = get_doctypes.get_hierarchical_doctype_structure()
     print("Entity structure generated successfully.")
-    print("\n--- Internal Generation Completed ---")
-    return entity_structure
+    print("--- Internal Generation Completed ---")
+    return struct
 
-@app.route('/api/update_formula', methods=['POST'])
-def update_formula():
-    """
-    Updates a formula in the Arteris API.
-
-    Args:
-        formula_id (str): The ID of the formula to update.
-        formula_value (str): The new formula value.
-
-    Returns:
-        dict: The response from the API.
-    """
-
-    # Extrair os dados do request.json
-    data = request.json
-    formula_id = data.get('formula_id')
-    formula_value = data.get('formula_value')
-
-    url = f"https://arteris.meb.services/api/resource/Formula%20Group%20Field/{formula_id}"
-    headers = {
-        'Authorization': 'token be2ff702de81b65:ba84415a14e57fd',
-        'Content-Type': 'application/json',
-        'Cookie': 'full_name=Guest; sid=Guest; system_user=no; user_id=Guest; user_lang=en'
-    }
-    payload = {
-        "formula": formula_value
-    }
-
-    try:
-        response = requests.put(url, headers=headers, json=payload)
-        response.raise_for_status()  # Raise an HTTPError for bad responses (4xx and 5xx)
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"Error updating formula: {e}")
-        raise
-
-# --- Flask Routes ---
+# --- Flask routes ---
 @app.route('/')
 def index():
-    """Renders the home page."""
     return render_template('index.html')
 
 @app.route('/get_generated_json')
 def get_generated_json():
-    """Returns the most recently generated JSON."""
     global generated_json_data
     if generated_json_data:
-        # Returns the JSON as a JSON response to be processed by JS
         return jsonify(generated_json_data)
-    else:
-        return jsonify({"error": "No JSON has been generated yet."}), 404
+    return jsonify({'error': 'No JSON has been generated yet.'}), 404
 
+@app.route('/api/update_formula', methods=['POST'])
+def update_formula():
+    data = request.json
+    formula_id = data.get('formula_id')
+    formula_value = data.get('formula_value')
+    url = f"https://arteris.meb.services/api/resource/Formula%20Group%20Field/{formula_id}"
+    headers = {
+        'Authorization': 'token be2ff702de81b65:ba84415a14e57fd',
+        'Content-Type': 'application/json',
+    }
+    payload = {"formula": formula_value}
+    try:
+        resp = requests.put(url, headers=headers, json=payload)
+        resp.raise_for_status()
+        return resp.json()
+    except Exception as e:
+        print(f"Error updating formula: {e}")
+        raise
 
 @app.route('/api/generate_entity_structure', methods=['GET'])
 def api_generate_entity_structure():
-    """API endpoint to generate and return the entity structure."""
     try:
-        entity_structure = _generate_entity_structure()
-        # Returns directly the list of entities
-        return jsonify(entity_structure)
-    except ValueError as e: # Configuration error
-        return jsonify({"error": str(e)}), 400 # Bad Request
-    except ConnectionError as e: # Error fetching data
-        return jsonify({"error": str(e)}), 503 # Service Unavailable
-    except Exception as e: # Other unexpected errors
+        struct = _generate_entity_structure()
+        return jsonify(struct)
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+    except ConnectionError as e:
+        return jsonify({'error': str(e)}), 503
+    except Exception as e:
         print(f"Unexpected error in API: {e}")
-        traceback.print_exc() # Complete log on the server
-        return jsonify({"error": "Internal server error generating structure."}), 500 # Internal Server Error
+        traceback.print_exc()
+        return jsonify({'error': 'Internal error.'}), 500
 
-# --- Socket.IO Events ---
+@app.route('/hierarchy', methods=['GET'])
+def get_hierarchy():
+    hierarchical = get_doctypes.get_hierarchical_doctype_structure()
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    with open(HIERARCHICAL_FILE, 'w', encoding='utf-8') as f:
+        json.dump({'entities': hierarchical}, f, indent=4, ensure_ascii=False)
+    return jsonify(hierarchical)
+
+@app.route('/teste', methods=['GET'])
+def get_teste_json():
+    # Load or regenerate schema
+    if os.path.isfile(HIERARCHICAL_FILE):
+        with open(HIERARCHICAL_FILE, 'r', encoding='utf-8') as f:
+            wrapper = json.load(f)
+        if isinstance(wrapper, dict) and 'entities' in wrapper:
+            schema = wrapper['entities']
+        elif isinstance(wrapper, list):
+            schema = wrapper
+        else:
+            return jsonify({'error': 'Invalid hierarchical JSON format'}), 500
+    else:
+        schema = get_doctypes.get_hierarchical_doctype_structure()
+    # Convert and return raw JSON preserving order
+    result = convert_hierarchical_to_teste(schema)
+    json_str = json.dumps(result, ensure_ascii=False)
+    return Response(json_str, mimetype='application/json')
+
+# --- Socket.IO handlers ---
 @socketio.on('connect')
 def handle_connect():
-    """Handles new client connections."""
-    print("Client connected") # This will be sent via Socket.IO
+    print("Client connected")
     emit('log_message', {'data': 'Connected to server.'})
 
 @socketio.on('disconnect')
 def handle_disconnect():
-    """Handles client disconnections."""
-    print("Client disconnected") # This will also be sent via Socket.IO
+    print("Client disconnected")
 
 @socketio.on('start_generation')
-def handle_start_generation(message): # message is not used, but kept for the event signature
-    """Starts the entity generation process via Socket.IO."""
+def handle_start_generation(message):
     global generated_json_data
-    generated_json_data = None # Clear previous JSON
+    generated_json_data = None
     emit('generation_started')
-    print("--- Starting Entity Generation (via Socket.IO) ---") # Initial log
-
+    print("--- Starting Entity Generation (via Socket.IO) ---")
     try:
-        # Call the refactored helper function
-        entity_structure = _generate_entity_structure()
-        generated_json_data = entity_structure # Store the generated JSON globally
-        print("\n--- Generation Completed (via Socket.IO) ---")
-        # Emit success and optionally the data (decided not to send large data via socket)
+        struct = _generate_entity_structure()
+        generated_json_data = struct
+        print("--- Generation Completed (via Socket.IO) ---")
         emit('generation_complete', {'success': True})
-
-    except (ValueError, ConnectionError) as e: # Catch specific errors thrown by the helper
-        error_msg = f"Error during generation: {e}"
-        print(error_msg)
-        emit('generation_error', {'error': str(e)}) # Send specific error to client
-    except Exception as e: # Catch other unexpected errors
-        error_msg = f"Unexpected error during generation: {e}"
-        print(error_msg)
-        traceback.print_exc() # Complete log on the server
-        emit('generation_error', {'error': "Internal server error."}) # Generic message
+    except (ValueError, ConnectionError) as e:
+        err = str(e)
+        print(f"Error during generation: {err}")
+        emit('generation_error', {'error': err})
+    except Exception as e:
+        print(f"Unexpected error during generation: {e}")
+        traceback.print_exc()
+        emit('generation_error', {'error': 'Internal server error.'})
     finally:
-        emit('generation_finished') # Signal the end, even with error
+        emit('generation_finished')
 
-# --- Entry Point ---
+# --- Entry point ---
 if __name__ == '__main__':
     print("Starting Flask server with Socket.IO (threading mode)...")
-    # Use socketio.run, which will now use the Flask/Werkzeug development server
-    # with threading support for SocketIO.
-    # Going back to port 5000, as per docker-compose mapping.
-    socketio.run(app, host='0.0.0.0', port=8088, debug=True, allow_unsafe_werkzeug=True) # debug=True and allow_unsafe_werkzeug=True for development
+    socketio.run(
+        app,
+        host='0.0.0.0',
+        port=int(os.getenv('PORT', 8088)),
+        debug=True,
+        allow_unsafe_werkzeug=True
+    )

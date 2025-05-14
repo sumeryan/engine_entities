@@ -36,7 +36,7 @@ def get_arteris_doctypes(api_base_url, api_token):
         response = requests.get(doctype_url, headers=headers, params=params, timeout=30)
         response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
         data = response.json()
-        print("DocTypes list received successfully!")
+        print("DocTypes list received successfully!", data)
         # Returns directly the list contained in the 'data' key of the JSON response
         return data.get("data", [])
     except requests.exceptions.RequestException as e:
@@ -132,6 +132,7 @@ def get_docfields_for_doctype(api_base_url, api_token, doctype_name, child=False
         response = requests.get(docfield_url, headers=headers, params=params, timeout=30)
         response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
         data = response.json()
+        print("JSON NOVO", data)
         docfields = data.get("data", [])
         print(f"DocFields for {doctype_name} received successfully!")
         # Returns the list of fields from the 'data' key
