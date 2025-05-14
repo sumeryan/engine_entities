@@ -1,0 +1,206 @@
+[
+    {
+        "doctype": "Asset",
+        "paths": [
+            "ativo"
+        ]
+    },
+    {
+        "doctype": "Asset Operator",
+        "paths": [
+            "ativo.operador"
+        ]
+    },
+    {
+        "doctype": "Category",
+        "paths": [
+            "categoria"
+        ]
+    },
+    {
+        "doctype": "City",
+        "paths": [
+            "cidade"
+        ]
+    },
+    {
+        "doctype": "Contract",
+        "paths": [
+            "contrato"
+        ]
+    },
+    {
+        "doctype": "Contract Adjustment",
+        "paths": [
+            "contrato.reajuste_de_contrato"
+        ]
+    },
+    {
+        "doctype": "Contract Item",
+        "paths": [
+            "contrato.item_de_contrato"
+        ]
+    },
+    {
+        "doctype": "Contract Item Highway",
+        "paths": [
+            "contrato.item_de_contrato.rodovia_item_de_contrato"
+        ]
+    },
+    {
+        "doctype": "Contract Item Order",
+        "paths": [
+            "contrato.item_de_contrato.pedido_sap_item_de_contrato"
+        ]
+    },
+    {
+        "doctype": "Contract Item City",
+        "paths": [
+            "contrato.item_de_contrato.cidade_item_de_contrato"
+        ]
+    },
+    {
+        "doctype": "Contract Item Work Role",
+        "paths": [
+            "contrato.item_de_contrato.funcao_item_de_contrato"
+        ]
+    },
+    {
+        "doctype": "Contract Item Asset",
+        "paths": [
+            "contrato.item_de_contrato.ativo_item_de_contrato"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement",
+        "paths": [
+            "contrato.medicao_de_contrato_bm"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement City",
+        "paths": [
+            "contrato.medicao_de_contrato_bm.cidade_bm"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement FTD",
+        "paths": [
+            "contrato.medicao_de_contrato_bm.ftd_de_bm"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement Asset",
+        "paths": [
+            "contrato.medicao_de_contrato_bm.ativo_bm"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement Work Role",
+        "paths": [
+            "contrato.medicao_de_contrato_bm.funcao_bm"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement Record",
+        "paths": [
+            "contrato.registro_de_medicao_de_contrato"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement Record Asset",
+        "paths": [
+            "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement Record Time",
+        "paths": [
+            "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement Record Material",
+        "paths": [
+            "contrato.registro_de_medicao_de_contrato.material_de_registro_bm"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement Record Work Role",
+        "paths": [
+            "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm"
+        ]
+    },
+    {
+        "doctype": "Contracted Company",
+        "paths": [
+            "empresa_contratada"
+        ]
+    },
+    {
+        "doctype": "Depth Period Setting",
+        "paths": [
+            "periodo_de_medicao"
+        ]
+    },
+    {
+        "doctype": "Highway",
+        "paths": [
+            "rodovia"
+        ]
+    },
+    {
+        "doctype": "Highway City",
+        "paths": [
+            "rodovia.cidade_de_rodovia"
+        ]
+    },
+    {
+        "doctype": "Holiday",
+        "paths": [
+            "feriado"
+        ]
+    },
+    {
+        "doctype": "Item Classification",
+        "paths": [
+            "classificacao_de_item"
+        ]
+    },
+    {
+        "doctype": "Item Classification Tax",
+        "paths": [
+            "classificacao_de_item.classificacao_de_item_iss"
+        ]
+    },
+    {
+        "doctype": "Material",
+        "paths": [
+            "material"
+        ]
+    },
+    {
+        "doctype": "Person",
+        "paths": [
+            "pessoa"
+        ]
+    },
+    {
+        "doctype": "Retention Type",
+        "paths": [
+            "tipo_de_retencao"
+        ]
+    },
+    {
+        "doctype": "Contract Measurement SAP Order",
+        "paths": [
+            "pedido_sap_de_bm"
+        ]
+    },
+    {
+        "doctype": "SAP Order Highway",
+        "paths": [
+            "sap_order_highway"
+        ]
+    }
+]

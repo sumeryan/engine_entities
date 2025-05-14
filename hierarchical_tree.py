@@ -1,8 +1,7 @@
 import json
+import dcotyp_translate
+import mappings
 import os
-from anytree import Node, RenderTree, PreOrderIter
-from anytree.exporter.jsonexporter import JsonExporter
-import engine_hierarquical_tree.dcotyp_translate as dcotyp_translate
 
 def load_json_file(file_path):
     """Load JSON data from file"""
@@ -14,17 +13,10 @@ def save_json_file(data, file_path):
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-def build_tree(doctypes_data, specified_mapping_data):
+def build_tree(all_doctypes):
     """Main function to build the hierarchical tree structure"""
-    # Load the JSON files
-    # doctypes_data = load_json_file('doctypes.json')
-    # specified_mapping_data = load_json_file('specified_mapping.json')
-    
-    # # Load the translation dictionary
-    # try:
-    #     translations = load_json_file('doctype_translations.json')
-    # except:
-    #     translations = {}  # If translation file doesn't exist, use empty dict
+
+    specified_mapping = mappings.get_specific_mapping();
     translations = dcotyp_translate.get_translations()
     
     # Create hierarchical structure
@@ -35,7 +27,7 @@ def build_tree(doctypes_data, specified_mapping_data):
     mandatory_children = {}  # parent -> [children]
     mandatory_parents = {}   # child -> [parents]
     
-    for mapping in specified_mapping_data:
+    for mapping in specified_mapping:
         child = mapping["child"]
         parent = mapping["parent"]
         
@@ -54,11 +46,11 @@ def build_tree(doctypes_data, specified_mapping_data):
     
     # First, process doctypes that don't have mandatory parents
     # (they're either root nodes or will be added via options)
-    for doctype_name in doctypes_data["all_doctypes"].keys():
+    for doctype_name in all_doctypes["all_doctypes"].keys():
         if doctype_name not in mandatory_parents and doctype_name not in processed_doctypes:
             entity = create_doctype_entity(
                 doctype_name, 
-                doctypes_data, 
+                all_doctypes, 
                 mandatory_parents, 
                 mandatory_children,
                 processed_doctypes,
@@ -67,11 +59,11 @@ def build_tree(doctypes_data, specified_mapping_data):
             hierarchical_data["entities"].append(entity)
     
     # Process any remaining doctypes that haven't been added yet
-    for doctype_name in doctypes_data["all_doctypes"].keys():
+    for doctype_name in all_doctypes["all_doctypes"].keys():
         if doctype_name not in processed_doctypes:
             entity = create_doctype_entity(
                 doctype_name, 
-                doctypes_data, 
+                all_doctypes, 
                 mandatory_parents, 
                 mandatory_children,
                 processed_doctypes,
@@ -80,7 +72,7 @@ def build_tree(doctypes_data, specified_mapping_data):
             hierarchical_data["entities"].append(entity)
     
     # Apply mandatory mappings as the final step to ensure they take precedence
-    apply_specified_mappings(hierarchical_data, specified_mapping_data, translations)
+    apply_specified_mappings(hierarchical_data, specified_mapping, translations)
 
     update_all_paths(hierarchical_data)
     
@@ -100,6 +92,7 @@ def create_doctype_entity(doctype_name, doctypes_data, mandatory_parents, mandat
         "key": doctype_key,
         "description": translated_name,
         "fieldname": doctype_name,
+        "fieldname_data": "",
         "type": "doctype",
         "path": normalize_string(translated_name),  # Temporary path
         "dragandrop": False,
@@ -118,6 +111,7 @@ def create_doctype_entity(doctype_name, doctypes_data, mandatory_parents, mandat
                     "key": field_key,
                     "description": field.get("label", ""),
                     "fieldname": field.get("fieldname", ""),
+                    "fieldname_data": field.get("fieldname_data", ""),
                     "type": field_type,
                     "path": normalize_string(field.get('label', '')),  # Temporary path
                     "dragandrop": True,
@@ -150,6 +144,7 @@ def create_doctype_entity(doctype_name, doctypes_data, mandatory_parents, mandat
                 "key": child_key,
                 "description": child_translated_name,
                 "fieldname": child_doctype,
+                "fieldname_data": "",
                 "type": "doctype",
                 "path": normalize_string(child_translated_name),  # Temporary path
                 "dragandrop": False,
@@ -202,6 +197,7 @@ def create_doctype_entity(doctype_name, doctypes_data, mandatory_parents, mandat
                     "key": related_key,
                     "description": related_translated_name,
                     "fieldname": related_doctype,
+                    "fieldname_data": field.get("fieldname"),
                     "type": "doctype",
                     "path": normalize_string(related_translated_name),  # Temporary path
                     "dragandrop": False,
@@ -241,6 +237,7 @@ def process_doctype_fields(entity, doctype_name, doctypes_data, base_path,
                 "key": field_key,
                 "description": field.get("label", ""),
                 "fieldname": field.get("fieldname", ""),
+                "fieldname_data": field.get("fieldname_data", ""),
                 "type": field_type,
                 "path": normalize_string(field.get('label', '')),  # Temporary path
                 "dragandrop": True,
@@ -273,6 +270,7 @@ def process_doctype_fields(entity, doctype_name, doctypes_data, base_path,
                 "key": child_key,
                 "description": child_translated_name,
                 "fieldname": child_doctype,
+                "fieldname_data": field.get("fieldname_data", ""),
                 "type": "doctype",
                 "path": normalize_string(child_translated_name),  # Temporary path
                 "dragandrop": False,
@@ -328,6 +326,7 @@ def process_doctype_fields(entity, doctype_name, doctypes_data, base_path,
                 "key": related_key,
                 "description": related_translated_name,
                 "fieldname": related_doctype,
+                "fieldname_data": field.get("fieldname_data", ""),
                 "type": "doctype",
                 "path": normalize_string(related_translated_name),  # Temporary path
                 "dragandrop": False,
@@ -560,7 +559,8 @@ def normalize_string(s):
 def update_all_paths(hierarchical_data):
     """Update all paths in the hierarchy to have the full parent-child chain"""
     # First update paths for root entities
-    for entity in hierarchical_data["entities"]:
+    entities = hierarchical_data["entities"]
+    for entity in entities:
         entity_path = normalize_string(entity["description"])
         entity["path"] = entity_path
         
@@ -577,15 +577,20 @@ def update_child_paths(parent_entity, parent_path):
         update_child_paths(child, child["path"])
 
 def main():
+
+    all_doctypes = load_json_file("output/all_doctypes.json")
+
     # Build the hierarchical tree
-    hierarchical_data = build_hierarchical_tree()
+    hierarchical_data = build_tree(all_doctypes)
     
     # Update all paths to have the full parent-child hierarchy
-    update_all_paths(hierarchical_data)
+    # update_all_paths(hierarchical_data)
     
     # Save the final result
-    save_json_file(hierarchical_data, 'output_hierarchical.json')
-    print("Hierarchical tree built successfully and saved to output_hierarchical.json")
+    
+    # Gravar all_doctypes em um arquivo JSON
+    with open("output/hierarchical_data.json", "w", encoding="utf-8") as f:
+        json.dump(hierarchical_data, f, indent=4, ensure_ascii=False)
 
 if __name__ == "__main__":
     main()

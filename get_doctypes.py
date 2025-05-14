@@ -223,6 +223,11 @@ def get_data():
 
     return all_doctype_data
 
+def get_formula_data():
+    result = get_doctype_keys_data("Formula Group")
+    data, keys = result
+    save_data("data",data, "Formula Group")
+
 def get_doctype_keys_data(doctype_name, filters=None):
     """
     Retrieves keys and data for a specific DocType.
@@ -335,9 +340,7 @@ def get_hierarchical_doctype_structure():
         "all_doctypes": doctypes["all_doctypes"]
         }
 
-    # Gravar all_doctypes em um arquivo JSON
-    with open("output/all_doctypes.json", "w", encoding="utf-8") as f:
-        json.dump(all_doctypes, f, indent=4, ensure_ascii=False)
+
 
     specific_map = json.loads(json.dumps(mappings.get_specific_mapping()))
 
@@ -349,9 +352,9 @@ def get_hierarchical_doctype_structure():
 
     # Gravar tree em um arquivo JSON
     with open("output/hierarquical_doctypes.json", "w", encoding="utf-8") as f:
-        json.dump(all_doctypes, f, indent=4, ensure_ascii=False)
+        json.dump(hierarquical_json, f, indent=4, ensure_ascii=False)
 
     return hierarquical_json
 
 if __name__ == "__main__":
-    get_hierarchical_doctype_structure()
+    get_formula_data()
