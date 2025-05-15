@@ -1,0 +1,89 @@
+{
+    "parents_mapping": [
+        {
+            "child": "Asset Operator",
+            "parent": "Asset",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Adjustment Data",
+            "parent": "Contract Adjustment",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item Highway",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item Order",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item City",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item Work Role",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Item Asset",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement City",
+            "parent": "Contract Measurement",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement FTD",
+            "parent": "Contract Measurement",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Asset",
+            "parent": "Contract Measurement",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Work Role",
+            "parent": "Contract Measurement",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Record Asset",
+            "parent": "Contract Measurement Record",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Record Time",
+            "parent": "Contract Measurement Record",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Record Material",
+            "parent": "Contract Measurement Record",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Record Work Role",
+            "parent": "Contract Measurement Record",
+            "type": "Table"
+        },
+        {
+            "child": "Highway City",
+            "parent": "Highway",
+            "type": "Table"
+        },
+        {
+            "child": "Item Classification Tax",
+            "parent": "Item Classification",
+            "type": "Table"
+        }
+    ]
+}

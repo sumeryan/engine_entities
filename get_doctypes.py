@@ -12,7 +12,6 @@ import os
 import api_client_data
 import json
 import mappings
-import engine_hierarquical_tree.hierarchical_tree
 
 def get_main_doctypes_with_fields(api_base_url, api_token): 
     """
@@ -226,7 +225,7 @@ def get_data():
 def get_formula_data():
     result = get_doctype_keys_data("Formula Group")
     data, keys = result
-    save_data("data",data, "Formula Group")
+    save_data("data", data, "Formula Group")
 
 def get_doctype_keys_data(doctype_name, filters=None):
     """
@@ -340,7 +339,13 @@ def get_hierarchical_doctype_structure():
         "all_doctypes": doctypes["all_doctypes"]
         }
 
+    parents_mapping={
+        "parents_mapping": doctypes["parents_mapping"]
+        }
 
+    # Gravar tree em um arquivo JSON
+    with open("output/parents_mapping.json", "w", encoding="utf-8") as f:
+        json.dump(parents_mapping, f, indent=4, ensure_ascii=False)
 
     specific_map = json.loads(json.dumps(mappings.get_specific_mapping()))
 
@@ -357,4 +362,4 @@ def get_hierarchical_doctype_structure():
     return hierarquical_json
 
 if __name__ == "__main__":
-    get_formula_data()
+    get_hierarchical_doctype_structure()
