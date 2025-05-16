@@ -11,11 +11,6 @@
             "type": "Table"
         },
         {
-            "child": "Contract Item Highway",
-            "parent": "Contract Item",
-            "type": "Table"
-        },
-        {
             "child": "Contract Item Order",
             "parent": "Contract Item",
             "type": "Table"
@@ -36,7 +31,12 @@
             "type": "Table"
         },
         {
-            "child": "Contract Measurement City",
+            "child": "Contract Item Highway",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement SAP Order",
             "parent": "Contract Measurement",
             "type": "Table"
         },
@@ -46,7 +46,7 @@
             "type": "Table"
         },
         {
-            "child": "Contract Measurement Asset",
+            "child": "Contract Measurement City",
             "parent": "Contract Measurement",
             "type": "Table"
         },
@@ -56,12 +56,17 @@
             "type": "Table"
         },
         {
-            "child": "Contract Measurement Record Asset",
+            "child": "Contract Measurement Asset",
+            "parent": "Contract Measurement",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Record Work Role",
             "parent": "Contract Measurement Record",
             "type": "Table"
         },
         {
-            "child": "Contract Measurement Record Time",
+            "child": "Contract Measurement Record Asset",
             "parent": "Contract Measurement Record",
             "type": "Table"
         },
@@ -71,7 +76,7 @@
             "type": "Table"
         },
         {
-            "child": "Contract Measurement Record Work Role",
+            "child": "Contract Measurement Record Time",
             "parent": "Contract Measurement Record",
             "type": "Table"
         },

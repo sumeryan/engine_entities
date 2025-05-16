@@ -16,7 +16,7 @@ def save_json_file(data, file_path):
 def build_tree(all_doctypes):
     """Main function to build the hierarchical tree structure"""
 
-    specified_mapping = mappings.get_specific_mapping();
+    specified_mapping = mappings.get_specific_mapping()
     translations = dcotyp_translate.get_translations()
     
     # Create hierarchical structure

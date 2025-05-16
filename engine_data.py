@@ -1,4 +1,5 @@
 import json
+import re
 
 
 def map_all_paths(data):    
@@ -57,25 +58,35 @@ def map_doctype_paths(data):
 
     return result
 
-def search_fieldname_path(data, doctype_name, field_name = None):
+def search_fieldname_path(data, doctype_name, field_name):
     """
     Search doctype fieldname path
     """
-    def traverse(node):
+    path = None
 
-        if field_name:
-            if node.get("fieldname") == field_name:
-                return node.get("path") 
+    def traverse(node, path = None):
+        
+        if path:
+            return path
 
         # Adiciona o doctype atual se for do tipo 'doctype'
         if node.get("type") == "doctype" and node.get("fieldname") == doctype_name:
             # Percorre os filhos recursivamente
             for child in node.get("children", []):
-                traverse(child)
+                if child.get("fieldname") == field_name:
+                    path = child.get("path")  
+                    return path                
+        else:
+            for child in node.get("children", []):
+                path = traverse(child, path)
+        if path:
+            return path
 
     # Inicia a recursão para cada nó na raiz
     for root in data:
-        traverse(root)
+        path = traverse(root, path)
+        if path:
+            return path
 
 def data_to_engine(doctype_tree, formulas, all_doctype_data):
     """
@@ -162,6 +173,53 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
             if len(engine_data_item) != 0:
                 head_data_item["data"].append(engine_data_item)
 
+        # Sem dados, informar campos e null, para evitar ficar sem paths
+        if len(doctype_data[index:]) == 0:
+
+            engine_data_item = {
+                "id": None,
+                "fields": [],
+                "childs": []
+            }
+
+            # Percorre os nos
+            for n in nodes:
+
+                # Add path to list
+                add_path_to_list(n["path"])
+            
+                # Doctype desce um nivel
+                if n["type"] == "doctype":
+                    if n["fieldname_data"]:
+                        # Dado de mapeamento especifico
+                        doctype_data_item = d[n["fieldname_data"]]
+                        if len(doctype_data_item) == 0:
+                            continue
+                    else:
+                        # Dado vinculado ao registro do doctype
+                        doctype_data_item = get_doctype_data(n["fieldname"])
+
+                    # Adiciona os registros ao cabeçalho
+                    if len(engine_data_item) != 0:
+                        head_data_item["data"].append(engine_data_item)
+                    
+                    # Zera os registros para evitar duplicidade
+                    engine_data_item = {}
+
+                    # Descce o nivel para carga
+                    traverse_doctype(n, head_data_item, doctype_data_item, path, True)
+
+                else:
+                    # Cria o registro de dados
+                    engine_data_item["fields"].append({
+                        "path": n["path"],
+                        "type": n["type"],
+                        "value": None
+                    })
+            # Incluir dados mesmo que vazios
+            if len(engine_data_item) != 0:
+                head_data_item["data"].append(engine_data_item)
+
 
     def traverse_doctype(node, head_data_item = None, doctype_data = None, path = None, reset_index = False):
 
@@ -214,36 +272,97 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
         if not head_data_item:
             result.append(new_head_data_item)
 
-    def update_paths(node, old_value, new_value):
+    def replace_paths(obj, references):
         """
-        Substitui recursivamente todos os valores e chaves em um objeto JSON.
+        Replaces values in a complex JSON using the provided reference dictionary.
         
         Args:
-            objeto: O objeto JSON (dict, list ou valor primitivo)
-            valor_antigo: O valor a ser substituído
-            valor_novo: O novo valor
+            obj: The JSON object to be processed
+            references: The JSON object containing the mapping in the format {"referencia": [{"e00100v": "asset", ...}]}
             
         Returns:
-            O objeto com os valores e chaves substituídos
+            The object with replaced values
         """
-        if isinstance(node, dict):
-            # Criar um novo dicionário com as chaves substituídas
-            novo_dict = {}
-            for key, value in node.items():
-                # Substituir a chave se necessário
-                nova_chave = new_value if key == old_value else key
-                # Processar recursivamente o valor
-                novo_dict[nova_chave] = update_paths(value, old_value, new_value)
-            return novo_dict
-        elif isinstance(node, list):
-            # Para listas, processar cada item
-            return [update_paths(item, old_value, new_value) for item in node]
-        else:
-            # Para valores primitivos, substituir se corresponder
-            if node == old_value:
-                return new_value
-            return node
+        ref_dict = references["referencia"][0]
 
+        def replace_formulas(formulas):
+            
+            for f in formulas:
+                # Replacements in formulas and other more complex strings
+                words = f["value"].split()
+                for i, word in enumerate(words):
+                    if word in  original_path:
+                        words[i] = code
+                    elif original_path in word:
+                        # Attempt to replace only complete occurrences
+                        for operator in [' ', '(', ')', '+', '-', '*', '/', '=', ',', '==', '>=', '<=']:
+                            word = word.replace(original_path + operator, code + operator)
+                            word = word.replace(operator + original_path, operator + code)
+                        words[i] = word
+                
+                return ' '.join(words)
+        
+        # Internal recursive function to make replacements
+        def replace_recursive(item):  
+
+            if isinstance(item, list):             
+                for i in item:
+                    replace_recursive(i)
+
+            if "data" in item:
+                for i in item["data"]:
+                    replace_recursive(i)
+
+            if "childs" in item:
+                for i in item["childs"]:
+                    replace_recursive(i)          
+
+            if "fields" in item:
+                for i in item["fields"]:
+                    replace_recursive(i)     
+
+            if "formulas" in item:
+                for i in item["formulas"]:
+                    replace_recursive(i)             
+
+            # Change paths values
+            for code, original_path in ref_dict.items():            
+
+                # Special handling for formula fields
+                if "path" in item and "value" in item and "update" in item:
+
+                    # Replace in the formula string (value)
+                    if isinstance(item["value"], str):
+                        value = item["value"]
+                        
+                        # Padrão para encontrar a palavra completa ou com operadores específicos
+                        pattern = r'(^|\W)(' + re.escape(original_path) + r')(\W|$)'
+                        
+                        # Função para substituir mantendo os delimitadores
+                        def replace_match(match):
+                            prefix = match.group(1)  # Primeiro grupo (delimitador inicial ou início da string)
+                            matched_word = match.group(2)  # Segundo grupo (a palavra que queremos substituir)
+                            suffix = match.group(3)  # Terceiro grupo (delimitador final ou fim da string)
+                            return prefix + code + suffix
+                        
+                        # Aplicar a substituição
+                        value = re.sub(pattern, replace_match, value)
+                        
+                        # Atualizar o valor no item
+                        item["value"] = value                    
+                                    
+                # Special case for the "path" field
+                if "path" in item:
+                    value = item["path"]
+                    if value == original_path:
+                        item["path"] = code
+
+            return item
+        
+        # Recursive 
+        return replace_recursive(obj)
+        
+    
     # Inicia a recursão para cada nó na raiz
     for root in doctype_tree:
         traverse_doctype(root)
@@ -259,13 +378,13 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
         references["referencia"][0][f"e{index:05d}v"] = p
 
     # Substitui os paths pelas referencias
-    for new_path, old_path in references["referencia"][0].items():
-        for root in result:
-            update_paths(root, new_path, old_path)
+    result_new_paths = replace_paths(result, references)
+    # result_new_paths = result
 
+    # Monta o objeto final
     engine_data = {
         "referencia": references["referencia"],
-        "dados": result
+        "dados": result_new_paths
     }
 
     return engine_data

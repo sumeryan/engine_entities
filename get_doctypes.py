@@ -14,6 +14,37 @@ import json
 import mappings
 import hierarchical_tree
 
+def extract_docfields(docfields):
+
+    fields = []
+    for f in docfields["fields"]:
+
+        # Screen fields
+        if f["fieldtype"] == "Section Break" or f["fieldtype"] == "Column Break" or f["fieldtype"] == "Tab Break":
+            continue
+
+        # Tree view fields
+        if f["fieldname"] == "lft" or f["fieldname"] == "rgt" or f["fieldname"] == "old_parent" or f["fieldname"][0:7] == "parent_":
+            continue
+
+        field = {}
+        if "fieldname" in f:
+            field["fieldname"]=f["fieldname"]
+        if "label" in f:
+            field["label"]=f["label"]
+        if "fieldtype" in f:
+            field["fieldtype"]=f["fieldtype"]
+        if "options" in f:
+            field["options"]=f["options"]        
+        if "hidden" in f:
+            field["hidden"]=f["hidden"]        
+        if "parent" in f:
+            field["parent"]=f["parent"]                  
+
+        fields.append(field)
+
+    return fields
+
 def get_main_doctypes_with_fields(api_base_url, api_token): 
     """
     Retrieves main DocTypes and their fields.
@@ -38,10 +69,7 @@ def get_main_doctypes_with_fields(api_base_url, api_token):
     for doc in all_doctypes:
         doctype_name = doc.get("name")
         docfields = api_client.get_docfields_for_doctype(api_base_url, api_token, doctype_name)
-        if docfields is not None:
-            doctypes_with_fields[doctype_name] = docfields
-        else:
-            doctypes_with_fields[doctype_name] = None # Mark error
+        doctypes_with_fields[doctype_name] = extract_docfields(docfields)
 
     return doctypes_with_fields
 
@@ -68,11 +96,8 @@ def get_child_doctypes_with_fields(api_base_url, api_token):
     # Fetch DocFields for each DocType
     for doc in all_doctypes_child:
         doctype_name = doc.get("name")
-        docfields = api_client.get_docfields_for_doctype(api_base_url, api_token, doctype_name, True)
-        if docfields is not None:
-            doctypes_with_fields[doctype_name] = docfields
-        else:
-            doctypes_with_fields[doctype_name] = None # Mark error
+        docfields = api_client.get_docfields_for_doctype(api_base_url, api_token, doctype_name)
+        doctypes_with_fields[doctype_name] = extract_docfields(docfields)
 
     return doctypes_with_fields
 
@@ -348,8 +373,6 @@ def get_hierarchical_doctype_structure():
     with open("output/parents_mapping.json", "w", encoding="utf-8") as f:
         json.dump(parents_mapping, f, indent=4, ensure_ascii=False)
 
-    specific_map = json.loads(json.dumps(mappings.get_specific_mapping()))
-
     print("\n--- Creating hierarchical structure ---")
     hierarquical_json = hierarchical_tree.build_tree(all_doctypes)
 
@@ -360,6 +383,6 @@ def get_hierarchical_doctype_structure():
     return hierarquical_json
 
 if __name__ == "__main__":
-    get_data()
-    get_formula_data()
-    #get_hierarchical_doctype_structure()
+    #get_data()
+    #get_formula_data()
+    get_hierarchical_doctype_structure()
