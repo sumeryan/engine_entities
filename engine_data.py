@@ -61,7 +61,7 @@ def search_fieldname_path(data, doctype_name, field_name = None):
     """
     Search doctype fieldname path
     """
-    def traverse(node, current_path):
+    def traverse(node):
 
         if field_name:
             if node.get("fieldname") == field_name:
@@ -71,11 +71,11 @@ def search_fieldname_path(data, doctype_name, field_name = None):
         if node.get("type") == "doctype" and node.get("fieldname") == doctype_name:
             # Percorre os filhos recursivamente
             for child in node.get("children", []):
-                traverse(child, current_path + [node["fieldname"]], field_name)
+                traverse(child)
 
     # Inicia a recursão para cada nó na raiz
     for root in data:
-        traverse(root, [])
+        traverse(root)
 
 def data_to_engine(doctype_tree, formulas, all_doctype_data):
     """
@@ -83,7 +83,13 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
     """
 
     result = []
+    paths = []
     doctypes_index = {}
+
+    def add_path_to_list(path):
+        if not path in paths:
+            print(path)
+            paths.append(path)        
 
     def get_doctype_data(doctype_name):
         # Get doctype data
@@ -109,11 +115,14 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
             engine_data_item = {
                 "id": d["name"],
                 "fields": [],
-                "data": []
+                "childs": []
             }
 
             # Percorre os nos
             for n in nodes:
+
+                # Add path to list
+                add_path_to_list(n["path"])
             
                 # Doctype desce um nivel
                 if n["type"] == "doctype":
@@ -155,7 +164,10 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
 
 
     def traverse_doctype(node, head_data_item = None, doctype_data = None, path = None, reset_index = False):
-        
+
+        # Add path to list
+        add_path_to_list(node["path"])
+
         # Get doctype data
         if not doctype_data:
             doctype_data = get_doctype_data(node["fieldname"])
@@ -194,20 +206,69 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
 
         if head_data_item:
             # Filho do ultimo registro
-            head_data_item["data"][-1]["data"].append(new_head_data_item)
+            head_data_item["data"][-1]["childs"].append(new_head_data_item)
         
         traverse_doctype_data(node["children"], new_head_data_item, doctype_data, node["path"], reset_index)
 
         # Final da recursao
         if not head_data_item:
             result.append(new_head_data_item)
-            save_json_file(result, "output/tree_data.json")
+
+    def update_paths(node, old_value, new_value):
+        """
+        Substitui recursivamente todos os valores e chaves em um objeto JSON.
+        
+        Args:
+            objeto: O objeto JSON (dict, list ou valor primitivo)
+            valor_antigo: O valor a ser substituído
+            valor_novo: O novo valor
+            
+        Returns:
+            O objeto com os valores e chaves substituídos
+        """
+        if isinstance(node, dict):
+            # Criar um novo dicionário com as chaves substituídas
+            novo_dict = {}
+            for key, value in node.items():
+                # Substituir a chave se necessário
+                nova_chave = new_value if key == old_value else key
+                # Processar recursivamente o valor
+                novo_dict[nova_chave] = update_paths(value, old_value, new_value)
+            return novo_dict
+        elif isinstance(node, list):
+            # Para listas, processar cada item
+            return [update_paths(item, old_value, new_value) for item in node]
+        else:
+            # Para valores primitivos, substituir se corresponder
+            if node == old_value:
+                return new_value
+            return node
 
     # Inicia a recursão para cada nó na raiz
     for root in doctype_tree:
         traverse_doctype(root)
 
-    return result    
+    # Ordena a lista paths
+    paths.sort(key=len, reverse=True)
+
+    # Monta as referencias
+    references = {
+        "referencia": [{}]
+    }
+    for index, p in enumerate(paths):
+        references["referencia"][0][f"e{index:05d}v"] = p
+
+    # Substitui os paths pelas referencias
+    for new_path, old_path in references["referencia"][0].items():
+        for root in result:
+            update_paths(root, new_path, old_path)
+
+    engine_data = {
+        "referencia": references["referencia"],
+        "dados": result
+    }
+
+    return engine_data
 
 def save_json_file(data, file_path):
     """Save JSON data to file"""
@@ -222,7 +283,7 @@ if __name__ == "__main__":
         formulas = json.load(file)
 
     # Load the hierarchical doctypes JSON file
-    with open("output/hierarchical_data.json", "r", encoding="utf-8") as file:
+    with open("output/hierarquical_doctypes.json", "r", encoding="utf-8") as file:
         doctype_tree = json.load(file)        
 
     # Load all_doctype_doc
@@ -230,7 +291,10 @@ if __name__ == "__main__":
         all_doctype_data = json.load(file)        
 
     # Call the function with the loaded data
-    doctypes_paths = data_to_engine(doctype_tree, formulas, all_doctype_data)
+    engine_data = data_to_engine(doctype_tree, formulas, all_doctype_data)
+    save_json_file(engine_data, "output/tree_data.json")
 
-    # Print the result
-    print(json.dumps(doctypes_paths, indent=4, ensure_ascii=False))
+    print("Dados gravados em output/tree_data.json")
+
+    # # Print the result
+    # print(json.dumps(doctypes_paths, indent=4, ensure_ascii=False))

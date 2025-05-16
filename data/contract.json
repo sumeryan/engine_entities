@@ -1,6 +1,12 @@
 [
     {
         "name": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
+        "owner": "Administrator",
+        "creation": "2025-05-08 10:33:44.670388",
+        "modified": "2025-05-12 11:52:40.756060",
+        "modified_by": "Administrator",
+        "docstatus": 0,
+        "idx": 78,
         "contrato": "CW34468",
         "contratada": "0196afce-6e3d-7cf3-a9cc-24b0dd79a22d",
         "datainicial": "2023-12-18",
@@ -18,6 +24,8 @@
         "terminoservicos": "2028-12-18",
         "percentualreidi": 0.0,
         "medicaopormes": 1,
+        "medicaodiainicial": 0,
+        "medicaodiafinal": 0,
         "percentualcalcao": 0.0,
         "grupoformulas": "0196c31f-2847-7a70-999a-66b6b8510709",
         "doctype": "Contract"

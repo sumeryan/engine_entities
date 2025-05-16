@@ -1,6 +1,12 @@
 [
     {
         "name": "01966f01-1ae9-72a1-86e1-464b5faba430",
+        "owner": "Administrator",
+        "creation": "2025-04-25 19:11:05.576090",
+        "modified": "2025-04-25 19:11:05.576090",
+        "modified_by": "Administrator",
+        "docstatus": 0,
+        "idx": 23,
         "nome": "KRONOS - ENGENHARIA LTDA - ME",
         "razaosocial": "KRONOS - ENGENHARIA LTDA - ME",
         "cnpj": "14.157.156/0001-95",
@@ -9,6 +15,12 @@
     },
     {
         "name": "0196afce-6e3d-7cf3-a9cc-24b0dd79a22d",
+        "owner": "Administrator",
+        "creation": "2025-05-08 09:11:03.611633",
+        "modified": "2025-05-08 09:11:03.611633",
+        "modified_by": "Administrator",
+        "docstatus": 0,
+        "idx": 23,
         "nome": "AMP CONSTRUÇÃO CIVIL E SOLUÇÕES AMBIENTAIS LTDA.",
         "razaosocial": "AMP CONSTRUÇÃO CIVIL E SOLUÇÕES AMBIENTAIS LTDA.",
         "cnpj": "05.019.130/0001-90",
@@ -17,6 +29,12 @@
     },
     {
         "name": "0196cec5-9bdd-72c1-974f-2c9d6f1eaf69",
+        "owner": "Administrator",
+        "creation": "2025-05-14 09:29:39.163421",
+        "modified": "2025-05-14 09:31:19.885526",
+        "modified_by": "Administrator",
+        "docstatus": 0,
+        "idx": 3,
         "nome": "NEOVIA INFRAESTRUTURA RODOVIARIA LTDA.",
         "razaosocial": "NEOVIA INFRAESTRUTURA RODOVIARIA LTDA.",
         "cnpj": "02.955.426/0001-24",
