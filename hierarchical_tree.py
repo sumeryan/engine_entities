@@ -101,9 +101,12 @@ def create_doctype_entity(doctype_name, doctypes_data, mandatory_parents, mandat
     
     # First add all regular fields
     if doctype_name in doctypes_data["all_doctypes"]:
+
         for field in doctypes_data["all_doctypes"][doctype_name]:
+
             # Skip relationship fields for now, we'll handle them separately
             if field.get("options") is None or field.get("fieldtype") != "Table":
+
                 field_type = map_field_type(field.get("fieldtype", ""))
                 field_key = field.get("label", "").replace(" ", "_")
                 
@@ -122,7 +125,9 @@ def create_doctype_entity(doctype_name, doctypes_data, mandatory_parents, mandat
     
     # Now handle mandatory children based on specified_mapping.json
     if doctype_name in mandatory_children:
+
         for child_doctype in mandatory_children[doctype_name]:
+
             child_key = child_doctype.replace(" ", "_")
             
             # Skip if this child has already been added to this parent
@@ -167,8 +172,11 @@ def create_doctype_entity(doctype_name, doctypes_data, mandatory_parents, mandat
     
     # Now handle relationships based on options, but only if they aren't in mandatory relationships
     if doctype_name in doctypes_data["all_doctypes"]:
+
         for field in doctypes_data["all_doctypes"][doctype_name]:
+
             if field.get("options") is not None and field.get("fieldtype") == "Table":
+
                 related_doctype = field.get("options")
                 related_key = related_doctype.replace(" ", "_")
                 
@@ -228,8 +236,10 @@ def process_doctype_fields(entity, doctype_name, doctypes_data, base_path,
     
     # First add all regular fields
     for field in doctypes_data["all_doctypes"][doctype_name]:
+
         # Skip relationship fields for now, we'll handle them separately
         if field.get("options") is None or field.get("fieldtype") != "Table":
+
             field_type = map_field_type(field.get("fieldtype", ""))
             field_key = field.get("label", "").replace(" ", "_")
             
@@ -237,7 +247,7 @@ def process_doctype_fields(entity, doctype_name, doctypes_data, base_path,
                 "key": field_key,
                 "description": field.get("label", ""),
                 "fieldname": field.get("fieldname", ""),
-                "fieldname_data": field.get("fieldname_data", ""),
+                "fieldname_data": "",
                 "type": field_type,
                 "path": normalize_string(field.get('label', '')),  # Temporary path
                 "dragandrop": True,
@@ -248,7 +258,9 @@ def process_doctype_fields(entity, doctype_name, doctypes_data, base_path,
     
     # Now handle mandatory children based on specified_mapping.json
     if doctype_name in mandatory_children:
+
         for child_doctype in mandatory_children[doctype_name]:
+
             child_key = child_doctype.replace(" ", "_")
             
             # Skip if this child has already been added to this parent
@@ -293,7 +305,9 @@ def process_doctype_fields(entity, doctype_name, doctypes_data, base_path,
     
     # Now handle relationships based on options, but only if they aren't in mandatory relationships
     for field in doctypes_data["all_doctypes"][doctype_name]:
+
         if field.get("options") is not None and field.get("fieldtype") == "Table":
+
             related_doctype = field.get("options")
             related_key = related_doctype.replace(" ", "_")
             
@@ -326,7 +340,7 @@ def process_doctype_fields(entity, doctype_name, doctypes_data, base_path,
                 "key": related_key,
                 "description": related_translated_name,
                 "fieldname": related_doctype,
-                "fieldname_data": field.get("fieldname_data", ""),
+                "fieldname_data": field.get("fieldname", ""),
                 "type": "doctype",
                 "path": normalize_string(related_translated_name),  # Temporary path
                 "dragandrop": False,
@@ -589,7 +603,7 @@ def main():
     # Save the final result
     
     # Gravar all_doctypes em um arquivo JSON
-    with open("output/hierarchical_data.json", "w", encoding="utf-8") as f:
+    with open("output/hierarquical_doctypes.json", "w", encoding="utf-8") as f:
         json.dump(hierarchical_data, f, indent=4, ensure_ascii=False)
 
 if __name__ == "__main__":

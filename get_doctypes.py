@@ -181,7 +181,7 @@ def process_doctypes():
         "parents_mapping": parents_mapping
     }
 
-def get_data():
+def get_data(main_id = None):
     """
     Retrieves data from the framework.
     
@@ -219,15 +219,15 @@ def get_data():
     # ---main_doctypes---
     # Get keys for main_doctypes
     for m in main_doctypes:
-        
-        # RETORNAR APOS O TESTE DO STEERING
-        # result = get_doctype_keys_data(m["doctype"])
 
-        # REMOVER APOS O TESTE DO STEERING
-        filter = f"[[\"{m["key"]}\",\"=\",\"{"0196b01a-2163-7cb2-93b9-c8b1342e3a4e"}\"]]"
-        name = m["doctype"]
-        result = get_doctype_keys_data(name,filter)
+        if main_id:
+            filter = f"[[\"{m["key"]}\",\"=\",\"{"0196b01a-2163-7cb2-93b9-c8b1342e3a4e"}\"]]"
+            result = get_doctype_keys_data(m["doctype"], filter)
+        else:
+            result = get_doctype_keys_data(m["doctype"])  
+ 
         data, keys = result
+
         all_doctype_data.append({f"{m["doctype"]}": data})
 
         for k in keys:
@@ -239,13 +239,11 @@ def get_data():
 
             # Get keys for child doctype
             for c in m["childs"]:
-                result = get_doctype_keys_data(c["doctype"],f"[[\"{c["key"]}\",\"=\",\"{k}\"]]")
+                result = get_doctype_keys_data(c["doctype"], f"[[\"{c['key']}\",\"=\",\"{k}\"]]")
                 data, keys = result
+                all_doctype_data.append({f"{c["doctype"]}": data})
                 # Write data result for child with main key
                 save_data(f"data/{normalize_string(k)}", data, c["doctype"])
-
-                # REMOVER ASPOS O TESTE DO STEERING
-                all_doctype_data.append({f"{c["doctype"]}": data})
 
     # Save all_doctype_data
     save_data("data", all_doctype_data, "all_doctypes")
@@ -380,6 +378,8 @@ def get_hierarchical_doctype_structure():
     print("\n--- Creating hierarchical structure ---")
     hierarquical_json = hierarchical_tree.build_tree(all_doctypes)
 
+    save_data("output", all_doctypes, "all_doctypes")
+
     # Gravar tree em um arquivo JSON
     with open("output/hierarquical_doctypes.json", "w", encoding="utf-8") as f:
         json.dump(hierarquical_json, f, indent=4, ensure_ascii=False)
@@ -387,6 +387,6 @@ def get_hierarchical_doctype_structure():
     return hierarquical_json
 
 if __name__ == "__main__":
-    #get_data()
-    #get_formula_data()
-    get_hierarchical_doctype_structure()
+    get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e") #Forca apenas um contrato
+    get_formula_data()
+    #get_hierarchical_doctype_structure()

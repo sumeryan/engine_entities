@@ -103,6 +103,7 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data, childs_name = "chil
             paths.append(path)        
 
     def get_doctype_data(doctype_name):
+        print(f"Get doctype data: {doctype_name}")
         # Get doctype data
         for d in all_doctype_data:
             if doctype_name in d:
@@ -141,8 +142,8 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data, childs_name = "chil
                     if n["fieldname_data"]:
                         # Dado de mapeamento especifico
                         doctype_data_item = d[n["fieldname_data"]]
-                        if len(doctype_data_item) == 0:
-                            continue
+                        # if len(doctype_data_item) == 0:
+                        #     continue
                     else:
                         # Dado vinculado ao registro do doctype
                         doctype_data_item = get_doctype_data(n["fieldname"])
@@ -192,14 +193,17 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data, childs_name = "chil
             
                 # Doctype desce um nivel
                 if n["type"] == "doctype":
-                    if n["fieldname_data"]:
-                        # Dado de mapeamento especifico
-                        doctype_data_item = d[n["fieldname_data"]]
-                        if len(doctype_data_item) == 0:
-                            continue
-                    else:
-                        # Dado vinculado ao registro do doctype
-                        doctype_data_item = get_doctype_data(n["fieldname"])
+                    # if n["fieldname_data"]:
+                    #     # Dado de mapeamento especifico
+                    #     doctype_data_item = d[n["fieldname_data"]]
+                    #     if len(doctype_data_item) == 0:
+                    #         continue
+                    # else:
+                    #     # Dado vinculado ao registro do doctype
+                    #     doctype_data_item = get_doctype_data(n["fieldname"])
+
+                    # Lista vazia
+                    doctype_data_item = []
 
                     # Adiciona os registros ao cabeçalho
                     if len(engine_data_item) != 0:
@@ -221,7 +225,6 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data, childs_name = "chil
             # Incluir dados mesmo que vazios
             if len(engine_data_item) != 0:
                 head_data_item["data"].append(engine_data_item)
-
 
     def traverse_doctype(node, head_data_item = None, doctype_data = None, path = None, reset_index = False):
 
@@ -364,7 +367,6 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data, childs_name = "chil
         # Recursive 
         return replace_recursive(obj)
         
-    
     # Inicia a recursão para cada nó na raiz
     for root in doctype_tree:
         traverse_doctype(root)
@@ -381,7 +383,6 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data, childs_name = "chil
     sorted_items =  {"referencia": [dict(sorted(references["referencia"][0].items(), key=lambda x: len(x[1]), reverse=True))]}
     result_new_paths = replace_paths(result, sorted_items)
     
-
     # Monta o objeto final
     engine_data = {
         "referencia": references["referencia"],
