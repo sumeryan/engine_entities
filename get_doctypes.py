@@ -387,6 +387,7 @@ def get_hierarchical_doctype_structure():
     return hierarquical_json
 
 if __name__ == "__main__":
+    get_hierarchical_doctype_structure()
     get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e") #Forca apenas um contrato
     get_formula_data()
-    #get_hierarchical_doctype_structure()
+    
