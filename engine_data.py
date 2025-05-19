@@ -179,8 +179,8 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data, childs_name = "chil
         if len(doctype_data[index:]) == 0:
 
             engine_data_item = {
-                "id": None,
-                "creation": None,
+                "id": "",
+                "creation": "1999-01-01 00:00:00",
                 "fields": [],
                 childs_name: []
             }
@@ -217,10 +217,35 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data, childs_name = "chil
 
                 else:
                     # Cria o registro de dados
+
+                    # Defautl value by type
+                    if n["type"] == "int":
+                        value = 0
+                    elif n["type"] == 'numeric':
+                        value = 0
+                    elif n["type"] == 'float':
+                        value = 0
+                    elif n["type"] == 'number':
+                        value = 0
+                    elif n["type"] == 'string':
+                        value = ""
+                    elif n["type"] == 'boolean':
+                        value = False
+                    elif n["type"] == 'date':
+                        value = "1999-01-01"
+                    elif n["type"] == 'datetime':
+                        value = "1999-01-01 00:00:00"
+                    elif n["type"] == 'time':
+                        value = "00:00:00"
+                    elif n["type"] == 'text':
+                        value = ""
+                    else:
+                        value = ""
+
                     engine_data_item["fields"].append({
                         "path": n["path"],
                         "type": n["type"],
-                        "value": None
+                        "value": value
                     })
             # Incluir dados mesmo que vazios
             if len(engine_data_item) != 0:
