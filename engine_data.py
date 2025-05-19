@@ -88,7 +88,7 @@ def search_fieldname_path(data, doctype_name, field_name):
         if path:
             return path
 
-def data_to_engine(doctype_tree, formulas, all_doctype_data):
+def data_to_engine(doctype_tree, formulas, all_doctype_data, childs_name = "childs"):
     """
     Load tree data map to engine
     """
@@ -125,8 +125,9 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
             # Cabeçalho do registro
             engine_data_item = {
                 "id": d["name"],
+                "creation": d["creation"],
                 "fields": [],
-                "childs": []
+                childs_name: []
             }
 
             # Percorre os nos
@@ -178,8 +179,9 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
 
             engine_data_item = {
                 "id": None,
+                "creation": None,
                 "fields": [],
-                "childs": []
+                childs_name: []
             }
 
             # Percorre os nos
@@ -264,7 +266,7 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
 
         if head_data_item:
             # Filho do ultimo registro
-            head_data_item["data"][-1]["childs"].append(new_head_data_item)
+            head_data_item["data"][-1][childs_name].append(new_head_data_item)
         
         traverse_doctype_data(node["children"], new_head_data_item, doctype_data, node["path"], reset_index)
 
@@ -313,8 +315,8 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
                 for i in item["data"]:
                     replace_recursive(i)
 
-            if "childs" in item:
-                for i in item["childs"]:
+            if childs_name in item:
+                for i in item[childs_name]:
                     replace_recursive(i)          
 
             if "fields" in item:
@@ -367,9 +369,6 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
     for root in doctype_tree:
         traverse_doctype(root)
 
-    # Ordena a lista paths
-    paths.sort(key=len, reverse=True)
-
     # Monta as referencias
     references = {
         "referencia": [{}]
@@ -378,8 +377,10 @@ def data_to_engine(doctype_tree, formulas, all_doctype_data):
         references["referencia"][0][f"e{index:05d}v"] = p
 
     # Substitui os paths pelas referencias
-    result_new_paths = replace_paths(result, references)
-    # result_new_paths = result
+    # Ordena a lista paths
+    sorted_items =  {"referencia": [dict(sorted(references["referencia"][0].items(), key=lambda x: len(x[1]), reverse=True))]}
+    result_new_paths = replace_paths(result, sorted_items)
+    
 
     # Monta o objeto final
     engine_data = {
@@ -410,7 +411,7 @@ if __name__ == "__main__":
         all_doctype_data = json.load(file)        
 
     # Call the function with the loaded data
-    engine_data = data_to_engine(doctype_tree, formulas, all_doctype_data)
+    engine_data = data_to_engine(doctype_tree, formulas, all_doctype_data, "data")
     save_json_file(engine_data, "output/tree_data.json")
 
     print("Dados gravados em output/tree_data.json")

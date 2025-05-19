@@ -39,7 +39,11 @@ def extract_docfields(docfields):
         if "hidden" in f:
             field["hidden"]=f["hidden"]        
         if "parent" in f:
-            field["parent"]=f["parent"]                  
+            field["parent"]=f["parent"]    
+        if "parent" in f:
+            field["parent"]=f["parent"]
+        if "creation" in f:
+            field["creation"]=f["creation"]                  
 
         fields.append(field)
 

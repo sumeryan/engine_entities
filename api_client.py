@@ -118,7 +118,6 @@ def get_docfields_for_doctype(api_base_url, api_token, doctype_name):
         response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
         data = response.json()
         print("JSON NOVO", data)
-        docfields = data.get("data", [])
         print(f"DocFields for {doctype_name} received successfully!")
         # Returns the list of fields from the 'data' key
         return data.get("data", [])
