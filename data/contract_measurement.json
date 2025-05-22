@@ -653,7 +653,8 @@
         "tableftp": [],
         "tablemunicipios": [],
         "tablemaodeobra": [],
-        "tableativos": []
+        "tableativos": [],
+        "tabitenscontatrato": []
     },
     {
         "name": "0196c6ad-c158-7883-9b7a-351ef0cf0772",
@@ -935,6 +936,7 @@
         "tableftp": [],
         "tablemunicipios": [],
         "tablemaodeobra": [],
-        "tableativos": []
+        "tableativos": [],
+        "tabitenscontatrato": []
     }
 ]

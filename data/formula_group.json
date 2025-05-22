@@ -191,5 +191,37 @@
                 "doctype": "Formula Group Field"
             }
         ]
+    },
+    {
+        "name": "0196f326-a812-78e1-afe2-d9c1d3921943",
+        "owner": "Administrator",
+        "creation": "2025-05-21 11:01:59.057020",
+        "modified": "2025-05-21 11:11:59.511045",
+        "modified_by": "Administrator",
+        "docstatus": 0,
+        "idx": 0,
+        "grupo": "Pavimento",
+        "descricao": "Grupo de formulas dedicados aos contratos de Pavimentos",
+        "doctype": "Formula Group",
+        "tableformulas": [
+            {
+                "name": "0196f32f-d199-7c30-9b36-e4699dd91622",
+                "owner": "Administrator",
+                "creation": "2025-05-21 11:01:59.057020",
+                "modified": "2025-05-21 11:11:59.511045",
+                "modified_by": "Administrator",
+                "docstatus": 0,
+                "idx": 1,
+                "formulafield": "Boletim de Medição▶︎Medição atual (A)",
+                "modulo": "Boletim de Medição",
+                "formula": "2*2",
+                "groupfielddoctype": "Contract Measurement",
+                "groupfieldfieldname": "medicaoatual",
+                "parent": "0196f326-a812-78e1-afe2-d9c1d3921943",
+                "parentfield": "tableformulas",
+                "parenttype": "Formula Group",
+                "doctype": "Formula Group Field"
+            }
+        ]
     }
 ]
