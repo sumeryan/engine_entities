@@ -48,6 +48,27 @@
                         "children": []
                     }
                 ]
+            },
+            {
+                "key": "Asset_Config_Kartado",
+                "description": "Asset Config Kartado",
+                "fieldname": "Asset Config Kartado",
+                "fieldname_data": "table_qttq",
+                "type": "doctype",
+                "path": "ativo.asset_config_kartado",
+                "dragandrop": false,
+                "children": [
+                    {
+                        "key": "Descrição_do_ativo_Kartado",
+                        "description": "Descrição do ativo Kartado",
+                        "fieldname": "descricao",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "ativo.asset_config_kartado.descricao_do_ativo_kartado",
+                        "dragandrop": true,
+                        "children": []
+                    }
+                ]
             }
         ]
     },
@@ -484,6 +505,16 @@
                         "children": []
                     },
                     {
+                        "key": "Item",
+                        "description": "Item",
+                        "fieldname": "itempadrao",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.item_de_contrato.item",
+                        "dragandrop": true,
+                        "children": []
+                    },
+                    {
                         "key": "Código",
                         "description": "Código",
                         "fieldname": "codigo",
@@ -540,6 +571,16 @@
                         "fieldname_data": "",
                         "type": "string",
                         "path": "contrato.item_de_contrato.unidade",
+                        "dragandrop": true,
+                        "children": []
+                    },
+                    {
+                        "key": "Tipo",
+                        "description": "Tipo",
+                        "fieldname": "tipodoitem",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.item_de_contrato.tipo",
                         "dragandrop": true,
                         "children": []
                     },
@@ -783,6 +824,27 @@
                                 "fieldname_data": "",
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.rodovia_item_de_contrato.km_final",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Item_Config_Kartado",
+                        "description": "Contract Item Config Kartado",
+                        "fieldname": "Contract Item Config Kartado",
+                        "fieldname_data": "tabconfigkartado",
+                        "type": "doctype",
+                        "path": "contrato.item_de_contrato.contract_item_config_kartado",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "Código_item_kartado",
+                                "description": "Código item kartado",
+                                "fieldname": "codigo",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contrato.item_de_contrato.contract_item_config_kartado.codigo_item_kartado",
                                 "dragandrop": true,
                                 "children": []
                             }
@@ -1403,6 +1465,87 @@
                                 "children": []
                             }
                         ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Item",
+                        "description": "Contract Measurement Item",
+                        "fieldname": "Contract Measurement Item",
+                        "fieldname_data": "tabitenscontatrato",
+                        "type": "doctype",
+                        "path": "contrato.medicao_de_contrato_bm.contract_measurement_item",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "Item",
+                                "description": "Item",
+                                "fieldname": "itemcontrato",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.item",
+                                "dragandrop": true,
+                                "children": []
+                            },
+                            {
+                                "key": "Valor_total_vigente",
+                                "description": "Valor total vigente",
+                                "fieldname": "valortotalvigente",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_vigente",
+                                "dragandrop": true,
+                                "children": []
+                            },
+                            {
+                                "key": "Quantidade_total_vigente",
+                                "description": "Quantidade total vigente",
+                                "fieldname": "quantidadetotalvigente",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_total_vigente",
+                                "dragandrop": true,
+                                "children": []
+                            },
+                            {
+                                "key": "Saldo_anterior",
+                                "description": "Saldo anterior",
+                                "fieldname": "saldoanterior",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_anterior",
+                                "dragandrop": true,
+                                "children": []
+                            },
+                            {
+                                "key": "Quantidade_medida",
+                                "description": "Quantidade medida",
+                                "fieldname": "quantidademedida",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_medida",
+                                "dragandrop": true,
+                                "children": []
+                            },
+                            {
+                                "key": "Valor_total_medido",
+                                "description": "Valor total medido",
+                                "fieldname": "valortotalmedido",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_medido",
+                                "dragandrop": true,
+                                "children": []
+                            },
+                            {
+                                "key": "Saldo_atual",
+                                "description": "Saldo atual",
+                                "fieldname": "saldoatual",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_atual",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
                     }
                 ]
             },
@@ -1509,7 +1652,7 @@
                         "key": "Contract_Measurement_Record_Work_Role",
                         "description": "Função no Registro BM",
                         "fieldname": "Contract Measurement Record Work Role",
-                        "fieldname_data": "table_ktkj",
+                        "fieldname_data": "tabworkrole",
                         "type": "doctype",
                         "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm",
                         "dragandrop": false,
@@ -1570,7 +1713,7 @@
                         "key": "Contract_Measurement_Record_Asset",
                         "description": "Ativo de Registro BM",
                         "fieldname": "Contract Measurement Record Asset",
-                        "fieldname_data": "table_lsrc",
+                        "fieldname_data": "tabasset",
                         "type": "doctype",
                         "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm",
                         "dragandrop": false,
@@ -1774,6 +1917,57 @@
         ]
     },
     {
+        "key": "Contract_Item_Type",
+        "description": "Contract Item Type",
+        "fieldname": "Contract Item Type",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "contract_item_type",
+        "dragandrop": false,
+        "children": [
+            {
+                "key": "Tipo",
+                "description": "Tipo",
+                "fieldname": "tipo",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "contract_item_type.tipo",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Tipo",
+                "description": "Tipo",
+                "fieldname": "tipoaux",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "contract_item_type.tipo",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Descrição",
+                "description": "Descrição",
+                "fieldname": "descricao",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "contract_item_type.descricao",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Tipo_do_item",
+                "description": "Tipo do item",
+                "fieldname": "kartadotipoitem",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "contract_item_type.tipo_do_item",
+                "dragandrop": true,
+                "children": []
+            }
+        ]
+    },
+    {
         "key": "Contracted_Company",
         "description": "Empresa Contratada",
         "fieldname": "Contracted Company",
@@ -1885,12 +2079,12 @@
         "dragandrop": false,
         "children": [
             {
-                "key": "Sigla",
-                "description": "Sigla",
+                "key": "Sigla_A",
+                "description": "Sigla A",
                 "fieldname": "sigla",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "rodovia.sigla",
+                "path": "rodovia.sigla_a",
                 "dragandrop": true,
                 "children": []
             },
@@ -1903,47 +2097,6 @@
                 "path": "rodovia.nome",
                 "dragandrop": true,
                 "children": []
-            },
-            {
-                "key": "Highway_City",
-                "description": "Cidade de Rodovia",
-                "fieldname": "Highway City",
-                "fieldname_data": "cidades",
-                "type": "doctype",
-                "path": "rodovia.cidade_de_rodovia",
-                "dragandrop": false,
-                "children": [
-                    {
-                        "key": "Cidade",
-                        "description": "Cidade",
-                        "fieldname": "cidade",
-                        "fieldname_data": "",
-                        "type": "string",
-                        "path": "rodovia.cidade_de_rodovia.cidade",
-                        "dragandrop": true,
-                        "children": []
-                    },
-                    {
-                        "key": "KM_Inicial",
-                        "description": "KM Inicial",
-                        "fieldname": "kminicial",
-                        "fieldname_data": "",
-                        "type": "numeric",
-                        "path": "rodovia.cidade_de_rodovia.km_inicial",
-                        "dragandrop": true,
-                        "children": []
-                    },
-                    {
-                        "key": "KM_Final",
-                        "description": "KM Final",
-                        "fieldname": "kmfinal",
-                        "fieldname_data": "",
-                        "type": "numeric",
-                        "path": "rodovia.cidade_de_rodovia.km_final",
-                        "dragandrop": true,
-                        "children": []
-                    }
-                ]
             }
         ]
     },
@@ -1957,8 +2110,8 @@
         "dragandrop": false,
         "children": [
             {
-                "key": "Data",
-                "description": "Data",
+                "key": "Data_",
+                "description": "Data ",
                 "fieldname": "data",
                 "fieldname_data": "",
                 "type": "date",
@@ -1983,6 +2136,118 @@
                 "fieldname_data": "",
                 "type": "string",
                 "path": "feriado.cidade_apenas_para_feriados_municipais",
+                "dragandrop": true,
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Integration_Inconsistency",
+        "description": "Integration Inconsistency",
+        "fieldname": "Integration Inconsistency",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "integration_inconsistency",
+        "dragandrop": false,
+        "children": [
+            {
+                "key": "Tipo",
+                "description": "Tipo",
+                "fieldname": "tipo",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "integration_inconsistency.tipo",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Data_e_hora",
+                "description": "Data e hora",
+                "fieldname": "dataehora",
+                "fieldname_data": "",
+                "type": "datetime",
+                "path": "integration_inconsistency.data_e_hora",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Origem",
+                "description": "Origem",
+                "fieldname": "origem",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "integration_inconsistency.origem",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Informações",
+                "description": "Informações",
+                "fieldname": "observacoes",
+                "fieldname_data": "",
+                "type": "text",
+                "path": "integration_inconsistency.informacoes",
+                "dragandrop": true,
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Item",
+        "description": "Item",
+        "fieldname": "Item",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "item",
+        "dragandrop": false,
+        "children": [
+            {
+                "key": "Código",
+                "description": "Código",
+                "fieldname": "codigo",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "item.codigo",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Descrição",
+                "description": "Descrição",
+                "fieldname": "descricao",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "item.descricao",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Grupo",
+                "description": "Grupo",
+                "fieldname": "grupo",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "item.grupo",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Sub-grupo",
+                "description": "Sub-grupo",
+                "fieldname": "subgrupo",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "item.sub_grupo",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Observações",
+                "description": "Observações",
+                "fieldname": "observacaoes",
+                "fieldname_data": "",
+                "type": "text",
+                "path": "item.observacoes",
                 "dragandrop": true,
                 "children": []
             }
@@ -2014,181 +2279,6 @@
                 "fieldname_data": "",
                 "type": "string",
                 "path": "classificacao_de_item.classificacao_de_servico",
-                "dragandrop": true,
-                "children": []
-            },
-            {
-                "key": "Item_Classification_Tax",
-                "description": "Classificação de Item ISS",
-                "fieldname": "Item Classification Tax",
-                "fieldname_data": "cidades",
-                "type": "doctype",
-                "path": "classificacao_de_item.classificacao_de_item_iss",
-                "dragandrop": false,
-                "children": [
-                    {
-                        "key": "Cidade",
-                        "description": "Cidade",
-                        "fieldname": "cidade",
-                        "fieldname_data": "",
-                        "type": "string",
-                        "path": "classificacao_de_item.classificacao_de_item_iss.cidade",
-                        "dragandrop": true,
-                        "children": []
-                    },
-                    {
-                        "key": "ISS",
-                        "description": "ISS",
-                        "fieldname": "iss",
-                        "fieldname_data": "",
-                        "type": "numeric",
-                        "path": "classificacao_de_item.classificacao_de_item_iss.iss",
-                        "dragandrop": true,
-                        "children": []
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "key": "Material",
-        "description": "Material",
-        "fieldname": "Material",
-        "fieldname_data": "",
-        "type": "doctype",
-        "path": "material",
-        "dragandrop": false,
-        "children": [
-            {
-                "key": "Código",
-                "description": "Código",
-                "fieldname": "codigo",
-                "fieldname_data": "",
-                "type": "string",
-                "path": "material.codigo",
-                "dragandrop": true,
-                "children": []
-            },
-            {
-                "key": "Descrição",
-                "description": "Descrição",
-                "fieldname": "descricao",
-                "fieldname_data": "",
-                "type": "string",
-                "path": "material.descricao",
-                "dragandrop": true,
-                "children": []
-            }
-        ]
-    },
-    {
-        "key": "Person",
-        "description": "Pessoa",
-        "fieldname": "Person",
-        "fieldname_data": "",
-        "type": "doctype",
-        "path": "pessoa",
-        "dragandrop": false,
-        "children": [
-            {
-                "key": "Nome",
-                "description": "Nome",
-                "fieldname": "nome",
-                "fieldname_data": "",
-                "type": "string",
-                "path": "pessoa.nome",
-                "dragandrop": true,
-                "children": []
-            },
-            {
-                "key": "Departamento",
-                "description": "Departamento",
-                "fieldname": "departamento",
-                "fieldname_data": "",
-                "type": "string",
-                "path": "pessoa.departamento",
-                "dragandrop": true,
-                "children": []
-            },
-            {
-                "key": "Email",
-                "description": "Email",
-                "fieldname": "email",
-                "fieldname_data": "",
-                "type": "string",
-                "path": "pessoa.email",
-                "dragandrop": true,
-                "children": []
-            },
-            {
-                "key": "Telefone/Celular",
-                "description": "Telefone/Celular",
-                "fieldname": "telefone",
-                "fieldname_data": "",
-                "type": "string",
-                "path": "pessoa.telefone_celular",
-                "dragandrop": true,
-                "children": []
-            }
-        ]
-    },
-    {
-        "key": "Retention_Type",
-        "description": "Tipo de Retenção",
-        "fieldname": "Retention Type",
-        "fieldname_data": "",
-        "type": "doctype",
-        "path": "tipo_de_retencao",
-        "dragandrop": false,
-        "children": [
-            {
-                "key": "Descrição",
-                "description": "Descrição",
-                "fieldname": "descricao",
-                "fieldname_data": "",
-                "type": "string",
-                "path": "tipo_de_retencao.descricao",
-                "dragandrop": true,
-                "children": []
-            }
-        ]
-    },
-    {
-        "key": "SAP_Order_Highway",
-        "description": "SAP Order Highway",
-        "fieldname": "SAP Order Highway",
-        "fieldname_data": "",
-        "type": "doctype",
-        "path": "sap_order_highway",
-        "dragandrop": false,
-        "children": [
-            {
-                "key": "Rodovia",
-                "description": "Rodovia",
-                "fieldname": "rodovia",
-                "fieldname_data": "",
-                "type": "string",
-                "path": "sap_order_highway.rodovia",
-                "dragandrop": true,
-                "children": []
-            },
-            {
-                "key": "KM_inicial",
-                "description": "KM inicial",
-                "fieldname": "kminicial",
-                "fieldname_data": "",
-                "type": "numeric",
-                "path": "sap_order_highway.km_inicial",
-                "dragandrop": true,
-                "children": []
-            },
-            {
-                "key": "KM_final",
-                "description": "KM final",
-                "fieldname": "kmfinal",
-                "fieldname_data": "",
-                "type": "numeric",
-                "path": "sap_order_highway.km_final",
                 "dragandrop": true,
                 "children": []
             }

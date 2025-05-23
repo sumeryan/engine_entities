@@ -17,6 +17,14 @@
                 "hidden": 0,
                 "parent": "Asset",
                 "creation": "2025-04-26 14:55:14.991229"
+            },
+            {
+                "fieldname": "table_qttq",
+                "fieldtype": "Table",
+                "options": "Asset Config Kartado",
+                "hidden": 0,
+                "parent": "Asset",
+                "creation": "2025-04-26 14:55:14.991229"
             }
         ],
         "Category": [
@@ -301,6 +309,15 @@
                 "creation": "2025-04-25 20:38:39.262402"
             },
             {
+                "fieldname": "itempadrao",
+                "label": "Item",
+                "fieldtype": "Link",
+                "options": "Item",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
                 "fieldname": "codigo",
                 "label": "Código",
                 "fieldtype": "Data",
@@ -351,6 +368,15 @@
                 "creation": "2025-04-25 20:38:39.262402"
             },
             {
+                "fieldname": "tipodoitem",
+                "label": "Tipo",
+                "fieldtype": "Link",
+                "options": "Contract Item Type",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
                 "fieldname": "tablepedidossap",
                 "label": "Lista",
                 "fieldtype": "Table",
@@ -390,6 +416,49 @@
                 "hidden": 0,
                 "parent": "Contract Item",
                 "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "tabconfigkartado",
+                "label": "Verifique a codificação do Kartado, ela pode estar com um nível a mais, ex: 1.1.1 -> Kartado -> 1.1.1.1",
+                "fieldtype": "Table",
+                "options": "Contract Item Config Kartado",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            }
+        ],
+        "Contract Item Type": [
+            {
+                "fieldname": "tipo",
+                "label": "Tipo",
+                "fieldtype": "Data",
+                "hidden": 0,
+                "parent": "Contract Item Type",
+                "creation": "2025-05-21 10:53:37.500767"
+            },
+            {
+                "fieldname": "tipoaux",
+                "label": "Tipo",
+                "fieldtype": "Data",
+                "hidden": 0,
+                "parent": "Contract Item Type",
+                "creation": "2025-05-21 10:53:37.500767"
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Data",
+                "hidden": 0,
+                "parent": "Contract Item Type",
+                "creation": "2025-05-21 10:53:37.500767"
+            },
+            {
+                "fieldname": "kartadotipoitem",
+                "label": "Tipo do item",
+                "fieldtype": "Data",
+                "hidden": 0,
+                "parent": "Contract Item Type",
+                "creation": "2025-05-21 10:53:37.500767"
             }
         ],
         "Contract Measurement": [
@@ -599,7 +668,6 @@
             },
             {
                 "fieldname": "tableftp",
-                "label": "",
                 "fieldtype": "Table",
                 "options": "Contract Measurement FTD",
                 "hidden": 0,
@@ -608,7 +676,6 @@
             },
             {
                 "fieldname": "tablemunicipios",
-                "label": "",
                 "fieldtype": "Table",
                 "options": "Contract Measurement City",
                 "hidden": 0,
@@ -617,7 +684,6 @@
             },
             {
                 "fieldname": "tablemaodeobra",
-                "label": "",
                 "fieldtype": "Table",
                 "options": "Contract Measurement Work Role",
                 "hidden": 0,
@@ -626,9 +692,17 @@
             },
             {
                 "fieldname": "tableativos",
-                "label": "",
                 "fieldtype": "Table",
                 "options": "Contract Measurement Asset",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "tabitenscontatrato",
+                "label": "Itens do contrato",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Item",
                 "hidden": 0,
                 "parent": "Contract Measurement",
                 "creation": "2025-05-13 06:10:27.754993"
@@ -712,7 +786,7 @@
                 "creation": "2025-05-10 16:43:37.513736"
             },
             {
-                "fieldname": "table_ktkj",
+                "fieldname": "tabworkrole",
                 "fieldtype": "Table",
                 "options": "Contract Measurement Record Work Role",
                 "hidden": 0,
@@ -720,7 +794,7 @@
                 "creation": "2025-05-10 16:43:37.513736"
             },
             {
-                "fieldname": "table_lsrc",
+                "fieldname": "tabasset",
                 "fieldtype": "Table",
                 "options": "Contract Measurement Record Asset",
                 "hidden": 0,
@@ -815,7 +889,7 @@
         "Highway": [
             {
                 "fieldname": "sigla",
-                "label": "Sigla",
+                "label": "Sigla A",
                 "fieldtype": "Data",
                 "hidden": 0,
                 "parent": "Highway",
@@ -841,7 +915,7 @@
         "Holiday": [
             {
                 "fieldname": "data",
-                "label": "Data",
+                "label": "Data ",
                 "fieldtype": "Date",
                 "hidden": 0,
                 "parent": "Holiday",
@@ -863,6 +937,92 @@
                 "hidden": 0,
                 "parent": "Holiday",
                 "creation": "2025-05-10 11:09:35.629171"
+            }
+        ],
+        "Integration Inconsistency": [
+            {
+                "fieldname": "tipo",
+                "label": "Tipo",
+                "fieldtype": "Data",
+                "hidden": 0,
+                "parent": "Integration Inconsistency",
+                "creation": "2025-05-22 14:12:45.637251"
+            },
+            {
+                "fieldname": "dataehora",
+                "label": "Data e hora",
+                "fieldtype": "Datetime",
+                "hidden": 0,
+                "parent": "Integration Inconsistency",
+                "creation": "2025-05-22 14:12:45.637251"
+            },
+            {
+                "fieldname": "origem",
+                "label": "Origem",
+                "fieldtype": "Data",
+                "hidden": 0,
+                "parent": "Integration Inconsistency",
+                "creation": "2025-05-22 14:12:45.637251"
+            },
+            {
+                "fieldname": "observacoes",
+                "label": "Informações",
+                "fieldtype": "Long Text",
+                "hidden": 0,
+                "parent": "Integration Inconsistency",
+                "creation": "2025-05-22 14:12:45.637251"
+            }
+        ],
+        "Item": [
+            {
+                "fieldname": "codigo",
+                "label": "Código",
+                "fieldtype": "Data",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Data",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "grupo",
+                "label": "Grupo",
+                "fieldtype": "Link",
+                "options": "Item Group",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "subgrupo",
+                "label": "Sub-grupo",
+                "fieldtype": "Link",
+                "options": "Item Sub Group",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "observacaoes",
+                "label": "Observações",
+                "fieldtype": "Text",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "tabkartado",
+                "fieldtype": "Table",
+                "options": "Item Config Kartado",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
             }
         ],
         "Item Classification": [
@@ -892,66 +1052,14 @@
                 "creation": "2025-05-09 11:17:09.719545"
             }
         ],
-        "Material": [
-            {
-                "fieldname": "codigo",
-                "label": "Código",
-                "fieldtype": "Data",
-                "hidden": 0,
-                "parent": "Material",
-                "creation": "2025-05-10 14:57:36.852220"
-            },
+        "Asset Config Kartado": [
             {
                 "fieldname": "descricao",
-                "label": "Descrição",
+                "label": "Descrição do ativo Kartado",
                 "fieldtype": "Data",
                 "hidden": 0,
-                "parent": "Material",
-                "creation": "2025-05-10 14:57:36.852220"
-            }
-        ],
-        "Person": [
-            {
-                "fieldname": "nome",
-                "label": "Nome",
-                "fieldtype": "Data",
-                "hidden": 0,
-                "parent": "Person",
-                "creation": "2025-05-05 11:17:17.841260"
-            },
-            {
-                "fieldname": "departamento",
-                "label": "Departamento",
-                "fieldtype": "Data",
-                "hidden": 0,
-                "parent": "Person",
-                "creation": "2025-05-05 11:17:17.841260"
-            },
-            {
-                "fieldname": "email",
-                "label": "Email",
-                "fieldtype": "Data",
-                "hidden": 0,
-                "parent": "Person",
-                "creation": "2025-05-05 11:17:17.841260"
-            },
-            {
-                "fieldname": "telefone",
-                "label": "Telefone/Celular",
-                "fieldtype": "Data",
-                "hidden": 0,
-                "parent": "Person",
-                "creation": "2025-05-05 11:17:17.841260"
-            }
-        ],
-        "Retention Type": [
-            {
-                "fieldname": "descricao",
-                "label": "Descrição",
-                "fieldtype": "Data",
-                "hidden": 0,
-                "parent": "Retention Type",
-                "creation": "2025-04-28 10:38:35.590194"
+                "parent": "Asset Config Kartado",
+                "creation": "2025-05-21 13:25:43.615057"
             }
         ],
         "Asset Operator": [
@@ -1092,6 +1200,16 @@
                 "hidden": 0,
                 "parent": "Contract Item City",
                 "creation": "2025-04-25 21:16:45.993786"
+            }
+        ],
+        "Contract Item Config Kartado": [
+            {
+                "fieldname": "codigo",
+                "label": "Código item kartado",
+                "fieldtype": "Data",
+                "hidden": 0,
+                "parent": "Contract Item Config Kartado",
+                "creation": "2025-05-22 17:19:59.753026"
             }
         ],
         "Contract Item Highway": [
@@ -1336,6 +1454,65 @@
                 "hidden": 0,
                 "parent": "Contract Measurement FTD",
                 "creation": "2025-04-29 13:30:54.099373"
+            }
+        ],
+        "Contract Measurement Item": [
+            {
+                "fieldname": "itemcontrato",
+                "label": "Item",
+                "fieldtype": "Link",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "valortotalvigente",
+                "label": "Valor total vigente",
+                "fieldtype": "Currency",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "quantidadetotalvigente",
+                "label": "Quantidade total vigente",
+                "fieldtype": "Float",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "saldoanterior",
+                "label": "Saldo anterior",
+                "fieldtype": "Currency",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "quantidademedida",
+                "label": "Quantidade medida",
+                "fieldtype": "Float",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "valortotalmedido",
+                "label": "Valor total medido",
+                "fieldtype": "Currency",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "saldoatual",
+                "label": "Saldo atual",
+                "fieldtype": "Currency",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
             }
         ],
         "Contract Measurement Record Asset": [
@@ -1641,79 +1818,6 @@
                 "hidden": 0,
                 "parent": "Contract Measurement Work Role",
                 "creation": "2025-04-27 16:09:17.078292"
-            }
-        ],
-        "Highway City": [
-            {
-                "fieldname": "cidade",
-                "label": "Cidade",
-                "fieldtype": "Link",
-                "options": "City",
-                "hidden": 0,
-                "parent": "Highway City",
-                "creation": "2025-05-08 15:31:37.943495"
-            },
-            {
-                "fieldname": "kminicial",
-                "label": "KM Inicial",
-                "fieldtype": "Float",
-                "hidden": 0,
-                "parent": "Highway City",
-                "creation": "2025-05-08 15:31:37.943495"
-            },
-            {
-                "fieldname": "kmfinal",
-                "label": "KM Final",
-                "fieldtype": "Float",
-                "hidden": 0,
-                "parent": "Highway City",
-                "creation": "2025-05-08 15:31:37.943495"
-            }
-        ],
-        "Item Classification Tax": [
-            {
-                "fieldname": "cidade",
-                "label": "Cidade",
-                "fieldtype": "Link",
-                "options": "City",
-                "hidden": 0,
-                "parent": "Item Classification Tax",
-                "creation": "2025-05-09 12:40:45.691469"
-            },
-            {
-                "fieldname": "iss",
-                "label": "ISS",
-                "fieldtype": "Float",
-                "hidden": 0,
-                "parent": "Item Classification Tax",
-                "creation": "2025-05-09 12:40:45.691469"
-            }
-        ],
-        "SAP Order Highway": [
-            {
-                "fieldname": "rodovia",
-                "label": "Rodovia",
-                "fieldtype": "Link",
-                "options": "Highway",
-                "hidden": 0,
-                "parent": "SAP Order Highway",
-                "creation": "2025-05-10 10:41:50.039738"
-            },
-            {
-                "fieldname": "kminicial",
-                "label": "KM inicial",
-                "fieldtype": "Float",
-                "hidden": 0,
-                "parent": "SAP Order Highway",
-                "creation": "2025-05-10 10:41:50.039738"
-            },
-            {
-                "fieldname": "kmfinal",
-                "label": "KM final",
-                "fieldtype": "Float",
-                "hidden": 0,
-                "parent": "SAP Order Highway",
-                "creation": "2025-05-10 10:41:50.039738"
             }
         ]
     }

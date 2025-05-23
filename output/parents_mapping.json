@@ -6,6 +6,11 @@
             "type": "Table"
         },
         {
+            "child": "Asset Config Kartado",
+            "parent": "Asset",
+            "type": "Table"
+        },
+        {
             "child": "Contract Adjustment Data",
             "parent": "Contract Adjustment",
             "type": "Table"
@@ -36,6 +41,11 @@
             "type": "Table"
         },
         {
+            "child": "Contract Item Config Kartado",
+            "parent": "Contract Item",
+            "type": "Table"
+        },
+        {
             "child": "Contract Measurement SAP Order",
             "parent": "Contract Measurement",
             "type": "Table"
@@ -57,6 +67,11 @@
         },
         {
             "child": "Contract Measurement Asset",
+            "parent": "Contract Measurement",
+            "type": "Table"
+        },
+        {
+            "child": "Contract Measurement Item",
             "parent": "Contract Measurement",
             "type": "Table"
         },
@@ -83,6 +98,11 @@
         {
             "child": "Highway City",
             "parent": "Highway",
+            "type": "Table"
+        },
+        {
+            "child": "Item Config Kartado",
+            "parent": "Item",
             "type": "Table"
         },
         {
