@@ -15,12 +15,11 @@ def get_specific_mapping():
         #{"child": "Contract Measurement Retention", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement SAP Order", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement Work Role", "parent": "Contract Measurement"},
-        {"child": "Contract Measurement Record", "parent": "Contract"},
+        {"child": "Contract Measurement Record", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement Record Asset", "parent": "Contract Measurement Record"},
         #{"child": "Contract Measurement Record Material", "parent": "Contract Measurement Record"},
         #{"child": "Contract Measurement Record Time", "parent": "Contract Measurement Record"},
         #{"child": "Contract Measurement Record Work Role", "parent": "Contract Measurement Record"},
-        #{"child": "Contract Measurement Record Work Role", "parent": "Contract Measurement Record"}
     ]
 
     # Placeholder for specific mapping logic
@@ -39,7 +38,14 @@ def get_ignore_mapping():
         "Formula Group",
         "Formula Fields",
         "Formula Template",
-        "Formula Group Field"
+        "Formula Group Field",
+        "Formula Group Template",
+        "Asset Config Kartado",
+        "Contract Item Config Kartado",
+        "Integration Record Keys",
+        "Item Config Kartado",
+        "Integration Inconsistency",
+        "Integration Record"
     ]
 
     # Placeholder for specific mapping logic
@@ -55,10 +61,20 @@ def get_main_data():
             "doctype": "Contract",
             "key": "name",
             "childs": [
-                {"doctype": "Contract Adjustment", "key": "contrato"},
-                {"doctype": "Contract Item", "key": "contrato"},
-                {"doctype": "Contract Measurement", "key": "contrato"},
-                {"doctype": "Contract Measurement Record", "key": "contrato"},
+                {   
+                    "doctype": "Contract Adjustment", 
+                    "key": "contrato"
+                },
+                {   
+                    "doctype": "Contract Item", 
+                    "key": "contrato"
+                },
+                {   "doctype": "Contract Measurement", 
+                    "key": "contrato",
+                    "childs": [
+                        {"doctype": "Contract Measurement Record", "key": "boletimmedicao"}
+                    ]
+                }
             ]
         }
     ]

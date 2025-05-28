@@ -2,392 +2,495 @@
 Powered by Renoir
 Author: Igor Daniel G Goncalves - igor.goncalves@renoirgroup.com
 
-DocTypes Processing Module.
+DocTypes Processing Module - Refactored Version
 This module handles the retrieval and processing of DocTypes and their fields from the Arteris API.
 It provides functionality to build a hierarchical structure of DocTypes.
 """
 
-import api_client 
-import os
-import api_client_data
 import json
+import os
+import re
+import shutil
+import unicodedata
+from typing import Dict, List, Optional, Tuple, Any
+from dataclasses import dataclass, field
+from abc import ABC, abstractmethod
+import logging
+
+import api_client
+import api_client_data
 import mappings
 import hierarchical_tree
 
-def extract_docfields(docfields):
 
-    fields = []
-    for f in docfields["fields"]:
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-        # Screen fields
-        if f["fieldtype"] == "Section Break" or f["fieldtype"] == "Column Break" or f["fieldtype"] == "Tab Break":
-            continue
 
-        # Tree view fields
-        if f["fieldname"] == "lft" or f["fieldname"] == "rgt" or f["fieldname"] == "old_parent" or f["fieldname"][0:7] == "parent_":
-            continue
+@dataclass
+class Field:
+    """Represents a field in a DocType"""
+    fieldname: str
+    label: Optional[str] = None
+    fieldtype: Optional[str] = None
+    options: Optional[str] = None
+    hidden: Optional[bool] = None
+    parent: Optional[str] = None
+    creation: Optional[str] = None
 
-        field = {}
-        if "fieldname" in f:
-            field["fieldname"]=f["fieldname"]
-        if "label" in f:
-            field["label"]=f["label"]
-        if "fieldtype" in f:
-            field["fieldtype"]=f["fieldtype"]
-        if "options" in f:
-            field["options"]=f["options"]        
-        if "hidden" in f:
-            field["hidden"]=f["hidden"]        
-        if "parent" in f:
-            field["parent"]=f["parent"]    
-        if "parent" in f:
-            field["parent"]=f["parent"]
-        if "creation" in f:
-            field["creation"]=f["creation"]                  
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'Field':
+        """Create Field from dictionary"""
+        return cls(
+            fieldname=data.get("fieldname", ""),
+            label=data.get("label"),
+            fieldtype=data.get("fieldtype"),
+            options=data.get("options"),
+            hidden=data.get("hidden"),
+            parent=data.get("parent"),
+            creation=data.get("creation")
+        )
 
-        fields.append(field)
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary, excluding None values"""
+        return {k: v for k, v in self.__dict__.items() if v is not None}
 
-    return fields
 
-def get_main_doctypes_with_fields(api_base_url, api_token): 
-    """
-    Retrieves main DocTypes and their fields.
+@dataclass
+class ParentMapping:
+    """Represents a parent-child relationship between DocTypes"""
+    child: str
+    parent: str
+    type: str
+
+
+class ConfigManager:
+    """Manages configuration and environment variables"""
     
-    Args:
-        api_base_url (str): The base URL of the Arteris API.
-        api_token (str): The API token for authentication.
+    def __init__(self):
+        self.api_base_url = os.getenv("ARTERIS_API_BASE_URL")
+        self.api_token = os.getenv("ARTERIS_API_TOKEN")
+        self._validate_config()
+    
+    def _validate_config(self):
+        """Validate required configuration"""
+        if not self.api_base_url:
+            raise ValueError("ARTERIS_API_BASE_URL environment variable not set")
+        if not self.api_token:
+            raise ValueError("ARTERIS_API_TOKEN environment variable not set")
+    
+    def get_credentials(self) -> Tuple[str, str]:
+        """Get API credentials"""
+        return self.api_base_url, self.api_token
+
+
+class StringNormalizer:
+    """Handles string normalization"""
+    
+    @staticmethod
+    def normalize(s: str) -> str:
+        """Normalize string for file/path usage"""
+        if not s:
+            return ""
         
-    Returns:
-        dict or None: A dictionary mapping DocType names to their fields,
-                      or None if the retrieval fails.
-    """
-
-    doctypes_with_fields = {} 
-
-    # Fetch main DocTypes
-    all_doctypes = api_client.get_arteris_doctypes(api_base_url, api_token)
-    if all_doctypes is None:
-        return None # Return None to indicate failure
-
-    # Fetch DocFields for each DocType
-    for doc in all_doctypes:
-        doctype_name = doc.get("name")
-        docfields = api_client.get_docfields_for_doctype(api_base_url, api_token, doctype_name)
-        doctypes_with_fields[doctype_name] = extract_docfields(docfields)
-
-    return doctypes_with_fields
-
-def get_child_doctypes_with_fields(api_base_url, api_token): 
-    """
-    Retrieves child DocTypes and their fields.
-    
-    Args:
-        api_base_url (str): The base URL of the Arteris API.
-        api_token (str): The API token for authentication.
+        # Remove accents
+        s = unicodedata.normalize('NFKD', s).encode('ASCII', 'ignore').decode('ASCII')
         
-    Returns:
-        dict or None: A dictionary mapping child DocType names to their fields,
-                      or None if the retrieval fails.
-    """
-
-    doctypes_with_fields = {} 
-
-    # Fetch child DocTypes
-    all_doctypes_child = api_client.get_arteris_doctypes_child(api_base_url, api_token)
-    if all_doctypes_child is None:
-        return None # Return None to indicate failure
-
-    # Fetch DocFields for each DocType
-    for doc in all_doctypes_child:
-        doctype_name = doc.get("name")
-        docfields = api_client.get_docfields_for_doctype(api_base_url, api_token, doctype_name)
-        doctypes_with_fields[doctype_name] = extract_docfields(docfields)
-
-    return doctypes_with_fields
-
-def get_parent_mapping(doctypes_with_fields):
-    """
-    Maps child DocTypes to their respective parent DocTypes.
-    
-    Args:
-        doctypes_with_fields (dict): Dictionary mapping DocType names to their fields.
+        # Replace special characters with underscores
+        s = re.sub(r'[^a-zA-Z0-9_]', '_', s)
         
-    Returns:
-        list: A list of dictionaries, each containing 'child', 'parent', and 'type' keys
-              to define the relationship between DocTypes.
-    """
+        # Replace multiple underscores with single
+        s = re.sub(r'_{2,}', '_', s)
+        
+        # Remove leading/trailing underscores
+        s = s.strip('_')
+        
+        # Convert to lowercase
+        return s.lower()
 
-    child_parent_mapping = [] # List to map child -> parent
 
-    # Iterate over each DocType that can be a "Parent"
-    for doctype_name, fields in doctypes_with_fields.items():
-        if not fields:
-            continue # Not an error, just no table fields
-
-        # Iterate through the 'fields' list of dictionaries
-        for f in fields:
-            # Check if the item has a fieldname and if the fieldtype is "Table"
-            # if (f.get("fieldtype") == "Table" or f.get("fieldtype") == "Link") f.get("fieldname") and f.get("options"): # Circular reference because of link
-            if f.get("fieldname") and f.get("fieldtype") == "Table" and f.get("options"):
-                child_parent_mapping.append(
-                    {
-                        "child": f.get("options"),
-                        "parent": doctype_name,
-                        "type": f.get("fieldtype")
-                    }
-                )
-
-    return child_parent_mapping
-
-def process_doctypes(): 
-    """
-    Processes DocTypes and their fields.
+class FieldFilter:
+    """Filters fields based on business rules"""
     
-    Returns:
-        dict: A dictionary containing main DocTypes, child DocTypes, all DocTypes,
-              and parent-child mapping information.
-    """
-
-    # Get the base URL and token from environment variables
-    api_base_url = os.getenv("ARTERIS_API_BASE_URL")
-    api_token = os.getenv("ARTERIS_API_TOKEN")
-
-    print("\n--- Starting DocTypes and Fields Mapping ---")
-    print(f"Base URL: {api_base_url}")
-    print(f"Token: {api_token}")
-
-    # List to store DocTypes and their fields
-    main_doctypes = get_main_doctypes_with_fields(api_base_url, api_token)
-
-    # List to store child DocTypes and their fields
-    child_doctypes = get_child_doctypes_with_fields(api_base_url, api_token)
-
-    # Union of all DocTypes
-    all_doctypes = main_doctypes.copy()
-    all_doctypes.update(child_doctypes) # Update the dictionary with child DocTypes
-
-    # remove where in ignore mapping
-    ignore_mapping = mappings.get_ignore_mapping()
-    for c in list(all_doctypes):
-        if c in ignore_mapping:
-            del all_doctypes[c]
-
-    parents_mapping = get_parent_mapping(all_doctypes)
-
-    return {
-        "main_doctypes": main_doctypes,
-        "child_doctypes": child_doctypes,
-        "all_doctypes": all_doctypes,
-        "parents_mapping": parents_mapping
-    }
-
-def get_data(main_id = None):
-    """
-    Retrieves data from the framework.
+    EXCLUDED_FIELDTYPES = {"Section Break", "Column Break", "Tab Break"}
+    EXCLUDED_FIELDNAMES = {"lft", "rgt", "old_parent"}
     
-    Returns:
-        list: A list of dictionaries containing DocType data.
-    """
+    @classmethod
+    def should_include(cls, field_data: Dict[str, Any]) -> bool:
+        """Check if field should be included"""
+        # Exclude screen fields
+        if field_data.get("fieldtype") in cls.EXCLUDED_FIELDTYPES:
+            return False
+        
+        # Exclude tree view fields
+        fieldname = field_data.get("fieldname", "")
+        if fieldname in cls.EXCLUDED_FIELDNAMES or fieldname.startswith("parent_"):
+            return False
+        
+        return True
 
-    # All doctypes
-    all_doctypes = process_doctypes() 
 
-    # Store main DocTypes in a separate dictionary
-    # and remove them from the all_doctypes dictionary
-    main_doctypes = mappings.get_main_data()
-
-    # Remove main parent and child doctypes from all_doctypes
-    for m in main_doctypes:
-        m["doctype_with_fields"] = all_doctypes["all_doctypes"][m["doctype"]]
-        del all_doctypes["all_doctypes"][m["doctype"]]
-        # Move child main DocTypes to main_data_doctypes
-        for c in m["childs"]:
-            c["doctype_with_fields"] = all_doctypes["all_doctypes"][c["doctype"]]
-            del all_doctypes["all_doctypes"][c["doctype"]]
-
-    # Remove all files and folders from data folder
-    clear_data("data")
-
-    #---all_doctypes---
-    # Get keys for all_doctypes
-    all_doctype_data = []
-    for d in all_doctypes["all_doctypes"]:
-        result = get_doctype_keys_data(d)
-        data, keys = result
-        all_doctype_data.append({f"{d}": data})
-
-    # ---main_doctypes---
-    # Get keys for main_doctypes
-    for m in main_doctypes:
-
-        if main_id:
-            filter = f"[[\"{m["key"]}\",\"=\",\"{"0196b01a-2163-7cb2-93b9-c8b1342e3a4e"}\"]]"
-            result = get_doctype_keys_data(m["doctype"], filter)
-        else:
-            result = get_doctype_keys_data(m["doctype"])  
- 
-        data, keys = result
-
-        all_doctype_data.append({f"{m["doctype"]}": data})
-
-        for k in keys:
-
-            # Create directory with key name in data
-            key_dir = os.path.join("data", normalize_string(k))
-            if not os.path.exists(key_dir):
-                os.makedirs(key_dir)
-
-            # Get keys for child doctype
-            for c in m["childs"]:
-                result = get_doctype_keys_data(c["doctype"], f"[[\"{c['key']}\",\"=\",\"{k}\"]]")
-                data, keys = result
-                all_doctype_data.append({f"{c["doctype"]}": data})
-                # Write data result for child with main key
-                save_data(f"data/{normalize_string(k)}", data, c["doctype"])
-
-    # Save all_doctype_data
-    save_data("data", all_doctype_data, "all_doctypes")
-
-    return all_doctype_data
-
-def get_formula_data():
-    result = get_doctype_keys_data("Formula Group")
-    data, keys = result
-    save_data("data", data, "Formula Group")
-
-def get_doctype_keys_data(doctype_name, filters=None):
-    """
-    Retrieves keys and data for a specific DocType.
-    """
-    keys = get_doctype_keys(doctype_name, filters)
-    data = get_doctype_data(keys, doctype_name)
-    save_data("data", data, doctype_name)    
-    return data, keys
-
-def get_doctype_keys(doctype_name, filters=None):
-    """
-    Retrieves keys for all DocTypes.
+class ArterisApiClient:
+    """Wrapper for Arteris API operations"""
     
-    Returns:
-        list: A list of keys for all DocTypes.
-    """
-
-    # Get the base URL and token from environment variables
-    api_base_url = os.getenv("ARTERIS_API_BASE_URL")
-    api_token = os.getenv("ARTERIS_API_TOKEN")
-
-    # Get keys for all DocTypes
-    keys = api_client_data.get_keys(api_base_url, api_token, doctype_name, filters)
-
-    return keys
-
-def clear_data(path):
-    """
-    Clears the data directory by removing all files and folders.
+    def __init__(self, config: ConfigManager):
+        self.base_url, self.token = config.get_credentials()
     
-    Args:
-        path (str): The path to the data directory.
-    """
-    # Remove all files and folders from data folder    
-    for file in os.listdir(path):
-        file_path = os.path.join(path, file)
+    def get_main_doctypes(self) -> Optional[List[Dict]]:
+        """Get main doctypes from API"""
         try:
-            if os.path.isfile(file_path):
-                os.remove(file_path)
-            if os.path.isdir(file_path):
-                os.rmdir(file_path)
+            return api_client.get_arteris_doctypes(self.base_url, self.token)
         except Exception as e:
-            print(f"Error removing file {file_path}: {e}")
-
-def save_data(path, data, filename):
-    """
-    Saves data to a JSON file.
+            logger.error(f"Failed to get main doctypes: {e}")
+            return None
     
-    Args:
-        data (list): The data to be saved.
-        doctype_name (str): The name of the DocType.
-    """
-    # Save data to JSON file
-    with open(f"{path}/{normalize_string(filename)}.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
-
-def get_doctype_data(keys, doctype_name):
-    """
-    Retrieves data from the framework based on provided keys.
-    """
-
-    # Get the base URL and token from environment variables
-    api_base_url = os.getenv("ARTERIS_API_BASE_URL")
-    api_token = os.getenv("ARTERIS_API_TOKEN")
-
-    doctype_data = []
-    if keys:
-        for k in keys:
-            data = api_client_data.get_data_from_key(api_base_url, api_token, doctype_name, k)
-            doctype_data.append(data)
-    return doctype_data
-
-def normalize_string(s):
-    """Normalize string for path usage by removing special characters and standardizing format"""
-    if not s:
-        return ""
+    def get_child_doctypes(self) -> Optional[List[Dict]]:
+        """Get child doctypes from API"""
+        try:
+            return api_client.get_arteris_doctypes_child(self.base_url, self.token)
+        except Exception as e:
+            logger.error(f"Failed to get child doctypes: {e}")
+            return None
     
-    # Replace accented characters with non-accented equivalents
-    import unicodedata
-    s = unicodedata.normalize('NFKD', s).encode('ASCII', 'ignore').decode('ASCII')
+    def get_docfields(self, doctype_name: str) -> Optional[Dict]:
+        """Get fields for a doctype"""
+        try:
+            return api_client.get_docfields_for_doctype(self.base_url, self.token, doctype_name)
+        except Exception as e:
+            logger.error(f"Failed to get fields for {doctype_name}: {e}")
+            return None
     
-    # Replace spaces and special characters with underscores
-    import re
-    s = re.sub(r'[^a-zA-Z0-9_]', '_', s)
+    def get_keys(self, doctype_name: str, filters: Optional[str] = None) -> List[str]:
+        """Get keys for a doctype"""
+        try:
+            return api_client_data.get_keys(self.base_url, self.token, doctype_name, filters)
+        except Exception as e:
+            logger.error(f"Failed to get keys for {doctype_name}: {e}")
+            return []
     
-    # Replace multiple underscores with single underscore
-    s = re.sub(r'_{2,}', '_', s)
-    
-    # Remove leading and trailing underscores
-    s = s.strip('_')
-    
-    # Convert to lowercase for consistency
-    s = s.lower()
-    
-    return s
+    def get_data_by_key(self, doctype_name: str, key: str) -> Optional[Dict]:
+        """Get data for a specific key"""
+        try:
+            return api_client_data.get_data_from_key(self.base_url, self.token, doctype_name, key)
+        except Exception as e:
+            logger.error(f"Failed to get data for {doctype_name}:{key}: {e}")
+            return None
 
-def get_hierarchical_doctype_structure():
-    """"
-    Gets the hierarchical structure of DocTypes.
+
+class DataManager:
+    """Manages file I/O operations"""
     
-    Returns:
-        dict: A JSON dictionary with the hierarchical structure.
-    """
+    def __init__(self, normalizer: StringNormalizer):
+        self.normalizer = normalizer
+    
+    def save_json(self, path: str, data: Any, filename: str):
+        """Save data to JSON file"""
+        try:
+            os.makedirs(path, exist_ok=True)
+            normalized_filename = self.normalizer.normalize(filename)
+            file_path = os.path.join(path, f"{normalized_filename}.json")
+            
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=4, ensure_ascii=False)
+                
+            logger.info(f"Saved data to {file_path}")
+        except Exception as e:
+            logger.error(f"Failed to save data to {path}/{filename}: {e}")
+            raise
+    
+    def clear_directory(self, path: str):
+        """Clear all files in directory"""
+        try:
+            if os.path.exists(path):
+                for item in os.listdir(path):
+                    item_path = os.path.join(path, item)
+                    if os.path.isfile(item_path):
+                        os.remove(item_path)
+                    elif os.path.isdir(item_path):
+                        shutil.rmtree(item_path)
+                logger.info(f"Cleared directory: {path}")
+        except Exception as e:
+            logger.error(f"Failed to clear directory {path}: {e}")
+            raise
+    
+    def create_directory(self, path: str):
+        """Create directory if it doesn't exist"""
+        try:
+            os.makedirs(path, exist_ok=True)
+        except Exception as e:
+            logger.error(f"Failed to create directory {path}: {e}")
+            raise
 
-    print("\n--- Starting Internal Generation V2 ---")
 
-    doctypes = process_doctypes() 
+class DoctypeFieldExtractor:
+    """Extracts and processes doctype fields"""
+    
+    def __init__(self, field_filter: FieldFilter):
+        self.field_filter = field_filter
+    
+    def extract_fields(self, docfields: Dict) -> List[Field]:
+        """Extract fields from docfields response"""
+        fields = []
+        
+        for field_data in docfields.get("fields", []):
+            if self.field_filter.should_include(field_data):
+                field = Field.from_dict(field_data)
+                fields.append(field)
+        
+        return fields
 
-    all_doctypes={
-        "all_doctypes": doctypes["all_doctypes"]
+
+class DoctypeRetriever:
+    """Retrieves doctypes and their fields"""
+    
+    def __init__(self, api_client: ArterisApiClient, field_extractor: DoctypeFieldExtractor):
+        self.api_client = api_client
+        self.field_extractor = field_extractor
+    
+    def get_doctypes_with_fields(self, doctype_list: List[Dict]) -> Dict[str, List[Dict]]:
+        """Get doctypes with their fields"""
+        doctypes_with_fields = {}
+        
+        for doc in doctype_list:
+            doctype_name = doc.get("name")
+            if not doctype_name:
+                continue
+                
+            docfields = self.api_client.get_docfields(doctype_name)
+            if docfields:
+                fields = self.field_extractor.extract_fields(docfields)
+                doctypes_with_fields[doctype_name] = [f.to_dict() for f in fields]
+        
+        return doctypes_with_fields
+    
+    def get_all_doctypes(self) -> Dict[str, Any]:
+        """Get all doctypes (main and child) with fields"""
+        logger.info("Retrieving main doctypes...")
+        main_list = self.api_client.get_main_doctypes()
+        main_doctypes = self.get_doctypes_with_fields(main_list) if main_list else {}
+        
+        logger.info("Retrieving child doctypes...")
+        child_list = self.api_client.get_child_doctypes()
+        child_doctypes = self.get_doctypes_with_fields(child_list) if child_list else {}
+        
+        # Combine all doctypes
+        all_doctypes = {**main_doctypes, **child_doctypes}
+        
+        # Remove ignored doctypes
+        ignore_list = mappings.get_ignore_mapping()
+        for ignored in ignore_list:
+            all_doctypes.pop(ignored, None)
+        
+        return {
+            "main_doctypes": main_doctypes,
+            "child_doctypes": child_doctypes,
+            "all_doctypes": all_doctypes
         }
 
-    parents_mapping={
-        "parents_mapping": doctypes["parents_mapping"]
-        }
 
-    # Gravar tree em um arquivo JSON
-    with open("output/parents_mapping.json", "w", encoding="utf-8") as f:
-        json.dump(parents_mapping, f, indent=4, ensure_ascii=False)
+class ParentMappingExtractor:
+    """Extracts parent-child relationships between doctypes"""
+    
+    def extract_mappings(self, doctypes_with_fields: Dict[str, List[Dict]]) -> List[ParentMapping]:
+        """Extract parent-child mappings from doctype fields"""
+        mappings = []
+        
+        for doctype_name, fields in doctypes_with_fields.items():
+            if not fields:
+                continue
+                
+            for field in fields:
+                if (field.get("fieldtype") == "Table" and 
+                    field.get("fieldname") and 
+                    field.get("options")):
+                    
+                    mapping = ParentMapping(
+                        child=field["options"],
+                        parent=doctype_name,
+                        type=field["fieldtype"]
+                    )
+                    mappings.append(mapping)
+        
+        return mappings
 
-    print("\n--- Creating hierarchical structure ---")
-    hierarquical_json = hierarchical_tree.build_tree(all_doctypes)
 
-    save_data("output", all_doctypes, "all_doctypes")
+class DoctypeDataRetriever:
+    """Retrieves actual data for doctypes"""
+    
+    def __init__(self, api_client: ArterisApiClient, data_manager: DataManager):
+        self.api_client = api_client
+        self.data_manager = data_manager
+    
+    def get_doctype_data(self, doctype_name: str, filters: Optional[str] = None) -> Tuple[List[Dict], List[str]]:
+        """Get data and keys for a doctype"""
+        keys = self.api_client.get_keys(doctype_name, filters)
+        data = []
+        
+        if keys:
+            for key in keys:
+                doc_data = self.api_client.get_data_by_key(doctype_name, key)
+                if doc_data:
+                    data.append(doc_data)
+        
+        return data, keys
+    
+    def save_doctype_data(self, path: str, data: List[Dict], doctype_name: str):
+        """Save doctype data to file"""
+        self.data_manager.save_json(path, data, doctype_name)
 
-    # Gravar tree em um arquivo JSON
-    with open("output/hierarquical_doctypes.json", "w", encoding="utf-8") as f:
-        json.dump(hierarquical_json, f, indent=4, ensure_ascii=False)
 
-    return hierarquical_json
+class DoctypeProcessor:
+    """Main processor for doctype operations"""
+    
+    def __init__(self):
+        # Initialize components
+        self.config = ConfigManager()
+        self.normalizer = StringNormalizer()
+        self.api_client = ArterisApiClient(self.config)
+        self.data_manager = DataManager(self.normalizer)
+        self.field_filter = FieldFilter()
+        self.field_extractor = DoctypeFieldExtractor(self.field_filter)
+        self.doctype_retriever = DoctypeRetriever(self.api_client, self.field_extractor)
+        self.mapping_extractor = ParentMappingExtractor()
+        self.data_retriever = DoctypeDataRetriever(self.api_client, self.data_manager)
+    
+    def process_doctypes(self) -> Dict[str, Any]:
+        """Process all doctypes and return structured data"""
+        logger.info("Starting DocTypes and Fields Mapping...")
+        
+        # Get all doctypes
+        doctype_data = self.doctype_retriever.get_all_doctypes()
+        
+        # Extract parent mappings
+        parent_mappings = self.mapping_extractor.extract_mappings(
+            doctype_data["all_doctypes"]
+        )
+        
+        # Add parent mappings to result
+        doctype_data["parents_mapping"] = [
+            {"child": m.child, "parent": m.parent, "type": m.type}
+            for m in parent_mappings
+        ]
+        
+        return doctype_data
+    
+    def get_hierarchical_structure(self) -> List[Dict]:
+        """Generate hierarchical doctype structure"""
+        logger.info("Starting hierarchical structure generation...")
+        
+        doctypes = self.process_doctypes()
+        
+        # Prepare data for hierarchical tree
+        all_doctypes = {"all_doctypes": doctypes["all_doctypes"]}
+        
+        # Save intermediate data
+        self.data_manager.save_json("output", all_doctypes, "all_doctypes")
+        self.data_manager.save_json(
+            "output", 
+            {"parents_mapping": doctypes["parents_mapping"]}, 
+            "parents_mapping"
+        )
+        
+        # Build hierarchical structure
+        logger.info("Creating hierarchical structure...")
+        hierarchical_json = hierarchical_tree.build_tree(all_doctypes)
+        
+        # Save result
+        self.data_manager.save_json("output", hierarchical_json, "hierarquical_doctypes")
+        
+        return hierarchical_json
+    
+    def get_data(self, main_id: Optional[str] = None) -> List[Dict]:
+        """Retrieve and save all doctype data"""
+        logger.info("Starting data retrieval...")
+        
+        # Get doctype structure
+        all_doctypes = self.process_doctypes()
+        
+        # Get main data configuration
+        main_doctypes = mappings.get_main_data()
+        
+        # Enrich main doctypes with field information
+        for main in main_doctypes:
+            main["doctype_with_fields"] = all_doctypes["all_doctypes"].pop(main["doctype"], [])
+            
+            for child in main.get("childs", []):
+                child["doctype_with_fields"] = all_doctypes["all_doctypes"].pop(child["doctype"], [])
+        
+        # Clear data directory
+        self.data_manager.clear_directory("data")
+        
+        # Collect all doctype data
+        all_doctype_data = []
+        
+        # Process remaining doctypes
+        for doctype_name in all_doctypes["all_doctypes"]:
+            data, _ = self.data_retriever.get_doctype_data(doctype_name)
+            all_doctype_data.append({doctype_name: data})
+        
+        # Process main doctypes
+        for main in main_doctypes:
+            # Apply filter if main_id provided
+            filters = None
+            if main_id:
+                filters = f'[["{main["key"]}","=","{main_id}"]]'
+            
+            data, keys = self.data_retriever.get_doctype_data(main["doctype"], filters)
+            all_doctype_data.append({main["doctype"]: data})
+            
+            # Process child doctypes for each key
+            for key in keys:
+                key_dir = os.path.join("data", self.normalizer.normalize(key))
+                self.data_manager.create_directory(key_dir)
+                
+                for child in main.get("childs", []):
+                    child_filter = f'[["{child["key"]}","=","{key}"]]'
+                    child_data, _ = self.data_retriever.get_doctype_data(
+                        child["doctype"], 
+                        child_filter
+                    )
+                    all_doctype_data.append({child["doctype"]: child_data})
+                    
+                    # Save child data
+                    self.data_retriever.save_doctype_data(
+                        key_dir, 
+                        child_data, 
+                        child["doctype"]
+                    )
+        
+        # Save all doctype data
+        self.data_manager.save_json("data", all_doctype_data, "all_doctypes")
+        
+        return all_doctype_data
+    
+    def get_formula_data(self):
+        """Retrieve formula group data"""
+        logger.info("Retrieving formula data...")
+        data, _ = self.data_retriever.get_doctype_data("Formula Group")
+        self.data_retriever.save_doctype_data("data", data, "formula_group")
+
+
+def main():
+    """Main entry point"""
+    try:
+        processor = DoctypeProcessor()
+        
+        # Get formula data
+        processor.get_formula_data()
+        
+        # Get hierarchical structure
+        processor.get_hierarchical_structure()
+        
+        # Uncomment to get data for specific contract
+        # processor.get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e")
+        
+        logger.info("Processing completed successfully!")
+        
+    except Exception as e:
+        logger.error(f"Processing failed: {e}")
+        raise
+
 
 if __name__ == "__main__":
-    get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e") #Forca apenas um contrato
-    get_formula_data()
-    get_hierarchical_doctype_structure()
-    
+    main()

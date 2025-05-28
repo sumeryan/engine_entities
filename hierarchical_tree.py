@@ -1,369 +1,103 @@
+"""
+Hierarchical Tree Builder - Refactored Version
+This module builds hierarchical tree structures from doctype data.
+"""
+
 import json
-import dcotyp_translate
+import re
+import unicodedata
+from typing import Dict, List, Set, Optional, Any, Tuple
+from dataclasses import dataclass, field
+from abc import ABC, abstractmethod
+import logging
+
+import doctype_translate
 import mappings
-import os
 
-def load_json_file(file_path):
-    """Load JSON data from file"""
-    with open(file_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-def save_json_file(data, file_path):
-    """Save JSON data to file"""
-    with open(file_path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=4, ensure_ascii=False)
 
-def build_tree(all_doctypes):
-    """Main function to build the hierarchical tree structure"""
-
-    specified_mapping = mappings.get_specific_mapping()
-    translations = dcotyp_translate.get_translations()
+@dataclass
+class Entity:
+    """Represents an entity in the hierarchical tree"""
+    key: str
+    description: str
+    fieldname: str
+    fieldname_data: str = ""
+    type: str = "doctype"
+    path: str = ""
+    dragandrop: bool = False
+    children: List['Entity'] = field(default_factory=list)
     
-    # Create hierarchical structure
-    hierarchical_data = {"entities": []}
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert entity to dictionary representation"""
+        return {
+            "key": self.key,
+            "description": self.description,
+            "fieldname": self.fieldname,
+            "fieldname_data": self.fieldname_data,
+            "type": self.type,
+            "path": self.path,
+            "dragandrop": self.dragandrop,
+            "children": [child.to_dict() for child in self.children]
+        }
     
-    # Create dictionaries for mandatory mappings from specified_mapping.json
-    # This will override any option-based relationships
-    mandatory_children = {}  # parent -> [children]
-    mandatory_parents = {}   # child -> [parents]
+    def add_child(self, child: 'Entity') -> None:
+        """Add a child entity"""
+        self.children.append(child)
     
-    for mapping in specified_mapping:
-        child = mapping["child"]
-        parent = mapping["parent"]
+    def has_child_with_key(self, key: str) -> bool:
+        """Check if entity has a child with given key"""
+        return any(child.key == key for child in self.children)
+    
+    def find_child_by_key(self, key: str) -> Optional['Entity']:
+        """Find a child by its key"""
+        for child in self.children:
+            if child.key == key:
+                return child
+        return None
+    
+    def remove_child_by_key(self, key: str) -> None:
+        """Remove a child by its key"""
+        self.children = [child for child in self.children if child.key != key]
+
+
+class StringNormalizer:
+    """Handles string normalization for paths and keys"""
+    
+    @staticmethod
+    def normalize(s: str) -> str:
+        """Normalize string for path usage"""
+        if not s:
+            return ""
         
-        # Add to mandatory parents lookup
-        if child not in mandatory_parents:
-            mandatory_parents[child] = []
-        mandatory_parents[child].append(parent)
+        # Remove accents
+        s = unicodedata.normalize('NFKD', s).encode('ASCII', 'ignore').decode('ASCII')
         
-        # Add to mandatory children lookup
-        if parent not in mandatory_children:
-            mandatory_children[parent] = []
-        mandatory_children[parent].append(child)
+        # Replace special characters with underscores
+        s = re.sub(r'[^a-zA-Z0-9_]', '_', s)
+        
+        # Replace multiple underscores with single
+        s = re.sub(r'_{2,}', '_', s)
+        
+        # Remove leading/trailing underscores
+        s = s.strip('_')
+        
+        # Convert to lowercase
+        return s.lower()
     
-    # Track which doctypes have been processed to avoid duplication
-    processed_doctypes = set()
+    @staticmethod
+    def create_key(name: str) -> str:
+        """Create a key from a name"""
+        return name.replace(" ", "_")
+
+
+class FieldTypeMapper:
+    """Maps field types from doctypes to hierarchical model types"""
     
-    # First, process doctypes that don't have mandatory parents
-    # (they're either root nodes or will be added via options)
-    for doctype_name in all_doctypes["all_doctypes"].keys():
-        if doctype_name not in mandatory_parents and doctype_name not in processed_doctypes:
-            entity = create_doctype_entity(
-                doctype_name, 
-                all_doctypes, 
-                mandatory_parents, 
-                mandatory_children,
-                processed_doctypes,
-                translations
-            )
-            hierarchical_data["entities"].append(entity)
-    
-    # Process any remaining doctypes that haven't been added yet
-    for doctype_name in all_doctypes["all_doctypes"].keys():
-        if doctype_name not in processed_doctypes:
-            entity = create_doctype_entity(
-                doctype_name, 
-                all_doctypes, 
-                mandatory_parents, 
-                mandatory_children,
-                processed_doctypes,
-                translations
-            )
-            hierarchical_data["entities"].append(entity)
-    
-    # Apply mandatory mappings as the final step to ensure they take precedence
-    apply_specified_mappings(hierarchical_data, specified_mapping, translations)
-
-    update_all_paths(hierarchical_data)
-    
-    return hierarchical_data["entities"]
-
-def create_doctype_entity(doctype_name, doctypes_data, mandatory_parents, mandatory_children, processed_doctypes, translations=None):
-    """Create entity for a doctype including its fields and child doctypes"""
-    # Mark this doctype as processed
-    processed_doctypes.add(doctype_name)
-    
-    # Get the translated name if available
-    doctype_key = doctype_name.replace(" ", "_")
-    translated_name = translations.get(doctype_key, doctype_name) if translations else doctype_name
-    
-    # Create doctype entity with temporary path (will be properly set later)
-    doctype_entity = {
-        "key": doctype_key,
-        "description": translated_name,
-        "fieldname": doctype_name,
-        "fieldname_data": "",
-        "type": "doctype",
-        "path": normalize_string(translated_name),  # Temporary path
-        "dragandrop": False,
-        "children": []
-    }
-    
-    # First add all regular fields
-    if doctype_name in doctypes_data["all_doctypes"]:
-
-        for field in doctypes_data["all_doctypes"][doctype_name]:
-
-            # Skip relationship fields for now, we'll handle them separately
-            if field.get("options") is None or field.get("fieldtype") != "Table":
-
-                field_type = map_field_type(field.get("fieldtype", ""))
-                field_key = field.get("label", "").replace(" ", "_")
-                
-                field_entity = {
-                    "key": field_key,
-                    "description": field.get("label", ""),
-                    "fieldname": field.get("fieldname", ""),
-                    "fieldname_data": field.get("fieldname_data", ""),
-                    "type": field_type,
-                    "path": normalize_string(field.get('label', '')),  # Temporary path
-                    "dragandrop": True,
-                    "children": []
-                }
-                
-                doctype_entity["children"].append(field_entity)
-    
-    # Now handle mandatory children based on specified_mapping.json
-    if doctype_name in mandatory_children:
-
-        for child_doctype in mandatory_children[doctype_name]:
-
-            child_key = child_doctype.replace(" ", "_")
-            
-            # Skip if this child has already been added to this parent
-            if any(child["key"] == child_key for child in doctype_entity["children"]):
-                continue
-                
-            # Skip if this child doesn't exist in the doctypes data
-            if child_doctype not in doctypes_data["all_doctypes"]:
-                continue
-            
-            # Mark this child as processed
-            processed_doctypes.add(child_doctype)
-            
-            # Get the translated name if available
-            child_translated_name = translations.get(child_key, child_doctype) if translations else child_doctype
-            
-            # Create the child entity with temporary path
-            child_entity = {
-                "key": child_key,
-                "description": child_translated_name,
-                "fieldname": child_doctype,
-                "fieldname_data": "",
-                "type": "doctype",
-                "path": normalize_string(child_translated_name),  # Temporary path
-                "dragandrop": False,
-                "children": []
-            }
-            
-            # Process the child's fields
-            process_doctype_fields(
-                child_entity, 
-                child_doctype, 
-                doctypes_data, 
-                normalize_string(child_translated_name),  # Temporary path
-                mandatory_parents, 
-                mandatory_children,
-                processed_doctypes,
-                translations
-            )
-            
-            doctype_entity["children"].append(child_entity)
-    
-    # Now handle relationships based on options, but only if they aren't in mandatory relationships
-    if doctype_name in doctypes_data["all_doctypes"]:
-
-        for field in doctypes_data["all_doctypes"][doctype_name]:
-
-            if field.get("options") is not None and field.get("fieldtype") == "Table":
-
-                related_doctype = field.get("options")
-                related_key = related_doctype.replace(" ", "_")
-                
-                # Skip if this related doctype doesn't exist
-                if related_doctype not in doctypes_data["all_doctypes"]:
-                    continue
-                
-                # Skip if this child already exists as a mandatory child (from specified_mapping)
-                if (doctype_name in mandatory_children and 
-                    related_doctype in mandatory_children[doctype_name]):
-                    continue
-                
-                # Skip if this doctype has mandatory parents and current doctype is not one of them
-                if (related_doctype in mandatory_parents and 
-                    doctype_name not in mandatory_parents[related_doctype]):
-                    continue
-                
-                # Mark this related doctype as processed
-                processed_doctypes.add(related_doctype)
-                
-                # Get the translated name if available
-                related_translated_name = translations.get(related_key, related_doctype) if translations else related_doctype
-                
-                # Create the child entity with temporary path
-                child_entity = {
-                    "key": related_key,
-                    "description": related_translated_name,
-                    "fieldname": related_doctype,
-                    "fieldname_data": field.get("fieldname"),
-                    "type": "doctype",
-                    "path": normalize_string(related_translated_name),  # Temporary path
-                    "dragandrop": False,
-                    "children": []
-                }
-                
-                # Process the child's fields
-                process_doctype_fields(
-                    child_entity, 
-                    related_doctype, 
-                    doctypes_data, 
-                    normalize_string(related_translated_name),  # Temporary path
-                    mandatory_parents, 
-                    mandatory_children, 
-                    processed_doctypes,
-                    translations
-                )
-                
-                doctype_entity["children"].append(child_entity)
-    
-    return doctype_entity
-
-def process_doctype_fields(entity, doctype_name, doctypes_data, base_path, 
-                          mandatory_parents, mandatory_children, processed_doctypes, translations=None):
-    """Process all fields of a doctype recursively"""
-    if doctype_name not in doctypes_data["all_doctypes"]:
-        return
-    
-    # First add all regular fields
-    for field in doctypes_data["all_doctypes"][doctype_name]:
-
-        # Skip relationship fields for now, we'll handle them separately
-        if field.get("options") is None or field.get("fieldtype") != "Table":
-
-            field_type = map_field_type(field.get("fieldtype", ""))
-            field_key = field.get("label", "").replace(" ", "_")
-            
-            field_entity = {
-                "key": field_key,
-                "description": field.get("label", ""),
-                "fieldname": field.get("fieldname", ""),
-                "fieldname_data": "",
-                "type": field_type,
-                "path": normalize_string(field.get('label', '')),  # Temporary path
-                "dragandrop": True,
-                "children": []
-            }
-            
-            entity["children"].append(field_entity)
-    
-    # Now handle mandatory children based on specified_mapping.json
-    if doctype_name in mandatory_children:
-
-        for child_doctype in mandatory_children[doctype_name]:
-
-            child_key = child_doctype.replace(" ", "_")
-            
-            # Skip if this child has already been added to this parent
-            if any(child["key"] == child_key for child in entity["children"]):
-                continue
-                
-            # Skip if this child doesn't exist in the doctypes data
-            if child_doctype not in doctypes_data["all_doctypes"]:
-                continue
-            
-            # Mark this child as processed
-            processed_doctypes.add(child_doctype)
-            
-            # Get the translated name if available
-            child_translated_name = translations.get(child_key, child_doctype) if translations else child_doctype
-            
-            # Create the child entity with temporary path
-            child_entity = {
-                "key": child_key,
-                "description": child_translated_name,
-                "fieldname": child_doctype,
-                "fieldname_data": field.get("fieldname_data", ""),
-                "type": "doctype",
-                "path": normalize_string(child_translated_name),  # Temporary path
-                "dragandrop": False,
-                "children": []
-            }
-            
-            # Process the child's fields
-            process_doctype_fields(
-                child_entity, 
-                child_doctype, 
-                doctypes_data, 
-                normalize_string(child_translated_name),  # Temporary path
-                mandatory_parents, 
-                mandatory_children,
-                processed_doctypes,
-                translations
-            )
-            
-            entity["children"].append(child_entity)
-    
-    # Now handle relationships based on options, but only if they aren't in mandatory relationships
-    for field in doctypes_data["all_doctypes"][doctype_name]:
-
-        if field.get("options") is not None and field.get("fieldtype") == "Table":
-
-            related_doctype = field.get("options")
-            related_key = related_doctype.replace(" ", "_")
-            
-            # Skip if this related doctype doesn't exist
-            if related_doctype not in doctypes_data["all_doctypes"]:
-                continue
-            
-            # Skip if this child already exists as a mandatory child (from specified_mapping)
-            if (doctype_name in mandatory_children and 
-                related_doctype in mandatory_children[doctype_name]):
-                continue
-            
-            # Skip if this doctype has mandatory parents and current doctype is not one of them
-            if (related_doctype in mandatory_parents and 
-                doctype_name not in mandatory_parents[related_doctype]):
-                continue
-            
-            # Skip if this child has already been added to this parent
-            if any(child["key"] == related_key for child in entity["children"]):
-                continue
-            
-            # Mark this related doctype as processed
-            processed_doctypes.add(related_doctype)
-            
-            # Get the translated name if available
-            related_translated_name = translations.get(related_key, related_doctype) if translations else related_doctype
-            
-            # Create the child entity with temporary path
-            child_entity = {
-                "key": related_key,
-                "description": related_translated_name,
-                "fieldname": related_doctype,
-                "fieldname_data": field.get("fieldname", ""),
-                "type": "doctype",
-                "path": normalize_string(related_translated_name),  # Temporary path
-                "dragandrop": False,
-                "children": []
-            }
-            
-            # Process the child's fields
-            process_doctype_fields(
-                child_entity, 
-                related_doctype, 
-                doctypes_data, 
-                normalize_string(related_translated_name),  # Temporary path
-                mandatory_parents, 
-                mandatory_children, 
-                processed_doctypes,
-                translations
-            )
-            
-            entity["children"].append(child_entity)
-
-def map_field_type(fieldtype):
-    """Map field types from doctypes to hierarchical model types"""
-    type_mapping = {
+    TYPE_MAPPING = {
         "Data": "string",
         "Date": "date",
         "Datetime": "datetime",
@@ -376,235 +110,472 @@ def map_field_type(fieldtype):
         "Small Text": "text",
         "Text": "text",
         "Text Editor": "text",
-        "Table": "doctype"  # Table represents a child doctype
+        "Table": "doctype"
     }
     
-    return type_mapping.get(fieldtype, "string")  # Default to string if not found
+    @classmethod
+    def map_type(cls, fieldtype: str) -> str:
+        """Map field type to hierarchical model type"""
+        return cls.TYPE_MAPPING.get(fieldtype, "string")
 
-def find_entity_by_key(entities, key):
-    """Find an entity by its key in the hierarchical data"""
-    for entity in entities:
-        if entity["key"] == key:
-            return entity
-        
-        # Check children recursively
-        for child in entity.get("children", []):
-            result = find_entity_in_children(child, key)
-            if result:
-                return result
+
+class MappingManager:
+    """Manages parent-child relationships and mappings"""
     
-    return None
+    def __init__(self, specified_mappings: List[Dict[str, str]]):
+        self.specified_mappings = specified_mappings
+        self.mandatory_children: Dict[str, List[str]] = {}
+        self.mandatory_parents: Dict[str, List[str]] = {}
+        self.child_to_parent_map: Dict[str, str] = {}
+        self._build_lookup_tables()
+    
+    def _build_lookup_tables(self):
+        """Build lookup tables for efficient access"""
+        for mapping in self.specified_mappings:
+            child = mapping["child"]
+            parent = mapping["parent"]
+            
+            # Build parent lookup
+            if child not in self.mandatory_parents:
+                self.mandatory_parents[child] = []
+            self.mandatory_parents[child].append(parent)
+            
+            # Build children lookup
+            if parent not in self.mandatory_children:
+                self.mandatory_children[parent] = []
+            self.mandatory_children[parent].append(child)
+            
+            # Build child to parent map
+            self.child_to_parent_map[child] = parent
+    
+    def has_mandatory_parent(self, child: str) -> bool:
+        """Check if a child has mandatory parents"""
+        return child in self.mandatory_parents
+    
+    def get_mandatory_parents(self, child: str) -> List[str]:
+        """Get mandatory parents for a child"""
+        return self.mandatory_parents.get(child, [])
+    
+    def get_mandatory_children(self, parent: str) -> List[str]:
+        """Get mandatory children for a parent"""
+        return self.mandatory_children.get(parent, [])
+    
+    def is_valid_optional_child(self, parent: str, child: str) -> bool:
+        """Check if a child can be optionally added to a parent"""
+        # If child has mandatory parents and current parent is not one of them
+        if self.has_mandatory_parent(child) and parent not in self.mandatory_parents[child]:
+            return False
+        
+        # If this child already exists as a mandatory child
+        if child in self.get_mandatory_children(parent):
+            return False
+        
+        return True
+    
+    def get_proper_parent(self, child: str) -> Optional[str]:
+        """Get the proper parent for a child based on mappings"""
+        return self.child_to_parent_map.get(child)
+    
+    def get_children_to_remove_from_root(self) -> Set[str]:
+        """Get set of children that should not be at root level"""
+        normalizer = StringNormalizer()
+        return {normalizer.create_key(mapping["child"]) 
+                for mapping in self.specified_mappings}
 
-def find_entity_in_children(entity, key):
-    """Recursively search for an entity by key in children"""
-    if entity["key"] == key:
+
+class EntityFactory:
+    """Factory for creating different types of entities"""
+    
+    def __init__(self, normalizer: StringNormalizer, 
+                 type_mapper: FieldTypeMapper,
+                 translations: Optional[Dict[str, str]] = None):
+        self.normalizer = normalizer
+        self.type_mapper = type_mapper
+        self.translations = translations or {}
+    
+    def create_doctype_entity(self, doctype_name: str, 
+                             fieldname_data: str = "",
+                             is_root: bool = False) -> Entity:
+        """Create a doctype entity"""
+        doctype_key = self.normalizer.create_key(doctype_name)
+        translated_name = self.translations.get(doctype_key, doctype_name)
+        
+        entity = Entity(
+            key=doctype_key,
+            description=translated_name,
+            fieldname=doctype_name,
+            fieldname_data=fieldname_data,
+            type="doctype",
+            path=self.normalizer.normalize(translated_name),
+            dragandrop=False
+        )
+        
+        # Add default key field for all doctype entities
+        entity.add_child(self.create_key_field())
+        
         return entity
     
-    for child in entity.get("children", []):
-        result = find_entity_in_children(child, key)
-        if result:
-            return result
+    def create_key_field(self) -> Entity:
+        """Create the default key field"""
+        return Entity(
+            key="chave",
+            description="Chave do registro",
+            fieldname="name",
+            type="key",
+            path=self.normalizer.normalize("Chave do registro"),
+            dragandrop=True
+        )
     
-    return None
+    def create_field_entity(self, field_data: Dict[str, Any]) -> Entity:
+        """Create a field entity from field data"""
+        field_type = self.type_mapper.map_type(field_data.get("fieldtype", ""))
+        field_label = field_data.get("label", "")
+        field_key = self.normalizer.create_key(field_label)
+        
+        return Entity(
+            key=field_key,
+            description=field_label,
+            fieldname=field_data.get("fieldname", ""),
+            fieldname_data=field_data.get("fieldname_data", ""),
+            type=field_type,
+            path=self.normalizer.normalize(field_label),
+            dragandrop=True
+        )
 
-def apply_specified_mappings(hierarchical_data, specified_mapping, translations=None):
-    """Apply specified parent-child mapping rules with priority over other relationships"""
-    # Build mapping dictionaries for faster lookups
-    child_to_parent_map = {}
-    for mapping in specified_mapping:
-        child = mapping["child"]
-        parent = mapping["parent"]
-        child_to_parent_map[child] = parent
 
-    # First pass: Apply specified mappings at the root level
-    # First, remove any children that have mandatory parents but are not under the right parent
-    for mapping in specified_mapping:
-        child_key = mapping["child"].replace(" ", "_")
-        parent_key = mapping["parent"].replace(" ", "_")
+class PathManager:
+    """Manages path updates in the hierarchical structure"""
+    
+    def __init__(self, normalizer: StringNormalizer):
+        self.normalizer = normalizer
+    
+    def update_all_paths(self, entities: List[Entity]) -> None:
+        """Update all paths in the hierarchy"""
+        for entity in entities:
+            entity.path = self.normalizer.normalize(entity.description)
+            self._update_child_paths(entity, entity.path)
+    
+    def _update_child_paths(self, parent: Entity, parent_path: str) -> None:
+        """Recursively update child paths"""
+        for child in parent.children:
+            child_path = self.normalizer.normalize(child.description)
+            child.path = f"{parent_path}.{child_path}"
+            self._update_child_paths(child, child.path)
 
-        # Remove this child from any non-specified parent in the hierarchical_data
-        for entity in hierarchical_data["entities"]:
-            if entity["key"] != parent_key:  # Skip the actual parent
-                # Remove the child from this entity's children if it exists
-                entity["children"] = [child for child in entity["children"]
-                                     if child["key"] != child_key]
 
-                # Also check nested levels and remove the child if found
-                remove_entity_from_children(entity["children"], child_key)
+class EntityTreeNavigator:
+    """Navigates and searches entities in the tree"""
+    
+    @staticmethod
+    def find_entity_by_key(entities: List[Entity], key: str) -> Optional[Entity]:
+        """Find an entity by its key in the tree"""
+        for entity in entities:
+            if entity.key == key:
+                return entity
+            
+            # Search in children
+            result = EntityTreeNavigator._find_in_children(entity, key)
+            if result:
+                return result
+        
+        return None
+    
+    @staticmethod
+    def _find_in_children(parent: Entity, key: str) -> Optional[Entity]:
+        """Recursively search for entity in children"""
+        for child in parent.children:
+            if child.key == key:
+                return child
+            
+            result = EntityTreeNavigator._find_in_children(child, key)
+            if result:
+                return result
+        
+        return None
+    
+    @staticmethod
+    def remove_entity_from_tree(entities: List[Entity], key: str) -> None:
+        """Remove entity with given key from anywhere in the tree"""
+        for entity in entities:
+            entity.remove_child_by_key(key)
+            EntityTreeNavigator._remove_from_children(entity, key)
+    
+    @staticmethod
+    def _remove_from_children(parent: Entity, key: str) -> None:
+        """Recursively remove entity from children"""
+        for child in parent.children:
+            child.remove_child_by_key(key)
+            EntityTreeNavigator._remove_from_children(child, key)
 
-    # Now add the children to their correct parents according to specified_mapping
-    for mapping in specified_mapping:
-        child_key = mapping["child"].replace(" ", "_")
-        parent_key = mapping["parent"].replace(" ", "_")
 
-        # Find the parent and child entities
-        parent_entity = find_entity_by_key(hierarchical_data["entities"], parent_key)
-        child_entity = find_entity_by_key(hierarchical_data["entities"], child_key)
-
-        # If both parent and child are found, make child a child of parent
-        if parent_entity and child_entity:
-            # Check if child already exists in parent's children
-            child_exists = False
-            for existing_child in parent_entity["children"]:
-                if existing_child["key"] == child_key:
-                    child_exists = True
-                    break
-
-            # If child doesn't exist in parent's children, add it
-            if not child_exists:
-                # Get the translated name if available
-                child_translated_name = translations.get(child_key, mapping["child"]) if translations else mapping["child"]
-
-                # Create a copy of the child entity and update its description
-                child_copy = child_entity.copy()
-                child_copy["description"] = child_translated_name
-
-                # Temporary path (will be updated later)
-                child_copy["path"] = normalize_string(child_translated_name)
-
-                # Add the child to the parent's children
-                parent_entity["children"].append(child_copy)
-
-    # Second pass: Recursively enforce mappings for all levels of the hierarchy
-    for entity in hierarchical_data["entities"]:
-        enforce_specified_mappings_recursive(entity, specified_mapping, child_to_parent_map, translations)
-
-    # Remove any root-level entities that should only be children based on specified_mapping
-    children_to_remove = {mapping["child"].replace(" ", "_") for mapping in specified_mapping}
-    hierarchical_data["entities"] = [entity for entity in hierarchical_data["entities"]
-                                    if entity["key"] not in children_to_remove]
-
-def enforce_specified_mappings_recursive(entity, specified_mapping, child_to_parent_map, translations=None):
-    """
-    Recursively enforce specified mappings at all levels of the hierarchy.
-    This ensures that child entities respect their parent relationships at any depth.
-    """
-    if not entity.get("children"):
-        return
-
-    # Create a mapping of child fieldnames to their corresponding entity keys for faster lookup
-    child_fieldname_to_key = {}
-    for child in entity.get("children", []):
-        if "fieldname" in child:
-            child_fieldname_to_key[child["fieldname"]] = child["key"]
-
-    # Check each child entity to see if it has children that should be remapped
-    for child in entity.get("children", []):
-        # Process each grandchild to see if it has a specific mapping
-        grandchildren_to_move = []
-
-        for i, grandchild in enumerate(child.get("children", [])):
-            if "fieldname" not in grandchild:
+class DoctypeProcessor:
+    """Processes doctypes and builds entities"""
+    
+    def __init__(self, entity_factory: EntityFactory, 
+                 mapping_manager: MappingManager,
+                 doctypes_data: Dict[str, Any]):
+        self.entity_factory = entity_factory
+        self.mapping_manager = mapping_manager
+        self.doctypes_data = doctypes_data
+        self.processed_doctypes: Set[str] = set()
+    
+    def process_doctype(self, doctype_name: str, 
+                       fieldname_data: str = "",
+                       is_root: bool = False) -> Optional[Entity]:
+        """Process a single doctype and return its entity"""
+        if doctype_name in self.processed_doctypes:
+            return None
+        
+        if doctype_name not in self.doctypes_data.get("all_doctypes", {}):
+            return None
+        
+        self.processed_doctypes.add(doctype_name)
+        
+        # Create entity
+        entity = self.entity_factory.create_doctype_entity(doctype_name, fieldname_data, is_root)
+        
+        # Add fields
+        self._add_regular_fields(entity, doctype_name)
+        
+        # Add mandatory children
+        self._add_mandatory_children(entity, doctype_name)
+        
+        # Add optional relationships
+        self._add_optional_relationships(entity, doctype_name)
+        
+        return entity
+    
+    def _add_regular_fields(self, entity: Entity, doctype_name: str) -> None:
+        """Add regular (non-relationship) fields to entity"""
+        fields = self.doctypes_data["all_doctypes"].get(doctype_name, [])
+        
+        for field in fields:
+            # Skip relationship fields
+            if field.get("fieldtype") == "Table":
                 continue
+            
+            field_entity = self.entity_factory.create_field_entity(field)
+            entity.add_child(field_entity)
+    
+    def _add_mandatory_children(self, entity: Entity, doctype_name: str) -> None:
+        """Add mandatory children based on mappings"""
+        mandatory_children = self.mapping_manager.get_mandatory_children(doctype_name)
+        
+        for child_name in mandatory_children:
+            if entity.has_child_with_key(self.entity_factory.normalizer.create_key(child_name)):
+                continue
+            
+            child_entity = self.process_doctype(child_name)
+            if child_entity:
+                entity.add_child(child_entity)
+    
+    def _add_optional_relationships(self, entity: Entity, doctype_name: str) -> None:
+        """Add optional relationships based on field options"""
+        fields = self.doctypes_data["all_doctypes"].get(doctype_name, [])
+        
+        for field in fields:
+            if field.get("fieldtype") != "Table" or not field.get("options"):
+                continue
+            
+            related_doctype = field["options"]
+            
+            # Check if this is a valid optional relationship
+            if not self.mapping_manager.is_valid_optional_child(doctype_name, related_doctype):
+                continue
+            
+            # Check if already added
+            related_key = self.entity_factory.normalizer.create_key(related_doctype)
+            if entity.has_child_with_key(related_key):
+                continue
+            
+            # Process the related doctype
+            child_entity = self.process_doctype(related_doctype, field.get("fieldname", ""))
+            if child_entity:
+                entity.add_child(child_entity)
 
-            grandchild_name = grandchild["fieldname"]
 
-            # If this grandchild has a specific parent mapping
-            if grandchild_name in child_to_parent_map:
-                # Get the proper parent for this grandchild
-                proper_parent_name = child_to_parent_map[grandchild_name]
-                proper_parent_key = proper_parent_name.replace(" ", "_")
-
-                # If the current child is not the proper parent
-                if child["fieldname"] != proper_parent_name:
-                    # Find the proper parent entity within the current children
-                    for potential_parent in entity.get("children", []):
-                        if potential_parent.get("fieldname") == proper_parent_name:
-                            # Mark this grandchild for moving to the proper parent
-                            grandchildren_to_move.append((i, grandchild, potential_parent))
+class MappingEnforcer:
+    """Enforces specified mappings on the tree structure"""
+    
+    def __init__(self, mapping_manager: MappingManager, 
+                 navigator: EntityTreeNavigator,
+                 normalizer: StringNormalizer):
+        self.mapping_manager = mapping_manager
+        self.navigator = navigator
+        self.normalizer = normalizer
+    
+    def enforce_mappings(self, entities: List[Entity]) -> None:
+        """Enforce all specified mappings on the tree"""
+        # First, remove misplaced children
+        self._remove_misplaced_children(entities)
+        
+        # Then, add children to correct parents
+        self._add_children_to_correct_parents(entities)
+        
+        # Recursively enforce mappings
+        for entity in entities:
+            self._enforce_mappings_recursive(entity)
+    
+    def _remove_misplaced_children(self, entities: List[Entity]) -> None:
+        """Remove children that are under wrong parents"""
+        for mapping in self.mapping_manager.specified_mappings:
+            child_key = self.normalizer.create_key(mapping["child"])
+            parent_key = self.normalizer.create_key(mapping["parent"])
+            
+            # Remove child from any non-specified parent
+            for entity in entities:
+                if entity.key != parent_key:
+                    entity.remove_child_by_key(child_key)
+                    self.navigator._remove_from_children(entity, child_key)
+    
+    def _add_children_to_correct_parents(self, entities: List[Entity]) -> None:
+        """Add children to their correct parents according to mappings"""
+        for mapping in self.mapping_manager.specified_mappings:
+            child_key = self.normalizer.create_key(mapping["child"])
+            parent_key = self.normalizer.create_key(mapping["parent"])
+            
+            parent = self.navigator.find_entity_by_key(entities, parent_key)
+            child = self.navigator.find_entity_by_key(entities, child_key)
+            
+            if parent and child and not parent.has_child_with_key(child_key):
+                parent.add_child(child)
+    
+    def _enforce_mappings_recursive(self, entity: Entity) -> None:
+        """Recursively enforce mappings at all levels"""
+        # Process grandchildren that need to be moved
+        for child in entity.children[:]:  # Use slice to avoid modification during iteration
+            grandchildren_to_move = []
+            
+            for grandchild in child.children[:]:
+                proper_parent_name = self.mapping_manager.get_proper_parent(grandchild.fieldname)
+                
+                if proper_parent_name and child.fieldname != proper_parent_name:
+                    # Find proper parent among siblings
+                    for sibling in entity.children:
+                        if sibling.fieldname == proper_parent_name:
+                            grandchildren_to_move.append((grandchild, sibling))
                             break
-
-        # Now move the grandchildren to their proper parents
-        # We process them in reverse order to avoid index shifting issues when removing
-        for i, grandchild, proper_parent in sorted(grandchildren_to_move, reverse=True):
-            # Check if the grandchild already exists in the proper parent
-            exists = False
-            for existing in proper_parent.get("children", []):
-                if existing["key"] == grandchild["key"]:
-                    exists = True
-                    break
-
-            if not exists:
-                # Add to proper parent
-                proper_parent.setdefault("children", []).append(grandchild)
-
-            # Remove from current child
-            if i < len(child.get("children", [])):
-                child["children"].pop(i)
-
-        # Recursively apply to this child's children
-        enforce_specified_mappings_recursive(child, specified_mapping, child_to_parent_map, translations)
-
-def remove_entity_from_children(children, key_to_remove):
-    """Recursively remove entity with given key from children at any level"""
-    if not children:
-        return
-    
-    # Filter out the key_to_remove from each child's children
-    for child in children:
-        child["children"] = [c for c in child["children"] if c["key"] != key_to_remove]
-        # Recursively check deeper levels
-        remove_entity_from_children(child["children"], key_to_remove)
-
-def normalize_string(s):
-    """Normalize string for path usage by removing special characters and standardizing format"""
-    if not s:
-        return ""
-    
-    # Replace accented characters with non-accented equivalents
-    import unicodedata
-    s = unicodedata.normalize('NFKD', s).encode('ASCII', 'ignore').decode('ASCII')
-    
-    # Replace spaces and special characters with underscores
-    import re
-    s = re.sub(r'[^a-zA-Z0-9_]', '_', s)
-    
-    # Replace multiple underscores with single underscore
-    s = re.sub(r'_{2,}', '_', s)
-    
-    # Remove leading and trailing underscores
-    s = s.strip('_')
-    
-    # Convert to lowercase for consistency
-    s = s.lower()
-    
-    return s
-
-def update_all_paths(hierarchical_data):
-    """Update all paths in the hierarchy to have the full parent-child chain"""
-    # First update paths for root entities
-    entities = hierarchical_data["entities"]
-    for entity in entities:
-        entity_path = normalize_string(entity["description"])
-        entity["path"] = entity_path
+            
+            # Move grandchildren to proper parents
+            for grandchild, proper_parent in grandchildren_to_move:
+                if not proper_parent.has_child_with_key(grandchild.key):
+                    proper_parent.add_child(grandchild)
+                child.remove_child_by_key(grandchild.key)
         
-        # Now recursively update all children paths
-        update_child_paths(entity, entity_path)
+        # Recurse into children
+        for child in entity.children:
+            self._enforce_mappings_recursive(child)
 
-def update_child_paths(parent_entity, parent_path):
-    """Update all children paths to include the full parent-child chain"""
-    for child in parent_entity.get("children", []):
-        child_path = normalize_string(child["description"])
-        child["path"] = f"{parent_path}.{child_path}"
+
+class HierarchicalTreeBuilder:
+    """Main class for building hierarchical tree structures"""
+    
+    def __init__(self):
+        self.normalizer = StringNormalizer()
+        self.type_mapper = FieldTypeMapper()
+        self.path_manager = PathManager(self.normalizer)
+        self.navigator = EntityTreeNavigator()
         
-        # Recursively update all descendants
-        update_child_paths(child, child["path"])
+    def build_tree(self, all_doctypes: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """Build the hierarchical tree structure"""
+        # Get configurations
+        specified_mappings = mappings.get_specific_mapping()
+        translations = doctype_translate.get_translations()
+        
+        # Initialize components
+        mapping_manager = MappingManager(specified_mappings)
+        entity_factory = EntityFactory(self.normalizer, self.type_mapper, translations)
+        doctype_processor = DoctypeProcessor(entity_factory, mapping_manager, all_doctypes)
+        mapping_enforcer = MappingEnforcer(mapping_manager, self.navigator, self.normalizer)
+        
+        # Build initial tree
+        entities = self._build_initial_tree(all_doctypes, mapping_manager, doctype_processor)
+        
+        # Enforce mappings
+        mapping_enforcer.enforce_mappings(entities)
+        
+        # Remove children from root that should only be children
+        entities = self._remove_children_from_root(entities, mapping_manager)
+        
+        # Update all paths
+        self.path_manager.update_all_paths(entities)
+        
+        # Convert to dictionary format
+        return [entity.to_dict() for entity in entities]
+    
+    def _build_initial_tree(self, all_doctypes: Dict[str, Any], 
+                           mapping_manager: MappingManager,
+                           doctype_processor: DoctypeProcessor) -> List[Entity]:
+        """Build the initial tree structure"""
+        entities = []
+        
+        # Process root doctypes (those without mandatory parents)
+        for doctype_name in all_doctypes.get("all_doctypes", {}).keys():
+            if not mapping_manager.has_mandatory_parent(doctype_name):
+                entity = doctype_processor.process_doctype(doctype_name, is_root=True)
+                if entity:
+                    entities.append(entity)
+        
+        # Process any remaining doctypes
+        for doctype_name in all_doctypes.get("all_doctypes", {}).keys():
+            if doctype_name not in doctype_processor.processed_doctypes:
+                entity = doctype_processor.process_doctype(doctype_name, is_root=True)
+                if entity:
+                    entities.append(entity)
+        
+        return entities
+    
+    def _remove_children_from_root(self, entities: List[Entity], 
+                                  mapping_manager: MappingManager) -> List[Entity]:
+        """Remove entities from root that should only be children"""
+        children_to_remove = mapping_manager.get_children_to_remove_from_root()
+        return [entity for entity in entities if entity.key not in children_to_remove]
+
+
+class FileManager:
+    """Handles file I/O operations"""
+    
+    @staticmethod
+    def load_json(file_path: str) -> Dict[str, Any]:
+        """Load JSON data from file"""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            logger.error(f"Failed to load JSON from {file_path}: {e}")
+            raise
+    
+    @staticmethod
+    def save_json(data: Any, file_path: str) -> None:
+        """Save data to JSON file"""
+        try:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=4, ensure_ascii=False)
+            logger.info(f"Saved data to {file_path}")
+        except Exception as e:
+            logger.error(f"Failed to save JSON to {file_path}: {e}")
+            raise
+
 
 def main():
+    """Main entry point"""
+    try:
+        # Load data
+        all_doctypes = FileManager.load_json("output/all_doctypes.json")
+        
+        # Build tree
+        builder = HierarchicalTreeBuilder()
+        hierarchical_data = builder.build_tree(all_doctypes)
+        
+        # Save result
+        FileManager.save_json(hierarchical_data, "output/hierarquical_doctypes_refactored.json")
+        
+        logger.info("Hierarchical tree built successfully!")
+        
+    except Exception as e:
+        logger.error(f"Error building hierarchical tree: {e}")
+        raise
 
-    all_doctypes = load_json_file("output/all_doctypes.json")
-
-    # Build the hierarchical tree
-    hierarchical_data = build_tree(all_doctypes)
-    
-    # Update all paths to have the full parent-child hierarchy
-    # update_all_paths(hierarchical_data)
-    
-    # Save the final result
-    
-    # Gravar all_doctypes em um arquivo JSON
-    with open("output/hierarquical_doctypes.json", "w", encoding="utf-8") as f:
-        json.dump(hierarchical_data, f, indent=4, ensure_ascii=False)
 
 if __name__ == "__main__":
     main()
