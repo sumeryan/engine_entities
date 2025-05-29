@@ -34,7 +34,7 @@ def get_keys(api_base_url, api_token, doctype_name, filters=None):
         response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
         data = response.json()
         keys = [item["name"] for item in data.get("data", [])]
-        print("CHAVESSS", keys)
+        print("CHAVES", keys)
         # Returns the list of keys from the 'data' key of the JSON response
         return keys
     except requests.exceptions.RequestException as e:

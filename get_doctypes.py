@@ -467,7 +467,7 @@ class DoctypeProcessor:
             self.data_manager.save_json("data", all_doctype_data, "all_doctypes")
 
         # Get hierarchical structure
-        hierarchical = self.hierarchical_tree.build_tree(all_doctypes["all_doctypes"])
+        hierarchical = self.hierarchical_tree.build_tree(all_doctypes)
         
         return {"data": all_doctype_data,
                 "structure": all_doctypes["all_doctypes"],
