@@ -1,0 +1,1976 @@
+{
+    "all_doctypes": {
+        "Asset": [
+            {
+                "fieldname": "nomeativo",
+                "label": "Nome do ativo",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Asset",
+                "creation": "2025-04-26 14:55:14.991229"
+            },
+            {
+                "fieldname": "operadoresoumotoristas",
+                "label": "Operadores ou motoristas",
+                "fieldtype": "Table",
+                "options": "Asset Operator",
+                "hidden": 0,
+                "parent": "Asset",
+                "creation": "2025-04-26 14:55:14.991229"
+            },
+            {
+                "fieldname": "table_qttq",
+                "fieldtype": "Table",
+                "options": "Asset Config Kartado",
+                "hidden": 0,
+                "parent": "Asset",
+                "creation": "2025-04-26 14:55:14.991229"
+            }
+        ],
+        "Category": [
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Category",
+                "creation": "2025-05-07 10:48:54.624864"
+            }
+        ],
+        "City": [
+            {
+                "fieldname": "uf",
+                "label": "UF",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "City",
+                "creation": "2025-04-25 21:04:26.145470"
+            },
+            {
+                "fieldname": "municipio",
+                "label": "Município",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "City",
+                "creation": "2025-04-25 21:04:26.145470"
+            }
+        ],
+        "Contract": [
+            {
+                "fieldname": "contrato",
+                "label": "Nº do Contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "contratada",
+                "label": "Contratada",
+                "fieldtype": "Table",
+                "options": "Contracted Company",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "datainicial",
+                "label": "Data inicial do contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "datafinal",
+                "label": "Data final do contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "subsidiaria",
+                "label": "Subsidiaria",
+                "fieldtype": "Table",
+                "options": "Subsidiary",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "responsavel",
+                "label": "Responsável",
+                "fieldtype": "Table",
+                "options": "Person",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "obra",
+                "label": "Obra",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Objeto",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "valortotal",
+                "label": "Valor total do contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "vertical",
+                "label": "Vertical",
+                "fieldtype": "Table",
+                "options": "Vertical",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "categoria",
+                "label": "Categoria",
+                "fieldtype": "Table",
+                "options": "Category",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "inicioservicosprevisto",
+                "label": "Início dos serviços conf. contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "inicioservicos",
+                "label": "Início real dos serviços",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "terminoservicosprevisto",
+                "label": "Término serviços conf. contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "terminoservicos",
+                "label": "Término previsto dos serviços",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "percentualreidi",
+                "label": "Percentual REIDI",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "medicaopormes",
+                "label": "Medição mês cheio",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "medicaodiainicial",
+                "label": "Dia inicial",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "medicaodiafinal",
+                "label": "Dia final",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "percentualcalcao",
+                "label": "Percentual",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "regracaucao",
+                "label": "Descrição da regra do caução",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "contratoencerrado",
+                "label": "Contrato encerrado em",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "grupoformulas",
+                "label": "Grupo",
+                "fieldtype": "Table",
+                "options": "Formula Group",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            },
+            {
+                "fieldname": "uuidkartado",
+                "label": "Chave",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract",
+                "creation": "2025-04-25 14:49:07.193437"
+            }
+        ],
+        "Contract Adjustment": [
+            {
+                "fieldname": "contrato",
+                "label": "Nº do contrato",
+                "fieldtype": "Table",
+                "options": "Contract",
+                "hidden": 0,
+                "parent": "Contract Adjustment",
+                "creation": "2025-04-30 11:45:05.078994"
+            },
+            {
+                "fieldname": "contratada",
+                "label": "Contratada",
+                "fieldtype": "Table",
+                "options": "Contracted Company",
+                "hidden": 0,
+                "parent": "Contract Adjustment",
+                "creation": "2025-04-30 11:45:05.078994"
+            },
+            {
+                "fieldname": "datainicial",
+                "label": "Data inicial do contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Adjustment",
+                "creation": "2025-04-30 11:45:05.078994"
+            },
+            {
+                "fieldname": "datafinal",
+                "label": "Data final do contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Adjustment",
+                "creation": "2025-04-30 11:45:05.078994"
+            },
+            {
+                "fieldname": "obra",
+                "label": "Obra",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Adjustment",
+                "creation": "2025-04-30 11:45:05.078994"
+            },
+            {
+                "fieldname": "tabelareajustes",
+                "fieldtype": "Table",
+                "options": "Contract Adjustment Data",
+                "hidden": 0,
+                "parent": "Contract Adjustment",
+                "creation": "2025-04-30 11:45:05.078994"
+            }
+        ],
+        "Contract Item": [
+            {
+                "fieldname": "is_group",
+                "label": "Is Group",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "itempadrao",
+                "label": "Item",
+                "fieldtype": "Table",
+                "options": "Item",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "codigo",
+                "label": "Código",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "valorunitario",
+                "label": "Valor unitário",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "valortotalvigente",
+                "label": "Valor total vigente",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "saldo",
+                "label": "Saldo atual",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "contrato",
+                "label": "Nº do contrato",
+                "fieldtype": "Table",
+                "options": "Contract",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "unidade",
+                "label": "Unidade",
+                "fieldtype": "Table",
+                "options": "Unit",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "tipodoitem",
+                "label": "Tipo",
+                "fieldtype": "Table",
+                "options": "Contract Item Type",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "tablepedidossap",
+                "label": "Lista",
+                "fieldtype": "Table",
+                "options": "Contract Item Order",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "tabcidades",
+                "fieldtype": "Table",
+                "options": "Contract Item City",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "tablemaodeobra",
+                "fieldtype": "Table",
+                "options": "Contract Item Work Role",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "tableassets",
+                "fieldtype": "Table",
+                "options": "Contract Item Asset",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "rodovias",
+                "fieldtype": "Table",
+                "options": "Contract Item Highway",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            },
+            {
+                "fieldname": "tabconfigkartado",
+                "label": "Verifique a codificação do Kartado, ela pode estar com um nível a mais, ex: 1.1.1 -> Kartado -> 1.1.1.1",
+                "fieldtype": "Table",
+                "options": "Contract Item Config Kartado",
+                "hidden": 0,
+                "parent": "Contract Item",
+                "creation": "2025-04-25 20:38:39.262402"
+            }
+        ],
+        "Contract Item Type": [
+            {
+                "fieldname": "tipo",
+                "label": "Tipo",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Type",
+                "creation": "2025-05-21 10:53:37.500767"
+            },
+            {
+                "fieldname": "tipoaux",
+                "label": "Tipo",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Type",
+                "creation": "2025-05-21 10:53:37.500767"
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Type",
+                "creation": "2025-05-21 10:53:37.500767"
+            },
+            {
+                "fieldname": "kartadotipoitem",
+                "label": "Tipo do item",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Type",
+                "creation": "2025-05-21 10:53:37.500767"
+            }
+        ],
+        "Contract Measurement": [
+            {
+                "fieldname": "contrato",
+                "label": "Nº do contrato\"",
+                "fieldtype": "Table",
+                "options": "Contract",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "contratada",
+                "label": "Contratada",
+                "fieldtype": "Table",
+                "options": "Contracted Company",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "datainicialmedicao",
+                "label": "Data inicial medição",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "datafinalmedicao",
+                "label": "Data final medição",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "medicaovigente",
+                "label": "Medição vigente",
+                "fieldtype": "Table",
+                "options": "Sim\nNão",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "data_ejak",
+                "label": "Data inicial do contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "data_final_do_contrato",
+                "label": "Data final do contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "obra",
+                "label": "Obra",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "valorcontrato",
+                "label": "Valor do contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "medicaoatual",
+                "label": "Medição atual (A)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "faturamentodireto",
+                "label": "Faturamento direto (FTD) na fase atual",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "medicaoatualdescontoftd",
+                "label": "Medição atual com desconto de FTD (B)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "descontoreidi",
+                "label": "Desconto do REIDI [C] = -3,65% . [B]",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "medicaoliquida",
+                "label": "Medição líquida do REIDI (Vl. bruto NF) [D] = [B]+[C]",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "medicaoequivalente",
+                "label": "Medição equivalente líquida do REIDI [F] = [A]+(E)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "caucaocontratual",
+                "label": "Caução Contratual [G] =  5% . [F]",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "valortotalvigente",
+                "label": "Valor Total Vigente",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "ftdacumulado",
+                "label": "Faturamento direto (FTD) acumulado",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "totalvigentemenosftd",
+                "label": "Valor total vigente com desconto de FTD",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "medicaoacumulada",
+                "label": "Medição acumulada atual",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "saldo",
+                "label": "Saldo Contratual (R$)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "saldopercentual",
+                "label": "Saldo Contratual (%)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "caucaoatual",
+                "label": "Caução atual",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "caucaoacumulado",
+                "label": "Caução acumulado",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "imprimir",
+                "label": "🖨️ Imprimir",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "tablepedidossap",
+                "label": "Pedidos SAP",
+                "fieldtype": "Table",
+                "options": "Contract Measurement SAP Order",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "tableftp",
+                "fieldtype": "Table",
+                "options": "Contract Measurement FTD",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "tablemunicipios",
+                "fieldtype": "Table",
+                "options": "Contract Measurement City",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "tablemaodeobra",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "tableativos",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Asset",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            },
+            {
+                "fieldname": "tabitenscontatrato",
+                "label": "Itens do contrato",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Item",
+                "hidden": 0,
+                "parent": "Contract Measurement",
+                "creation": "2025-05-13 06:10:27.754993"
+            }
+        ],
+        "Contract Measurement Record": [
+            {
+                "fieldname": "datainicial",
+                "label": "Data inicial",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "datafinal",
+                "label": "Data final",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "contrato",
+                "label": "Contrato",
+                "fieldtype": "Table",
+                "options": "Contract",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "boletimmedicao",
+                "label": "Boletim de medição",
+                "fieldtype": "Table",
+                "options": "Contract Measurement",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "rodovia",
+                "label": "Rodovia",
+                "fieldtype": "Table",
+                "options": "Highway",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "kminicial",
+                "label": "KM inicial",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "kmfinal",
+                "label": "KM final",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "origem",
+                "label": "Origem",
+                "fieldtype": "Table",
+                "options": "Kartado\nOsiris",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "aprovador",
+                "label": "Aprovador",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "medicaovigente",
+                "label": "Medição vigente",
+                "fieldtype": "Table",
+                "options": "Sim\nNão",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "tabworkrole",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Record Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "tabasset",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Record Asset",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "table_lfhu",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Record Material",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            },
+            {
+                "fieldname": "table_rtgv",
+                "fieldtype": "Table",
+                "options": "Contract Measurement Record Time",
+                "hidden": 0,
+                "parent": "Contract Measurement Record",
+                "creation": "2025-05-10 16:43:37.513736"
+            }
+        ],
+        "Contracted Company": [
+            {
+                "fieldname": "nome",
+                "label": "Nome",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contracted Company",
+                "creation": "2025-04-25 14:35:03.858372"
+            },
+            {
+                "fieldname": "razaosocial",
+                "label": "Razão Social",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contracted Company",
+                "creation": "2025-04-25 14:35:03.858372"
+            },
+            {
+                "fieldname": "cnpj",
+                "label": "CNPJ",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contracted Company",
+                "creation": "2025-04-25 14:35:03.858372"
+            },
+            {
+                "fieldname": "endereco",
+                "label": "Endereço",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contracted Company",
+                "creation": "2025-04-25 14:35:03.858372"
+            }
+        ],
+        "Depth Period Setting": [
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Depth Period Setting",
+                "creation": "2025-05-06 14:36:14.854863"
+            },
+            {
+                "fieldname": "mensal",
+                "label": "Fechamento mensal",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Depth Period Setting",
+                "creation": "2025-05-06 14:36:14.854863"
+            },
+            {
+                "fieldname": "diainicial",
+                "label": "Dia inicial",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Depth Period Setting",
+                "creation": "2025-05-06 14:36:14.854863"
+            },
+            {
+                "fieldname": "diafinal",
+                "label": "Dia final",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Depth Period Setting",
+                "creation": "2025-05-06 14:36:14.854863"
+            }
+        ],
+        "Highway": [
+            {
+                "fieldname": "sigla",
+                "label": "Sigla A",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Highway",
+                "creation": "2025-05-08 15:29:12.762937"
+            },
+            {
+                "fieldname": "nome",
+                "label": "Nome",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Highway",
+                "creation": "2025-05-08 15:29:12.762937"
+            },
+            {
+                "fieldname": "cidades",
+                "fieldtype": "Table",
+                "options": "Highway City",
+                "hidden": 0,
+                "parent": "Highway",
+                "creation": "2025-05-08 15:29:12.762937"
+            }
+        ],
+        "Holiday": [
+            {
+                "fieldname": "data",
+                "label": "Data ",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Holiday",
+                "creation": "2025-05-10 11:09:35.629171"
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Holiday",
+                "creation": "2025-05-10 11:09:35.629171"
+            },
+            {
+                "fieldname": "cidade",
+                "label": "Cidade (Apenas para feriados municipais)",
+                "fieldtype": "Table",
+                "options": "City",
+                "hidden": 0,
+                "parent": "Holiday",
+                "creation": "2025-05-10 11:09:35.629171"
+            }
+        ],
+        "Item": [
+            {
+                "fieldname": "codigo",
+                "label": "Código",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "grupo",
+                "label": "Grupo",
+                "fieldtype": "Table",
+                "options": "Item Group",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "subgrupo",
+                "label": "Sub-grupo",
+                "fieldtype": "Table",
+                "options": "Item Sub Group",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "observacaoes",
+                "label": "Observações",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            },
+            {
+                "fieldname": "tabkartado",
+                "fieldtype": "Table",
+                "options": "Item Config Kartado",
+                "hidden": 0,
+                "parent": "Item",
+                "creation": "2025-05-21 12:59:02.502614"
+            }
+        ],
+        "Asset Operator": [
+            {
+                "fieldname": "operador",
+                "label": "Operador/motorista",
+                "fieldtype": "Table",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Asset Operator",
+                "creation": "2025-04-26 14:58:15.610322"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Asset Operator",
+                "creation": "2025-04-26 14:58:15.610322"
+            }
+        ],
+        "Contract Adjustment Data": [
+            {
+                "fieldname": "datareajuste",
+                "label": "Data de reajuste",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Adjustment Data",
+                "creation": "2025-04-30 11:07:36.355758"
+            },
+            {
+                "fieldname": "itemcontrato",
+                "label": "Item do contrato",
+                "fieldtype": "Table",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Adjustment Data",
+                "creation": "2025-04-30 11:07:36.355758"
+            },
+            {
+                "fieldname": "indicereajuste",
+                "label": "Indice de reajuste",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Adjustment Data",
+                "creation": "2025-04-30 11:07:36.355758"
+            },
+            {
+                "fieldname": "saldo",
+                "label": "Saldo do item do contrato",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Adjustment Data",
+                "creation": "2025-04-30 11:07:36.355758"
+            },
+            {
+                "fieldname": "valorreajuste",
+                "label": "Valor do reajuste",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Adjustment Data",
+                "creation": "2025-04-30 11:07:36.355758"
+            }
+        ],
+        "Contract Item Asset": [
+            {
+                "fieldname": "asset",
+                "label": "Máquina, equipamento ou veículos",
+                "fieldtype": "Table",
+                "options": "Asset",
+                "hidden": 0,
+                "parent": "Contract Item Asset",
+                "creation": "2025-04-26 15:46:07.682618"
+            },
+            {
+                "fieldname": "descricao",
+                "label": "Descrição",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Asset",
+                "creation": "2025-04-26 15:46:07.682618"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Asset",
+                "creation": "2025-04-26 15:46:07.682618"
+            },
+            {
+                "fieldname": "valormensal",
+                "label": "Valor mensal",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Asset",
+                "creation": "2025-04-26 15:46:07.682618"
+            }
+        ],
+        "Contract Item City": [
+            {
+                "fieldname": "cidade",
+                "label": "Cidade",
+                "fieldtype": "Table",
+                "options": "City",
+                "hidden": 0,
+                "parent": "Contract Item City",
+                "creation": "2025-04-25 21:16:45.993786"
+            },
+            {
+                "fieldname": "iss",
+                "label": "ISS",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item City",
+                "creation": "2025-04-25 21:16:45.993786"
+            },
+            {
+                "fieldname": "participacaopercentual",
+                "label": "Participação %",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item City",
+                "creation": "2025-04-25 21:16:45.993786"
+            },
+            {
+                "fieldname": "kminicial",
+                "label": "KM Inicial",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item City",
+                "creation": "2025-04-25 21:16:45.993786"
+            },
+            {
+                "fieldname": "kmfinal",
+                "label": "KM Final",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item City",
+                "creation": "2025-04-25 21:16:45.993786"
+            }
+        ],
+        "Contract Item Highway": [
+            {
+                "fieldname": "rodovia",
+                "label": "Rodovia",
+                "fieldtype": "Table",
+                "options": "Highway",
+                "hidden": 0,
+                "parent": "Contract Item Highway",
+                "creation": "2025-05-08 16:05:26.144584"
+            },
+            {
+                "fieldname": "kminicial",
+                "label": "KM Inicial",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Highway",
+                "creation": "2025-05-08 16:05:26.144584"
+            },
+            {
+                "fieldname": "kmfinal",
+                "label": "KM Final",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Highway",
+                "creation": "2025-05-08 16:05:26.144584"
+            }
+        ],
+        "Contract Item Order": [
+            {
+                "fieldname": "pedidosap",
+                "label": "Nº do pedido SAP",
+                "fieldtype": "Table",
+                "options": "SAP Order",
+                "hidden": 0,
+                "parent": "Contract Item Order",
+                "creation": "2025-04-25 22:25:45.461924"
+            },
+            {
+                "fieldname": "valortotal",
+                "label": "Valor total",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Order",
+                "creation": "2025-04-25 22:25:45.461924"
+            }
+        ],
+        "Contract Item Work Role": [
+            {
+                "fieldname": "funcao",
+                "label": "Função",
+                "fieldtype": "Table",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Contract Item Work Role",
+                "creation": "2025-04-26 15:13:16.390473"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Work Role",
+                "creation": "2025-04-26 15:13:16.390473"
+            },
+            {
+                "fieldname": "pagamentohora",
+                "label": "Pagamento por hora",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Work Role",
+                "creation": "2025-04-26 15:13:16.390473"
+            },
+            {
+                "fieldname": "valorporhora",
+                "label": "Valor por hora",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Work Role",
+                "creation": "2025-04-26 15:13:16.390473"
+            },
+            {
+                "fieldname": "valortotalmensal",
+                "label": "Valor total mensal",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Item Work Role",
+                "creation": "2025-04-26 15:13:16.390473"
+            }
+        ],
+        "Contract Measurement Asset": [
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Table",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Asset",
+                "creation": "2025-04-27 16:40:20.272197"
+            },
+            {
+                "fieldname": "maquina_equipamento_ou_ferramenta",
+                "label": "Maquina, equipamento ou ferramenta",
+                "fieldtype": "Table",
+                "options": "Asset",
+                "hidden": 0,
+                "parent": "Contract Measurement Asset",
+                "creation": "2025-04-27 16:40:20.272197"
+            },
+            {
+                "fieldname": "quantidademedida",
+                "label": "Quantidade medida",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Asset",
+                "creation": "2025-04-27 16:40:20.272197"
+            },
+            {
+                "fieldname": "valormedido",
+                "label": "Valor medido",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Asset",
+                "creation": "2025-04-27 16:40:20.272197"
+            }
+        ],
+        "Contract Measurement City": [
+            {
+                "fieldname": "pedidosap",
+                "label": "Pedido SAP",
+                "fieldtype": "Table",
+                "options": "SAP Order",
+                "hidden": 0,
+                "parent": "Contract Measurement City",
+                "creation": "2025-04-30 10:39:36.106613"
+            },
+            {
+                "fieldname": "municipio",
+                "label": "Municipio",
+                "fieldtype": "Table",
+                "options": "City",
+                "hidden": 0,
+                "parent": "Contract Measurement City",
+                "creation": "2025-04-30 10:39:36.106613"
+            },
+            {
+                "fieldname": "valor",
+                "label": "Valor total",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement City",
+                "creation": "2025-04-30 10:39:36.106613"
+            },
+            {
+                "fieldname": "valoriss",
+                "label": "ISS",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement City",
+                "creation": "2025-04-30 10:39:36.106613"
+            }
+        ],
+        "Contract Measurement FTD": [
+            {
+                "fieldname": "datadesconto",
+                "label": "Desconto em (Informe o primeiro dia do mês de desconto)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "nº_pedido_sap",
+                "label": "Nº pedido SAP",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "nf_nº",
+                "label": "NF Nº",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "data",
+                "label": "Data emissão",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "fornecedor",
+                "label": "Fornecedor",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "descricaonota",
+                "label": "Material ou projeto",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "unidade",
+                "label": "Unidade",
+                "fieldtype": "Table",
+                "options": "Unit",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "valor",
+                "label": "Valor total da nota fiscal",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "linhasap",
+                "label": "Linha SAP",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            },
+            {
+                "fieldname": "elementopep",
+                "label": "Elemento PEP",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement FTD",
+                "creation": "2025-04-29 13:30:54.099373"
+            }
+        ],
+        "Contract Measurement Item": [
+            {
+                "fieldname": "itemcontrato",
+                "label": "Item",
+                "fieldtype": "Table",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "valortotalvigente",
+                "label": "Valor total vigente",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "quantidadetotalvigente",
+                "label": "Quantidade total vigente",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "saldoanterior",
+                "label": "Saldo anterior",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "quantidademedida",
+                "label": "Quantidade medida",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "quantidadeacumulada",
+                "label": "Quantidade acumulada",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "valortotalmedido",
+                "label": "Valor total medido",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "valortotalacumulado",
+                "label": "Valor total acumulado",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            },
+            {
+                "fieldname": "saldoatual",
+                "label": "Saldo atual",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Item",
+                "creation": "2025-05-21 10:27:11.634491"
+            }
+        ],
+        "Contract Measurement Record Asset": [
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Table",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Asset",
+                "creation": "2025-05-10 14:54:08.701494"
+            },
+            {
+                "fieldname": "maquina_equipamento_ou_ferramenta",
+                "label": "Maquina, equipamento ou ferramenta",
+                "fieldtype": "Table",
+                "options": "Asset",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Asset",
+                "creation": "2025-05-10 14:54:08.701494"
+            },
+            {
+                "fieldname": "quantidademedida",
+                "label": "Quantidade medida",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Asset",
+                "creation": "2025-05-10 14:54:08.701494"
+            },
+            {
+                "fieldname": "valortotal",
+                "label": "Valor total",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Asset",
+                "creation": "2025-05-10 14:54:08.701494"
+            },
+            {
+                "fieldname": "valorcalculado",
+                "label": "Valor calculado",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Asset",
+                "creation": "2025-05-10 14:54:08.701494"
+            }
+        ],
+        "Contract Measurement Record Material": [
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Table",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Material",
+                "creation": "2025-05-10 14:59:08.605719"
+            },
+            {
+                "fieldname": "material",
+                "label": "Material",
+                "fieldtype": "Table",
+                "options": "Material",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Material",
+                "creation": "2025-05-10 14:59:08.605719"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Material",
+                "creation": "2025-05-10 14:59:08.605719"
+            },
+            {
+                "fieldname": "valortotal",
+                "label": "Valor total",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Material",
+                "creation": "2025-05-10 14:59:08.605719"
+            },
+            {
+                "fieldname": "valorcalculado",
+                "label": "Valor calculado",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Material",
+                "creation": "2025-05-10 14:59:08.605719"
+            }
+        ],
+        "Contract Measurement Record Time": [
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Table",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            },
+            {
+                "fieldname": "funcao",
+                "label": "Função",
+                "fieldtype": "Table",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            },
+            {
+                "fieldname": "quantidade",
+                "label": "Quantidade",
+                "fieldtype": "Table",
+                "options": "1",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            },
+            {
+                "fieldname": "horanormal",
+                "label": "Hora normal (Dias úteis)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            },
+            {
+                "fieldname": "horanormalda",
+                "label": "Hora normal desc. e acrés.",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            },
+            {
+                "fieldname": "compensacoes",
+                "label": "Compensações",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            },
+            {
+                "fieldname": "horaextra60",
+                "label": "Hora extra 60% (Sáb. e dias úteis)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            },
+            {
+                "fieldname": "horaextra100",
+                "label": "Hora extra 100% (Dom. e feriados)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            },
+            {
+                "fieldname": "quantidadeequivalente",
+                "label": "Quantidade equivalente",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            },
+            {
+                "fieldname": "valortotal",
+                "label": "Valor total",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Time",
+                "creation": "2025-05-10 16:46:23.848586"
+            }
+        ],
+        "Contract Measurement Record Work Role": [
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Table",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role",
+                "creation": "2025-05-10 14:54:41.078200"
+            },
+            {
+                "fieldname": "funcao",
+                "label": "Função",
+                "fieldtype": "Table",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role",
+                "creation": "2025-05-10 14:54:41.078200"
+            },
+            {
+                "fieldname": "quantidade_medida",
+                "label": "Quantidade medida",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role",
+                "creation": "2025-05-10 14:54:41.078200"
+            },
+            {
+                "fieldname": "valortotal",
+                "label": "Valor total",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role",
+                "creation": "2025-05-10 14:54:41.078200"
+            },
+            {
+                "fieldname": "valorcalculado",
+                "label": "Valor calculado",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Record Work Role",
+                "creation": "2025-05-10 14:54:41.078200"
+            }
+        ],
+        "Contract Measurement SAP Order": [
+            {
+                "fieldname": "pedido_sap",
+                "label": "Pedido SAP",
+                "fieldtype": "Table",
+                "options": "SAP Order",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order",
+                "creation": "2025-04-28 10:01:00.479342"
+            },
+            {
+                "fieldname": "linhapedido",
+                "label": "Linha pedido",
+                "fieldtype": "Table",
+                "options": "SAP Order Period",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order",
+                "creation": "2025-04-28 10:01:00.479342"
+            },
+            {
+                "fieldname": "valortotalvigente",
+                "label": "Valor total vigente",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order",
+                "creation": "2025-04-28 10:01:00.479342"
+            },
+            {
+                "fieldname": "medicaoacumantpercentual",
+                "label": "Medição acum. ant. (%)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order",
+                "creation": "2025-04-28 10:01:00.479342"
+            },
+            {
+                "fieldname": "medicaoatualpercentual",
+                "label": "Medição atual (%)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order",
+                "creation": "2025-04-28 10:01:00.479342"
+            },
+            {
+                "fieldname": "medicaoacumuladaatualpercentual",
+                "label": "Medição acum. atual (%)",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order",
+                "creation": "2025-04-28 10:01:00.479342"
+            },
+            {
+                "fieldname": "acumuladoanterior",
+                "label": "Medição acum. anterior",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order",
+                "creation": "2025-04-28 10:01:00.479342"
+            },
+            {
+                "fieldname": "valormedido",
+                "label": "Medição atual",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order",
+                "creation": "2025-04-28 10:01:00.479342"
+            },
+            {
+                "fieldname": "acumuladoatual",
+                "label": "Medição acum. atual",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement SAP Order",
+                "creation": "2025-04-28 10:01:00.479342"
+            }
+        ],
+        "Contract Measurement Work Role": [
+            {
+                "fieldname": "item",
+                "label": "Item",
+                "fieldtype": "Table",
+                "options": "Contract Item",
+                "hidden": 0,
+                "parent": "Contract Measurement Work Role",
+                "creation": "2025-04-27 16:09:17.078292"
+            },
+            {
+                "fieldname": "funcao",
+                "label": "Função",
+                "fieldtype": "Table",
+                "options": "Work Role",
+                "hidden": 0,
+                "parent": "Contract Measurement Work Role",
+                "creation": "2025-04-27 16:09:17.078292"
+            },
+            {
+                "fieldname": "quantidademedida",
+                "label": "Quantidade medida",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Work Role",
+                "creation": "2025-04-27 16:09:17.078292"
+            },
+            {
+                "fieldname": "valormedido",
+                "label": "Valor medido",
+                "fieldtype": "Table",
+                "options": "",
+                "hidden": 0,
+                "parent": "Contract Measurement Work Role",
+                "creation": "2025-04-27 16:09:17.078292"
+            }
+        ]
+    }
+}

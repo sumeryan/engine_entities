@@ -15,7 +15,7 @@ def get_specific_mapping():
         #{"child": "Contract Measurement Retention", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement SAP Order", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement Work Role", "parent": "Contract Measurement"},
-        {"child": "Contract Measurement Record", "parent": "Contract Measurement"},
+        {"child": "Contract Measurement Record", "parent": "Contract"},
         #{"child": "Contract Measurement Record Asset", "parent": "Contract Measurement Record"},
         #{"child": "Contract Measurement Record Material", "parent": "Contract Measurement Record"},
         #{"child": "Contract Measurement Record Time", "parent": "Contract Measurement Record"},

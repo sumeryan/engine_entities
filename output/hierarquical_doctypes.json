@@ -1,0 +1,653 @@
+[
+    {
+        "key": "Asset",
+        "description": "Ativo",
+        "fieldname": "Asset",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "ativo",
+        "dragandrop": false,
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "ativo.chave_do_registro",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Asset_Operator",
+                "description": "Operador",
+                "fieldname": "Asset Operator",
+                "fieldname_data": "operadoresoumotoristas",
+                "type": "doctype",
+                "path": "ativo.operador",
+                "dragandrop": false,
+                "children": [
+                    {
+                        "key": "chave",
+                        "description": "Chave do registro",
+                        "fieldname": "name",
+                        "fieldname_data": "",
+                        "type": "key",
+                        "path": "ativo.operador.chave_do_registro",
+                        "dragandrop": true,
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "key": "Category",
+        "description": "Categoria",
+        "fieldname": "Category",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "categoria",
+        "dragandrop": false,
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "categoria.chave_do_registro",
+                "dragandrop": true,
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "City",
+        "description": "Cidade",
+        "fieldname": "City",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "cidade",
+        "dragandrop": false,
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "cidade.chave_do_registro",
+                "dragandrop": true,
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Contract",
+        "description": "Contrato",
+        "fieldname": "Contract",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "contrato",
+        "dragandrop": false,
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "contrato.chave_do_registro",
+                "dragandrop": true,
+                "children": []
+            },
+            {
+                "key": "Contract_Adjustment",
+                "description": "Reajuste de Contrato",
+                "fieldname": "Contract Adjustment",
+                "fieldname_data": "",
+                "type": "doctype",
+                "path": "contrato.reajuste_de_contrato",
+                "dragandrop": false,
+                "children": [
+                    {
+                        "key": "chave",
+                        "description": "Chave do registro",
+                        "fieldname": "name",
+                        "fieldname_data": "",
+                        "type": "key",
+                        "path": "contrato.reajuste_de_contrato.chave_do_registro",
+                        "dragandrop": true,
+                        "children": []
+                    },
+                    {
+                        "key": "Contracted_Company",
+                        "description": "Empresa Contratada",
+                        "fieldname": "Contracted Company",
+                        "fieldname_data": "contratada",
+                        "type": "doctype",
+                        "path": "contrato.reajuste_de_contrato.empresa_contratada",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.reajuste_de_contrato.empresa_contratada.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Adjustment_Data",
+                        "description": "Dados de Reajuste de Contrato",
+                        "fieldname": "Contract Adjustment Data",
+                        "fieldname_data": "tabelareajustes",
+                        "type": "doctype",
+                        "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "key": "Contract_Item",
+                "description": "Item de Contrato",
+                "fieldname": "Contract Item",
+                "fieldname_data": "",
+                "type": "doctype",
+                "path": "contrato.item_de_contrato",
+                "dragandrop": false,
+                "children": [
+                    {
+                        "key": "chave",
+                        "description": "Chave do registro",
+                        "fieldname": "name",
+                        "fieldname_data": "",
+                        "type": "key",
+                        "path": "contrato.item_de_contrato.chave_do_registro",
+                        "dragandrop": true,
+                        "children": []
+                    },
+                    {
+                        "key": "Item",
+                        "description": "Item",
+                        "fieldname": "Item",
+                        "fieldname_data": "itempadrao",
+                        "type": "doctype",
+                        "path": "contrato.item_de_contrato.item",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.item_de_contrato.item.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Item_Type",
+                        "description": "Contract Item Type",
+                        "fieldname": "Contract Item Type",
+                        "fieldname_data": "tipodoitem",
+                        "type": "doctype",
+                        "path": "contrato.item_de_contrato.contract_item_type",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.item_de_contrato.contract_item_type.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Item_Order",
+                        "description": "Pedido SAP Item de Contrato",
+                        "fieldname": "Contract Item Order",
+                        "fieldname_data": "tablepedidossap",
+                        "type": "doctype",
+                        "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Item_City",
+                        "description": "Cidade Item de Contrato",
+                        "fieldname": "Contract Item City",
+                        "fieldname_data": "tabcidades",
+                        "type": "doctype",
+                        "path": "contrato.item_de_contrato.cidade_item_de_contrato",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.item_de_contrato.cidade_item_de_contrato.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Item_Work_Role",
+                        "description": "Função Item de Contrato",
+                        "fieldname": "Contract Item Work Role",
+                        "fieldname_data": "tablemaodeobra",
+                        "type": "doctype",
+                        "path": "contrato.item_de_contrato.funcao_item_de_contrato",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.item_de_contrato.funcao_item_de_contrato.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Item_Asset",
+                        "description": "Ativo Item de Contrato",
+                        "fieldname": "Contract Item Asset",
+                        "fieldname_data": "tableassets",
+                        "type": "doctype",
+                        "path": "contrato.item_de_contrato.ativo_item_de_contrato",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.item_de_contrato.ativo_item_de_contrato.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Item_Highway",
+                        "description": "Rodovia Item de Contrato",
+                        "fieldname": "Contract Item Highway",
+                        "fieldname_data": "rodovias",
+                        "type": "doctype",
+                        "path": "contrato.item_de_contrato.rodovia_item_de_contrato",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.item_de_contrato.rodovia_item_de_contrato.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            },
+                            {
+                                "key": "Highway",
+                                "description": "Rodovia",
+                                "fieldname": "Highway",
+                                "fieldname_data": "rodovia",
+                                "type": "doctype",
+                                "path": "contrato.item_de_contrato.rodovia_item_de_contrato.rodovia",
+                                "dragandrop": false,
+                                "children": [
+                                    {
+                                        "key": "chave",
+                                        "description": "Chave do registro",
+                                        "fieldname": "name",
+                                        "fieldname_data": "",
+                                        "type": "key",
+                                        "path": "contrato.item_de_contrato.rodovia_item_de_contrato.rodovia.chave_do_registro",
+                                        "dragandrop": true,
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "key": "Contract_Measurement",
+                "description": "Medição de Contrato BM",
+                "fieldname": "Contract Measurement",
+                "fieldname_data": "",
+                "type": "doctype",
+                "path": "contrato.medicao_de_contrato_bm",
+                "dragandrop": false,
+                "children": [
+                    {
+                        "key": "chave",
+                        "description": "Chave do registro",
+                        "fieldname": "name",
+                        "fieldname_data": "",
+                        "type": "key",
+                        "path": "contrato.medicao_de_contrato_bm.chave_do_registro",
+                        "dragandrop": true,
+                        "children": []
+                    },
+                    {
+                        "key": "Contract_Measurement_SAP_Order",
+                        "description": "Pedido SAP de BM",
+                        "fieldname": "Contract Measurement SAP Order",
+                        "fieldname_data": "tablepedidossap",
+                        "type": "doctype",
+                        "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_FTD",
+                        "description": "FTD de BM",
+                        "fieldname": "Contract Measurement FTD",
+                        "fieldname_data": "tableftp",
+                        "type": "doctype",
+                        "path": "contrato.medicao_de_contrato_bm.ftd_de_bm",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_City",
+                        "description": "Cidade BM",
+                        "fieldname": "Contract Measurement City",
+                        "fieldname_data": "tablemunicipios",
+                        "type": "doctype",
+                        "path": "contrato.medicao_de_contrato_bm.cidade_bm",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.medicao_de_contrato_bm.cidade_bm.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Work_Role",
+                        "description": "Função BM",
+                        "fieldname": "Contract Measurement Work Role",
+                        "fieldname_data": "tablemaodeobra",
+                        "type": "doctype",
+                        "path": "contrato.medicao_de_contrato_bm.funcao_bm",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.medicao_de_contrato_bm.funcao_bm.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Asset",
+                        "description": "Ativo BM",
+                        "fieldname": "Contract Measurement Asset",
+                        "fieldname_data": "tableativos",
+                        "type": "doctype",
+                        "path": "contrato.medicao_de_contrato_bm.ativo_bm",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.medicao_de_contrato_bm.ativo_bm.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Item",
+                        "description": "Contract Measurement Item",
+                        "fieldname": "Contract Measurement Item",
+                        "fieldname_data": "tabitenscontatrato",
+                        "type": "doctype",
+                        "path": "contrato.medicao_de_contrato_bm.contract_measurement_item",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "key": "Contract_Measurement_Record",
+                "description": "Registro de Medição de Contrato",
+                "fieldname": "Contract Measurement Record",
+                "fieldname_data": "",
+                "type": "doctype",
+                "path": "contrato.registro_de_medicao_de_contrato",
+                "dragandrop": false,
+                "children": [
+                    {
+                        "key": "chave",
+                        "description": "Chave do registro",
+                        "fieldname": "name",
+                        "fieldname_data": "",
+                        "type": "key",
+                        "path": "contrato.registro_de_medicao_de_contrato.chave_do_registro",
+                        "dragandrop": true,
+                        "children": []
+                    },
+                    {
+                        "key": "Contract_Measurement_Record_Work_Role",
+                        "description": "Função no Registro BM",
+                        "fieldname": "Contract Measurement Record Work Role",
+                        "fieldname_data": "tabworkrole",
+                        "type": "doctype",
+                        "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Record_Asset",
+                        "description": "Ativo de Registro BM",
+                        "fieldname": "Contract Measurement Record Asset",
+                        "fieldname_data": "tabasset",
+                        "type": "doctype",
+                        "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Record_Material",
+                        "description": "Material de Registro BM",
+                        "fieldname": "Contract Measurement Record Material",
+                        "fieldname_data": "table_lfhu",
+                        "type": "doctype",
+                        "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Record_Time",
+                        "description": "Tempo de Registro BM",
+                        "fieldname": "Contract Measurement Record Time",
+                        "fieldname_data": "table_rtgv",
+                        "type": "doctype",
+                        "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm",
+                        "dragandrop": false,
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.chave_do_registro",
+                                "dragandrop": true,
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "key": "Depth_Period_Setting",
+        "description": "Periodo de Medição",
+        "fieldname": "Depth Period Setting",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "periodo_de_medicao",
+        "dragandrop": false,
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "periodo_de_medicao.chave_do_registro",
+                "dragandrop": true,
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Holiday",
+        "description": "Feriado",
+        "fieldname": "Holiday",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "feriado",
+        "dragandrop": false,
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "feriado.chave_do_registro",
+                "dragandrop": true,
+                "children": []
+            }
+        ]
+    }
+]

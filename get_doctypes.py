@@ -38,10 +38,30 @@ class Field:
     hidden: Optional[bool] = None
     parent: Optional[str] = None
     creation: Optional[str] = None
+    icon: Optional[str] = None
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Field':
         """Create Field from dictionary"""
+
+        # Map fieldtype to icon using a dictionary for elegance and maintainability
+        icon_map = {
+            "Link": "key",
+            "Float": "number",
+            "Currency": "money",
+            "Int": "integer",
+            "Data": "text",
+            "Select": "text",
+            "Date": "calendar",
+            "Datetime": "calendar",
+        }
+        icon = icon_map.get(data.get("fieldtype"))
+        if not icon:
+            icon = "text"  # Default icon if no match found
+        
+        # Special handling for Table fields
+        data["fieldtype"] = "Table"
+        data["options"] = data.get("options", "")
         return cls(
             fieldname=data.get("fieldname", ""),
             label=data.get("label"),
@@ -50,6 +70,7 @@ class Field:
             hidden=data.get("hidden"),
             parent=data.get("parent"),
             creation=data.get("creation")
+
         )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -343,7 +364,7 @@ class DoctypeDataRetriever:
 class DoctypeProcessor:
     """Main processor for doctype operations"""
     
-    def __init__(self):
+    def __init__(self, write_to_file: bool = True):
         # Initialize components
         self.config = ConfigManager()
         self.normalizer = StringNormalizer()
@@ -354,7 +375,14 @@ class DoctypeProcessor:
         self.doctype_retriever = DoctypeRetriever(self.api_client, self.field_extractor)
         self.mapping_extractor = ParentMappingExtractor()
         self.data_retriever = DoctypeDataRetriever(self.api_client, self.data_manager)
+        self.hierarchical_tree = hierarchical_tree.HierarchicalTreeBuilder()
+        self.write_to_file = write_to_file
     
+    def get_keys(self, doctype_name: str, filters: Optional[str] = None) -> List[str]:
+        """Get keys for a specific doctype"""
+        logger.info(f"Retrieving keys for doctype: {doctype_name}")
+        return self.api_client.get_keys(doctype_name, filters)
+
     def process_doctypes(self) -> Dict[str, Any]:
         """Process all doctypes and return structured data"""
         logger.info("Starting DocTypes and Fields Mapping...")
@@ -374,33 +402,7 @@ class DoctypeProcessor:
         ]
         
         return doctype_data
-    
-    def get_hierarchical_structure(self) -> List[Dict]:
-        """Generate hierarchical doctype structure"""
-        logger.info("Starting hierarchical structure generation...")
         
-        doctypes = self.process_doctypes()
-        
-        # Prepare data for hierarchical tree
-        all_doctypes = {"all_doctypes": doctypes["all_doctypes"]}
-        
-        # Save intermediate data
-        self.data_manager.save_json("output", all_doctypes, "all_doctypes")
-        self.data_manager.save_json(
-            "output", 
-            {"parents_mapping": doctypes["parents_mapping"]}, 
-            "parents_mapping"
-        )
-        
-        # Build hierarchical structure
-        logger.info("Creating hierarchical structure...")
-        hierarchical_json = hierarchical_tree.build_tree(all_doctypes)
-        
-        # Save result
-        self.data_manager.save_json("output", hierarchical_json, "hierarquical_doctypes")
-        
-        return hierarchical_json
-    
     def get_data(self, main_id: Optional[str] = None) -> List[Dict]:
         """Retrieve and save all doctype data"""
         logger.info("Starting data retrieval...")
@@ -419,7 +421,8 @@ class DoctypeProcessor:
                 child["doctype_with_fields"] = all_doctypes["all_doctypes"].pop(child["doctype"], [])
         
         # Clear data directory
-        self.data_manager.clear_directory("data")
+        if self.write_to_file:
+            self.data_manager.clear_directory("data")
         
         # Collect all doctype data
         all_doctype_data = []
@@ -460,15 +463,22 @@ class DoctypeProcessor:
                     )
         
         # Save all doctype data
-        self.data_manager.save_json("data", all_doctype_data, "all_doctypes")
+        if self.write_to_file:
+            self.data_manager.save_json("data", all_doctype_data, "all_doctypes")
+
+        # Get hierarchical structure
+        hierarchical = self.hierarchical_tree.build_tree(all_doctypes["all_doctypes"])
         
-        return all_doctype_data
+        return {"data": all_doctype_data,
+                "structure": all_doctypes["all_doctypes"],
+                "hierarchical": hierarchical}
     
-    def get_formula_data(self):
+    def get_formula_data(self) -> List[Dict]:
         """Retrieve formula group data"""
         logger.info("Retrieving formula data...")
         data, _ = self.data_retriever.get_doctype_data("Formula Group")
         self.data_retriever.save_doctype_data("data", data, "formula_group")
+        return data
 
 
 def main():
@@ -476,15 +486,15 @@ def main():
     try:
         processor = DoctypeProcessor()
         
+        # Uncomment to get data for specific contract
+        processor.get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e")
+
         # Get formula data
         processor.get_formula_data()
         
         # Get hierarchical structure
         processor.get_hierarchical_structure()
-        
-        # Uncomment to get data for specific contract
-        # processor.get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e")
-        
+                
         logger.info("Processing completed successfully!")
         
     except Exception as e:

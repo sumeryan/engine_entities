@@ -11,7 +11,6 @@ import os
 import sys
 import json
 import traceback
-from datetime import datetime
 
 from flask import Flask, render_template, jsonify, request, Response
 from flask_socketio import SocketIO, emit
@@ -19,9 +18,10 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 
 import get_doctypes
-import api_client
+import hierarchical_tree
+import engine_data_compact
+
 import requests
-import api_client_data  # opcional: mapeamento de data.json
 
 # Load environment variables
 load_dotenv()
@@ -108,7 +108,13 @@ def _generate_entity_structure():
         print(msg)
         raise ValueError(msg)
     print("--- Transforming Metadata to Entities ---")
-    struct = get_doctypes.get_hierarchical_doctype_structure()
+
+    processor = get_doctypes.DoctypeProcessor()   
+    # Get formula data
+    processor.get_formula_data()    
+    # Get hierarchical structure
+    struct = processor.get_hierarchical_structure()
+        
     print("Entity structure generated successfully.")
     print("--- Internal Generation Completed ---")
     return struct
@@ -160,11 +166,45 @@ def api_generate_entity_structure():
 
 @app.route('/hierarchy', methods=['GET'])
 def get_hierarchy():
-    hierarchical = get_doctypes.get_hierarchical_doctype_structure()
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    with open(HIERARCHICAL_FILE, 'w', encoding='utf-8') as f:
-        json.dump({'entities': hierarchical}, f, indent=4, ensure_ascii=False)
+    processor = get_doctypes.DoctypeProcessor()   
+    hierarchical = processor.get_hierarchical_structure()
     return jsonify(hierarchical)
+
+@app.route('/contracts', methods=['GET'])
+def get_contracts():
+    processor = get_doctypes.DoctypeProcessor()   
+    keys = processor.get_keys('Contract')
+    return jsonify(keys)
+
+@app.route('/formulas', methods=['GET'])
+def get_formulas():
+    processor = get_doctypes.DoctypeProcessor()   
+    formulas = processor.get_formula_data()
+    return jsonify(formulas)
+
+@app.route('/treedata', methods=['GET'])
+def get_tree_data():
+    contract = request.args.get('contract')
+    if not contract:
+        return jsonify({'error': 'Missing contract parameter'}), 400
+
+    processor = get_doctypes.DoctypeProcessor()   
+    formulas = processor.get_formula_data()
+    data = processor.get_data(contract)
+    hierarchical = processor.get .hi(data["structure"])
+
+    # Build engine data
+    builder = engine_data_compact.EngineDataBuilder(
+        hierarchical, 
+        formulas, 
+        data["data"], 
+        "data",
+        compact_mode=True
+    )
+    engine_data = builder.build()
+
+    return jsonify(engine_data)
+
 
 @app.route('/teste', methods=['GET'])
 def get_teste_json():
