@@ -191,11 +191,11 @@ def get_tree_data():
     processor = get_doctypes.DoctypeProcessor()   
     formulas = processor.get_formula_data()
     data = processor.get_data(contract)
-    hierarchical = processor.get .hi(data["structure"])
+    # hierarchical = processor.get .hi(data["structure"])
 
     # Build engine data
     builder = engine_data_compact.EngineDataBuilder(
-        hierarchical, 
+        data["hierarchical"], 
         formulas, 
         data["data"], 
         "data",
