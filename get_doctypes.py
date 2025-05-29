@@ -58,6 +58,12 @@ class Field:
         icon = icon_map.get(data.get("fieldtype"))
         if not icon:
             icon = "text"  # Default icon if no match found
+
+        if data.get("fieldname", ""):
+            if data.get("fieldname", "") == "name":
+                icon = "key"
+            if data.get("fieldname", "") == "chave":
+                icon = "key"
         
         # Special handling for Table fields
         data["fieldtype"] = "Table"
