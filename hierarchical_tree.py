@@ -6,13 +6,13 @@ This module builds hierarchical tree structures from doctype data.
 import json
 import re
 import unicodedata
-from typing import Dict, List, Set, Optional, Any, Tuple
+from typing import Dict, List, Set, Optional, Any
 from dataclasses import dataclass, field
-from abc import ABC, abstractmethod
-import logging
 
+import logging
 import doctype_translate
 import mappings
+import get_doctypes
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -30,10 +30,12 @@ class Entity:
     path: str = ""
     dragandrop: bool = False
     children: List['Entity'] = field(default_factory=list)
+    icon: str = ""
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert entity to dictionary representation"""
-        return {
+
+        field = { 
             "key": self.key,
             "description": self.description,
             "fieldname": self.fieldname,
@@ -41,9 +43,12 @@ class Entity:
             "type": self.type,
             "path": self.path,
             "dragandrop": self.dragandrop,
-            "children": [child.to_dict() for child in self.children]
+            "icon": self.icon,
+            "children": [child.to_dict() for child in self.children],
         }
-    
+
+        return field
+ 
     def add_child(self, child: 'Entity') -> None:
         """Add a child entity"""
         self.children.append(child)
@@ -193,9 +198,10 @@ class EntityFactory:
         self.type_mapper = type_mapper
         self.translations = translations or {}
     
-    def create_doctype_entity(self, doctype_name: str, 
-                             fieldname_data: str = "",
-                             is_root: bool = False) -> Entity:
+    def create_doctype_entity(self, 
+                              doctype_name: str, 
+                              fieldname_data: str = "",
+                              is_root: bool = False) -> Entity:
         """Create a doctype entity"""
         doctype_key = self.normalizer.create_key(doctype_name)
         translated_name = self.translations.get(doctype_key, doctype_name)
@@ -207,12 +213,13 @@ class EntityFactory:
             fieldname_data=fieldname_data,
             type="doctype",
             path=self.normalizer.normalize(translated_name),
-            dragandrop=False
+            dragandrop=False,
+            icon="text"
         )
         
         # Add default key field for all doctype entities
         entity.add_child(self.create_key_field())
-        
+
         return entity
     
     def create_key_field(self) -> Entity:
@@ -223,7 +230,8 @@ class EntityFactory:
             fieldname="name",
             type="key",
             path=self.normalizer.normalize("Chave do registro"),
-            dragandrop=True
+            dragandrop=True,
+            icon="key"
         )
     
     def create_field_entity(self, field_data: Dict[str, Any]) -> Entity:
@@ -231,6 +239,7 @@ class EntityFactory:
         field_type = self.type_mapper.map_type(field_data.get("fieldtype", ""))
         field_label = field_data.get("label", "")
         field_key = self.normalizer.create_key(field_label)
+        field_icon = self.apply_icon(field_data.get("fieldtype", ""))
         
         return Entity(
             key=field_key,
@@ -239,8 +248,30 @@ class EntityFactory:
             fieldname_data=field_data.get("fieldname_data", ""),
             type=field_type,
             path=self.normalizer.normalize(field_label),
-            dragandrop=True
+            dragandrop=True,
+            icon=field_icon
         )
+    
+
+    def apply_icon(self, type: str) -> str:
+        # Map fieldtype to icon using a dictionary for elegance and maintainability
+        icon_map = {
+            "Link": "key",
+            "Float": "number",
+            "Currency": "money",
+            "Int": "integer",
+            "Data": "text",
+            "Select": "text",
+            "Date": "calendar",
+            "Datetime": "calendar",
+        }
+
+        icon = icon_map.get(type)
+
+        if not icon:
+            icon = "text"  # Default icon if no match found
+
+        return icon
 
 
 class PathManager:
@@ -319,9 +350,10 @@ class DoctypeProcessor:
         self.doctypes_data = doctypes_data
         self.processed_doctypes: Set[str] = set()
     
-    def process_doctype(self, doctype_name: str, 
-                       fieldname_data: str = "",
-                       is_root: bool = False) -> Optional[Entity]:
+    def process_doctype(self, 
+                        doctype_name: str, 
+                        fieldname_data: str = "",
+                        is_root: bool = False) -> Optional[Entity]:
         """Process a single doctype and return its entity"""
         if doctype_name in self.processed_doctypes:
             return None
@@ -560,8 +592,12 @@ class FileManager:
 def main():
     """Main entry point"""
     try:
+
+        processor = get_doctypes.DoctypeProcessor()
+        all_doctypes = processor.process_doctypes()
+
         # Load data
-        all_doctypes = FileManager.load_json("output/all_doctypes.json")
+        # all_doctypes = FileManager.load_json("output/all_doctypes.json")
         
         # Build tree
         builder = HierarchicalTreeBuilder()

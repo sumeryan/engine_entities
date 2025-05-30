@@ -8,14 +8,14 @@ def get_specific_mapping():
         {"child": "Contract Adjustment", "parent": "Contract"},
         #{"child": "Contract Adjustment Data", "parent": "Contract Adjustment"},
         {"child": "Contract Item", "parent": "Contract"},
-        {"child": "Contract Measurement", "parent": "Contract"},
+        {"child": "Contract Measurement", "parent": "Contract","filters":[{"medicaovigente":"sim"}]},
         #{"child": "Contract Measurement Asset", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement City", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement FTD", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement Retention", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement SAP Order", "parent": "Contract Measurement"},
         #{"child": "Contract Measurement Work Role", "parent": "Contract Measurement"},
-        {"child": "Contract Measurement Record", "parent": "Contract"},
+        {"child": "Contract Measurement Record", "parent": "Contract","filters":[{"medicaovigente":"sim"}]},
         #{"child": "Contract Measurement Record Asset", "parent": "Contract Measurement Record"},
         #{"child": "Contract Measurement Record Material", "parent": "Contract Measurement Record"},
         #{"child": "Contract Measurement Record Time", "parent": "Contract Measurement Record"},
@@ -71,9 +71,12 @@ def get_main_data():
                 },
                 {   "doctype": "Contract Measurement", 
                     "key": "contrato",
-                    "childs": [
-                        {"doctype": "Contract Measurement Record", "key": "boletimmedicao"}
-                    ]
+                    "filters": [{"field":"medicaovigente", "value": "Sim"}]
+                },
+                {
+                    "doctype": "Contract Measurement Record", 
+                    "key": "contrato",
+                    "filters": [{"field":"medicaovigente", "value": "Sim"}]
                 }
             ]
         }

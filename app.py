@@ -111,7 +111,8 @@ def _generate_entity_structure():
 
     processor = get_doctypes.DoctypeProcessor()   
     # Get formula data
-    processor.get_formula_data()    
+    processor.get_formula_data()
+    
     # Get hierarchical structure
     struct = processor.get_hierarchical_structure()
         
@@ -124,7 +125,7 @@ def _generate_entity_structure():
 def index():
     return render_template('index.html')
 
-@app.route('/get_generated_json')
+@app.route('/api/get_generated_json')
 def get_generated_json():
     global generated_json_data
     if generated_json_data:
@@ -164,25 +165,25 @@ def api_generate_entity_structure():
         traceback.print_exc()
         return jsonify({'error': 'Internal error.'}), 500
 
-@app.route('/hierarchy', methods=['GET'])
+@app.route('/api/hierarchy', methods=['GET'])
 def get_hierarchy():
     processor = get_doctypes.DoctypeProcessor()   
     hierarchical = processor.get_hierarchical_structure()
     return jsonify(hierarchical)
 
-@app.route('/contracts', methods=['GET'])
+@app.route('/api/contracts', methods=['GET'])
 def get_contracts():
     processor = get_doctypes.DoctypeProcessor()   
     keys = processor.get_keys('Contract')
     return jsonify(keys)
 
-@app.route('/formulas', methods=['GET'])
+@app.route('/api/formulas', methods=['GET'])
 def get_formulas():
     processor = get_doctypes.DoctypeProcessor()   
     formulas = processor.get_formula_data()
     return jsonify(formulas)
 
-@app.route('/treedata', methods=['GET'])
+@app.route('/api/treedata', methods=['GET'])
 def get_tree_data():
     contract = request.args.get('contract')
     if not contract:

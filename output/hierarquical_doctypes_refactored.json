@@ -7,6 +7,7 @@
         "type": "doctype",
         "path": "ativo",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -16,6 +17,7 @@
                 "type": "key",
                 "path": "ativo.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -26,6 +28,7 @@
                 "type": "string",
                 "path": "ativo.nome_do_ativo",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -36,6 +39,7 @@
                 "type": "doctype",
                 "path": "ativo.operador",
                 "dragandrop": false,
+                "icon": "text",
                 "children": [
                     {
                         "key": "chave",
@@ -45,6 +49,7 @@
                         "type": "key",
                         "path": "ativo.operador.chave_do_registro",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -55,6 +60,7 @@
                         "type": "string",
                         "path": "ativo.operador.operador_motorista",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -65,6 +71,7 @@
                         "type": "numeric",
                         "path": "ativo.operador.quantidade",
                         "dragandrop": true,
+                        "icon": "integer",
                         "children": []
                     }
                 ]
@@ -79,6 +86,7 @@
         "type": "doctype",
         "path": "categoria",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -88,6 +96,7 @@
                 "type": "key",
                 "path": "categoria.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -98,6 +107,7 @@
                 "type": "string",
                 "path": "categoria.descricao",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             }
         ]
@@ -110,6 +120,7 @@
         "type": "doctype",
         "path": "cidade",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -119,6 +130,7 @@
                 "type": "key",
                 "path": "cidade.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -129,6 +141,7 @@
                 "type": "string",
                 "path": "cidade.uf",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -139,6 +152,7 @@
                 "type": "string",
                 "path": "cidade.municipio",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             }
         ]
@@ -151,6 +165,7 @@
         "type": "doctype",
         "path": "contrato",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -160,6 +175,7 @@
                 "type": "key",
                 "path": "contrato.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -170,6 +186,7 @@
                 "type": "string",
                 "path": "contrato.no_do_contrato",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -180,6 +197,7 @@
                 "type": "string",
                 "path": "contrato.contratada",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -190,6 +208,7 @@
                 "type": "date",
                 "path": "contrato.data_inicial_do_contrato",
                 "dragandrop": true,
+                "icon": "calendar",
                 "children": []
             },
             {
@@ -200,6 +219,7 @@
                 "type": "date",
                 "path": "contrato.data_final_do_contrato",
                 "dragandrop": true,
+                "icon": "calendar",
                 "children": []
             },
             {
@@ -210,6 +230,7 @@
                 "type": "string",
                 "path": "contrato.subsidiaria",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -220,6 +241,7 @@
                 "type": "string",
                 "path": "contrato.responsavel",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -230,6 +252,7 @@
                 "type": "string",
                 "path": "contrato.obra",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -240,6 +263,7 @@
                 "type": "text",
                 "path": "contrato.objeto",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -250,6 +274,7 @@
                 "type": "numeric",
                 "path": "contrato.valor_total_do_contrato",
                 "dragandrop": true,
+                "icon": "money",
                 "children": []
             },
             {
@@ -260,6 +285,7 @@
                 "type": "string",
                 "path": "contrato.vertical",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -270,6 +296,7 @@
                 "type": "string",
                 "path": "contrato.categoria",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -280,6 +307,7 @@
                 "type": "date",
                 "path": "contrato.inicio_dos_servicos_conf_contrato",
                 "dragandrop": true,
+                "icon": "calendar",
                 "children": []
             },
             {
@@ -290,6 +318,7 @@
                 "type": "date",
                 "path": "contrato.inicio_real_dos_servicos",
                 "dragandrop": true,
+                "icon": "calendar",
                 "children": []
             },
             {
@@ -300,6 +329,7 @@
                 "type": "date",
                 "path": "contrato.termino_servicos_conf_contrato",
                 "dragandrop": true,
+                "icon": "calendar",
                 "children": []
             },
             {
@@ -310,6 +340,7 @@
                 "type": "date",
                 "path": "contrato.termino_previsto_dos_servicos",
                 "dragandrop": true,
+                "icon": "calendar",
                 "children": []
             },
             {
@@ -320,6 +351,7 @@
                 "type": "numeric",
                 "path": "contrato.percentual_reidi",
                 "dragandrop": true,
+                "icon": "number",
                 "children": []
             },
             {
@@ -330,6 +362,7 @@
                 "type": "boolean",
                 "path": "contrato.medicao_mes_cheio",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -340,6 +373,7 @@
                 "type": "numeric",
                 "path": "contrato.dia_inicial",
                 "dragandrop": true,
+                "icon": "integer",
                 "children": []
             },
             {
@@ -350,6 +384,7 @@
                 "type": "numeric",
                 "path": "contrato.dia_final",
                 "dragandrop": true,
+                "icon": "integer",
                 "children": []
             },
             {
@@ -360,6 +395,7 @@
                 "type": "numeric",
                 "path": "contrato.percentual",
                 "dragandrop": true,
+                "icon": "number",
                 "children": []
             },
             {
@@ -370,6 +406,7 @@
                 "type": "string",
                 "path": "contrato.descricao_da_regra_do_caucao",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -380,6 +417,7 @@
                 "type": "datetime",
                 "path": "contrato.contrato_encerrado_em",
                 "dragandrop": true,
+                "icon": "calendar",
                 "children": []
             },
             {
@@ -390,6 +428,7 @@
                 "type": "string",
                 "path": "contrato.grupo",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -400,6 +439,7 @@
                 "type": "string",
                 "path": "contrato.chave",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -410,6 +450,7 @@
                 "type": "doctype",
                 "path": "contrato.reajuste_de_contrato",
                 "dragandrop": false,
+                "icon": "text",
                 "children": [
                     {
                         "key": "chave",
@@ -419,6 +460,7 @@
                         "type": "key",
                         "path": "contrato.reajuste_de_contrato.chave_do_registro",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -429,6 +471,7 @@
                         "type": "string",
                         "path": "contrato.reajuste_de_contrato.no_do_contrato",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -439,6 +482,7 @@
                         "type": "string",
                         "path": "contrato.reajuste_de_contrato.contratada",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -449,6 +493,7 @@
                         "type": "date",
                         "path": "contrato.reajuste_de_contrato.data_inicial_do_contrato",
                         "dragandrop": true,
+                        "icon": "calendar",
                         "children": []
                     },
                     {
@@ -459,6 +504,7 @@
                         "type": "date",
                         "path": "contrato.reajuste_de_contrato.data_final_do_contrato",
                         "dragandrop": true,
+                        "icon": "calendar",
                         "children": []
                     },
                     {
@@ -469,6 +515,7 @@
                         "type": "string",
                         "path": "contrato.reajuste_de_contrato.obra",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -479,6 +526,7 @@
                         "type": "doctype",
                         "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -488,6 +536,7 @@
                                 "type": "key",
                                 "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -498,6 +547,7 @@
                                 "type": "date",
                                 "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.data_de_reajuste",
                                 "dragandrop": true,
+                                "icon": "calendar",
                                 "children": []
                             },
                             {
@@ -508,6 +558,7 @@
                                 "type": "string",
                                 "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.item_do_contrato",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -518,6 +569,7 @@
                                 "type": "numeric",
                                 "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.indice_de_reajuste",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -528,6 +580,7 @@
                                 "type": "numeric",
                                 "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.saldo_do_item_do_contrato",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -538,6 +591,7 @@
                                 "type": "numeric",
                                 "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.valor_do_reajuste",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -552,6 +606,7 @@
                 "type": "doctype",
                 "path": "contrato.item_de_contrato",
                 "dragandrop": false,
+                "icon": "text",
                 "children": [
                     {
                         "key": "chave",
@@ -561,6 +616,7 @@
                         "type": "key",
                         "path": "contrato.item_de_contrato.chave_do_registro",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -571,6 +627,7 @@
                         "type": "boolean",
                         "path": "contrato.item_de_contrato.is_group",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -581,6 +638,7 @@
                         "type": "string",
                         "path": "contrato.item_de_contrato.item",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -591,6 +649,7 @@
                         "type": "string",
                         "path": "contrato.item_de_contrato.codigo",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -601,6 +660,7 @@
                         "type": "string",
                         "path": "contrato.item_de_contrato.descricao",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -611,6 +671,7 @@
                         "type": "numeric",
                         "path": "contrato.item_de_contrato.quantidade",
                         "dragandrop": true,
+                        "icon": "number",
                         "children": []
                     },
                     {
@@ -621,6 +682,7 @@
                         "type": "numeric",
                         "path": "contrato.item_de_contrato.valor_unitario",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -631,6 +693,7 @@
                         "type": "numeric",
                         "path": "contrato.item_de_contrato.valor_total_vigente",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -641,6 +704,7 @@
                         "type": "numeric",
                         "path": "contrato.item_de_contrato.saldo_atual",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -651,6 +715,7 @@
                         "type": "string",
                         "path": "contrato.item_de_contrato.no_do_contrato",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -661,6 +726,7 @@
                         "type": "string",
                         "path": "contrato.item_de_contrato.unidade",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -671,6 +737,7 @@
                         "type": "string",
                         "path": "contrato.item_de_contrato.tipo",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -681,6 +748,7 @@
                         "type": "doctype",
                         "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -690,6 +758,7 @@
                                 "type": "key",
                                 "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -700,6 +769,7 @@
                                 "type": "string",
                                 "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato.no_do_pedido_sap",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -710,6 +780,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato.valor_total",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -722,6 +793,7 @@
                         "type": "doctype",
                         "path": "contrato.item_de_contrato.cidade_item_de_contrato",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -731,6 +803,7 @@
                                 "type": "key",
                                 "path": "contrato.item_de_contrato.cidade_item_de_contrato.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -741,6 +814,7 @@
                                 "type": "string",
                                 "path": "contrato.item_de_contrato.cidade_item_de_contrato.cidade",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -751,6 +825,7 @@
                                 "type": "string",
                                 "path": "contrato.item_de_contrato.cidade_item_de_contrato.iss",
                                 "dragandrop": true,
+                                "icon": "text",
                                 "children": []
                             },
                             {
@@ -761,6 +836,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.cidade_item_de_contrato.participacao",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -771,6 +847,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.cidade_item_de_contrato.km_inicial",
                                 "dragandrop": true,
+                                "icon": "integer",
                                 "children": []
                             },
                             {
@@ -781,6 +858,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.cidade_item_de_contrato.km_final",
                                 "dragandrop": true,
+                                "icon": "integer",
                                 "children": []
                             }
                         ]
@@ -793,6 +871,7 @@
                         "type": "doctype",
                         "path": "contrato.item_de_contrato.funcao_item_de_contrato",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -802,6 +881,7 @@
                                 "type": "key",
                                 "path": "contrato.item_de_contrato.funcao_item_de_contrato.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -812,6 +892,7 @@
                                 "type": "string",
                                 "path": "contrato.item_de_contrato.funcao_item_de_contrato.funcao",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -822,6 +903,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.funcao_item_de_contrato.quantidade",
                                 "dragandrop": true,
+                                "icon": "integer",
                                 "children": []
                             },
                             {
@@ -832,6 +914,7 @@
                                 "type": "boolean",
                                 "path": "contrato.item_de_contrato.funcao_item_de_contrato.pagamento_por_hora",
                                 "dragandrop": true,
+                                "icon": "text",
                                 "children": []
                             },
                             {
@@ -842,6 +925,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.funcao_item_de_contrato.valor_por_hora",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -852,6 +936,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.funcao_item_de_contrato.valor_total_mensal",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -864,6 +949,7 @@
                         "type": "doctype",
                         "path": "contrato.item_de_contrato.ativo_item_de_contrato",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -873,6 +959,7 @@
                                 "type": "key",
                                 "path": "contrato.item_de_contrato.ativo_item_de_contrato.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -883,6 +970,7 @@
                                 "type": "string",
                                 "path": "contrato.item_de_contrato.ativo_item_de_contrato.maquina_equipamento_ou_veiculos",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -893,6 +981,7 @@
                                 "type": "string",
                                 "path": "contrato.item_de_contrato.ativo_item_de_contrato.descricao",
                                 "dragandrop": true,
+                                "icon": "text",
                                 "children": []
                             },
                             {
@@ -903,6 +992,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.ativo_item_de_contrato.quantidade",
                                 "dragandrop": true,
+                                "icon": "integer",
                                 "children": []
                             },
                             {
@@ -913,6 +1003,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.ativo_item_de_contrato.valor_mensal",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -925,6 +1016,7 @@
                         "type": "doctype",
                         "path": "contrato.item_de_contrato.rodovia_item_de_contrato",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -934,6 +1026,7 @@
                                 "type": "key",
                                 "path": "contrato.item_de_contrato.rodovia_item_de_contrato.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -944,6 +1037,7 @@
                                 "type": "string",
                                 "path": "contrato.item_de_contrato.rodovia_item_de_contrato.rodovia",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -954,6 +1048,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.rodovia_item_de_contrato.km_inicial",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -964,6 +1059,7 @@
                                 "type": "numeric",
                                 "path": "contrato.item_de_contrato.rodovia_item_de_contrato.km_final",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             }
                         ]
@@ -978,6 +1074,7 @@
                 "type": "doctype",
                 "path": "contrato.medicao_de_contrato_bm",
                 "dragandrop": false,
+                "icon": "text",
                 "children": [
                     {
                         "key": "chave",
@@ -987,6 +1084,7 @@
                         "type": "key",
                         "path": "contrato.medicao_de_contrato_bm.chave_do_registro",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -997,6 +1095,7 @@
                         "type": "string",
                         "path": "contrato.medicao_de_contrato_bm.no_do_contrato",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -1007,6 +1106,7 @@
                         "type": "string",
                         "path": "contrato.medicao_de_contrato_bm.contratada",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -1017,6 +1117,7 @@
                         "type": "date",
                         "path": "contrato.medicao_de_contrato_bm.data_inicial_medicao",
                         "dragandrop": true,
+                        "icon": "calendar",
                         "children": []
                     },
                     {
@@ -1027,6 +1128,7 @@
                         "type": "date",
                         "path": "contrato.medicao_de_contrato_bm.data_final_medicao",
                         "dragandrop": true,
+                        "icon": "calendar",
                         "children": []
                     },
                     {
@@ -1037,6 +1139,7 @@
                         "type": "select",
                         "path": "contrato.medicao_de_contrato_bm.medicao_vigente",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -1047,6 +1150,7 @@
                         "type": "string",
                         "path": "contrato.medicao_de_contrato_bm.data_inicial_do_contrato",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -1057,6 +1161,7 @@
                         "type": "string",
                         "path": "contrato.medicao_de_contrato_bm.data_final_do_contrato",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -1067,6 +1172,7 @@
                         "type": "string",
                         "path": "contrato.medicao_de_contrato_bm.obra",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -1077,6 +1183,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.valor_do_contrato",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1087,6 +1194,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.medicao_atual_a",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1097,6 +1205,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.faturamento_direto_ftd_na_fase_atual",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1107,6 +1216,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.medicao_atual_com_desconto_de_ftd_b",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1117,6 +1227,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.desconto_do_reidi_c_3_65_b",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1127,6 +1238,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.medicao_liquida_do_reidi_vl_bruto_nf_d_b_c",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1137,6 +1249,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.medicao_equivalente_liquida_do_reidi_f_a_e",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1147,6 +1260,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.caucao_contratual_g_5_f",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1157,6 +1271,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.valor_total_vigente",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1167,6 +1282,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.faturamento_direto_ftd_acumulado",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1177,6 +1293,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.valor_total_vigente_com_desconto_de_ftd",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1187,6 +1304,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.medicao_acumulada_atual",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1197,6 +1315,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.saldo_contratual_r",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1207,6 +1326,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.saldo_contratual",
                         "dragandrop": true,
+                        "icon": "number",
                         "children": []
                     },
                     {
@@ -1217,6 +1337,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.caucao_atual",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1227,6 +1348,7 @@
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.caucao_acumulado",
                         "dragandrop": true,
+                        "icon": "money",
                         "children": []
                     },
                     {
@@ -1237,6 +1359,7 @@
                         "type": "string",
                         "path": "contrato.medicao_de_contrato_bm.imprimir",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -1247,6 +1370,7 @@
                         "type": "doctype",
                         "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -1256,6 +1380,7 @@
                                 "type": "key",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1266,6 +1391,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.pedido_sap",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1276,6 +1402,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.linha_pedido",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1286,6 +1413,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.valor_total_vigente",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1296,6 +1424,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_ant",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1306,6 +1435,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_atual",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1316,6 +1446,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_atual",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1326,6 +1457,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_anterior",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1336,6 +1468,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_atual",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1346,6 +1479,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_atual",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -1358,6 +1492,7 @@
                         "type": "doctype",
                         "path": "contrato.medicao_de_contrato_bm.ftd_de_bm",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -1367,6 +1502,7 @@
                                 "type": "key",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1377,6 +1513,7 @@
                                 "type": "date",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.desconto_em_informe_o_primeiro_dia_do_mes_de_desconto",
                                 "dragandrop": true,
+                                "icon": "calendar",
                                 "children": []
                             },
                             {
@@ -1387,6 +1524,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.no_pedido_sap",
                                 "dragandrop": true,
+                                "icon": "text",
                                 "children": []
                             },
                             {
@@ -1397,6 +1535,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.nf_no",
                                 "dragandrop": true,
+                                "icon": "text",
                                 "children": []
                             },
                             {
@@ -1407,6 +1546,7 @@
                                 "type": "date",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.data_emissao",
                                 "dragandrop": true,
+                                "icon": "calendar",
                                 "children": []
                             },
                             {
@@ -1417,6 +1557,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.fornecedor",
                                 "dragandrop": true,
+                                "icon": "text",
                                 "children": []
                             },
                             {
@@ -1427,6 +1568,7 @@
                                 "type": "text",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.material_ou_projeto",
                                 "dragandrop": true,
+                                "icon": "text",
                                 "children": []
                             },
                             {
@@ -1437,6 +1579,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.quantidade",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1447,6 +1590,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.unidade",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1457,6 +1601,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.valor_total_da_nota_fiscal",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1467,6 +1612,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.linha_sap",
                                 "dragandrop": true,
+                                "icon": "integer",
                                 "children": []
                             },
                             {
@@ -1477,6 +1623,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.elemento_pep",
                                 "dragandrop": true,
+                                "icon": "text",
                                 "children": []
                             }
                         ]
@@ -1489,6 +1636,7 @@
                         "type": "doctype",
                         "path": "contrato.medicao_de_contrato_bm.cidade_bm",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -1498,6 +1646,7 @@
                                 "type": "key",
                                 "path": "contrato.medicao_de_contrato_bm.cidade_bm.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1508,6 +1657,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.cidade_bm.pedido_sap",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1518,6 +1668,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.cidade_bm.municipio",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1528,6 +1679,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.cidade_bm.valor_total",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1538,6 +1690,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.cidade_bm.iss",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -1550,6 +1703,7 @@
                         "type": "doctype",
                         "path": "contrato.medicao_de_contrato_bm.funcao_bm",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -1559,6 +1713,7 @@
                                 "type": "key",
                                 "path": "contrato.medicao_de_contrato_bm.funcao_bm.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1569,6 +1724,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.funcao_bm.item",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1579,6 +1735,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.funcao_bm.funcao",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1589,6 +1746,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.funcao_bm.quantidade_medida",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1599,6 +1757,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.funcao_bm.valor_medido",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -1611,6 +1770,7 @@
                         "type": "doctype",
                         "path": "contrato.medicao_de_contrato_bm.ativo_bm",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -1620,6 +1780,7 @@
                                 "type": "key",
                                 "path": "contrato.medicao_de_contrato_bm.ativo_bm.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1630,6 +1791,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.ativo_bm.item",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1640,6 +1802,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.ativo_bm.maquina_equipamento_ou_ferramenta",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1650,6 +1813,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.ativo_bm.quantidade_medida",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1660,6 +1824,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.ativo_bm.valor_medido",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -1672,6 +1837,7 @@
                         "type": "doctype",
                         "path": "contrato.medicao_de_contrato_bm.contract_measurement_item",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -1681,6 +1847,7 @@
                                 "type": "key",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1691,6 +1858,7 @@
                                 "type": "string",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.item",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1701,6 +1869,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_vigente",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1711,6 +1880,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_total_vigente",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1721,6 +1891,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_anterior",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1731,6 +1902,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_medida",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1741,6 +1913,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_acumulada",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1751,6 +1924,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_medido",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1761,6 +1935,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_acumulado",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1771,6 +1946,7 @@
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_atual",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -1785,6 +1961,7 @@
                 "type": "doctype",
                 "path": "contrato.registro_de_medicao_de_contrato",
                 "dragandrop": false,
+                "icon": "text",
                 "children": [
                     {
                         "key": "chave",
@@ -1794,6 +1971,7 @@
                         "type": "key",
                         "path": "contrato.registro_de_medicao_de_contrato.chave_do_registro",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -1804,6 +1982,7 @@
                         "type": "date",
                         "path": "contrato.registro_de_medicao_de_contrato.data_inicial",
                         "dragandrop": true,
+                        "icon": "calendar",
                         "children": []
                     },
                     {
@@ -1814,6 +1993,7 @@
                         "type": "date",
                         "path": "contrato.registro_de_medicao_de_contrato.data_final",
                         "dragandrop": true,
+                        "icon": "calendar",
                         "children": []
                     },
                     {
@@ -1824,6 +2004,7 @@
                         "type": "string",
                         "path": "contrato.registro_de_medicao_de_contrato.contrato",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -1834,6 +2015,7 @@
                         "type": "string",
                         "path": "contrato.registro_de_medicao_de_contrato.boletim_de_medicao",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -1844,6 +2026,7 @@
                         "type": "string",
                         "path": "contrato.registro_de_medicao_de_contrato.rodovia",
                         "dragandrop": true,
+                        "icon": "key",
                         "children": []
                     },
                     {
@@ -1854,6 +2037,7 @@
                         "type": "numeric",
                         "path": "contrato.registro_de_medicao_de_contrato.km_inicial",
                         "dragandrop": true,
+                        "icon": "number",
                         "children": []
                     },
                     {
@@ -1864,6 +2048,7 @@
                         "type": "numeric",
                         "path": "contrato.registro_de_medicao_de_contrato.km_final",
                         "dragandrop": true,
+                        "icon": "number",
                         "children": []
                     },
                     {
@@ -1874,6 +2059,7 @@
                         "type": "select",
                         "path": "contrato.registro_de_medicao_de_contrato.origem",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -1884,6 +2070,7 @@
                         "type": "string",
                         "path": "contrato.registro_de_medicao_de_contrato.aprovador",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -1894,6 +2081,7 @@
                         "type": "select",
                         "path": "contrato.registro_de_medicao_de_contrato.medicao_vigente",
                         "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -1904,6 +2092,7 @@
                         "type": "doctype",
                         "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -1913,6 +2102,7 @@
                                 "type": "key",
                                 "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1923,6 +2113,7 @@
                                 "type": "string",
                                 "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.item",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1933,6 +2124,7 @@
                                 "type": "string",
                                 "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.funcao",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1943,6 +2135,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.quantidade_medida",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -1953,6 +2146,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.valor_total",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -1963,6 +2157,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.valor_calculado",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -1975,6 +2170,7 @@
                         "type": "doctype",
                         "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -1984,6 +2180,7 @@
                                 "type": "key",
                                 "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -1994,6 +2191,7 @@
                                 "type": "string",
                                 "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.item",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -2004,6 +2202,7 @@
                                 "type": "string",
                                 "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.maquina_equipamento_ou_ferramenta",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -2014,6 +2213,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.quantidade_medida",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -2024,6 +2224,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.valor_total",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -2034,6 +2235,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.valor_calculado",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -2046,6 +2248,7 @@
                         "type": "doctype",
                         "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -2055,6 +2258,7 @@
                                 "type": "key",
                                 "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -2065,6 +2269,7 @@
                                 "type": "string",
                                 "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.item",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -2075,6 +2280,7 @@
                                 "type": "string",
                                 "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.material",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -2085,6 +2291,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.quantidade",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -2095,6 +2302,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.valor_total",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             },
                             {
@@ -2105,6 +2313,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.valor_calculado",
                                 "dragandrop": true,
+                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -2117,6 +2326,7 @@
                         "type": "doctype",
                         "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm",
                         "dragandrop": false,
+                        "icon": "text",
                         "children": [
                             {
                                 "key": "chave",
@@ -2126,6 +2336,7 @@
                                 "type": "key",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.chave_do_registro",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -2136,6 +2347,7 @@
                                 "type": "string",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.item",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -2146,6 +2358,7 @@
                                 "type": "string",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.funcao",
                                 "dragandrop": true,
+                                "icon": "key",
                                 "children": []
                             },
                             {
@@ -2156,6 +2369,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.quantidade",
                                 "dragandrop": true,
+                                "icon": "integer",
                                 "children": []
                             },
                             {
@@ -2166,6 +2380,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.hora_normal_dias_uteis",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -2176,6 +2391,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.hora_normal_desc_e_acres",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -2186,6 +2402,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.compensacoes",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -2196,6 +2413,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.hora_extra_60_sab_e_dias_uteis",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -2206,6 +2424,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.hora_extra_100_dom_e_feriados",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -2216,6 +2435,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.quantidade_equivalente",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             },
                             {
@@ -2226,6 +2446,7 @@
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.valor_total",
                                 "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             }
                         ]
@@ -2242,6 +2463,7 @@
         "type": "doctype",
         "path": "contract_item_type",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -2251,6 +2473,7 @@
                 "type": "key",
                 "path": "contract_item_type.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -2261,6 +2484,7 @@
                 "type": "string",
                 "path": "contract_item_type.tipo",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2271,6 +2495,7 @@
                 "type": "string",
                 "path": "contract_item_type.tipo",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2281,6 +2506,7 @@
                 "type": "string",
                 "path": "contract_item_type.descricao",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2291,6 +2517,7 @@
                 "type": "string",
                 "path": "contract_item_type.tipo_do_item",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             }
         ]
@@ -2303,6 +2530,7 @@
         "type": "doctype",
         "path": "empresa_contratada",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -2312,6 +2540,7 @@
                 "type": "key",
                 "path": "empresa_contratada.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -2322,6 +2551,7 @@
                 "type": "string",
                 "path": "empresa_contratada.nome",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2332,6 +2562,7 @@
                 "type": "string",
                 "path": "empresa_contratada.razao_social",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2342,6 +2573,7 @@
                 "type": "string",
                 "path": "empresa_contratada.cnpj",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2352,6 +2584,7 @@
                 "type": "text",
                 "path": "empresa_contratada.endereco",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             }
         ]
@@ -2364,6 +2597,7 @@
         "type": "doctype",
         "path": "periodo_de_medicao",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -2373,6 +2607,7 @@
                 "type": "key",
                 "path": "periodo_de_medicao.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -2383,6 +2618,7 @@
                 "type": "string",
                 "path": "periodo_de_medicao.descricao",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2393,6 +2629,7 @@
                 "type": "boolean",
                 "path": "periodo_de_medicao.fechamento_mensal",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2403,6 +2640,7 @@
                 "type": "numeric",
                 "path": "periodo_de_medicao.dia_inicial",
                 "dragandrop": true,
+                "icon": "integer",
                 "children": []
             },
             {
@@ -2413,6 +2651,7 @@
                 "type": "numeric",
                 "path": "periodo_de_medicao.dia_final",
                 "dragandrop": true,
+                "icon": "integer",
                 "children": []
             }
         ]
@@ -2425,6 +2664,7 @@
         "type": "doctype",
         "path": "rodovia",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -2434,6 +2674,7 @@
                 "type": "key",
                 "path": "rodovia.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -2444,6 +2685,7 @@
                 "type": "string",
                 "path": "rodovia.sigla_a",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2454,6 +2696,7 @@
                 "type": "string",
                 "path": "rodovia.nome",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             }
         ]
@@ -2466,6 +2709,7 @@
         "type": "doctype",
         "path": "feriado",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -2475,6 +2719,7 @@
                 "type": "key",
                 "path": "feriado.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -2485,6 +2730,7 @@
                 "type": "date",
                 "path": "feriado.data",
                 "dragandrop": true,
+                "icon": "calendar",
                 "children": []
             },
             {
@@ -2495,6 +2741,7 @@
                 "type": "string",
                 "path": "feriado.descricao",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2505,6 +2752,7 @@
                 "type": "string",
                 "path": "feriado.cidade_apenas_para_feriados_municipais",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             }
         ]
@@ -2517,6 +2765,7 @@
         "type": "doctype",
         "path": "item",
         "dragandrop": false,
+        "icon": "text",
         "children": [
             {
                 "key": "chave",
@@ -2526,6 +2775,7 @@
                 "type": "key",
                 "path": "item.chave_do_registro",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -2536,6 +2786,7 @@
                 "type": "string",
                 "path": "item.codigo",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2546,6 +2797,7 @@
                 "type": "string",
                 "path": "item.descricao",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -2556,6 +2808,7 @@
                 "type": "string",
                 "path": "item.grupo",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -2566,6 +2819,7 @@
                 "type": "string",
                 "path": "item.sub_grupo",
                 "dragandrop": true,
+                "icon": "key",
                 "children": []
             },
             {
@@ -2576,6 +2830,7 @@
                 "type": "text",
                 "path": "item.observacoes",
                 "dragandrop": true,
+                "icon": "text",
                 "children": []
             }
         ]

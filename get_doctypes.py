@@ -38,35 +38,13 @@ class Field:
     hidden: Optional[bool] = None
     parent: Optional[str] = None
     creation: Optional[str] = None
-    icon: Optional[str] = None
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Field':
         """Create Field from dictionary"""
-
-        # Map fieldtype to icon using a dictionary for elegance and maintainability
-        icon_map = {
-            "Link": "key",
-            "Float": "number",
-            "Currency": "money",
-            "Int": "integer",
-            "Data": "text",
-            "Select": "text",
-            "Date": "calendar",
-            "Datetime": "calendar",
-        }
-        icon = icon_map.get(data.get("fieldtype"))
-        if not icon:
-            icon = "text"  # Default icon if no match found
-
-        if data.get("fieldname", ""):
-            if data.get("fieldname", "") == "name":
-                icon = "key"
-            if data.get("fieldname", "") == "chave":
-                icon = "key"
         
         # Special handling for Table fields
-        data["fieldtype"] = "Table"
+        # data["fieldtype"] = "Table"
         data["options"] = data.get("options", "")
         return cls(
             fieldname=data.get("fieldname", ""),
@@ -76,7 +54,6 @@ class Field:
             hidden=data.get("hidden"),
             parent=data.get("parent"),
             creation=data.get("creation")
-
         )
 
     def to_dict(self) -> Dict[str, Any]:
@@ -409,6 +386,32 @@ class DoctypeProcessor:
         
         return doctype_data
         
+    def get_hierarchical_structure(self) -> List[Dict]:
+        """Retrieve and save all doctype data"""
+        logger.info("Starting data retrieval...")
+        
+        # Get doctype structure
+        all_doctypes = self.process_doctypes()
+        
+        # # Get main data configuration
+        # main_doctypes = mappings.get_main_data()
+        
+        # # Enrich main doctypes with field information
+        # for main in main_doctypes:
+        #     main["doctype_with_fields"] = all_doctypes["all_doctypes"].pop(main["doctype"], [])
+            
+        #     for child in main.get("childs", []):
+        #         child["doctype_with_fields"] = all_doctypes["all_doctypes"].pop(child["doctype"], [])
+        
+        # Get hierarchical structure
+        hierarchical = self.hierarchical_tree.build_tree(all_doctypes)
+
+        # Apply icons to hierarchical structure
+        # for r in hierarchical:
+        #     r["icon"] == self.apply_icon(r)
+        
+        return hierarchical
+    
     def get_data(self, main_id: Optional[str] = None) -> List[Dict]:
         """Retrieve and save all doctype data"""
         logger.info("Starting data retrieval...")
@@ -454,10 +457,13 @@ class DoctypeProcessor:
                 self.data_manager.create_directory(key_dir)
                 
                 for child in main.get("childs", []):
-                    child_filter = f'[["{child["key"]}","=","{key}"]]'
+                    child_filter = f'["{child["key"]}","=","{key}"]'
+                    if "filters" in child:
+                        for filter in child["filters"]:
+                            child_filter += f',["{filter["field"]}","=","{filter["value"]}"]'
                     child_data, _ = self.data_retriever.get_doctype_data(
                         child["doctype"], 
-                        child_filter
+                        f'[{child_filter}]'
                     )
                     all_doctype_data.append({child["doctype"]: child_data})
                     
