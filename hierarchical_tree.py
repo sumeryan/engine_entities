@@ -598,6 +598,7 @@ def main():
 
         # Load data
         # all_doctypes = FileManager.load_json("output/all_doctypes.json")
+        # teste
         
         # Build tree
         builder = HierarchicalTreeBuilder()
