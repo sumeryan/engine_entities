@@ -485,10 +485,11 @@ class DataTraverser:
                     # Check if this field's path is required
                     field_path = node.get("path", "")
                     
-                    # Include field if: no analyzer, or field path is in required paths, or it's a key field
+                    # Include field if: no analyzer, or field path is in required paths
                     if (not self.path_analyzer or 
-                        self.path_analyzer.is_path_required(field_path) or 
-                        node.get("type") == "key"):
+                        self.path_analyzer.is_path_required(field_path)):                        
+                        # self.path_analyzer.is_path_required(field_path) or 
+                        # node.get("type") == "key"):
                         
                         value = data.get(field_name, None)
                         field_data = FieldData(
@@ -532,10 +533,11 @@ class DataTraverser:
                     field_name = node.get("fieldname", "")
                     field_path = node.get("path", "")
                     
-                    # Include field if: no analyzer, or field path is in required paths, or it's a key field
+                    # Include field if: no analyzer, or field path is in required paths
                     if (not self.path_analyzer or 
-                        self.path_analyzer.is_path_required(field_path) or 
-                        node.get("type") == "key"):
+                        self.path_analyzer.is_path_required(field_path)):
+                        # self.path_analyzer.is_path_required(field_path) or 
+                        # node.get("type") == "key"):
                         
                         default_value = self.default_provider.get_default(node["type"])
                         field_data = FieldData(
@@ -627,7 +629,8 @@ class EngineDataBuilder:
         """Extract unique paths from formulas"""
         # Padrão regex para encontrar caminhos com qualquer identificador inicial
         # Aceita letras, números, underscore no identificador inicial e nos segmentos do path
-        path_pattern = r'[a-zA-Z_][a-zA-Z0-9_]*\.[a-zA-Z0-9_\.]+[a-zA-Z0-9_]'
+        # path_pattern = r'[a-zA-Z_][a-zA-Z0-9_]*\.[a-zA-Z0-9_\.]+[a-zA-Z0-9_]'
+        path_pattern = r'[a-zA-Z][a-zA-Z0-9_]*\.[a-zA-Z0-9_.]*[a-zA-Z0-9_]+'
         
         formulas = "\n".join([
             item["formula"]                                 # ← o que queremos guardar
@@ -638,6 +641,8 @@ class EngineDataBuilder:
 
         # Encontra todos os caminhos na fórmula
         paths = re.findall(path_pattern, formulas)
+
+        print(paths)
         
         # Remove duplicatas mantendo a ordem
         unique_paths = []
@@ -686,7 +691,7 @@ def main(compact_mode: bool = True):
     try:
         # Load required data
         formulas = FileManager.load_json("data/formula_group.json")
-        doctype_tree = FileManager.load_json("output/hierarquical_doctypes.json")
+        doctype_tree = FileManager.load_json("output/hierarquical_doctypes_refactored.json")
         all_doctype_data = FileManager.load_json("data/all_doctypes.json")
 
         # Build engine data

@@ -40,5 +40,8 @@ def get_translations():
         "Contract_Measurement_FTD": "FTD de BM",
         "Contract_Measurement_Result": "Resultado de Calculo de BM",
         "Contract_Measurement_SAP_Order": "Pedido SAP de BM",
-        "Work_Role": "Função"
+        "Work_Role": "Função",
+        "Contract Measurement Record Rdo": "Medição de Contrato BM Rdo",
+        "Contract Measurement Record Rdo Log": "Medição de Contrato BM Rdo Apontamentos",
+        "Contract Measurement Record Rdo Item": "Recursos"
     }

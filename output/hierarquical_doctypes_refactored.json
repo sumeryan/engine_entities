@@ -741,6 +741,17 @@
                         "children": []
                     },
                     {
+                        "key": "Fator_de_pagamento_%",
+                        "description": "Fator de pagamento %",
+                        "fieldname": "fatorpagamento",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "contrato.item_de_contrato.fator_de_pagamento",
+                        "dragandrop": true,
+                        "icon": "number",
+                        "children": []
+                    },
+                    {
                         "key": "Contract_Item_Order",
                         "description": "Pedido SAP Item de Contrato",
                         "fieldname": "Contract Item Order",
@@ -1088,8 +1099,8 @@
                         "children": []
                     },
                     {
-                        "key": "Nº_do_contrato\"",
-                        "description": "Nº do contrato\"",
+                        "key": "Nº_do_contrato",
+                        "description": "Nº do contrato",
                         "fieldname": "contrato",
                         "fieldname_data": "",
                         "type": "string",
@@ -1132,17 +1143,6 @@
                         "children": []
                     },
                     {
-                        "key": "Medição_vigente",
-                        "description": "Medição vigente",
-                        "fieldname": "medicaovigente",
-                        "fieldname_data": "",
-                        "type": "select",
-                        "path": "contrato.medicao_de_contrato_bm.medicao_vigente",
-                        "dragandrop": true,
-                        "icon": "text",
-                        "children": []
-                    },
-                    {
                         "key": "Data_inicial_do_contrato",
                         "description": "Data inicial do contrato",
                         "fieldname": "data_ejak",
@@ -1182,6 +1182,50 @@
                         "fieldname_data": "",
                         "type": "numeric",
                         "path": "contrato.medicao_de_contrato_bm.valor_do_contrato",
+                        "dragandrop": true,
+                        "icon": "money",
+                        "children": []
+                    },
+                    {
+                        "key": "Medição_vigente",
+                        "description": "Medição vigente",
+                        "fieldname": "medicaovigente",
+                        "fieldname_data": "",
+                        "type": "select",
+                        "path": "contrato.medicao_de_contrato_bm.medicao_vigente",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Medição_acumulada_anterior",
+                        "description": "Medição acumulada anterior",
+                        "fieldname": "medicaoacumuladaanterior",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "contrato.medicao_de_contrato_bm.medicao_acumulada_anterior",
+                        "dragandrop": true,
+                        "icon": "money",
+                        "children": []
+                    },
+                    {
+                        "key": "Caução_acumulado_anterior",
+                        "description": "Caução acumulado anterior",
+                        "fieldname": "caucaoacumuladoanterior",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "contrato.medicao_de_contrato_bm.caucao_acumulado_anterior",
+                        "dragandrop": true,
+                        "icon": "money",
+                        "children": []
+                    },
+                    {
+                        "key": "Faturamento_direto_(FTD)_acumulado_anterior",
+                        "description": "Faturamento direto (FTD) acumulado anterior",
+                        "fieldname": "ftdacumuladoanterior",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "contrato.medicao_de_contrato_bm.faturamento_direto_ftd_acumulado_anterior",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1417,17 +1461,6 @@
                                 "children": []
                             },
                             {
-                                "key": "Medição_acum._ant._(%)",
-                                "description": "Medição acum. ant. (%)",
-                                "fieldname": "medicaoacumantpercentual",
-                                "fieldname_data": "",
-                                "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_ant",
-                                "dragandrop": true,
-                                "icon": "number",
-                                "children": []
-                            },
-                            {
                                 "key": "Medição_atual_(%)",
                                 "description": "Medição atual (%)",
                                 "fieldname": "medicaoatualpercentual",
@@ -1450,17 +1483,6 @@
                                 "children": []
                             },
                             {
-                                "key": "Medição_acum._anterior",
-                                "description": "Medição acum. anterior",
-                                "fieldname": "acumuladoanterior",
-                                "fieldname_data": "",
-                                "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_anterior",
-                                "dragandrop": true,
-                                "icon": "money",
-                                "children": []
-                            },
-                            {
                                 "key": "Medição_atual",
                                 "description": "Medição atual",
                                 "fieldname": "valormedido",
@@ -1478,6 +1500,28 @@
                                 "fieldname_data": "",
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_atual",
+                                "dragandrop": true,
+                                "icon": "money",
+                                "children": []
+                            },
+                            {
+                                "key": "Medição_acum._ant._(%)",
+                                "description": "Medição acum. ant. (%)",
+                                "fieldname": "medicaoacumantpercentual",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_ant",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            },
+                            {
+                                "key": "Medição_acum._anterior",
+                                "description": "Medição acum. anterior",
+                                "fieldname": "acumuladoanterior",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_anterior",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1884,34 +1928,12 @@
                                 "children": []
                             },
                             {
-                                "key": "Saldo_anterior",
-                                "description": "Saldo anterior",
-                                "fieldname": "saldoanterior",
-                                "fieldname_data": "",
-                                "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_anterior",
-                                "dragandrop": true,
-                                "icon": "money",
-                                "children": []
-                            },
-                            {
                                 "key": "Quantidade_medida",
                                 "description": "Quantidade medida",
                                 "fieldname": "quantidademedida",
                                 "fieldname_data": "",
                                 "type": "numeric",
                                 "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_medida",
-                                "dragandrop": true,
-                                "icon": "number",
-                                "children": []
-                            },
-                            {
-                                "key": "Quantidade_acumulada",
-                                "description": "Quantidade acumulada",
-                                "fieldname": "quantidadeacumulada",
-                                "fieldname_data": "",
-                                "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_acumulada",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1928,6 +1950,61 @@
                                 "children": []
                             },
                             {
+                                "key": "Saldo_atual",
+                                "description": "Saldo atual",
+                                "fieldname": "saldoatual",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_atual",
+                                "dragandrop": true,
+                                "icon": "money",
+                                "children": []
+                            },
+                            {
+                                "key": "Saldo_anterior",
+                                "description": "Saldo anterior",
+                                "fieldname": "saldoanterior",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_anterior",
+                                "dragandrop": true,
+                                "icon": "money",
+                                "children": []
+                            },
+                            {
+                                "key": "Valor_total_acumulado_anterior",
+                                "description": "Valor total acumulado anterior",
+                                "fieldname": "valortotalacumuladoanterior",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_acumulado_anterior",
+                                "dragandrop": true,
+                                "icon": "money",
+                                "children": []
+                            },
+                            {
+                                "key": "Quantidade_acumulada_anterior",
+                                "description": "Quantidade acumulada anterior",
+                                "fieldname": "quantidadeacumuladaanterior",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_acumulada_anterior",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            },
+                            {
+                                "key": "Quantidade_acumulada",
+                                "description": "Quantidade acumulada",
+                                "fieldname": "quantidadeacumulada",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_acumulada",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            },
+                            {
                                 "key": "Valor_total_acumulado",
                                 "description": "Valor total acumulado",
                                 "fieldname": "valortotalacumulado",
@@ -1939,12 +2016,23 @@
                                 "children": []
                             },
                             {
-                                "key": "Saldo_atual",
-                                "description": "Saldo atual",
-                                "fieldname": "saldoatual",
+                                "key": "Fator_de_pagamento_%",
+                                "description": "Fator de pagamento %",
+                                "fieldname": "fatorpagamento",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_atual",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.fator_de_pagamento",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            },
+                            {
+                                "key": "Valor_do_fator_de_pagamento",
+                                "description": "Valor do fator de pagamento",
+                                "fieldname": "valorfatorpagamento",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_do_fator_de_pagamento",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1975,23 +2063,23 @@
                         "children": []
                     },
                     {
-                        "key": "Data_inicial",
-                        "description": "Data inicial",
-                        "fieldname": "datainicial",
+                        "key": "Data",
+                        "description": "Data",
+                        "fieldname": "datacriacao",
                         "fieldname_data": "",
                         "type": "date",
-                        "path": "contrato.registro_de_medicao_de_contrato.data_inicial",
+                        "path": "contrato.registro_de_medicao_de_contrato.data",
                         "dragandrop": true,
                         "icon": "calendar",
                         "children": []
                     },
                     {
-                        "key": "Data_final",
-                        "description": "Data final",
-                        "fieldname": "datafinal",
+                        "key": "Data_execução",
+                        "description": "Data execução",
+                        "fieldname": "dataexecucao",
                         "fieldname_data": "",
                         "type": "date",
-                        "path": "contrato.registro_de_medicao_de_contrato.data_final",
+                        "path": "contrato.registro_de_medicao_de_contrato.data_execucao",
                         "dragandrop": true,
                         "icon": "calendar",
                         "children": []
@@ -2019,6 +2107,17 @@
                         "children": []
                     },
                     {
+                        "key": "Medição_vigente",
+                        "description": "Medição vigente",
+                        "fieldname": "medicaovigente",
+                        "fieldname_data": "",
+                        "type": "select",
+                        "path": "contrato.registro_de_medicao_de_contrato.medicao_vigente",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
                         "key": "Rodovia",
                         "description": "Rodovia",
                         "fieldname": "rodovia",
@@ -2026,7 +2125,7 @@
                         "type": "string",
                         "path": "contrato.registro_de_medicao_de_contrato.rodovia",
                         "dragandrop": true,
-                        "icon": "key",
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -2052,12 +2151,45 @@
                         "children": []
                     },
                     {
+                        "key": "Latitude",
+                        "description": "Latitude",
+                        "fieldname": "latitude",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "contrato.registro_de_medicao_de_contrato.latitude",
+                        "dragandrop": true,
+                        "icon": "number",
+                        "children": []
+                    },
+                    {
+                        "key": "Longitude",
+                        "description": "Longitude",
+                        "fieldname": "longitude",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "contrato.registro_de_medicao_de_contrato.longitude",
+                        "dragandrop": true,
+                        "icon": "number",
+                        "children": []
+                    },
+                    {
                         "key": "Origem",
                         "description": "Origem",
                         "fieldname": "origem",
                         "fieldname_data": "",
                         "type": "select",
                         "path": "contrato.registro_de_medicao_de_contrato.origem",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Criado_por",
+                        "description": "Criado por",
+                        "fieldname": "criadopor",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.criado_por",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -2074,12 +2206,111 @@
                         "children": []
                     },
                     {
-                        "key": "Medição_vigente",
-                        "description": "Medição vigente",
-                        "fieldname": "medicaovigente",
+                        "key": "Responsavel",
+                        "description": "Responsavel",
+                        "fieldname": "responsavel",
                         "fieldname_data": "",
-                        "type": "select",
-                        "path": "contrato.registro_de_medicao_de_contrato.medicao_vigente",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.responsavel",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Código_RDO",
+                        "description": "Código RDO",
+                        "fieldname": "codigordo",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.codigo_rdo",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Código_relatório",
+                        "description": "Código relatório",
+                        "fieldname": "codigorelatorio",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.codigo_relatorio",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Clima_da_manhã",
+                        "description": "Clima da manhã",
+                        "fieldname": "climadamanha",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.clima_da_manha",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Condições_da_manhã",
+                        "description": "Condições da manhã",
+                        "fieldname": "condicoesdamanha",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.condicoes_da_manha",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Clima_da_tarde",
+                        "description": "Clima da tarde",
+                        "fieldname": "climadatarde",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.clima_da_tarde",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Condições_da_tarde",
+                        "description": "Condições da tarde",
+                        "fieldname": "condicoesdatarde",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.condicoes_da_tarde",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Clima_da_noite",
+                        "description": "Clima da noite",
+                        "fieldname": "climadanoite",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.clima_da_noite",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Condições_da_noite",
+                        "description": "Condições da noite",
+                        "fieldname": "condicoesdanoite",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contrato.registro_de_medicao_de_contrato.condicoes_da_noite",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "",
+                        "description": "",
+                        "fieldname": "observacoes",
+                        "fieldname_data": "",
+                        "type": "text",
+                        "path": "contrato.registro_de_medicao_de_contrato.",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -2130,7 +2361,7 @@
                             {
                                 "key": "Quantidade_medida",
                                 "description": "Quantidade medida",
-                                "fieldname": "quantidade_medida",
+                                "fieldname": "quantidademedida",
                                 "fieldname_data": "",
                                 "type": "numeric",
                                 "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.quantidade_medida",
@@ -2450,6 +2681,62 @@
                                 "children": []
                             }
                         ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Record_Resource",
+                        "description": "Contract Measurement Record Resource",
+                        "fieldname": "Contract Measurement Record Resource",
+                        "fieldname_data": "tabrecurso",
+                        "type": "doctype",
+                        "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource",
+                        "dragandrop": false,
+                        "icon": "text",
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource.chave_do_registro",
+                                "dragandrop": true,
+                                "icon": "key",
+                                "children": []
+                            },
+                            {
+                                "key": "Item",
+                                "description": "Item",
+                                "fieldname": "item",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource.item",
+                                "dragandrop": true,
+                                "icon": "key",
+                                "children": []
+                            },
+                            {
+                                "key": "Quantidade",
+                                "description": "Quantidade",
+                                "fieldname": "quantidade",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource.quantidade",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            },
+                            {
+                                "key": "Valor_total",
+                                "description": "Valor total",
+                                "fieldname": "valortotal",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource.valor_total",
+                                "dragandrop": true,
+                                "icon": "money",
+                                "children": []
+                            }
+                        ]
                     }
                 ]
             }
@@ -2678,12 +2965,12 @@
                 "children": []
             },
             {
-                "key": "Sigla_A",
-                "description": "Sigla A",
+                "key": "Sigla",
+                "description": "Sigla",
                 "fieldname": "sigla",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "rodovia.sigla_a",
+                "path": "rodovia.sigla",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []

@@ -20,6 +20,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "km",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -159,6 +160,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "mes",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -335,7 +337,7 @@
         "modified": "2025-05-22 20:10:20.488479",
         "modified_by": "Administrator",
         "docstatus": 0,
-        "idx": 2061,
+        "idx": 2097,
         "lft": 9,
         "rgt": 10,
         "is_group": 0,
@@ -349,6 +351,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "mes",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -595,6 +598,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "vb",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -670,6 +674,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "vb",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -730,6 +735,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "vb",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -790,6 +796,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "vb",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -850,6 +857,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "vb",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -956,7 +964,7 @@
         "modified": "2025-05-22 20:06:48.626676",
         "modified_by": "Administrator",
         "docstatus": 0,
-        "idx": 1512,
+        "idx": 1524,
         "lft": 23,
         "rgt": 24,
         "is_group": 0,
@@ -970,6 +978,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "km",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -1287,6 +1296,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "mes",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -1624,6 +1634,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "m³",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -1714,6 +1725,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "m²",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -1804,6 +1816,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "kg",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -1894,6 +1907,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "m³",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -1984,6 +1998,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "und",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -2074,6 +2089,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "m",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -2164,6 +2180,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "l",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -2254,6 +2271,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "und",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {
@@ -2344,6 +2362,7 @@
         "saldo": 0.0,
         "contrato": "0196b01a-2163-7cb2-93b9-c8b1342e3a4e",
         "unidade": "und",
+        "fatorpagamento": 0.0,
         "doctype": "Contract Item",
         "tablepedidossap": [
             {

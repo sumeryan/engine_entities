@@ -117,7 +117,7 @@ class StringNormalizer:
 class FieldFilter:
     """Filters fields based on business rules"""
     
-    EXCLUDED_FIELDTYPES = {"Section Break", "Column Break", "Tab Break"}
+    EXCLUDED_FIELDTYPES = {"Section Break", "Column Break", "Tab Break", ""}
     EXCLUDED_FIELDNAMES = {"lft", "rgt", "old_parent"}
     
     @classmethod
