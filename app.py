@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 
 import get_doctypes
 import hierarchical_tree
-import engine_data_compact
+import engine_data
 
 import requests
 
@@ -100,25 +100,34 @@ def convert_hierarchical_to_teste(schema):
 
 # --- Internal generation helper ---
 def _generate_entity_structure():
-    print("--- Starting Internal Generation ---")
-    api_base = os.getenv("ARTERIS_API_BASE_URL")
-    api_token = os.getenv("ARTERIS_API_TOKEN")
-    if not api_base or not api_token:
-        msg = "Error: ARTERIS_API_BASE_URL or ARTERIS_API_TOKEN not defined"
-        print(msg)
-        raise ValueError(msg)
-    print("--- Transforming Metadata to Entities ---")
+    # print("--- Starting Internal Generation ---")
+    # api_base = os.getenv("ARTERIS_API_BASE_URL")
+    # api_token = os.getenv("ARTERIS_API_TOKEN")
+    # if not api_base or not api_token:
+    #     msg = "Error: ARTERIS_API_BASE_URL or ARTERIS_API_TOKEN not defined"
+    #     print(msg)
+    #     raise ValueError(msg)
+    # print("--- Transforming Metadata to Entities ---")
 
-    processor = get_doctypes.DoctypeProcessor()   
-    # Get formula data
-    processor.get_formula_data()
+    # processor = get_doctypes.DoctypeProcessor()   
+    # # Get formula data
+    # processor.get_formula_data()
     
-    # Get hierarchical structure
-    struct = processor.get_hierarchical_structure()
+    # # Get hierarchical structure
+    # struct = processor.get_hierarchical_structure()
         
-    print("Entity structure generated successfully.")
-    print("--- Internal Generation Completed ---")
-    return struct
+    # print("Entity structure generated successfully.")
+    # print("--- Internal Generation Completed ---")
+    # return struct
+
+    processor = get_doctypes.DoctypeProcessor()
+    all_doctypes = processor.process_doctypes()
+
+    # Build tree
+    builder = hierarchical_tree.HierarchicalTreeBuilder()
+    hierarchical_data = builder.build_tree(all_doctypes)
+
+    return hierarchical_data
 
 # --- Flask routes ---
 @app.route('/')
@@ -195,7 +204,7 @@ def get_tree_data():
     # hierarchical = processor.get .hi(data["structure"])
 
     # Build engine data
-    builder = engine_data_compact.EngineDataBuilder(
+    builder = engine_data.EngineDataBuilder(
         data["hierarchical"], 
         formulas, 
         data["data"], 
@@ -205,26 +214,6 @@ def get_tree_data():
     engine_data = builder.build()
 
     return jsonify(engine_data)
-
-
-@app.route('/teste', methods=['GET'])
-def get_teste_json():
-    # Load or regenerate schema
-    if os.path.isfile(HIERARCHICAL_FILE):
-        with open(HIERARCHICAL_FILE, 'r', encoding='utf-8') as f:
-            wrapper = json.load(f)
-        if isinstance(wrapper, dict) and 'entities' in wrapper:
-            schema = wrapper['entities']
-        elif isinstance(wrapper, list):
-            schema = wrapper
-        else:
-            return jsonify({'error': 'Invalid hierarchical JSON format'}), 500
-    else:
-        schema = get_doctypes.get_hierarchical_doctype_structure()
-    # Convert and return raw JSON preserving order
-    result = convert_hierarchical_to_teste(schema)
-    json_str = json.dumps(result, ensure_ascii=False)
-    return Response(json_str, mimetype='application/json')
 
 # --- Socket.IO handlers ---
 @socketio.on('connect')

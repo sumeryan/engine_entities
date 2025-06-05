@@ -694,10 +694,16 @@ def main(compact_mode: bool = True):
         doctype_tree = FileManager.load_json("output/hierarquical_doctypes_refactored.json")
         all_doctype_data = FileManager.load_json("data/all_doctypes.json")
 
+        # Get formula to contract
+        group_formula = [item for item in all_doctype_data if 'Contract' in item][0]['Contract'][0]['grupoformulas']
+
+        # Filter formulas based on group
+        contract_formula = [f for f in formulas if f.get("name") in group_formula]        
+
         # Build engine data
         builder = EngineDataBuilder(
             doctype_tree, 
-            formulas, 
+            contract_formula, 
             all_doctype_data, 
             "data",
             compact_mode=compact_mode

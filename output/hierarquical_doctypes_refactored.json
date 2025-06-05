@@ -1,11 +1,11 @@
 [
     {
         "key": "Asset",
-        "description": "Ativo",
+        "description": "Ativos",
         "fieldname": "Asset",
         "fieldname_data": "",
         "type": "doctype",
-        "path": "ativo",
+        "path": "ativos",
         "dragandrop": false,
         "icon": "text",
         "children": [
@@ -15,7 +15,7 @@
                 "fieldname": "name",
                 "fieldname_data": "",
                 "type": "key",
-                "path": "ativo.chave_do_registro",
+                "path": "ativos.chave_do_registro",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -26,65 +26,20 @@
                 "fieldname": "nomeativo",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "ativo.nome_do_ativo",
+                "path": "ativos.nome_do_ativo",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
-            },
-            {
-                "key": "Asset_Operator",
-                "description": "Operador",
-                "fieldname": "Asset Operator",
-                "fieldname_data": "operadoresoumotoristas",
-                "type": "doctype",
-                "path": "ativo.operador",
-                "dragandrop": false,
-                "icon": "text",
-                "children": [
-                    {
-                        "key": "chave",
-                        "description": "Chave do registro",
-                        "fieldname": "name",
-                        "fieldname_data": "",
-                        "type": "key",
-                        "path": "ativo.operador.chave_do_registro",
-                        "dragandrop": true,
-                        "icon": "key",
-                        "children": []
-                    },
-                    {
-                        "key": "Operador/motorista",
-                        "description": "Operador/motorista",
-                        "fieldname": "operador",
-                        "fieldname_data": "",
-                        "type": "string",
-                        "path": "ativo.operador.operador_motorista",
-                        "dragandrop": true,
-                        "icon": "key",
-                        "children": []
-                    },
-                    {
-                        "key": "Quantidade",
-                        "description": "Quantidade",
-                        "fieldname": "quantidade",
-                        "fieldname_data": "",
-                        "type": "numeric",
-                        "path": "ativo.operador.quantidade",
-                        "dragandrop": true,
-                        "icon": "integer",
-                        "children": []
-                    }
-                ]
             }
         ]
     },
     {
         "key": "Category",
-        "description": "Categoria",
+        "description": "Categorias",
         "fieldname": "Category",
         "fieldname_data": "",
         "type": "doctype",
-        "path": "categoria",
+        "path": "categorias",
         "dragandrop": false,
         "icon": "text",
         "children": [
@@ -94,7 +49,7 @@
                 "fieldname": "name",
                 "fieldname_data": "",
                 "type": "key",
-                "path": "categoria.chave_do_registro",
+                "path": "categorias.chave_do_registro",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -105,7 +60,7 @@
                 "fieldname": "descricao",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "categoria.descricao",
+                "path": "categorias.descricao",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -114,11 +69,11 @@
     },
     {
         "key": "City",
-        "description": "Cidade",
+        "description": "Cidades",
         "fieldname": "City",
         "fieldname_data": "",
         "type": "doctype",
-        "path": "cidade",
+        "path": "cidades",
         "dragandrop": false,
         "icon": "text",
         "children": [
@@ -128,7 +83,7 @@
                 "fieldname": "name",
                 "fieldname_data": "",
                 "type": "key",
-                "path": "cidade.chave_do_registro",
+                "path": "cidades.chave_do_registro",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -139,7 +94,7 @@
                 "fieldname": "uf",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "cidade.uf",
+                "path": "cidades.uf",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -150,7 +105,7 @@
                 "fieldname": "municipio",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "cidade.municipio",
+                "path": "cidades.municipio",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -159,11 +114,11 @@
     },
     {
         "key": "Contract",
-        "description": "Contrato",
+        "description": "Contratos",
         "fieldname": "Contract",
         "fieldname_data": "",
         "type": "doctype",
-        "path": "contrato",
+        "path": "contratos",
         "dragandrop": false,
         "icon": "text",
         "children": [
@@ -173,7 +128,7 @@
                 "fieldname": "name",
                 "fieldname_data": "",
                 "type": "key",
-                "path": "contrato.chave_do_registro",
+                "path": "contratos.chave_do_registro",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -184,7 +139,7 @@
                 "fieldname": "contrato",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.no_do_contrato",
+                "path": "contratos.no_do_contrato",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -195,7 +150,7 @@
                 "fieldname": "contratada",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.contratada",
+                "path": "contratos.contratada",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -206,7 +161,7 @@
                 "fieldname": "datainicial",
                 "fieldname_data": "",
                 "type": "date",
-                "path": "contrato.data_inicial_do_contrato",
+                "path": "contratos.data_inicial_do_contrato",
                 "dragandrop": true,
                 "icon": "calendar",
                 "children": []
@@ -217,7 +172,7 @@
                 "fieldname": "datafinal",
                 "fieldname_data": "",
                 "type": "date",
-                "path": "contrato.data_final_do_contrato",
+                "path": "contratos.data_final_do_contrato",
                 "dragandrop": true,
                 "icon": "calendar",
                 "children": []
@@ -228,7 +183,7 @@
                 "fieldname": "subsidiaria",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.subsidiaria",
+                "path": "contratos.subsidiaria",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -239,7 +194,7 @@
                 "fieldname": "responsavel",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.responsavel",
+                "path": "contratos.responsavel",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -250,7 +205,7 @@
                 "fieldname": "obra",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.obra",
+                "path": "contratos.obra",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -261,7 +216,7 @@
                 "fieldname": "descricao",
                 "fieldname_data": "",
                 "type": "text",
-                "path": "contrato.objeto",
+                "path": "contratos.objeto",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -272,7 +227,7 @@
                 "fieldname": "valortotal",
                 "fieldname_data": "",
                 "type": "numeric",
-                "path": "contrato.valor_total_do_contrato",
+                "path": "contratos.valor_total_do_contrato",
                 "dragandrop": true,
                 "icon": "money",
                 "children": []
@@ -283,7 +238,7 @@
                 "fieldname": "vertical",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.vertical",
+                "path": "contratos.vertical",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -294,7 +249,7 @@
                 "fieldname": "categoria",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.categoria",
+                "path": "contratos.categoria",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -305,7 +260,7 @@
                 "fieldname": "inicioservicosprevisto",
                 "fieldname_data": "",
                 "type": "date",
-                "path": "contrato.inicio_dos_servicos_conf_contrato",
+                "path": "contratos.inicio_dos_servicos_conf_contrato",
                 "dragandrop": true,
                 "icon": "calendar",
                 "children": []
@@ -316,7 +271,7 @@
                 "fieldname": "inicioservicos",
                 "fieldname_data": "",
                 "type": "date",
-                "path": "contrato.inicio_real_dos_servicos",
+                "path": "contratos.inicio_real_dos_servicos",
                 "dragandrop": true,
                 "icon": "calendar",
                 "children": []
@@ -327,7 +282,7 @@
                 "fieldname": "terminoservicosprevisto",
                 "fieldname_data": "",
                 "type": "date",
-                "path": "contrato.termino_servicos_conf_contrato",
+                "path": "contratos.termino_servicos_conf_contrato",
                 "dragandrop": true,
                 "icon": "calendar",
                 "children": []
@@ -338,7 +293,7 @@
                 "fieldname": "terminoservicos",
                 "fieldname_data": "",
                 "type": "date",
-                "path": "contrato.termino_previsto_dos_servicos",
+                "path": "contratos.termino_previsto_dos_servicos",
                 "dragandrop": true,
                 "icon": "calendar",
                 "children": []
@@ -349,7 +304,7 @@
                 "fieldname": "percentualreidi",
                 "fieldname_data": "",
                 "type": "numeric",
-                "path": "contrato.percentual_reidi",
+                "path": "contratos.percentual_reidi",
                 "dragandrop": true,
                 "icon": "number",
                 "children": []
@@ -360,7 +315,7 @@
                 "fieldname": "medicaopormes",
                 "fieldname_data": "",
                 "type": "boolean",
-                "path": "contrato.medicao_mes_cheio",
+                "path": "contratos.medicao_mes_cheio",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -371,7 +326,7 @@
                 "fieldname": "medicaodiainicial",
                 "fieldname_data": "",
                 "type": "numeric",
-                "path": "contrato.dia_inicial",
+                "path": "contratos.dia_inicial",
                 "dragandrop": true,
                 "icon": "integer",
                 "children": []
@@ -382,7 +337,7 @@
                 "fieldname": "medicaodiafinal",
                 "fieldname_data": "",
                 "type": "numeric",
-                "path": "contrato.dia_final",
+                "path": "contratos.dia_final",
                 "dragandrop": true,
                 "icon": "integer",
                 "children": []
@@ -393,7 +348,7 @@
                 "fieldname": "percentualcalcao",
                 "fieldname_data": "",
                 "type": "numeric",
-                "path": "contrato.percentual",
+                "path": "contratos.percentual",
                 "dragandrop": true,
                 "icon": "number",
                 "children": []
@@ -404,7 +359,7 @@
                 "fieldname": "regracaucao",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.descricao_da_regra_do_caucao",
+                "path": "contratos.descricao_da_regra_do_caucao",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -415,9 +370,20 @@
                 "fieldname": "contratoencerrado",
                 "fieldname_data": "",
                 "type": "datetime",
-                "path": "contrato.contrato_encerrado_em",
+                "path": "contratos.contrato_encerrado_em",
                 "dragandrop": true,
                 "icon": "calendar",
+                "children": []
+            },
+            {
+                "key": "Imprimir",
+                "description": "Imprimir",
+                "fieldname": "imprimir",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "contratos.imprimir",
+                "dragandrop": true,
+                "icon": "text",
                 "children": []
             },
             {
@@ -426,7 +392,7 @@
                 "fieldname": "grupoformulas",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.grupo",
+                "path": "contratos.grupo",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -437,18 +403,18 @@
                 "fieldname": "uuidkartado",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contrato.chave",
+                "path": "contratos.chave",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
             },
             {
                 "key": "Contract_Adjustment",
-                "description": "Reajuste de Contrato",
+                "description": "Reajustes",
                 "fieldname": "Contract Adjustment",
                 "fieldname_data": "",
                 "type": "doctype",
-                "path": "contrato.reajuste_de_contrato",
+                "path": "contratos.reajustes",
                 "dragandrop": false,
                 "icon": "text",
                 "children": [
@@ -458,7 +424,7 @@
                         "fieldname": "name",
                         "fieldname_data": "",
                         "type": "key",
-                        "path": "contrato.reajuste_de_contrato.chave_do_registro",
+                        "path": "contratos.reajustes.chave_do_registro",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -469,7 +435,7 @@
                         "fieldname": "contrato",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.reajuste_de_contrato.no_do_contrato",
+                        "path": "contratos.reajustes.no_do_contrato",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -480,7 +446,7 @@
                         "fieldname": "contratada",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.reajuste_de_contrato.contratada",
+                        "path": "contratos.reajustes.contratada",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -491,7 +457,7 @@
                         "fieldname": "datainicial",
                         "fieldname_data": "",
                         "type": "date",
-                        "path": "contrato.reajuste_de_contrato.data_inicial_do_contrato",
+                        "path": "contratos.reajustes.data_inicial_do_contrato",
                         "dragandrop": true,
                         "icon": "calendar",
                         "children": []
@@ -502,7 +468,7 @@
                         "fieldname": "datafinal",
                         "fieldname_data": "",
                         "type": "date",
-                        "path": "contrato.reajuste_de_contrato.data_final_do_contrato",
+                        "path": "contratos.reajustes.data_final_do_contrato",
                         "dragandrop": true,
                         "icon": "calendar",
                         "children": []
@@ -513,18 +479,18 @@
                         "fieldname": "obra",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.reajuste_de_contrato.obra",
+                        "path": "contratos.reajustes.obra",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
                     },
                     {
                         "key": "Contract_Adjustment_Data",
-                        "description": "Dados de Reajuste de Contrato",
+                        "description": "Dados do reajuste",
                         "fieldname": "Contract Adjustment Data",
                         "fieldname_data": "tabelareajustes",
                         "type": "doctype",
-                        "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato",
+                        "path": "contratos.reajustes.dados_do_reajuste",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -534,7 +500,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.chave_do_registro",
+                                "path": "contratos.reajustes.dados_do_reajuste.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -545,7 +511,7 @@
                                 "fieldname": "datareajuste",
                                 "fieldname_data": "",
                                 "type": "date",
-                                "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.data_de_reajuste",
+                                "path": "contratos.reajustes.dados_do_reajuste.data_de_reajuste",
                                 "dragandrop": true,
                                 "icon": "calendar",
                                 "children": []
@@ -556,7 +522,7 @@
                                 "fieldname": "itemcontrato",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.item_do_contrato",
+                                "path": "contratos.reajustes.dados_do_reajuste.item_do_contrato",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -567,7 +533,7 @@
                                 "fieldname": "indicereajuste",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.indice_de_reajuste",
+                                "path": "contratos.reajustes.dados_do_reajuste.indice_de_reajuste",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -578,7 +544,7 @@
                                 "fieldname": "saldo",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.saldo_do_item_do_contrato",
+                                "path": "contratos.reajustes.dados_do_reajuste.saldo_do_item_do_contrato",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -589,7 +555,7 @@
                                 "fieldname": "valorreajuste",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.reajuste_de_contrato.dados_de_reajuste_de_contrato.valor_do_reajuste",
+                                "path": "contratos.reajustes.dados_do_reajuste.valor_do_reajuste",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -600,11 +566,11 @@
             },
             {
                 "key": "Contract_Item",
-                "description": "Item de Contrato",
+                "description": "Itens",
                 "fieldname": "Contract Item",
                 "fieldname_data": "",
                 "type": "doctype",
-                "path": "contrato.item_de_contrato",
+                "path": "contratos.itens",
                 "dragandrop": false,
                 "icon": "text",
                 "children": [
@@ -614,7 +580,7 @@
                         "fieldname": "name",
                         "fieldname_data": "",
                         "type": "key",
-                        "path": "contrato.item_de_contrato.chave_do_registro",
+                        "path": "contratos.itens.chave_do_registro",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -625,7 +591,7 @@
                         "fieldname": "is_group",
                         "fieldname_data": "",
                         "type": "boolean",
-                        "path": "contrato.item_de_contrato.is_group",
+                        "path": "contratos.itens.is_group",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -636,7 +602,7 @@
                         "fieldname": "itempadrao",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.item_de_contrato.item",
+                        "path": "contratos.itens.item",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -647,7 +613,7 @@
                         "fieldname": "codigo",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.item_de_contrato.codigo",
+                        "path": "contratos.itens.codigo",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -658,7 +624,7 @@
                         "fieldname": "descricao",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.item_de_contrato.descricao",
+                        "path": "contratos.itens.descricao",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -669,7 +635,7 @@
                         "fieldname": "quantidade",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.item_de_contrato.quantidade",
+                        "path": "contratos.itens.quantidade",
                         "dragandrop": true,
                         "icon": "number",
                         "children": []
@@ -680,7 +646,7 @@
                         "fieldname": "valorunitario",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.item_de_contrato.valor_unitario",
+                        "path": "contratos.itens.valor_unitario",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -691,7 +657,7 @@
                         "fieldname": "valortotalvigente",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.item_de_contrato.valor_total_vigente",
+                        "path": "contratos.itens.valor_total_vigente",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -702,7 +668,7 @@
                         "fieldname": "saldo",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.item_de_contrato.saldo_atual",
+                        "path": "contratos.itens.saldo_atual",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -713,7 +679,7 @@
                         "fieldname": "contrato",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.item_de_contrato.no_do_contrato",
+                        "path": "contratos.itens.no_do_contrato",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -724,7 +690,7 @@
                         "fieldname": "unidade",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.item_de_contrato.unidade",
+                        "path": "contratos.itens.unidade",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -735,7 +701,7 @@
                         "fieldname": "tipodoitem",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.item_de_contrato.tipo",
+                        "path": "contratos.itens.tipo",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -746,18 +712,29 @@
                         "fieldname": "fatorpagamento",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.item_de_contrato.fator_de_pagamento",
+                        "path": "contratos.itens.fator_de_pagamento",
                         "dragandrop": true,
                         "icon": "number",
                         "children": []
                     },
                     {
+                        "key": "Código_PEP",
+                        "description": "Código PEP",
+                        "fieldname": "codigopep",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contratos.itens.codigo_pep",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
                         "key": "Contract_Item_Order",
-                        "description": "Pedido SAP Item de Contrato",
+                        "description": "Ped. SAP",
                         "fieldname": "Contract Item Order",
                         "fieldname_data": "tablepedidossap",
                         "type": "doctype",
-                        "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato",
+                        "path": "contratos.itens.ped_sap",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -767,7 +744,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato.chave_do_registro",
+                                "path": "contratos.itens.ped_sap.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -778,7 +755,7 @@
                                 "fieldname": "pedidosap",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato.no_do_pedido_sap",
+                                "path": "contratos.itens.ped_sap.no_do_pedido_sap",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -789,7 +766,7 @@
                                 "fieldname": "valortotal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.pedido_sap_item_de_contrato.valor_total",
+                                "path": "contratos.itens.ped_sap.valor_total",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -798,11 +775,11 @@
                     },
                     {
                         "key": "Contract_Item_City",
-                        "description": "Cidade Item de Contrato",
+                        "description": "Cidades",
                         "fieldname": "Contract Item City",
                         "fieldname_data": "tabcidades",
                         "type": "doctype",
-                        "path": "contrato.item_de_contrato.cidade_item_de_contrato",
+                        "path": "contratos.itens.cidades",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -812,7 +789,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.item_de_contrato.cidade_item_de_contrato.chave_do_registro",
+                                "path": "contratos.itens.cidades.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -823,7 +800,7 @@
                                 "fieldname": "cidade",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.item_de_contrato.cidade_item_de_contrato.cidade",
+                                "path": "contratos.itens.cidades.cidade",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -834,7 +811,7 @@
                                 "fieldname": "iss",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.item_de_contrato.cidade_item_de_contrato.iss",
+                                "path": "contratos.itens.cidades.iss",
                                 "dragandrop": true,
                                 "icon": "text",
                                 "children": []
@@ -845,7 +822,7 @@
                                 "fieldname": "participacaopercentual",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.cidade_item_de_contrato.participacao",
+                                "path": "contratos.itens.cidades.participacao",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -856,7 +833,7 @@
                                 "fieldname": "kminicial",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.cidade_item_de_contrato.km_inicial",
+                                "path": "contratos.itens.cidades.km_inicial",
                                 "dragandrop": true,
                                 "icon": "integer",
                                 "children": []
@@ -867,7 +844,7 @@
                                 "fieldname": "kmfinal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.cidade_item_de_contrato.km_final",
+                                "path": "contratos.itens.cidades.km_final",
                                 "dragandrop": true,
                                 "icon": "integer",
                                 "children": []
@@ -876,11 +853,11 @@
                     },
                     {
                         "key": "Contract_Item_Work_Role",
-                        "description": "Função Item de Contrato",
+                        "description": "Funções",
                         "fieldname": "Contract Item Work Role",
                         "fieldname_data": "tablemaodeobra",
                         "type": "doctype",
-                        "path": "contrato.item_de_contrato.funcao_item_de_contrato",
+                        "path": "contratos.itens.funcoes",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -890,7 +867,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.item_de_contrato.funcao_item_de_contrato.chave_do_registro",
+                                "path": "contratos.itens.funcoes.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -901,7 +878,7 @@
                                 "fieldname": "funcao",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.item_de_contrato.funcao_item_de_contrato.funcao",
+                                "path": "contratos.itens.funcoes.funcao",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -912,7 +889,7 @@
                                 "fieldname": "quantidade",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.funcao_item_de_contrato.quantidade",
+                                "path": "contratos.itens.funcoes.quantidade",
                                 "dragandrop": true,
                                 "icon": "integer",
                                 "children": []
@@ -923,7 +900,7 @@
                                 "fieldname": "pagamentohora",
                                 "fieldname_data": "",
                                 "type": "boolean",
-                                "path": "contrato.item_de_contrato.funcao_item_de_contrato.pagamento_por_hora",
+                                "path": "contratos.itens.funcoes.pagamento_por_hora",
                                 "dragandrop": true,
                                 "icon": "text",
                                 "children": []
@@ -934,7 +911,7 @@
                                 "fieldname": "valorporhora",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.funcao_item_de_contrato.valor_por_hora",
+                                "path": "contratos.itens.funcoes.valor_por_hora",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -945,7 +922,7 @@
                                 "fieldname": "valortotalmensal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.funcao_item_de_contrato.valor_total_mensal",
+                                "path": "contratos.itens.funcoes.valor_total_mensal",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -954,11 +931,11 @@
                     },
                     {
                         "key": "Contract_Item_Asset",
-                        "description": "Ativo Item de Contrato",
+                        "description": "Ativos",
                         "fieldname": "Contract Item Asset",
                         "fieldname_data": "tableassets",
                         "type": "doctype",
-                        "path": "contrato.item_de_contrato.ativo_item_de_contrato",
+                        "path": "contratos.itens.ativos",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -968,7 +945,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.item_de_contrato.ativo_item_de_contrato.chave_do_registro",
+                                "path": "contratos.itens.ativos.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -979,7 +956,7 @@
                                 "fieldname": "asset",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.item_de_contrato.ativo_item_de_contrato.maquina_equipamento_ou_veiculos",
+                                "path": "contratos.itens.ativos.maquina_equipamento_ou_veiculos",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -990,7 +967,7 @@
                                 "fieldname": "descricao",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.item_de_contrato.ativo_item_de_contrato.descricao",
+                                "path": "contratos.itens.ativos.descricao",
                                 "dragandrop": true,
                                 "icon": "text",
                                 "children": []
@@ -1001,7 +978,7 @@
                                 "fieldname": "quantidade",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.ativo_item_de_contrato.quantidade",
+                                "path": "contratos.itens.ativos.quantidade",
                                 "dragandrop": true,
                                 "icon": "integer",
                                 "children": []
@@ -1012,7 +989,7 @@
                                 "fieldname": "valormensal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.ativo_item_de_contrato.valor_mensal",
+                                "path": "contratos.itens.ativos.valor_mensal",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1021,11 +998,11 @@
                     },
                     {
                         "key": "Contract_Item_Highway",
-                        "description": "Rodovia Item de Contrato",
+                        "description": "Rodovias",
                         "fieldname": "Contract Item Highway",
                         "fieldname_data": "rodovias",
                         "type": "doctype",
-                        "path": "contrato.item_de_contrato.rodovia_item_de_contrato",
+                        "path": "contratos.itens.rodovias",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -1035,7 +1012,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.item_de_contrato.rodovia_item_de_contrato.chave_do_registro",
+                                "path": "contratos.itens.rodovias.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1046,7 +1023,7 @@
                                 "fieldname": "rodovia",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.item_de_contrato.rodovia_item_de_contrato.rodovia",
+                                "path": "contratos.itens.rodovias.rodovia",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1057,7 +1034,7 @@
                                 "fieldname": "kminicial",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.rodovia_item_de_contrato.km_inicial",
+                                "path": "contratos.itens.rodovias.km_inicial",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1068,7 +1045,7 @@
                                 "fieldname": "kmfinal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.item_de_contrato.rodovia_item_de_contrato.km_final",
+                                "path": "contratos.itens.rodovias.km_final",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1079,11 +1056,11 @@
             },
             {
                 "key": "Contract_Measurement",
-                "description": "Medição de Contrato BM",
+                "description": "Bol. de medição",
                 "fieldname": "Contract Measurement",
                 "fieldname_data": "",
                 "type": "doctype",
-                "path": "contrato.medicao_de_contrato_bm",
+                "path": "contratos.bol_de_medicao",
                 "dragandrop": false,
                 "icon": "text",
                 "children": [
@@ -1093,9 +1070,31 @@
                         "fieldname": "name",
                         "fieldname_data": "",
                         "type": "key",
-                        "path": "contrato.medicao_de_contrato_bm.chave_do_registro",
+                        "path": "contratos.bol_de_medicao.chave_do_registro",
                         "dragandrop": true,
                         "icon": "key",
+                        "children": []
+                    },
+                    {
+                        "key": "🖨️_Imprimir_capa_do_boletim",
+                        "description": "🖨️ Imprimir capa do boletim",
+                        "fieldname": "imprimircapa",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contratos.bol_de_medicao.imprimir_capa_do_boletim",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "🖨️_Imprimir_boletim",
+                        "description": "🖨️ Imprimir boletim",
+                        "fieldname": "imprimirboletim",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contratos.bol_de_medicao.imprimir_boletim",
+                        "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -1104,7 +1103,7 @@
                         "fieldname": "contrato",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.medicao_de_contrato_bm.no_do_contrato",
+                        "path": "contratos.bol_de_medicao.no_do_contrato",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -1115,7 +1114,7 @@
                         "fieldname": "contratada",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.medicao_de_contrato_bm.contratada",
+                        "path": "contratos.bol_de_medicao.contratada",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -1126,7 +1125,7 @@
                         "fieldname": "datainicialmedicao",
                         "fieldname_data": "",
                         "type": "date",
-                        "path": "contrato.medicao_de_contrato_bm.data_inicial_medicao",
+                        "path": "contratos.bol_de_medicao.data_inicial_medicao",
                         "dragandrop": true,
                         "icon": "calendar",
                         "children": []
@@ -1137,7 +1136,7 @@
                         "fieldname": "datafinalmedicao",
                         "fieldname_data": "",
                         "type": "date",
-                        "path": "contrato.medicao_de_contrato_bm.data_final_medicao",
+                        "path": "contratos.bol_de_medicao.data_final_medicao",
                         "dragandrop": true,
                         "icon": "calendar",
                         "children": []
@@ -1148,7 +1147,7 @@
                         "fieldname": "data_ejak",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.medicao_de_contrato_bm.data_inicial_do_contrato",
+                        "path": "contratos.bol_de_medicao.data_inicial_do_contrato",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -1159,7 +1158,7 @@
                         "fieldname": "data_final_do_contrato",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.medicao_de_contrato_bm.data_final_do_contrato",
+                        "path": "contratos.bol_de_medicao.data_final_do_contrato",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -1170,7 +1169,7 @@
                         "fieldname": "obra",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.medicao_de_contrato_bm.obra",
+                        "path": "contratos.bol_de_medicao.obra",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -1181,7 +1180,7 @@
                         "fieldname": "valorcontrato",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.valor_do_contrato",
+                        "path": "contratos.bol_de_medicao.valor_do_contrato",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1192,7 +1191,7 @@
                         "fieldname": "medicaovigente",
                         "fieldname_data": "",
                         "type": "select",
-                        "path": "contrato.medicao_de_contrato_bm.medicao_vigente",
+                        "path": "contratos.bol_de_medicao.medicao_vigente",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -1203,7 +1202,7 @@
                         "fieldname": "medicaoacumuladaanterior",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.medicao_acumulada_anterior",
+                        "path": "contratos.bol_de_medicao.medicao_acumulada_anterior",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1214,7 +1213,7 @@
                         "fieldname": "caucaoacumuladoanterior",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.caucao_acumulado_anterior",
+                        "path": "contratos.bol_de_medicao.caucao_acumulado_anterior",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1225,7 +1224,7 @@
                         "fieldname": "ftdacumuladoanterior",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.faturamento_direto_ftd_acumulado_anterior",
+                        "path": "contratos.bol_de_medicao.faturamento_direto_ftd_acumulado_anterior",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1236,7 +1235,7 @@
                         "fieldname": "medicaoatual",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.medicao_atual_a",
+                        "path": "contratos.bol_de_medicao.medicao_atual_a",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1247,7 +1246,7 @@
                         "fieldname": "faturamentodireto",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.faturamento_direto_ftd_na_fase_atual",
+                        "path": "contratos.bol_de_medicao.faturamento_direto_ftd_na_fase_atual",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1258,7 +1257,7 @@
                         "fieldname": "medicaoatualdescontoftd",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.medicao_atual_com_desconto_de_ftd_b",
+                        "path": "contratos.bol_de_medicao.medicao_atual_com_desconto_de_ftd_b",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1269,7 +1268,7 @@
                         "fieldname": "descontoreidi",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.desconto_do_reidi_c_3_65_b",
+                        "path": "contratos.bol_de_medicao.desconto_do_reidi_c_3_65_b",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1280,7 +1279,7 @@
                         "fieldname": "medicaoliquida",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.medicao_liquida_do_reidi_vl_bruto_nf_d_b_c",
+                        "path": "contratos.bol_de_medicao.medicao_liquida_do_reidi_vl_bruto_nf_d_b_c",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1291,7 +1290,7 @@
                         "fieldname": "medicaoequivalente",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.medicao_equivalente_liquida_do_reidi_f_a_e",
+                        "path": "contratos.bol_de_medicao.medicao_equivalente_liquida_do_reidi_f_a_e",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1302,7 +1301,7 @@
                         "fieldname": "caucaocontratual",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.caucao_contratual_g_5_f",
+                        "path": "contratos.bol_de_medicao.caucao_contratual_g_5_f",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1313,7 +1312,7 @@
                         "fieldname": "valortotalvigente",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.valor_total_vigente",
+                        "path": "contratos.bol_de_medicao.valor_total_vigente",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1324,7 +1323,7 @@
                         "fieldname": "ftdacumulado",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.faturamento_direto_ftd_acumulado",
+                        "path": "contratos.bol_de_medicao.faturamento_direto_ftd_acumulado",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1335,7 +1334,7 @@
                         "fieldname": "totalvigentemenosftd",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.valor_total_vigente_com_desconto_de_ftd",
+                        "path": "contratos.bol_de_medicao.valor_total_vigente_com_desconto_de_ftd",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1346,7 +1345,7 @@
                         "fieldname": "medicaoacumulada",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.medicao_acumulada_atual",
+                        "path": "contratos.bol_de_medicao.medicao_acumulada_atual",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1357,7 +1356,7 @@
                         "fieldname": "saldo",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.saldo_contratual_r",
+                        "path": "contratos.bol_de_medicao.saldo_contratual_r",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1368,7 +1367,7 @@
                         "fieldname": "saldopercentual",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.saldo_contratual",
+                        "path": "contratos.bol_de_medicao.saldo_contratual",
                         "dragandrop": true,
                         "icon": "number",
                         "children": []
@@ -1379,7 +1378,7 @@
                         "fieldname": "caucaoatual",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.caucao_atual",
+                        "path": "contratos.bol_de_medicao.caucao_atual",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
@@ -1390,29 +1389,18 @@
                         "fieldname": "caucaoacumulado",
                         "fieldname_data": "",
                         "type": "numeric",
-                        "path": "contrato.medicao_de_contrato_bm.caucao_acumulado",
+                        "path": "contratos.bol_de_medicao.caucao_acumulado",
                         "dragandrop": true,
                         "icon": "money",
                         "children": []
                     },
                     {
-                        "key": "🖨️_Imprimir",
-                        "description": "🖨️ Imprimir",
-                        "fieldname": "imprimir",
-                        "fieldname_data": "",
-                        "type": "string",
-                        "path": "contrato.medicao_de_contrato_bm.imprimir",
-                        "dragandrop": true,
-                        "icon": "text",
-                        "children": []
-                    },
-                    {
                         "key": "Contract_Measurement_SAP_Order",
-                        "description": "Pedido SAP de BM",
+                        "description": "Ped. SAP",
                         "fieldname": "Contract Measurement SAP Order",
                         "fieldname_data": "tablepedidossap",
                         "type": "doctype",
-                        "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm",
+                        "path": "contratos.bol_de_medicao.ped_sap",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -1422,7 +1410,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.chave_do_registro",
+                                "path": "contratos.bol_de_medicao.ped_sap.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1433,7 +1421,7 @@
                                 "fieldname": "pedido_sap",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.pedido_sap",
+                                "path": "contratos.bol_de_medicao.ped_sap.pedido_sap",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1444,7 +1432,7 @@
                                 "fieldname": "linhapedido",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.linha_pedido",
+                                "path": "contratos.bol_de_medicao.ped_sap.linha_pedido",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1455,7 +1443,7 @@
                                 "fieldname": "valortotalvigente",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.valor_total_vigente",
+                                "path": "contratos.bol_de_medicao.ped_sap.valor_total_vigente",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1466,7 +1454,7 @@
                                 "fieldname": "medicaoatualpercentual",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_atual",
+                                "path": "contratos.bol_de_medicao.ped_sap.medicao_atual",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1477,7 +1465,7 @@
                                 "fieldname": "medicaoacumuladaatualpercentual",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_atual",
+                                "path": "contratos.bol_de_medicao.ped_sap.medicao_acum_atual",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1488,7 +1476,7 @@
                                 "fieldname": "valormedido",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_atual",
+                                "path": "contratos.bol_de_medicao.ped_sap.medicao_atual",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1499,7 +1487,7 @@
                                 "fieldname": "acumuladoatual",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_atual",
+                                "path": "contratos.bol_de_medicao.ped_sap.medicao_acum_atual",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1510,7 +1498,7 @@
                                 "fieldname": "medicaoacumantpercentual",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_ant",
+                                "path": "contratos.bol_de_medicao.ped_sap.medicao_acum_ant",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1521,7 +1509,7 @@
                                 "fieldname": "acumuladoanterior",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.pedido_sap_de_bm.medicao_acum_anterior",
+                                "path": "contratos.bol_de_medicao.ped_sap.medicao_acum_anterior",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1530,11 +1518,11 @@
                     },
                     {
                         "key": "Contract_Measurement_FTD",
-                        "description": "FTD de BM",
+                        "description": "Fat. direto",
                         "fieldname": "Contract Measurement FTD",
                         "fieldname_data": "tableftp",
                         "type": "doctype",
-                        "path": "contrato.medicao_de_contrato_bm.ftd_de_bm",
+                        "path": "contratos.bol_de_medicao.fat_direto",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -1544,18 +1532,18 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.chave_do_registro",
+                                "path": "contratos.bol_de_medicao.fat_direto.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
                             },
                             {
-                                "key": "Desconto_em_(Informe_o_primeiro_dia_do_mês_de_desconto)",
-                                "description": "Desconto em (Informe o primeiro dia do mês de desconto)",
+                                "key": "Data_do_desconto",
+                                "description": "Data do desconto",
                                 "fieldname": "datadesconto",
                                 "fieldname_data": "",
                                 "type": "date",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.desconto_em_informe_o_primeiro_dia_do_mes_de_desconto",
+                                "path": "contratos.bol_de_medicao.fat_direto.data_do_desconto",
                                 "dragandrop": true,
                                 "icon": "calendar",
                                 "children": []
@@ -1566,7 +1554,7 @@
                                 "fieldname": "nº_pedido_sap",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.no_pedido_sap",
+                                "path": "contratos.bol_de_medicao.fat_direto.no_pedido_sap",
                                 "dragandrop": true,
                                 "icon": "text",
                                 "children": []
@@ -1577,7 +1565,7 @@
                                 "fieldname": "nf_nº",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.nf_no",
+                                "path": "contratos.bol_de_medicao.fat_direto.nf_no",
                                 "dragandrop": true,
                                 "icon": "text",
                                 "children": []
@@ -1588,7 +1576,7 @@
                                 "fieldname": "data",
                                 "fieldname_data": "",
                                 "type": "date",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.data_emissao",
+                                "path": "contratos.bol_de_medicao.fat_direto.data_emissao",
                                 "dragandrop": true,
                                 "icon": "calendar",
                                 "children": []
@@ -1599,7 +1587,7 @@
                                 "fieldname": "fornecedor",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.fornecedor",
+                                "path": "contratos.bol_de_medicao.fat_direto.fornecedor",
                                 "dragandrop": true,
                                 "icon": "text",
                                 "children": []
@@ -1610,7 +1598,7 @@
                                 "fieldname": "descricaonota",
                                 "fieldname_data": "",
                                 "type": "text",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.material_ou_projeto",
+                                "path": "contratos.bol_de_medicao.fat_direto.material_ou_projeto",
                                 "dragandrop": true,
                                 "icon": "text",
                                 "children": []
@@ -1621,7 +1609,7 @@
                                 "fieldname": "quantidade",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.quantidade",
+                                "path": "contratos.bol_de_medicao.fat_direto.quantidade",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1632,7 +1620,7 @@
                                 "fieldname": "unidade",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.unidade",
+                                "path": "contratos.bol_de_medicao.fat_direto.unidade",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1643,7 +1631,7 @@
                                 "fieldname": "valor",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.valor_total_da_nota_fiscal",
+                                "path": "contratos.bol_de_medicao.fat_direto.valor_total_da_nota_fiscal",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1654,7 +1642,7 @@
                                 "fieldname": "linhasap",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.linha_sap",
+                                "path": "contratos.bol_de_medicao.fat_direto.linha_sap",
                                 "dragandrop": true,
                                 "icon": "integer",
                                 "children": []
@@ -1665,7 +1653,7 @@
                                 "fieldname": "elementopep",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.ftd_de_bm.elemento_pep",
+                                "path": "contratos.bol_de_medicao.fat_direto.elemento_pep",
                                 "dragandrop": true,
                                 "icon": "text",
                                 "children": []
@@ -1673,79 +1661,12 @@
                         ]
                     },
                     {
-                        "key": "Contract_Measurement_City",
-                        "description": "Cidade BM",
-                        "fieldname": "Contract Measurement City",
-                        "fieldname_data": "tablemunicipios",
-                        "type": "doctype",
-                        "path": "contrato.medicao_de_contrato_bm.cidade_bm",
-                        "dragandrop": false,
-                        "icon": "text",
-                        "children": [
-                            {
-                                "key": "chave",
-                                "description": "Chave do registro",
-                                "fieldname": "name",
-                                "fieldname_data": "",
-                                "type": "key",
-                                "path": "contrato.medicao_de_contrato_bm.cidade_bm.chave_do_registro",
-                                "dragandrop": true,
-                                "icon": "key",
-                                "children": []
-                            },
-                            {
-                                "key": "Pedido_SAP",
-                                "description": "Pedido SAP",
-                                "fieldname": "pedidosap",
-                                "fieldname_data": "",
-                                "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.cidade_bm.pedido_sap",
-                                "dragandrop": true,
-                                "icon": "key",
-                                "children": []
-                            },
-                            {
-                                "key": "Municipio",
-                                "description": "Municipio",
-                                "fieldname": "municipio",
-                                "fieldname_data": "",
-                                "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.cidade_bm.municipio",
-                                "dragandrop": true,
-                                "icon": "key",
-                                "children": []
-                            },
-                            {
-                                "key": "Valor_total",
-                                "description": "Valor total",
-                                "fieldname": "valor",
-                                "fieldname_data": "",
-                                "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.cidade_bm.valor_total",
-                                "dragandrop": true,
-                                "icon": "money",
-                                "children": []
-                            },
-                            {
-                                "key": "ISS",
-                                "description": "ISS",
-                                "fieldname": "valoriss",
-                                "fieldname_data": "",
-                                "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.cidade_bm.iss",
-                                "dragandrop": true,
-                                "icon": "money",
-                                "children": []
-                            }
-                        ]
-                    },
-                    {
                         "key": "Contract_Measurement_Work_Role",
-                        "description": "Função BM",
+                        "description": "Funções",
                         "fieldname": "Contract Measurement Work Role",
                         "fieldname_data": "tablemaodeobra",
                         "type": "doctype",
-                        "path": "contrato.medicao_de_contrato_bm.funcao_bm",
+                        "path": "contratos.bol_de_medicao.funcoes",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -1755,7 +1676,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.medicao_de_contrato_bm.funcao_bm.chave_do_registro",
+                                "path": "contratos.bol_de_medicao.funcoes.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1766,7 +1687,7 @@
                                 "fieldname": "item",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.funcao_bm.item",
+                                "path": "contratos.bol_de_medicao.funcoes.item",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1777,7 +1698,7 @@
                                 "fieldname": "funcao",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.funcao_bm.funcao",
+                                "path": "contratos.bol_de_medicao.funcoes.funcao",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1788,7 +1709,7 @@
                                 "fieldname": "quantidademedida",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.funcao_bm.quantidade_medida",
+                                "path": "contratos.bol_de_medicao.funcoes.quantidade_medida",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1799,7 +1720,7 @@
                                 "fieldname": "valormedido",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.funcao_bm.valor_medido",
+                                "path": "contratos.bol_de_medicao.funcoes.valor_medido",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1808,11 +1729,11 @@
                     },
                     {
                         "key": "Contract_Measurement_Asset",
-                        "description": "Ativo BM",
+                        "description": "Ativos",
                         "fieldname": "Contract Measurement Asset",
                         "fieldname_data": "tableativos",
                         "type": "doctype",
-                        "path": "contrato.medicao_de_contrato_bm.ativo_bm",
+                        "path": "contratos.bol_de_medicao.ativos",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -1822,7 +1743,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.medicao_de_contrato_bm.ativo_bm.chave_do_registro",
+                                "path": "contratos.bol_de_medicao.ativos.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1833,7 +1754,7 @@
                                 "fieldname": "item",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.ativo_bm.item",
+                                "path": "contratos.bol_de_medicao.ativos.item",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1844,7 +1765,7 @@
                                 "fieldname": "maquina_equipamento_ou_ferramenta",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.ativo_bm.maquina_equipamento_ou_ferramenta",
+                                "path": "contratos.bol_de_medicao.ativos.maquina_equipamento_ou_ferramenta",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1855,7 +1776,7 @@
                                 "fieldname": "quantidademedida",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.ativo_bm.quantidade_medida",
+                                "path": "contratos.bol_de_medicao.ativos.quantidade_medida",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1866,7 +1787,7 @@
                                 "fieldname": "valormedido",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.ativo_bm.valor_medido",
+                                "path": "contratos.bol_de_medicao.ativos.valor_medido",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1875,11 +1796,11 @@
                     },
                     {
                         "key": "Contract_Measurement_Item",
-                        "description": "Contract Measurement Item",
+                        "description": "Itens",
                         "fieldname": "Contract Measurement Item",
                         "fieldname_data": "tabitenscontatrato",
                         "type": "doctype",
-                        "path": "contrato.medicao_de_contrato_bm.contract_measurement_item",
+                        "path": "contratos.bol_de_medicao.itens",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -1889,7 +1810,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.chave_do_registro",
+                                "path": "contratos.bol_de_medicao.itens.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1900,7 +1821,7 @@
                                 "fieldname": "itemcontrato",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.item",
+                                "path": "contratos.bol_de_medicao.itens.item",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -1911,7 +1832,7 @@
                                 "fieldname": "valortotalvigente",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_vigente",
+                                "path": "contratos.bol_de_medicao.itens.valor_total_vigente",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1922,7 +1843,7 @@
                                 "fieldname": "quantidadetotalvigente",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_total_vigente",
+                                "path": "contratos.bol_de_medicao.itens.quantidade_total_vigente",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1933,7 +1854,7 @@
                                 "fieldname": "quantidademedida",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_medida",
+                                "path": "contratos.bol_de_medicao.itens.quantidade_medida",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1944,7 +1865,7 @@
                                 "fieldname": "valortotalmedido",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_medido",
+                                "path": "contratos.bol_de_medicao.itens.valor_total_medido",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1955,7 +1876,7 @@
                                 "fieldname": "saldoatual",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_atual",
+                                "path": "contratos.bol_de_medicao.itens.saldo_atual",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1966,7 +1887,7 @@
                                 "fieldname": "saldoanterior",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.saldo_anterior",
+                                "path": "contratos.bol_de_medicao.itens.saldo_anterior",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1977,7 +1898,7 @@
                                 "fieldname": "valortotalacumuladoanterior",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_acumulado_anterior",
+                                "path": "contratos.bol_de_medicao.itens.valor_total_acumulado_anterior",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -1988,7 +1909,7 @@
                                 "fieldname": "quantidadeacumuladaanterior",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_acumulada_anterior",
+                                "path": "contratos.bol_de_medicao.itens.quantidade_acumulada_anterior",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -1999,7 +1920,7 @@
                                 "fieldname": "quantidadeacumulada",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.quantidade_acumulada",
+                                "path": "contratos.bol_de_medicao.itens.quantidade_acumulada",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2010,7 +1931,7 @@
                                 "fieldname": "valortotalacumulado",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_total_acumulado",
+                                "path": "contratos.bol_de_medicao.itens.valor_total_acumulado",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -2021,7 +1942,7 @@
                                 "fieldname": "fatorpagamento",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.fator_de_pagamento",
+                                "path": "contratos.bol_de_medicao.itens.fator_de_pagamento",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2032,7 +1953,63 @@
                                 "fieldname": "valorfatorpagamento",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.medicao_de_contrato_bm.contract_measurement_item.valor_do_fator_de_pagamento",
+                                "path": "contratos.bol_de_medicao.itens.valor_do_fator_de_pagamento",
+                                "dragandrop": true,
+                                "icon": "money",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_City",
+                        "description": "Cidades",
+                        "fieldname": "Contract Measurement City",
+                        "fieldname_data": "tablemunicipios",
+                        "type": "doctype",
+                        "path": "contratos.bol_de_medicao.cidades",
+                        "dragandrop": false,
+                        "icon": "text",
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contratos.bol_de_medicao.cidades.chave_do_registro",
+                                "dragandrop": true,
+                                "icon": "key",
+                                "children": []
+                            },
+                            {
+                                "key": "Pedido_SAP",
+                                "description": "Pedido SAP",
+                                "fieldname": "pedidosap",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contratos.bol_de_medicao.cidades.pedido_sap",
+                                "dragandrop": true,
+                                "icon": "key",
+                                "children": []
+                            },
+                            {
+                                "key": "Municipio",
+                                "description": "Municipio",
+                                "fieldname": "municipio",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contratos.bol_de_medicao.cidades.municipio",
+                                "dragandrop": true,
+                                "icon": "key",
+                                "children": []
+                            },
+                            {
+                                "key": "Valor_total",
+                                "description": "Valor total",
+                                "fieldname": "valor",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.bol_de_medicao.cidades.valor_total",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -2043,11 +2020,11 @@
             },
             {
                 "key": "Contract_Measurement_Record",
-                "description": "Registro de Medição de Contrato",
+                "description": "Registros de BM.",
                 "fieldname": "Contract Measurement Record",
                 "fieldname_data": "",
                 "type": "doctype",
-                "path": "contrato.registro_de_medicao_de_contrato",
+                "path": "contratos.registros_de_bm",
                 "dragandrop": false,
                 "icon": "text",
                 "children": [
@@ -2057,9 +2034,20 @@
                         "fieldname": "name",
                         "fieldname_data": "",
                         "type": "key",
-                        "path": "contrato.registro_de_medicao_de_contrato.chave_do_registro",
+                        "path": "contratos.registros_de_bm.chave_do_registro",
                         "dragandrop": true,
                         "icon": "key",
+                        "children": []
+                    },
+                    {
+                        "key": "Origem",
+                        "description": "Origem",
+                        "fieldname": "origem_integracao",
+                        "fieldname_data": "",
+                        "type": "select",
+                        "path": "contratos.registros_de_bm.origem",
+                        "dragandrop": true,
+                        "icon": "text",
                         "children": []
                     },
                     {
@@ -2067,8 +2055,8 @@
                         "description": "Data",
                         "fieldname": "datacriacao",
                         "fieldname_data": "",
-                        "type": "date",
-                        "path": "contrato.registro_de_medicao_de_contrato.data",
+                        "type": "datetime",
+                        "path": "contratos.registros_de_bm.data",
                         "dragandrop": true,
                         "icon": "calendar",
                         "children": []
@@ -2078,8 +2066,19 @@
                         "description": "Data execução",
                         "fieldname": "dataexecucao",
                         "fieldname_data": "",
-                        "type": "date",
-                        "path": "contrato.registro_de_medicao_de_contrato.data_execucao",
+                        "type": "datetime",
+                        "path": "contratos.registros_de_bm.data_execucao",
+                        "dragandrop": true,
+                        "icon": "calendar",
+                        "children": []
+                    },
+                    {
+                        "key": "Data_aprovação",
+                        "description": "Data aprovação",
+                        "fieldname": "dataaprovacao",
+                        "fieldname_data": "",
+                        "type": "datetime",
+                        "path": "contratos.registros_de_bm.data_aprovacao",
                         "dragandrop": true,
                         "icon": "calendar",
                         "children": []
@@ -2090,7 +2089,7 @@
                         "fieldname": "contrato",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.contrato",
+                        "path": "contratos.registros_de_bm.contrato",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -2101,7 +2100,7 @@
                         "fieldname": "boletimmedicao",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.boletim_de_medicao",
+                        "path": "contratos.registros_de_bm.boletim_de_medicao",
                         "dragandrop": true,
                         "icon": "key",
                         "children": []
@@ -2112,128 +2111,18 @@
                         "fieldname": "medicaovigente",
                         "fieldname_data": "",
                         "type": "select",
-                        "path": "contrato.registro_de_medicao_de_contrato.medicao_vigente",
+                        "path": "contratos.registros_de_bm.medicao_vigente",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
                     },
                     {
-                        "key": "Rodovia",
-                        "description": "Rodovia",
-                        "fieldname": "rodovia",
+                        "key": "Código",
+                        "description": "Código",
+                        "fieldname": "codigo",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.rodovia",
-                        "dragandrop": true,
-                        "icon": "text",
-                        "children": []
-                    },
-                    {
-                        "key": "KM_inicial",
-                        "description": "KM inicial",
-                        "fieldname": "kminicial",
-                        "fieldname_data": "",
-                        "type": "numeric",
-                        "path": "contrato.registro_de_medicao_de_contrato.km_inicial",
-                        "dragandrop": true,
-                        "icon": "number",
-                        "children": []
-                    },
-                    {
-                        "key": "KM_final",
-                        "description": "KM final",
-                        "fieldname": "kmfinal",
-                        "fieldname_data": "",
-                        "type": "numeric",
-                        "path": "contrato.registro_de_medicao_de_contrato.km_final",
-                        "dragandrop": true,
-                        "icon": "number",
-                        "children": []
-                    },
-                    {
-                        "key": "Latitude",
-                        "description": "Latitude",
-                        "fieldname": "latitude",
-                        "fieldname_data": "",
-                        "type": "numeric",
-                        "path": "contrato.registro_de_medicao_de_contrato.latitude",
-                        "dragandrop": true,
-                        "icon": "number",
-                        "children": []
-                    },
-                    {
-                        "key": "Longitude",
-                        "description": "Longitude",
-                        "fieldname": "longitude",
-                        "fieldname_data": "",
-                        "type": "numeric",
-                        "path": "contrato.registro_de_medicao_de_contrato.longitude",
-                        "dragandrop": true,
-                        "icon": "number",
-                        "children": []
-                    },
-                    {
-                        "key": "Origem",
-                        "description": "Origem",
-                        "fieldname": "origem",
-                        "fieldname_data": "",
-                        "type": "select",
-                        "path": "contrato.registro_de_medicao_de_contrato.origem",
-                        "dragandrop": true,
-                        "icon": "text",
-                        "children": []
-                    },
-                    {
-                        "key": "Criado_por",
-                        "description": "Criado por",
-                        "fieldname": "criadopor",
-                        "fieldname_data": "",
-                        "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.criado_por",
-                        "dragandrop": true,
-                        "icon": "text",
-                        "children": []
-                    },
-                    {
-                        "key": "Aprovador",
-                        "description": "Aprovador",
-                        "fieldname": "aprovador",
-                        "fieldname_data": "",
-                        "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.aprovador",
-                        "dragandrop": true,
-                        "icon": "text",
-                        "children": []
-                    },
-                    {
-                        "key": "Responsavel",
-                        "description": "Responsavel",
-                        "fieldname": "responsavel",
-                        "fieldname_data": "",
-                        "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.responsavel",
-                        "dragandrop": true,
-                        "icon": "text",
-                        "children": []
-                    },
-                    {
-                        "key": "Código_RDO",
-                        "description": "Código RDO",
-                        "fieldname": "codigordo",
-                        "fieldname_data": "",
-                        "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.codigo_rdo",
-                        "dragandrop": true,
-                        "icon": "text",
-                        "children": []
-                    },
-                    {
-                        "key": "Código_relatório",
-                        "description": "Código relatório",
-                        "fieldname": "codigorelatorio",
-                        "fieldname_data": "",
-                        "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.codigo_relatorio",
+                        "path": "contratos.registros_de_bm.codigo",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -2244,7 +2133,7 @@
                         "fieldname": "climadamanha",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.clima_da_manha",
+                        "path": "contratos.registros_de_bm.clima_da_manha",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -2255,7 +2144,7 @@
                         "fieldname": "condicoesdamanha",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.condicoes_da_manha",
+                        "path": "contratos.registros_de_bm.condicoes_da_manha",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -2266,7 +2155,7 @@
                         "fieldname": "climadatarde",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.clima_da_tarde",
+                        "path": "contratos.registros_de_bm.clima_da_tarde",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -2277,7 +2166,7 @@
                         "fieldname": "condicoesdatarde",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.condicoes_da_tarde",
+                        "path": "contratos.registros_de_bm.condicoes_da_tarde",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -2288,7 +2177,7 @@
                         "fieldname": "climadanoite",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.clima_da_noite",
+                        "path": "contratos.registros_de_bm.clima_da_noite",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
@@ -2299,29 +2188,73 @@
                         "fieldname": "condicoesdanoite",
                         "fieldname_data": "",
                         "type": "string",
-                        "path": "contrato.registro_de_medicao_de_contrato.condicoes_da_noite",
+                        "path": "contratos.registros_de_bm.condicoes_da_noite",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
                     },
                     {
-                        "key": "",
-                        "description": "",
-                        "fieldname": "observacoes",
+                        "key": "Criado_por",
+                        "description": "Criado por",
+                        "fieldname": "criadopor",
                         "fieldname_data": "",
-                        "type": "text",
-                        "path": "contrato.registro_de_medicao_de_contrato.",
+                        "type": "string",
+                        "path": "contratos.registros_de_bm.criado_por",
                         "dragandrop": true,
                         "icon": "text",
                         "children": []
                     },
                     {
-                        "key": "Contract_Measurement_Record_Work_Role",
-                        "description": "Função no Registro BM",
-                        "fieldname": "Contract Measurement Record Work Role",
-                        "fieldname_data": "tabworkrole",
+                        "key": "Aprovador",
+                        "description": "Aprovador",
+                        "fieldname": "aprovador",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contratos.registros_de_bm.aprovador",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Responsavel",
+                        "description": "Responsavel",
+                        "fieldname": "responsavel",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contratos.registros_de_bm.responsavel",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Relatório",
+                        "description": "Relatório",
+                        "fieldname": "relatorio",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contratos.registros_de_bm.relatorio",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Rodovia",
+                        "description": "Rodovia",
+                        "fieldname": "rodovia",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "contratos.registros_de_bm.rodovia",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Contract_Measurement_Record_Log",
+                        "description": "Relatórios",
+                        "fieldname": "Contract Measurement Record Log",
+                        "fieldname_data": "tablog",
                         "type": "doctype",
-                        "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm",
+                        "path": "contratos.registros_de_bm.relatorios",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -2331,7 +2264,118 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.chave_do_registro",
+                                "path": "contratos.registros_de_bm.relatorios.chave_do_registro",
+                                "dragandrop": true,
+                                "icon": "key",
+                                "children": []
+                            },
+                            {
+                                "key": "Código_relatório_",
+                                "description": "Código relatório ",
+                                "fieldname": "codigorelatorio",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contratos.registros_de_bm.relatorios.codigo_relatorio",
+                                "dragandrop": true,
+                                "icon": "text",
+                                "children": []
+                            },
+                            {
+                                "key": "Data_execução",
+                                "description": "Data execução",
+                                "fieldname": "dataexecucao",
+                                "fieldname_data": "",
+                                "type": "date",
+                                "path": "contratos.registros_de_bm.relatorios.data_execucao",
+                                "dragandrop": true,
+                                "icon": "calendar",
+                                "children": []
+                            },
+                            {
+                                "key": "Observações",
+                                "description": "Observações",
+                                "fieldname": "observacoes",
+                                "fieldname_data": "",
+                                "type": "text",
+                                "path": "contratos.registros_de_bm.relatorios.observacoes",
+                                "dragandrop": true,
+                                "icon": "text",
+                                "children": []
+                            },
+                            {
+                                "key": "Rodovia",
+                                "description": "Rodovia",
+                                "fieldname": "rodovia",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contratos.registros_de_bm.relatorios.rodovia",
+                                "dragandrop": true,
+                                "icon": "text",
+                                "children": []
+                            },
+                            {
+                                "key": "Km_inicial",
+                                "description": "Km inicial",
+                                "fieldname": "kminicial",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.registros_de_bm.relatorios.km_inicial",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            },
+                            {
+                                "key": "Km_final",
+                                "description": "Km final",
+                                "fieldname": "kmfinal",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.registros_de_bm.relatorios.km_final",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            },
+                            {
+                                "key": "Latitude",
+                                "description": "Latitude",
+                                "fieldname": "latitude",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.registros_de_bm.relatorios.latitude",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            },
+                            {
+                                "key": "Longitude",
+                                "description": "Longitude",
+                                "fieldname": "longitude",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.registros_de_bm.relatorios.longitude",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Record_Work_Role",
+                        "description": "Funções",
+                        "fieldname": "Contract Measurement Record Work Role",
+                        "fieldname_data": "tabworkrole",
+                        "type": "doctype",
+                        "path": "contratos.registros_de_bm.funcoes",
+                        "dragandrop": false,
+                        "icon": "text",
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contratos.registros_de_bm.funcoes.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2342,7 +2386,7 @@
                                 "fieldname": "item",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.item",
+                                "path": "contratos.registros_de_bm.funcoes.item",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2353,7 +2397,7 @@
                                 "fieldname": "funcao",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.funcao",
+                                "path": "contratos.registros_de_bm.funcoes.funcao",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2364,7 +2408,7 @@
                                 "fieldname": "quantidademedida",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.quantidade_medida",
+                                "path": "contratos.registros_de_bm.funcoes.quantidade_medida",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2375,7 +2419,7 @@
                                 "fieldname": "valortotal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.valor_total",
+                                "path": "contratos.registros_de_bm.funcoes.valor_total",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -2386,20 +2430,42 @@
                                 "fieldname": "valorcalculado",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.funcao_no_registro_bm.valor_calculado",
+                                "path": "contratos.registros_de_bm.funcoes.valor_calculado",
                                 "dragandrop": true,
                                 "icon": "money",
+                                "children": []
+                            },
+                            {
+                                "key": "Tipo",
+                                "description": "Tipo",
+                                "fieldname": "tipo",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contratos.registros_de_bm.funcoes.tipo",
+                                "dragandrop": true,
+                                "icon": "text",
+                                "children": []
+                            },
+                            {
+                                "key": "Peso",
+                                "description": "Peso",
+                                "fieldname": "peso",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.registros_de_bm.funcoes.peso",
+                                "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             }
                         ]
                     },
                     {
                         "key": "Contract_Measurement_Record_Asset",
-                        "description": "Ativo de Registro BM",
+                        "description": "Ativos",
                         "fieldname": "Contract Measurement Record Asset",
                         "fieldname_data": "tabasset",
                         "type": "doctype",
-                        "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm",
+                        "path": "contratos.registros_de_bm.ativos",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -2409,7 +2475,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.chave_do_registro",
+                                "path": "contratos.registros_de_bm.ativos.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2420,7 +2486,7 @@
                                 "fieldname": "item",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.item",
+                                "path": "contratos.registros_de_bm.ativos.item",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2431,7 +2497,7 @@
                                 "fieldname": "maquina_equipamento_ou_ferramenta",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.maquina_equipamento_ou_ferramenta",
+                                "path": "contratos.registros_de_bm.ativos.maquina_equipamento_ou_ferramenta",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2442,7 +2508,7 @@
                                 "fieldname": "quantidademedida",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.quantidade_medida",
+                                "path": "contratos.registros_de_bm.ativos.quantidade_medida",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2453,7 +2519,7 @@
                                 "fieldname": "valortotal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.valor_total",
+                                "path": "contratos.registros_de_bm.ativos.valor_total",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -2464,20 +2530,42 @@
                                 "fieldname": "valorcalculado",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.ativo_de_registro_bm.valor_calculado",
+                                "path": "contratos.registros_de_bm.ativos.valor_calculado",
                                 "dragandrop": true,
                                 "icon": "money",
+                                "children": []
+                            },
+                            {
+                                "key": "Tipo",
+                                "description": "Tipo",
+                                "fieldname": "tipo",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contratos.registros_de_bm.ativos.tipo",
+                                "dragandrop": true,
+                                "icon": "text",
+                                "children": []
+                            },
+                            {
+                                "key": "Peso",
+                                "description": "Peso",
+                                "fieldname": "peso",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.registros_de_bm.ativos.peso",
+                                "dragandrop": true,
+                                "icon": "number",
                                 "children": []
                             }
                         ]
                     },
                     {
                         "key": "Contract_Measurement_Record_Material",
-                        "description": "Material de Registro BM",
+                        "description": "Materiais",
                         "fieldname": "Contract Measurement Record Material",
                         "fieldname_data": "table_lfhu",
                         "type": "doctype",
-                        "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm",
+                        "path": "contratos.registros_de_bm.materiais",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -2487,7 +2575,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.chave_do_registro",
+                                "path": "contratos.registros_de_bm.materiais.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2498,7 +2586,7 @@
                                 "fieldname": "item",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.item",
+                                "path": "contratos.registros_de_bm.materiais.item",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2509,7 +2597,7 @@
                                 "fieldname": "material",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.material",
+                                "path": "contratos.registros_de_bm.materiais.material",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2520,7 +2608,7 @@
                                 "fieldname": "quantidade",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.quantidade",
+                                "path": "contratos.registros_de_bm.materiais.quantidade",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2531,7 +2619,7 @@
                                 "fieldname": "valortotal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.valor_total",
+                                "path": "contratos.registros_de_bm.materiais.valor_total",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -2542,7 +2630,7 @@
                                 "fieldname": "valorcalculado",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.material_de_registro_bm.valor_calculado",
+                                "path": "contratos.registros_de_bm.materiais.valor_calculado",
                                 "dragandrop": true,
                                 "icon": "money",
                                 "children": []
@@ -2550,12 +2638,12 @@
                         ]
                     },
                     {
-                        "key": "Contract_Measurement_Record_Time",
-                        "description": "Tempo de Registro BM",
-                        "fieldname": "Contract Measurement Record Time",
-                        "fieldname_data": "table_rtgv",
+                        "key": "Contract_Measurement_Record_Resource",
+                        "description": "Recursos",
+                        "fieldname": "Contract Measurement Record Resource",
+                        "fieldname_data": "tabrecurso",
                         "type": "doctype",
-                        "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm",
+                        "path": "contratos.registros_de_bm.recursos",
                         "dragandrop": false,
                         "icon": "text",
                         "children": [
@@ -2565,7 +2653,7 @@
                                 "fieldname": "name",
                                 "fieldname_data": "",
                                 "type": "key",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.chave_do_registro",
+                                "path": "contratos.registros_de_bm.recursos.chave_do_registro",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2576,7 +2664,85 @@
                                 "fieldname": "item",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.item",
+                                "path": "contratos.registros_de_bm.recursos.item",
+                                "dragandrop": true,
+                                "icon": "key",
+                                "children": []
+                            },
+                            {
+                                "key": "Quantidade",
+                                "description": "Quantidade",
+                                "fieldname": "quantidade",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.registros_de_bm.recursos.quantidade",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            },
+                            {
+                                "key": "Valor_total",
+                                "description": "Valor total",
+                                "fieldname": "valortotal",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.registros_de_bm.recursos.valor_total",
+                                "dragandrop": true,
+                                "icon": "money",
+                                "children": []
+                            },
+                            {
+                                "key": "Tipo",
+                                "description": "Tipo",
+                                "fieldname": "tipo",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contratos.registros_de_bm.recursos.tipo",
+                                "dragandrop": true,
+                                "icon": "text",
+                                "children": []
+                            },
+                            {
+                                "key": "Peso",
+                                "description": "Peso",
+                                "fieldname": "peso",
+                                "fieldname_data": "",
+                                "type": "numeric",
+                                "path": "contratos.registros_de_bm.recursos.peso",
+                                "dragandrop": true,
+                                "icon": "number",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "key": "Contract_Measurement_Record_Time",
+                        "description": "Apontamentos de horas",
+                        "fieldname": "Contract Measurement Record Time",
+                        "fieldname_data": "table_rtgv",
+                        "type": "doctype",
+                        "path": "contratos.registros_de_bm.apontamentos_de_horas",
+                        "dragandrop": false,
+                        "icon": "text",
+                        "children": [
+                            {
+                                "key": "chave",
+                                "description": "Chave do registro",
+                                "fieldname": "name",
+                                "fieldname_data": "",
+                                "type": "key",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.chave_do_registro",
+                                "dragandrop": true,
+                                "icon": "key",
+                                "children": []
+                            },
+                            {
+                                "key": "Item",
+                                "description": "Item",
+                                "fieldname": "item",
+                                "fieldname_data": "",
+                                "type": "string",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.item",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2587,7 +2753,7 @@
                                 "fieldname": "funcao",
                                 "fieldname_data": "",
                                 "type": "string",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.funcao",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.funcao",
                                 "dragandrop": true,
                                 "icon": "key",
                                 "children": []
@@ -2598,7 +2764,7 @@
                                 "fieldname": "quantidade",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.quantidade",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.quantidade",
                                 "dragandrop": true,
                                 "icon": "integer",
                                 "children": []
@@ -2609,7 +2775,7 @@
                                 "fieldname": "horanormal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.hora_normal_dias_uteis",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.hora_normal_dias_uteis",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2620,7 +2786,7 @@
                                 "fieldname": "horanormalda",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.hora_normal_desc_e_acres",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.hora_normal_desc_e_acres",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2631,7 +2797,7 @@
                                 "fieldname": "compensacoes",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.compensacoes",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.compensacoes",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2642,7 +2808,7 @@
                                 "fieldname": "horaextra60",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.hora_extra_60_sab_e_dias_uteis",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.hora_extra_60_sab_e_dias_uteis",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2653,7 +2819,7 @@
                                 "fieldname": "horaextra100",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.hora_extra_100_dom_e_feriados",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.hora_extra_100_dom_e_feriados",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2664,7 +2830,7 @@
                                 "fieldname": "quantidadeequivalente",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.quantidade_equivalente",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.quantidade_equivalente",
                                 "dragandrop": true,
                                 "icon": "number",
                                 "children": []
@@ -2675,65 +2841,9 @@
                                 "fieldname": "valortotal",
                                 "fieldname_data": "",
                                 "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.tempo_de_registro_bm.valor_total",
+                                "path": "contratos.registros_de_bm.apontamentos_de_horas.valor_total",
                                 "dragandrop": true,
                                 "icon": "number",
-                                "children": []
-                            }
-                        ]
-                    },
-                    {
-                        "key": "Contract_Measurement_Record_Resource",
-                        "description": "Contract Measurement Record Resource",
-                        "fieldname": "Contract Measurement Record Resource",
-                        "fieldname_data": "tabrecurso",
-                        "type": "doctype",
-                        "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource",
-                        "dragandrop": false,
-                        "icon": "text",
-                        "children": [
-                            {
-                                "key": "chave",
-                                "description": "Chave do registro",
-                                "fieldname": "name",
-                                "fieldname_data": "",
-                                "type": "key",
-                                "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource.chave_do_registro",
-                                "dragandrop": true,
-                                "icon": "key",
-                                "children": []
-                            },
-                            {
-                                "key": "Item",
-                                "description": "Item",
-                                "fieldname": "item",
-                                "fieldname_data": "",
-                                "type": "string",
-                                "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource.item",
-                                "dragandrop": true,
-                                "icon": "key",
-                                "children": []
-                            },
-                            {
-                                "key": "Quantidade",
-                                "description": "Quantidade",
-                                "fieldname": "quantidade",
-                                "fieldname_data": "",
-                                "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource.quantidade",
-                                "dragandrop": true,
-                                "icon": "number",
-                                "children": []
-                            },
-                            {
-                                "key": "Valor_total",
-                                "description": "Valor total",
-                                "fieldname": "valortotal",
-                                "fieldname_data": "",
-                                "type": "numeric",
-                                "path": "contrato.registro_de_medicao_de_contrato.contract_measurement_record_resource.valor_total",
-                                "dragandrop": true,
-                                "icon": "money",
                                 "children": []
                             }
                         ]
@@ -2744,11 +2854,11 @@
     },
     {
         "key": "Contract_Item_Type",
-        "description": "Contract Item Type",
+        "description": "Tipos de itens",
         "fieldname": "Contract Item Type",
         "fieldname_data": "",
         "type": "doctype",
-        "path": "contract_item_type",
+        "path": "tipos_de_itens",
         "dragandrop": false,
         "icon": "text",
         "children": [
@@ -2758,7 +2868,7 @@
                 "fieldname": "name",
                 "fieldname_data": "",
                 "type": "key",
-                "path": "contract_item_type.chave_do_registro",
+                "path": "tipos_de_itens.chave_do_registro",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -2769,7 +2879,7 @@
                 "fieldname": "tipo",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contract_item_type.tipo",
+                "path": "tipos_de_itens.tipo",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -2780,7 +2890,7 @@
                 "fieldname": "tipoaux",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contract_item_type.tipo",
+                "path": "tipos_de_itens.tipo",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -2791,7 +2901,7 @@
                 "fieldname": "descricao",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contract_item_type.descricao",
+                "path": "tipos_de_itens.descricao",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -2802,7 +2912,7 @@
                 "fieldname": "kartadotipoitem",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "contract_item_type.tipo_do_item",
+                "path": "tipos_de_itens.tipo_do_item",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -2811,7 +2921,7 @@
     },
     {
         "key": "Contracted_Company",
-        "description": "Empresa Contratada",
+        "description": "Empresa contratada",
         "fieldname": "Contracted Company",
         "fieldname_data": "",
         "type": "doctype",
@@ -2877,79 +2987,12 @@
         ]
     },
     {
-        "key": "Depth_Period_Setting",
-        "description": "Periodo de Medição",
-        "fieldname": "Depth Period Setting",
-        "fieldname_data": "",
-        "type": "doctype",
-        "path": "periodo_de_medicao",
-        "dragandrop": false,
-        "icon": "text",
-        "children": [
-            {
-                "key": "chave",
-                "description": "Chave do registro",
-                "fieldname": "name",
-                "fieldname_data": "",
-                "type": "key",
-                "path": "periodo_de_medicao.chave_do_registro",
-                "dragandrop": true,
-                "icon": "key",
-                "children": []
-            },
-            {
-                "key": "Descrição",
-                "description": "Descrição",
-                "fieldname": "descricao",
-                "fieldname_data": "",
-                "type": "string",
-                "path": "periodo_de_medicao.descricao",
-                "dragandrop": true,
-                "icon": "text",
-                "children": []
-            },
-            {
-                "key": "Fechamento_mensal",
-                "description": "Fechamento mensal",
-                "fieldname": "mensal",
-                "fieldname_data": "",
-                "type": "boolean",
-                "path": "periodo_de_medicao.fechamento_mensal",
-                "dragandrop": true,
-                "icon": "text",
-                "children": []
-            },
-            {
-                "key": "Dia_inicial",
-                "description": "Dia inicial",
-                "fieldname": "diainicial",
-                "fieldname_data": "",
-                "type": "numeric",
-                "path": "periodo_de_medicao.dia_inicial",
-                "dragandrop": true,
-                "icon": "integer",
-                "children": []
-            },
-            {
-                "key": "Dia_final",
-                "description": "Dia final",
-                "fieldname": "diafinal",
-                "fieldname_data": "",
-                "type": "numeric",
-                "path": "periodo_de_medicao.dia_final",
-                "dragandrop": true,
-                "icon": "integer",
-                "children": []
-            }
-        ]
-    },
-    {
         "key": "Highway",
-        "description": "Rodovia",
+        "description": "Rodovias",
         "fieldname": "Highway",
         "fieldname_data": "",
         "type": "doctype",
-        "path": "rodovia",
+        "path": "rodovias",
         "dragandrop": false,
         "icon": "text",
         "children": [
@@ -2959,7 +3002,7 @@
                 "fieldname": "name",
                 "fieldname_data": "",
                 "type": "key",
-                "path": "rodovia.chave_do_registro",
+                "path": "rodovias.chave_do_registro",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -2970,7 +3013,7 @@
                 "fieldname": "sigla",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "rodovia.sigla",
+                "path": "rodovias.sigla",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -2981,20 +3024,76 @@
                 "fieldname": "nome",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "rodovia.nome",
+                "path": "rodovias.nome",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
+            },
+            {
+                "key": "Highway_City",
+                "description": "Cidades",
+                "fieldname": "Highway City",
+                "fieldname_data": "cidades",
+                "type": "doctype",
+                "path": "rodovias.cidades",
+                "dragandrop": false,
+                "icon": "text",
+                "children": [
+                    {
+                        "key": "chave",
+                        "description": "Chave do registro",
+                        "fieldname": "name",
+                        "fieldname_data": "",
+                        "type": "key",
+                        "path": "rodovias.cidades.chave_do_registro",
+                        "dragandrop": true,
+                        "icon": "key",
+                        "children": []
+                    },
+                    {
+                        "key": "Cidade",
+                        "description": "Cidade",
+                        "fieldname": "cidade",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "rodovias.cidades.cidade",
+                        "dragandrop": true,
+                        "icon": "key",
+                        "children": []
+                    },
+                    {
+                        "key": "KM_Inicial",
+                        "description": "KM Inicial",
+                        "fieldname": "kminicial",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "rodovias.cidades.km_inicial",
+                        "dragandrop": true,
+                        "icon": "number",
+                        "children": []
+                    },
+                    {
+                        "key": "KM_Final",
+                        "description": "KM Final",
+                        "fieldname": "kmfinal",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "rodovias.cidades.km_final",
+                        "dragandrop": true,
+                        "icon": "number",
+                        "children": []
+                    }
+                ]
             }
         ]
     },
     {
         "key": "Holiday",
-        "description": "Feriado",
+        "description": "Feriados",
         "fieldname": "Holiday",
         "fieldname_data": "",
         "type": "doctype",
-        "path": "feriado",
+        "path": "feriados",
         "dragandrop": false,
         "icon": "text",
         "children": [
@@ -3004,7 +3103,7 @@
                 "fieldname": "name",
                 "fieldname_data": "",
                 "type": "key",
-                "path": "feriado.chave_do_registro",
+                "path": "feriados.chave_do_registro",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -3015,7 +3114,7 @@
                 "fieldname": "data",
                 "fieldname_data": "",
                 "type": "date",
-                "path": "feriado.data",
+                "path": "feriados.data",
                 "dragandrop": true,
                 "icon": "calendar",
                 "children": []
@@ -3026,7 +3125,7 @@
                 "fieldname": "descricao",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "feriado.descricao",
+                "path": "feriados.descricao",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -3037,7 +3136,7 @@
                 "fieldname": "cidade",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "feriado.cidade_apenas_para_feriados_municipais",
+                "path": "feriados.cidade_apenas_para_feriados_municipais",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -3046,11 +3145,11 @@
     },
     {
         "key": "Item",
-        "description": "Item",
+        "description": "Modelos de itens",
         "fieldname": "Item",
         "fieldname_data": "",
         "type": "doctype",
-        "path": "item",
+        "path": "modelos_de_itens",
         "dragandrop": false,
         "icon": "text",
         "children": [
@@ -3060,7 +3159,7 @@
                 "fieldname": "name",
                 "fieldname_data": "",
                 "type": "key",
-                "path": "item.chave_do_registro",
+                "path": "modelos_de_itens.chave_do_registro",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -3071,7 +3170,7 @@
                 "fieldname": "codigo",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "item.codigo",
+                "path": "modelos_de_itens.codigo",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -3082,7 +3181,7 @@
                 "fieldname": "descricao",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "item.descricao",
+                "path": "modelos_de_itens.descricao",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []
@@ -3093,7 +3192,7 @@
                 "fieldname": "grupo",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "item.grupo",
+                "path": "modelos_de_itens.grupo",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -3104,7 +3203,7 @@
                 "fieldname": "subgrupo",
                 "fieldname_data": "",
                 "type": "string",
-                "path": "item.sub_grupo",
+                "path": "modelos_de_itens.sub_grupo",
                 "dragandrop": true,
                 "icon": "key",
                 "children": []
@@ -3115,7 +3214,601 @@
                 "fieldname": "observacaoes",
                 "fieldname_data": "",
                 "type": "text",
-                "path": "item.observacoes",
+                "path": "modelos_de_itens.observacoes",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Item_Group",
+        "description": "Item Group",
+        "fieldname": "Item Group",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "item_group",
+        "dragandrop": false,
+        "icon": "text",
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "item_group.chave_do_registro",
+                "dragandrop": true,
+                "icon": "key",
+                "children": []
+            },
+            {
+                "key": "Descrição",
+                "description": "Descrição",
+                "fieldname": "descricao",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "item_group.descricao",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Item_Sub_Group",
+        "description": "Subgrupos de itens",
+        "fieldname": "Item Sub Group",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "subgrupos_de_itens",
+        "dragandrop": false,
+        "icon": "text",
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "subgrupos_de_itens.chave_do_registro",
+                "dragandrop": true,
+                "icon": "key",
+                "children": []
+            },
+            {
+                "key": "Descrição",
+                "description": "Descrição",
+                "fieldname": "descricao",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "subgrupos_de_itens.descricao",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Material",
+        "description": "Materiais",
+        "fieldname": "Material",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "materiais",
+        "dragandrop": false,
+        "icon": "text",
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "materiais.chave_do_registro",
+                "dragandrop": true,
+                "icon": "key",
+                "children": []
+            },
+            {
+                "key": "Código",
+                "description": "Código",
+                "fieldname": "codigo",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "materiais.codigo",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            },
+            {
+                "key": "Descrição",
+                "description": "Descrição",
+                "fieldname": "descricao",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "materiais.descricao",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Person",
+        "description": "Pessoa",
+        "fieldname": "Person",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "pessoa",
+        "dragandrop": false,
+        "icon": "text",
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "pessoa.chave_do_registro",
+                "dragandrop": true,
+                "icon": "key",
+                "children": []
+            },
+            {
+                "key": "Nome",
+                "description": "Nome",
+                "fieldname": "nome",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "pessoa.nome",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            },
+            {
+                "key": "Departamento",
+                "description": "Departamento",
+                "fieldname": "departamento",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "pessoa.departamento",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            },
+            {
+                "key": "Email",
+                "description": "Email",
+                "fieldname": "email",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "pessoa.email",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            },
+            {
+                "key": "Telefone/Celular",
+                "description": "Telefone/Celular",
+                "fieldname": "telefone",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "pessoa.telefone_celular",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "SAP_Order",
+        "description": "SAP Order",
+        "fieldname": "SAP Order",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "sap_order",
+        "dragandrop": false,
+        "icon": "text",
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "sap_order.chave_do_registro",
+                "dragandrop": true,
+                "icon": "key",
+                "children": []
+            },
+            {
+                "key": "Nº_do_pedido",
+                "description": "Nº do pedido",
+                "fieldname": "numeropedido",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "sap_order.no_do_pedido",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            },
+            {
+                "key": "Investimento/Operação",
+                "description": "Investimento/Operação",
+                "fieldname": "capexopex",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "sap_order.investimento_operacao",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            },
+            {
+                "key": "Tipo",
+                "description": "Tipo",
+                "fieldname": "tipo",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "sap_order.tipo",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            },
+            {
+                "key": "Valor_total_para_a_linha_do_pedido",
+                "description": "Valor total para a linha do pedido",
+                "fieldname": "valortotal",
+                "fieldname_data": "",
+                "type": "numeric",
+                "path": "sap_order.valor_total_para_a_linha_do_pedido",
+                "dragandrop": true,
+                "icon": "money",
+                "children": []
+            },
+            {
+                "key": "Valor_total_medido",
+                "description": "Valor total medido",
+                "fieldname": "valortotalmedido",
+                "fieldname_data": "",
+                "type": "numeric",
+                "path": "sap_order.valor_total_medido",
+                "dragandrop": true,
+                "icon": "money",
+                "children": []
+            },
+            {
+                "key": "Saldo",
+                "description": "Saldo",
+                "fieldname": "saldo",
+                "fieldname_data": "",
+                "type": "numeric",
+                "path": "sap_order.saldo",
+                "dragandrop": true,
+                "icon": "money",
+                "children": []
+            },
+            {
+                "key": "SAP_Order_Period",
+                "description": "Linhas",
+                "fieldname": "SAP Order Period",
+                "fieldname_data": "table_dscc",
+                "type": "doctype",
+                "path": "sap_order.linhas",
+                "dragandrop": false,
+                "icon": "text",
+                "children": [
+                    {
+                        "key": "chave",
+                        "description": "Chave do registro",
+                        "fieldname": "name",
+                        "fieldname_data": "",
+                        "type": "key",
+                        "path": "sap_order.linhas.chave_do_registro",
+                        "dragandrop": true,
+                        "icon": "key",
+                        "children": []
+                    },
+                    {
+                        "key": "Data_incial",
+                        "description": "Data incial",
+                        "fieldname": "datainicial",
+                        "fieldname_data": "",
+                        "type": "date",
+                        "path": "sap_order.linhas.data_incial",
+                        "dragandrop": true,
+                        "icon": "calendar",
+                        "children": []
+                    },
+                    {
+                        "key": "Data_final",
+                        "description": "Data final",
+                        "fieldname": "datafinal",
+                        "fieldname_data": "",
+                        "type": "date",
+                        "path": "sap_order.linhas.data_final",
+                        "dragandrop": true,
+                        "icon": "calendar",
+                        "children": []
+                    },
+                    {
+                        "key": "Linha_do_pedido",
+                        "description": "Linha do pedido",
+                        "fieldname": "linhapedido",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "sap_order.linhas.linha_do_pedido",
+                        "dragandrop": true,
+                        "icon": "integer",
+                        "children": []
+                    },
+                    {
+                        "key": "Centro_de_custo",
+                        "description": "Centro de custo",
+                        "fieldname": "centrodecusto",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "sap_order.linhas.centro_de_custo",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    },
+                    {
+                        "key": "Valor_para_o_período",
+                        "description": "Valor para o período",
+                        "fieldname": "valor_para_o_periodo",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "sap_order.linhas.valor_para_o_periodo",
+                        "dragandrop": true,
+                        "icon": "money",
+                        "children": []
+                    },
+                    {
+                        "key": "Valor_medido",
+                        "description": "Valor medido",
+                        "fieldname": "valormedido",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "sap_order.linhas.valor_medido",
+                        "dragandrop": true,
+                        "icon": "money",
+                        "children": []
+                    },
+                    {
+                        "key": "Saldo",
+                        "description": "Saldo",
+                        "fieldname": "saldo",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "sap_order.linhas.saldo",
+                        "dragandrop": true,
+                        "icon": "money",
+                        "children": []
+                    },
+                    {
+                        "key": "Código_mat.",
+                        "description": "Código mat.",
+                        "fieldname": "codigoiss",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "sap_order.linhas.codigo_mat",
+                        "dragandrop": true,
+                        "icon": "key",
+                        "children": []
+                    },
+                    {
+                        "key": "Descrição",
+                        "description": "Descrição",
+                        "fieldname": "descricaoiss",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "sap_order.linhas.descricao",
+                        "dragandrop": true,
+                        "icon": "text",
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "key": "SAP_Order_Highway",
+                "description": "Rodovias",
+                "fieldname": "SAP Order Highway",
+                "fieldname_data": "table_nqgi",
+                "type": "doctype",
+                "path": "sap_order.rodovias",
+                "dragandrop": false,
+                "icon": "text",
+                "children": [
+                    {
+                        "key": "chave",
+                        "description": "Chave do registro",
+                        "fieldname": "name",
+                        "fieldname_data": "",
+                        "type": "key",
+                        "path": "sap_order.rodovias.chave_do_registro",
+                        "dragandrop": true,
+                        "icon": "key",
+                        "children": []
+                    },
+                    {
+                        "key": "Rodovia",
+                        "description": "Rodovia",
+                        "fieldname": "rodovia",
+                        "fieldname_data": "",
+                        "type": "string",
+                        "path": "sap_order.rodovias.rodovia",
+                        "dragandrop": true,
+                        "icon": "key",
+                        "children": []
+                    },
+                    {
+                        "key": "KM_inicial",
+                        "description": "KM inicial",
+                        "fieldname": "kminicial",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "sap_order.rodovias.km_inicial",
+                        "dragandrop": true,
+                        "icon": "number",
+                        "children": []
+                    },
+                    {
+                        "key": "KM_final",
+                        "description": "KM final",
+                        "fieldname": "kmfinal",
+                        "fieldname_data": "",
+                        "type": "numeric",
+                        "path": "sap_order.rodovias.km_final",
+                        "dragandrop": true,
+                        "icon": "number",
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "key": "Subsidiary",
+        "description": "Concessionárias",
+        "fieldname": "Subsidiary",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "concessionarias",
+        "dragandrop": false,
+        "icon": "text",
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "concessionarias.chave_do_registro",
+                "dragandrop": true,
+                "icon": "key",
+                "children": []
+            },
+            {
+                "key": "Subsidiária_",
+                "description": "Subsidiária ",
+                "fieldname": "nome",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "concessionarias.subsidiaria",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            },
+            {
+                "key": "Chave",
+                "description": "Chave",
+                "fieldname": "uuidkartado",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "concessionarias.chave",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Unit",
+        "description": "Unidades",
+        "fieldname": "Unit",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "unidades",
+        "dragandrop": false,
+        "icon": "text",
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "unidades.chave_do_registro",
+                "dragandrop": true,
+                "icon": "key",
+                "children": []
+            },
+            {
+                "key": "Unidade",
+                "description": "Unidade",
+                "fieldname": "unidade",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "unidades.unidade",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Vertical",
+        "description": "Vertical",
+        "fieldname": "Vertical",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "vertical",
+        "dragandrop": false,
+        "icon": "text",
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "vertical.chave_do_registro",
+                "dragandrop": true,
+                "icon": "key",
+                "children": []
+            },
+            {
+                "key": "Descriçao",
+                "description": "Descriçao",
+                "fieldname": "descricao",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "vertical.descricao",
+                "dragandrop": true,
+                "icon": "text",
+                "children": []
+            }
+        ]
+    },
+    {
+        "key": "Work_Role",
+        "description": "Funções",
+        "fieldname": "Work Role",
+        "fieldname_data": "",
+        "type": "doctype",
+        "path": "funcoes",
+        "dragandrop": false,
+        "icon": "text",
+        "children": [
+            {
+                "key": "chave",
+                "description": "Chave do registro",
+                "fieldname": "name",
+                "fieldname_data": "",
+                "type": "key",
+                "path": "funcoes.chave_do_registro",
+                "dragandrop": true,
+                "icon": "key",
+                "children": []
+            },
+            {
+                "key": "Função",
+                "description": "Função",
+                "fieldname": "funcao",
+                "fieldname_data": "",
+                "type": "string",
+                "path": "funcoes.funcao",
                 "dragandrop": true,
                 "icon": "text",
                 "children": []

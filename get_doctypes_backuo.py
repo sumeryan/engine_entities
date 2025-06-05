@@ -20,7 +20,6 @@ import logging
 import arteris_frappe
 import mappings
 import hierarchical_tree
-from engine_data import EngineDataBuilder
 
 
 # Configure logging
@@ -148,7 +147,7 @@ class ArterisApiClient:
     def get_keys(self, doctype_name: str, filters: Optional[str] = None) -> List[str]:
         """Get keys for a doctype"""
         try:
-            return self.arteris_api.get_keys(doctype_name, filters)
+            return self.arteris_api.get_keys(sdoctype_name, filters)
         except Exception as e:
             logger.error(f"Failed to get keys for {doctype_name}: {e}")
             return []
@@ -327,7 +326,7 @@ class DoctypeDataRetriever:
 class DoctypeProcessor:
     """Main processor for doctype operations"""
     
-    def __init__(self):
+    def __init__(self, write_to_file: bool = True):
         # Initialize components
         self.normalizer = StringNormalizer()
         self.api_client = ArterisApiClient()
@@ -338,6 +337,7 @@ class DoctypeProcessor:
         self.mapping_extractor = ParentMappingExtractor()
         self.data_retriever = DoctypeDataRetriever(self.api_client, self.data_manager)
         self.hierarchical_tree = hierarchical_tree.HierarchicalTreeBuilder()
+        self.write_to_file = write_to_file
     
     def get_keys(self, doctype_name: str, filters: Optional[str] = None) -> List[str]:
         """Get keys for a specific doctype"""
@@ -390,88 +390,50 @@ class DoctypeProcessor:
         
         return hierarchical
     
-    def get_default_data(self, using_cached_data = False) -> List[Dict]:
+    def get_default_data(self, refresh = False) -> List[Dict]:
         """Retrieve default data for all doctypes"""
         logger.info("Starting data retrieval for default doctypes...")
         
-        # Check if cached data exists
-        if not using_cached_data or not os.path.isfile("data/all_doctypes_data.json") or not os.path.isfile("data/all_doctypes_structure.json"):
-
-            # Get doctype structure
-            all_doctype_structure = self.process_doctypes()
-
-            # Get main data configuration
-            main_doctypes = mappings.get_main_data()
-            
-            # Enrich main doctypes with field information
-            for main in main_doctypes:
-                all_doctype_structure["main_doctypes"].pop(main["doctype"], [])
-                
-                for child in main.get("childs", []):
-                    all_doctype_structure["main_doctypes"].pop(child["doctype"], [])
-
-            # Remove ignored doctypes
-            ignore_list = mappings.get_ignore_mapping()
-            for ignored in ignore_list:
-                all_doctype_structure["main_doctypes"].pop(ignored, None)
-                        
-            # Collect all doctype data
-            all_doctype_data = []
-            
-            # Process remaining doctypes
-            for doctype_name in all_doctype_structure["main_doctypes"]:
-                data, _ = self.data_retriever.get_doctype_data(doctype_name)
-                all_doctype_data.append({doctype_name: data})
-            
-            # write all_doctypes_structure to file
-            self.data_manager.save_json("data", all_doctype_data, "all_doctypes_data")
-            # write all_doctypes_datato file
-            self.data_manager.save_json("data", all_doctype_structure, "all_doctypes_strutucture")
+        # Get doctype structure
+        all_doctypes = self.process_doctypes()
         
-        else:
-            logger.info("Using cached data from data/all_doctypes_data.json")
-            with open("data/all_doctypes_data.json", "r", encoding="utf-8") as f:
-                all_doctype_data = json.load(f)
-            with open("data/all_doctypes_strtucture.json", "r", encoding="utf-8") as f:
-                all_doctype_structure = json.load(f)
-
-        return {
-            "data": all_doctype_data, 
-            "structure": all_doctype_structure["all_doctypes"]
-        }
-
-    
-    def get_data(self, main_id: str) -> List[Dict]:
-        """Retrieve and save all doctype data"""
-        logger.info("Starting data retrieval...")
-        
-        # Check all_doctypes.json file, if not exists, get default data
-        if not os.path.isfile("data/all_doctypes_data.json") or not os.path.isfile("data/all_doctypes_strutucture.json"):
-            result = self.get_default_data(using_cached_data=False)
-            all_doctype_structure = result["structure"]
-            all_doctype_data = result["data"]
-        else:
-            logger.info("Using cached data from data/all_doctypes_data.json")
-            with open("data/all_doctypes_data.json", "r", encoding="utf-8") as f:
-                all_doctype_data = json.load(f)
-            with open("data/all_doctypes_strutucture.json", "r", encoding="utf-8") as f:
-                all_doctype_structure = json.load(f)
-
         # Get main data configuration
         main_doctypes = mappings.get_main_data()
-                                
+        
+        # Enrich main doctypes with field information
+        for main in main_doctypes:
+            main["doctype_with_fields"] = all_doctypes["all_doctypes"].pop(main["doctype"], [])
+            
+            for child in main.get("childs", []):
+                child["doctype_with_fields"] = all_doctypes["all_doctypes"].pop(child["doctype"], [])
+        
+        # Clear data directory
+        if self.write_to_file:
+            self.data_manager.clear_directory("data")
+        
+        # Collect all doctype data
+        all_doctype_data = []
+        
+        # Process remaining doctypes
+        for doctype_name in all_doctypes["all_doctypes"]:
+            data, _ = self.data_retriever.get_doctype_data(doctype_name)
+            all_doctype_data.append({doctype_name: data})
+        
         # Process main doctypes
         for main in main_doctypes:
             # Apply filter if main_id provided
             filters = None
-
-            filters = f'[["{main["key"]}","=","{main_id}"]]'
+            if main_id:
+                filters = f'[["{main["key"]}","=","{main_id}"]]'
             
             data, keys = self.data_retriever.get_doctype_data(main["doctype"], filters)
             all_doctype_data.append({main["doctype"]: data})
             
             # Process child doctypes for each key
             for key in keys:
+                key_dir = os.path.join("data", self.normalizer.normalize(key))
+                self.data_manager.create_directory(key_dir)
+                
                 for child in main.get("childs", []):
                     child_filter = f'["{child["key"]}","=","{key}"]'
                     if "filters" in child:
@@ -482,42 +444,105 @@ class DoctypeProcessor:
                         f'[{child_filter}]'
                     )
                     all_doctype_data.append({child["doctype"]: child_data})
-
+                    
+                    # Save child data
+                    self.data_retriever.save_doctype_data(
+                        key_dir, 
+                        child_data, 
+                        child["doctype"]
+                    )
         
         # Save all doctype data
-        self.data_manager.save_json("data", all_doctype_data, f"all_doctype_data_{main_id}")
+        if self.write_to_file:
+            self.data_manager.save_json("data", all_doctype_data, "all_doctypes")
 
         # Get hierarchical structure
-        hierarchical = self.hierarchical_tree.build_tree(all_doctype_structure)
+        hierarchical = self.hierarchical_tree.build_tree(all_doctypes)
         
-        return {
-            "data": all_doctype_data,
-            "structure": all_doctype_structure,
-            "hierarchical": hierarchical
-        }
+        return {"data": all_doctype_data,
+                "structure": all_doctypes["all_doctypes"],
+                "hierarchical": hierarchical}
+
     
-    def get_formula_data(self, using_cached_data = False) -> List[Dict]:
+    def get_data(self, main_id: Optional[str] = None) -> List[Dict]:
+        """Retrieve and save all doctype data"""
+        logger.info("Starting data retrieval...")
+        
+        # Get doctype structure
+        all_doctypes = self.process_doctypes()
+        
+        # Get main data configuration
+        main_doctypes = mappings.get_main_data()
+        
+        # Enrich main doctypes with field information
+        for main in main_doctypes:
+            main["doctype_with_fields"] = all_doctypes["all_doctypes"].pop(main["doctype"], [])
+            
+            for child in main.get("childs", []):
+                child["doctype_with_fields"] = all_doctypes["all_doctypes"].pop(child["doctype"], [])
+        
+        # Clear data directory
+        if self.write_to_file:
+            self.data_manager.clear_directory("data")
+        
+        # Collect all doctype data
+        all_doctype_data = []
+        
+        # Process remaining doctypes
+        for doctype_name in all_doctypes["all_doctypes"]:
+            data, _ = self.data_retriever.get_doctype_data(doctype_name)
+            all_doctype_data.append({doctype_name: data})
+        
+        # Process main doctypes
+        for main in main_doctypes:
+            # Apply filter if main_id provided
+            filters = None
+            if main_id:
+                filters = f'[["{main["key"]}","=","{main_id}"]]'
+            
+            data, keys = self.data_retriever.get_doctype_data(main["doctype"], filters)
+            all_doctype_data.append({main["doctype"]: data})
+            
+            # Process child doctypes for each key
+            for key in keys:
+                key_dir = os.path.join("data", self.normalizer.normalize(key))
+                self.data_manager.create_directory(key_dir)
+                
+                for child in main.get("childs", []):
+                    child_filter = f'["{child["key"]}","=","{key}"]'
+                    if "filters" in child:
+                        for filter in child["filters"]:
+                            child_filter += f',["{filter["field"]}","=","{filter["value"]}"]'
+                    child_data, _ = self.data_retriever.get_doctype_data(
+                        child["doctype"], 
+                        f'[{child_filter}]'
+                    )
+                    all_doctype_data.append({child["doctype"]: child_data})
+                    
+                    # Save child data
+                    self.data_retriever.save_doctype_data(
+                        key_dir, 
+                        child_data, 
+                        child["doctype"]
+                    )
+        
+        # Save all doctype data
+        if self.write_to_file:
+            self.data_manager.save_json("data", all_doctype_data, "all_doctypes")
+
+        # Get hierarchical structure
+        hierarchical = self.hierarchical_tree.build_tree(all_doctypes)
+        
+        return {"data": all_doctype_data,
+                "structure": all_doctypes["all_doctypes"],
+                "hierarchical": hierarchical}
+    
+    def get_formula_data(self) -> List[Dict]:
         """Retrieve formula group data"""
         logger.info("Retrieving formula data...")
-
-        # Check if cached data exists
-        if not using_cached_data or not os.path.isfile("data/formula_group.json"):
-            data, _ = self.data_retriever.get_doctype_data("Formula Group")
-            self.data_retriever.save_doctype_data("data", data, "formula_group")
-
-        with open("data/formula_group.json", "r", encoding="utf-8") as f:
-            return json.load(f)
-        
-    def get_contracts(self) -> List[Dict]:
-        """Retrieve contract data"""
-        logger.info("Retrieving contract data...")
-
-        keys = self.get_keys("Contract", filters='[["contratoencerrado","=","null"]]')
-
-        return keys
-    
-    
-
+        data, _ = self.data_retriever.get_doctype_data("Formula Group")
+        self.data_retriever.save_doctype_data("data", data, "formula_group")
+        return data
 
 
 def main():
@@ -525,39 +550,16 @@ def main():
     try:
         processor = DoctypeProcessor()
         
-        #processor.get_default_data(using_cached_data=True)
-
         # Uncomment to get data for specific contract
-        contract_data = processor.get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e")
+        processor.get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e")
 
-        formulas = processor.get_formula_data(using_cached_data=True)
-
-         # Get formula to contract
-        group_formula = [item for item in contract_data['data'] if 'Contract' in item][0]['Contract'][0]['grupoformulas']
-
-        # Filter formulas based on group
-        contract_formula = [f for f in formulas if f.get("name") in group_formula]    
-
-        # Build engine data
-        builder = EngineDataBuilder(
-            contract_data['hierarchical'], 
-            contract_formula, 
-            contract_data['data'], 
-            "data",
-            compact_mode=True
-        )
-        engine_data = builder.build()
-
-        # save engine data to tree_data.json
-        processor.data_manager.save_json("data", engine_data, "tree_data")
-
-        # # Get formula data
-        # processor.get_formula_data()
+        # Get formula data
+        processor.get_formula_data()
         
-        # # Get hierarchical structure
-        # processor.get_hierarchical_structure()
+        # Get hierarchical structure
+        processor.get_hierarchical_structure()
                 
-        # logger.info("Processing completed successfully!")
+        logger.info("Processing completed successfully!")
         
     except Exception as e:
         logger.error(f"Processing failed: {e}")

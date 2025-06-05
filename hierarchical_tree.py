@@ -596,10 +596,6 @@ def main():
         processor = get_doctypes.DoctypeProcessor()
         all_doctypes = processor.process_doctypes()
 
-        # Load data
-        # all_doctypes = FileManager.load_json("output/all_doctypes.json")
-        # teste
-        
         # Build tree
         builder = HierarchicalTreeBuilder()
         hierarchical_data = builder.build_tree(all_doctypes)
