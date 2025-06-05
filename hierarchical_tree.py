@@ -6,13 +6,10 @@ This module builds hierarchical tree structures from doctype data.
 import json
 import re
 import unicodedata
+import logging
 from typing import Dict, List, Set, Optional, Any
 from dataclasses import dataclass, field
-
-import logging
-import doctype_translate
-import mappings
-import get_doctypes
+#from .get_doctypes import Mappings, Translations
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -502,17 +499,19 @@ class MappingEnforcer:
 class HierarchicalTreeBuilder:
     """Main class for building hierarchical tree structures"""
     
-    def __init__(self):
+    def __init__(self, translations, mappings):
         self.normalizer = StringNormalizer()
         self.type_mapper = FieldTypeMapper()
         self.path_manager = PathManager(self.normalizer)
         self.navigator = EntityTreeNavigator()
+        self.translations = translations
+        self.mappings = mappings
         
     def build_tree(self, all_doctypes: Dict[str, Any]) -> List[Dict[str, Any]]:
         """Build the hierarchical tree structure"""
         # Get configurations
-        specified_mappings = mappings.get_specific_mapping()
-        translations = doctype_translate.get_translations()
+        specified_mappings = self.mappings.get_specific_mapping()
+        translations = self.translations.get_translations()
         
         # Initialize components
         mapping_manager = MappingManager(specified_mappings)
@@ -589,26 +588,26 @@ class FileManager:
             raise
 
 
-def main():
-    """Main entry point"""
-    try:
+# def main():
+#     """Main entry point"""
+#     try:
 
-        processor = get_doctypes.DoctypeProcessor()
-        all_doctypes = processor.process_doctypes()
+#         processor = get_doctypes.DoctypeProcessor()
+#         all_doctypes = processor.process_doctypes()
 
-        # Build tree
-        builder = HierarchicalTreeBuilder()
-        hierarchical_data = builder.build_tree(all_doctypes)
+#         # Build tree
+#         builder = HierarchicalTreeBuilder()
+#         hierarchical_data = builder.build_tree(all_doctypes)
         
-        # Save result
-        FileManager.save_json(hierarchical_data, "output/hierarquical_doctypes_refactored.json")
+#         # Save result
+#         FileManager.save_json(hierarchical_data, "output/hierarquical_doctypes_refactored.json")
         
-        logger.info("Hierarchical tree built successfully!")
+#         logger.info("Hierarchical tree built successfully!")
         
-    except Exception as e:
-        logger.error(f"Error building hierarchical tree: {e}")
-        raise
+#     except Exception as e:
+#         logger.error(f"Error building hierarchical tree: {e}")
+#         raise
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

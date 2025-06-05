@@ -12,15 +12,13 @@ import os
 import re
 import shutil
 import unicodedata
+import logging
+from .hierarchical_tree import HierarchicalTreeBuilder
 from typing import Dict, List, Optional, Tuple, Any
 from dataclasses import dataclass, field
 from abc import ABC, abstractmethod
-import logging
-
-import arteris_frappe
-import mappings
-import hierarchical_tree
-from engine_data import EngineDataBuilder
+from .engine_data import EngineDataBuilder
+from .arteris_frappe import ArterisApi
 
 
 # Configure logging
@@ -119,7 +117,7 @@ class ArterisApiClient:
     """Wrapper for Arteris API operations"""
     
     def __init__(self):
-        self.arteris_api = arteris_frappe.ArterisApi()
+        self.arteris_api = ArterisApi()
     
     def get_main_doctypes(self) -> Optional[List[Dict]]:
         """Get main doctypes from API"""
@@ -225,54 +223,6 @@ class DoctypeFieldExtractor:
         return fields
 
 
-class DoctypeRetriever:
-    """Retrieves doctypes and their fields"""
-    
-    def __init__(self, api_client: ArterisApiClient, field_extractor: DoctypeFieldExtractor):
-        self.api_client = api_client
-        self.field_extractor = field_extractor
-    
-    def get_doctypes_with_fields(self, doctype_list: List[Dict]) -> Dict[str, List[Dict]]:
-        """Get doctypes with their fields"""
-        doctypes_with_fields = {}
-        
-        for doc in doctype_list:
-            doctype_name = doc.get("name")
-            if not doctype_name:
-                continue
-                
-            docfields = self.api_client.get_docfields(doctype_name)
-            if docfields:
-                fields = self.field_extractor.extract_fields(docfields)
-                doctypes_with_fields[doctype_name] = [f.to_dict() for f in fields]
-        
-        return doctypes_with_fields
-    
-    def get_all_doctypes(self) -> Dict[str, Any]:
-        """Get all doctypes (main and child) with fields"""
-        logger.info("Retrieving main doctypes...")
-        main_list = self.api_client.get_main_doctypes()
-        main_doctypes = self.get_doctypes_with_fields(main_list) if main_list else {}
-        
-        logger.info("Retrieving child doctypes...")
-        child_list = self.api_client.get_child_doctypes()
-        child_doctypes = self.get_doctypes_with_fields(child_list) if child_list else {}
-        
-        # Combine all doctypes
-        all_doctypes = {**main_doctypes, **child_doctypes}
-        
-        # Remove ignored doctypes
-        ignore_list = mappings.get_ignore_mapping()
-        for ignored in ignore_list:
-            all_doctypes.pop(ignored, None)
-        
-        return {
-            "main_doctypes": main_doctypes,
-            "child_doctypes": child_doctypes,
-            "all_doctypes": all_doctypes
-        }
-
-
 class ParentMappingExtractor:
     """Extracts parent-child relationships between doctypes"""
     
@@ -324,6 +274,186 @@ class DoctypeDataRetriever:
         self.data_manager.save_json(path, data, doctype_name)
 
 
+class Mappings:
+    
+    def get_specific_mapping(self):
+        """
+        Returns a specific mapping for the entity structure.
+        This is a placeholder function that should be replaced with actual logic.
+        """
+
+        specific_mappings = [
+            {"child": "Contract Adjustment", "parent": "Contract"},
+            {"child": "Contract Item", "parent": "Contract"},
+            {"child": "Contract Measurement", "parent": "Contract","filters":[{"medicaovigente":"sim"}]},
+            {"child": "Contract Measurement Record", "parent": "Contract","filters":[{"medicaovigente":"sim"}]},
+        ]
+
+        # Placeholder for specific mapping logic
+        return specific_mappings
+
+
+    def get_ignore_mapping(self):
+        """
+        Returns a specific mapping for the entity structure.
+        This is a placeholder function that should be replaced with actual logic.
+        """
+
+        ignore_mappings = [
+            "Formula",
+            "Formula Template",
+            "Formula Group",
+            "Formula Fields",
+            "Formula Template",
+            "Formula Group Field",
+            "Formula Group Template",
+            "Asset Config Kartado",
+            "Contract Item Config Kartado",
+            "Integration Record Keys",
+            "Item Config Kartado",
+            "Integration Inconsistency",
+            "Integration Record",
+            "Depth Period Setting",
+            "TestPut",
+            "TestPutChild",
+            "Work Role Config Kartado",
+        ]
+
+        # Placeholder for specific mapping logic
+        return ignore_mappings
+
+    def get_main_data(self):
+        """
+        Return main data for the entity structure.
+        """
+
+        main_doctypes = [
+            {
+                "doctype": "Contract",
+                "key": "name",
+                "childs": [
+                    {   
+                        "doctype": "Contract Adjustment", 
+                        "key": "contrato"
+                    },
+                    {   
+                        "doctype": "Contract Item", 
+                        "key": "contrato"
+                    },
+                    {   "doctype": "Contract Measurement", 
+                        "key": "contrato",
+                        "filters": [{"field":"medicaovigente", "value": "Sim"}]
+                    },
+                    {
+                        "doctype": "Contract Measurement Record", 
+                        "key": "contrato",
+                        "filters": [{"field":"medicaovigente", "value": "Sim"}]
+                    }
+                ]
+            }
+        ]
+
+        return main_doctypes    
+
+
+class Translations:
+    def get_translations(self):
+        return{
+            "Asset": "Ativos",
+            "Category": "Categorias",
+            "City": "Cidades",
+            "Contract": "Contratos",
+            "Contract_Item": "Itens",
+            "Contract_Measurement": "Bol. de medição",
+            "Contract_Measurement_Record": "Registros de BM.",
+            "Contract_Adjustment": "Reajustes",
+            "Contract_Item_Highway": "Rodovias",
+            "Contract_Item_Order": "Ped. SAP",
+            "Contract_Item_Asset": "Ativos",
+            "Contract_Item_Work_Role": "Funções",
+            "Contract_Item_City": "Cidades",
+            "Contract_Measurement_Asset": "Ativos",
+            "Contract_Measurement_Work_Role": "Funções",
+            "Contract_Measurement_Record_Material": "Materiais",
+            "Contract_Measurement_Record_Asset": "Ativos",
+            "Contract_Measurement_Record_Work_Role": "Funções",
+            "Contract_Adjustment_Data": "Dados do reajuste",
+            "Contracted_Company": "Empresa contratada",
+            "Highway": "Rodovias",
+            "Highway_City": "Cidades",
+            "Holiday": "Feriados",
+            "Item_Classification": "Classificação de itens",
+            "Material": "Materiais",
+            "Person": "Pessoa",
+            "Contract_Measurement_City": "Cidades",
+            "Contract_Measurement_FTD": "Fat. direto",
+            "Contract_Measurement_SAP_Order": "Ped. SAP",
+            "Work_Role": "Funções",
+            "Contract_Measurement_Record_Log": "Relatórios",
+            "Contract_Measurement_Record_Resource": "Recursos",
+            "Contract_Measurement_Item": "Itens",
+            "Contract_Measurement_Record_Time": "Apontamentos de horas",
+            "Contract_Item_Type": "Tipos de itens",
+            "Item": "Modelos de itens",
+            "Unit": "Unidades",
+            "Subsidiary": "Concessionárias",
+            "SAP_Order_Highway": "Rodovias",
+            "SAP_Order_Period": "Linhas",
+            "Item Group": "Grupos de itens",
+            "Item_Sub_Group": "Subgrupos de itens",
+
+        }    
+
+
+class DoctypeRetriever:
+    """Retrieves doctypes and their fields"""
+    
+    def __init__(self, api_client: ArterisApiClient, field_extractor: DoctypeFieldExtractor, mappings: Mappings):
+        self.api_client = api_client
+        self.field_extractor = field_extractor
+        self.mappings = mappings
+    
+    def get_doctypes_with_fields(self, doctype_list: List[Dict]) -> Dict[str, List[Dict]]:
+        """Get doctypes with their fields"""
+        doctypes_with_fields = {}
+        
+        for doc in doctype_list:
+            doctype_name = doc.get("name")
+            if not doctype_name:
+                continue
+                
+            docfields = self.api_client.get_docfields(doctype_name)
+            if docfields:
+                fields = self.field_extractor.extract_fields(docfields)
+                doctypes_with_fields[doctype_name] = [f.to_dict() for f in fields]
+        
+        return doctypes_with_fields
+    
+    def get_all_doctypes(self) -> Dict[str, Any]:
+        """Get all doctypes (main and child) with fields"""
+        logger.info("Retrieving main doctypes...")
+        main_list = self.api_client.get_main_doctypes()
+        main_doctypes = self.get_doctypes_with_fields(main_list) if main_list else {}
+        
+        logger.info("Retrieving child doctypes...")
+        child_list = self.api_client.get_child_doctypes()
+        child_doctypes = self.get_doctypes_with_fields(child_list) if child_list else {}
+        
+        # Combine all doctypes
+        all_doctypes = {**main_doctypes, **child_doctypes}
+        
+        # Remove ignored doctypes
+        ignore_list = self.mappings.get_ignore_mapping()
+        for ignored in ignore_list:
+            all_doctypes.pop(ignored, None)
+        
+        return {
+            "main_doctypes": main_doctypes,
+            "child_doctypes": child_doctypes,
+            "all_doctypes": all_doctypes
+        }
+
+
 class DoctypeProcessor:
     """Main processor for doctype operations"""
     
@@ -334,10 +464,12 @@ class DoctypeProcessor:
         self.data_manager = DataManager(self.normalizer)
         self.field_filter = FieldFilter()
         self.field_extractor = DoctypeFieldExtractor(self.field_filter)
-        self.doctype_retriever = DoctypeRetriever(self.api_client, self.field_extractor)
         self.mapping_extractor = ParentMappingExtractor()
         self.data_retriever = DoctypeDataRetriever(self.api_client, self.data_manager)
-        self.hierarchical_tree = hierarchical_tree.HierarchicalTreeBuilder()
+        self.translations = Translations()
+        self.mappings = Mappings()
+        self.doctype_retriever = DoctypeRetriever(self.api_client, self.field_extractor, self.mappings)
+        self.hierarchical_tree = HierarchicalTreeBuilder(self.translations, self.mappings)
     
     def get_keys(self, doctype_name: str, filters: Optional[str] = None) -> List[str]:
         """Get keys for a specific doctype"""
@@ -401,7 +533,7 @@ class DoctypeProcessor:
             all_doctype_structure = self.process_doctypes()
 
             # Get main data configuration
-            main_doctypes = mappings.get_main_data()
+            main_doctypes = self.mappings.get_main_data()
             
             # Enrich main doctypes with field information
             for main in main_doctypes:
@@ -411,7 +543,7 @@ class DoctypeProcessor:
                     all_doctype_structure["main_doctypes"].pop(child["doctype"], [])
 
             # Remove ignored doctypes
-            ignore_list = mappings.get_ignore_mapping()
+            ignore_list = self.mappings.get_ignore_mapping()
             for ignored in ignore_list:
                 all_doctype_structure["main_doctypes"].pop(ignored, None)
                         
@@ -458,7 +590,7 @@ class DoctypeProcessor:
                 all_doctype_structure = json.load(f)
 
         # Get main data configuration
-        main_doctypes = mappings.get_main_data()
+        main_doctypes = self.mappings.get_main_data()
                                 
         # Process main doctypes
         for main in main_doctypes:
@@ -512,12 +644,9 @@ class DoctypeProcessor:
         """Retrieve contract data"""
         logger.info("Retrieving contract data...")
 
-        keys = self.get_keys("Contract", filters='[["contratoencerrado","=","null"]]')
+        keys = self.get_keys("Contract", filters='[["contratoencerrado","=",null]]')
 
         return keys
-    
-    
-
 
 
 def main():
