@@ -46,7 +46,7 @@ class ArterisApi:
                 ["module", "=", "Arteris"],
                 ["istable", "=", "1"] if child else ["istable", "!=", "1"]
             ]),
-            "limit_page_length": 1000  
+            "limit_page_length": 0  
         }
         headers = {"Authorization": self.api_token}
 
@@ -88,7 +88,9 @@ class ArterisApi:
         """
 
         docfield_url = f"{self.api_base_url}/DocType/{doctype_name}"
-        params = {}
+        params = {
+            "limit_page_length": 0  
+        }
                 
         headers = {"Authorization": self.api_token}
         try:
@@ -126,7 +128,9 @@ class ArterisApi:
         if filters:
             resource_url=f"{resource_url}?filters={filters}"
         
-        params = {}
+        params = {
+            "limit_page_length": 0  
+        }
         headers = {"Authorization": self.api_token}
 
         try:
@@ -189,7 +193,9 @@ class ArterisApi:
         """
         resource_url = f"{self.api_base_url}/{doctype_name}/{key}"
         print("URL", resource_url)
-        params = {}
+        params = {
+            "limit_page_length": 0  
+        }
         headers = {"Authorization": self.api_token}
 
         try:
