@@ -13,6 +13,8 @@ import re
 import shutil
 import unicodedata
 import logging
+
+import log
 from .hierarchical_tree import HierarchicalTreeBuilder
 from typing import Dict, List, Optional, Tuple, Any
 from dataclasses import dataclass, field
@@ -150,6 +152,14 @@ class ArterisApiClient:
         except Exception as e:
             logger.error(f"Failed to get keys for {doctype_name}: {e}")
             return []
+
+    def get_keys_api(self, doctype_name: str, return_field: str, filters: Dict) -> List[str]:
+        """Get keys for a doctype"""
+        try:
+            return self.arteris_api.get_keys_api(doctype_name, return_field, filters)
+        except Exception as e:
+            logger.error(f"Failed to get keys for {doctype_name}: {e}")
+            return []            
     
     def get_data_by_key(self, doctype_name: str, key: str) -> Optional[Dict]:
         """Get data for a specific key"""
@@ -255,9 +265,16 @@ class DoctypeDataRetriever:
     def __init__(self, api_client: ArterisApiClient, data_manager: DataManager):
         self.api_client = api_client
         self.data_manager = data_manager
+
+    def get_doctype_keys_api(self, doctype_name: str, return_field: str, filters: Dict) -> Optional[Dict]:
+        """Get keys for a doctype using API"""
+        logger.info(f"Retrieving keys for doctype: {doctype_name} with filter {filters}")
+        keys = self.api_client.get_keys_api(doctype_name, return_field, filters)
+        return keys
     
     def get_doctype_data(self, doctype_name: str, filters: Optional[str] = None) -> Tuple[List[Dict], List[str]]:
         """Get data and keys for a doctype"""
+        logger.info(f"Retrieving data for doctype: {doctype_name} with filters: {filters}")
         keys = self.api_client.get_keys(doctype_name, filters)
         data = []
         
@@ -331,25 +348,52 @@ class Mappings:
             {
                 "doctype": "Contract",
                 "key": "name",
+                "data": True,
                 "childs": [
                     {   
                         "doctype": "Contract Adjustment", 
+                        "data": True,
                         "key": "contrato"
                     },
                     {   
                         "doctype": "Contract Item", 
+                        "data": True,
                         "key": "contrato"
                     },
-                    {   "doctype": "Contract Measurement", 
+                    {   
+                        "doctype": "Contract Measurement", 
+                        "data": True,
                         "key": "contrato",
                         "filters": [{"field":"medicaovigente", "value": "Sim"}]
                     },
                     {
                         "doctype": "Contract Measurement Record", 
+                        "data": True,
                         "key": "contrato",
                         "filters": [{"field":"medicaovigente", "value": "Sim"}]
                     }
                 ]
+            },
+            {
+                "doctype": "Contract Item",
+                "data": False,
+                "key": "contrato",
+                "childs": [
+                    {
+                        "doctype": "Contract Item Order", 
+                        "data": False,
+                        "key": "parent",
+                        "customapi": True,
+                        "customapi_field": "pedidosap",
+                        "childs":[
+                            {
+                                "doctype": "SAP Order", 
+                                "key": "name",
+                                "data": True
+                            }                            
+                        ]
+                    }                    
+                ]                
             }
         ]
 
@@ -521,6 +565,20 @@ class DoctypeProcessor:
         #     r["icon"] == self.apply_icon(r)
         
         return hierarchical
+
+    def get_default_data_update_structure(self, all_doctype_structure: List[Dict], doctypes: List[Dict]):
+
+        # FOR each doctype, add to all_doctype_structure
+        for dt in doctypes:
+
+            # If childs
+            if "childs" in dt:
+                self.get_default_data_update_structure(all_doctype_structure, dt["childs"])
+        
+            # If return data remove from main_doctypes
+            if dt["data"]:
+                all_doctype_structure["main_doctypes"].pop(dt["doctype"], [])
+
     
     def get_default_data(self, using_cached_data = False) -> List[Dict]:
         """Retrieve default data for all doctypes"""
@@ -534,13 +592,9 @@ class DoctypeProcessor:
 
             # Get main data configuration
             main_doctypes = self.mappings.get_main_data()
-            
-            # Enrich main doctypes with field information
-            for main in main_doctypes:
-                all_doctype_structure["main_doctypes"].pop(main["doctype"], [])
-                
-                for child in main.get("childs", []):
-                    all_doctype_structure["main_doctypes"].pop(child["doctype"], [])
+
+            # Update structure with main doctypes
+            self.get_default_data_update_structure(all_doctype_structure, main_doctypes)
 
             # Remove ignored doctypes
             ignore_list = self.mappings.get_ignore_mapping()
@@ -572,6 +626,57 @@ class DoctypeProcessor:
             "structure": all_doctype_structure["all_doctypes"]
         }
 
+    # Get data for main doctypes
+    def get_data_main_doctypes(self, all_doctype_data: List[Dict], doctypes: List[Dict], main_keys: List[str]) -> None:
+
+        # Process main doctypes
+        for dt in doctypes:
+
+            dt_data = []
+            dt_keys = []
+
+            # For each key in dt_keys
+            for k in main_keys:
+
+                # Get data and keys
+                get_data = None
+
+                # Check if use custom API
+                if "customapi" in dt and dt["customapi"]:
+                    filters = {}
+                    filters[dt["key"]] = k
+                    if "filters" in dt:
+                        for filter in dt["filters"]:
+                            filters[filter["field"]] = filter["value"]
+                    # Retrieve only keys using custom API
+                    keys = self.data_retriever.get_doctype_keys_api(dt["doctype"], dt["customapi_field"], filters)
+                else:
+                    # Apply filter to dt_key
+                    filters = None
+                    filters = f'["{dt["key"]}","=","{k}"]'
+                    if "filters" in dt:
+                        for filter in dt["filters"]:
+                            filters += f',["{filter["field"]}","=","{filter["value"]}"]'
+                    filters = f'[{filters}]'
+                    # Retrieve data using filters
+                    get_data, keys = self.data_retriever.get_doctype_data(dt["doctype"], filters)
+
+                dt_keys.extend([k for k in keys if k not in dt_keys])
+
+                # If data is configured add to all_doctype_data
+                if dt["data"] and get_data:
+                    dt_data.extend(get_data)
+
+            if dt_data:
+                all_doctype_data.append({dt["doctype"]: dt_data.copy()})
+
+            # Recursively process child doctypes
+            if "childs" in dt:
+                self.get_data_main_doctypes(
+                    all_doctype_data, 
+                    dt["childs"], 
+                    dt_keys
+                )   
     
     def get_data(self, main_id: str) -> List[Dict]:
         """Retrieve and save all doctype data"""
@@ -591,33 +696,39 @@ class DoctypeProcessor:
 
         # Get main data configuration
         main_doctypes = self.mappings.get_main_data()
-                                
-        # Process main doctypes
-        for main in main_doctypes:
-            # Apply filter if main_id provided
-            filters = None
 
-            filters = f'[["{main["key"]}","=","{main_id}"]]'
-            
-            data, keys = self.data_retriever.get_doctype_data(main["doctype"], filters)
-            all_doctype_data.append({main["doctype"]: data})
-            
-            # Process child doctypes for each key
-            for key in keys:
-                for child in main.get("childs", []):
-                    child_filter = f'["{child["key"]}","=","{key}"]'
-                    if "filters" in child:
-                        for filter in child["filters"]:
-                            child_filter += f',["{filter["field"]}","=","{filter["value"]}"]'
-                    child_data, _ = self.data_retriever.get_doctype_data(
-                        child["doctype"], 
-                        f'[{child_filter}]'
-                    )
-                    all_doctype_data.append({child["doctype"]: child_data})
-
-        
+        # Get main doctypes data
+        self.get_data_main_doctypes(all_doctype_data, main_doctypes, [main_id])
         # Save all doctype data
         self.data_manager.save_json("data", all_doctype_data, f"all_doctype_data_{main_id}")
+                                
+        # # Process main doctypes
+        # for main in main_doctypes:
+        #     # Apply filter if main_id provided
+        #     filters = None
+
+        #     # SAP order 
+
+        #     filters = f'[["{main["key"]}","=","{main_id}"]]'
+            
+        #     data, keys = self.data_retriever.get_doctype_data(main["doctype"], filters)
+        #     all_doctype_data.append({main["doctype"]: data})
+            
+        #     # Process child doctypes for each key
+        #     for key in keys:
+        #         for child in main.get("childs", []):
+        #             child_filter = f'["{child["key"]}","=","{key}"]'
+        #             if "filters" in child:
+        #                 for filter in child["filters"]:
+        #                     child_filter += f',["{filter["field"]}","=","{filter["value"]}"]'
+        #             child_data, _ = self.data_retriever.get_doctype_data(
+        #                 child["doctype"], 
+        #                 f'[{child_filter}]'
+        #             )
+        #             all_doctype_data.append({child["doctype"]: child_data})
+        
+        # # Save all doctype data
+        # self.data_manager.save_json("data", all_doctype_data, f"all_doctype_data_{main_id}")
 
         # Get hierarchical structure
         hierarchical = self.hierarchical_tree.build_tree(all_doctype_structure)

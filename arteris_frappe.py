@@ -6,6 +6,7 @@ API Client module for interacting with the Arteris API.
 This module provides functions to fetch DocTypes and their fields from the Arteris API.
 """
 
+from ast import Dict
 import os
 import requests
 import json
@@ -25,6 +26,7 @@ class ArterisApi:
             api_token (str): The authorization token in the format 'token key:secret'.
         """
         self.api_base_url = os.getenv("ARTERIS_API_BASE_URL")
+        self.api_base_engine_url = os.getenv("ARTERIS_API_ENGINE_KEYS")
         self.api_token = os.getenv("ARTERIS_API_TOKEN")
 
     def get_arteris_doctypes(self, child: bool = False):
@@ -51,11 +53,11 @@ class ArterisApi:
         headers = {"Authorization": self.api_token}
 
         try:
-            print(f"Fetching DocTypes...")
+            # print(f"Fetching DocTypes...")
             response = requests.get(doctype_url, headers=headers, params=params, timeout=30)
             response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
             data = response.json()
-            print("DocTypes list received successfully!", data)
+            # print("DocTypes list received successfully!", data)
             # Returns directly the list contained in the 'data' key of the JSON response
             return data.get("data", [])
         except requests.exceptions.RequestException as e:
@@ -99,7 +101,7 @@ class ArterisApi:
             response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
             data = response.json()
             # print("JSON NOVO", data)
-            print(f"DocFields for {doctype_name} received successfully!")
+            # print(f"DocFields for {doctype_name} received successfully!")
             # Returns the list of fields from the 'data' key
             return data.get("data", [])
         except requests.exceptions.RequestException as e:
@@ -109,6 +111,43 @@ class ArterisApi:
         except json.JSONDecodeError:
             # Captures error if the response is not valid JSON
             print(f"Error decoding DocFields JSON response for {doctype_name}.")
+            return None
+
+    def get_keys_api(self, doctype_name: str, return_field: str, filters: Dict):
+        """
+        Fetches keys for a specific DocType from the Arteris API based on a filter.
+
+        Args:
+            doctype_name (str): The name of the DocType to fetch keys from (e.g., 'Asset').
+            filter_name (str): The name of the filter field (e.g., 'status').
+            filter_value (str): The value of the filter field (e.g., 'Active').
+
+        Returns:
+            list or None: A list of strings containing the key values of the DocType.
+                        Returns None in case of an error in the request or JSON decoding.
+        """
+        resource_url = f"{self.api_base_engine_url}"
+        params = {}
+        body = {
+            "doctype": doctype_name,
+            "filters": filters,
+            "return_field": return_field
+        }
+        headers = {"Authorization": self.api_token}
+
+        try:
+            response = requests.get(resource_url, headers=headers, params=params, json=body, timeout=30)
+            response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
+            data = response.json()
+            keys = [k[return_field] for k in data.get("message", [])]
+            # print("CHAVES", keys)
+            # Returns the list of keys from the 'data' key of the JSON response
+            return keys
+        except requests.exceptions.RequestException as e:
+            # Captures connection errors, timeouts, etc.
+            return None
+        except json.JSONDecodeError:
+            # Captures error if the response is not valid JSON
             return None
 
     def get_keys(self, doctype_name, filters=None):
@@ -138,7 +177,7 @@ class ArterisApi:
             response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
             data = response.json()
             keys = [item["name"] for item in data.get("data", [])]
-            print("CHAVES", keys)
+            # print("CHAVES", keys)
             # Returns the list of keys from the 'data' key of the JSON response
             return keys
         except requests.exceptions.RequestException as e:
@@ -192,20 +231,20 @@ class ArterisApi:
             'owner', 'creation', 'modified', 'modified_by', 'docstatus', 'idx'
         """
         resource_url = f"{self.api_base_url}/{doctype_name}/{key}"
-        print("URL", resource_url)
+        # print("URL", resource_url)
         params = {
             "limit_page_length": 0  
         }
         headers = {"Authorization": self.api_token}
 
         try:
-            print(f"Fetching data for DocType '{doctype_name}' using key '{key}' at: {resource_url} ...")
+            # print(f"Fetching data for DocType '{doctype_name}' using key '{key}' at: {resource_url} ...")
             response = requests.get(resource_url, headers=headers, params=params, timeout=30)
             response.raise_for_status() # Raises HTTPError for 4xx/5xx responses
             data = response.json()
             # Checks if the response contains data
             if "data" in data:
-                print(f"Data for '{doctype_name}' with key '{key}' received successfully!")
+                # print(f"Data for '{doctype_name}' with key '{key}' received successfully!")
                 
                 # Removes the specified properties recursively
                 data_filtered = data["data"]
@@ -216,7 +255,7 @@ class ArterisApi:
                 
                 return data_filtered
             else:
-                print(f"No data found for '{doctype_name}' with key '{key}'!")
+                # print(f"No data found for '{doctype_name}' with key '{key}'!")
                 return None
         except requests.exceptions.RequestException as e:
             # Captures connection errors, timeouts, etc.
