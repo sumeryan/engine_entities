@@ -25,9 +25,9 @@ class ArterisApi:
             api_base_url (str): The base URL of the resource API (e.g., 'https://host/api/resource').
             api_token (str): The authorization token in the format 'token key:secret'.
         """
-        self.api_base_url = os.getenv("ARTERIS_API_BASE_URL")
-        self.api_base_engine_url = os.getenv("ARTERIS_API_ENGINE_KEYS")
         self.api_token = os.getenv("ARTERIS_API_TOKEN")
+        self.api_base_url = f"{os.getenv('ARTERIS_API_BASE_URL')}/resource"
+        self.api_get_keys = f"{os.getenv('ARTERIS_API_BASE_URL')}/method/arteris_app.api.engine.get_keys""
 
     def get_arteris_doctypes(self, child: bool = False):
         """
@@ -126,7 +126,7 @@ class ArterisApi:
             list or None: A list of strings containing the key values of the DocType.
                         Returns None in case of an error in the request or JSON decoding.
         """
-        resource_url = f"{self.api_base_engine_url}"
+        resource_url = f"{self.api_get_keys}"
         params = {}
         body = {
             "doctype": doctype_name,
