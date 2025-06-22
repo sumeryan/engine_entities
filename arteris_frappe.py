@@ -27,7 +27,7 @@ class ArterisApi:
         """
         self.api_token = os.getenv("ARTERIS_API_TOKEN")
         self.api_base_url = f"{os.getenv('ARTERIS_API_BASE_URL')}/resource"
-        self.api_get_keys = f"{os.getenv('ARTERIS_API_BASE_URL')}/method/arteris_app.api.engine.get_keys""
+        self.api_get_keys = f"{os.getenv('ARTERIS_API_BASE_URL')}/method/arteris_app.api.engine.get_keys"
 
     def get_arteris_doctypes(self, child: bool = False):
         """
