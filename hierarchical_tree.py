@@ -107,11 +107,11 @@ class FieldTypeMapper:
         "Float": "numeric",
         "Currency": "numeric",
         "Check": "boolean",
-        "Select": "select",
-        "Long Text": "text",
-        "Small Text": "text",
-        "Text": "text",
-        "Text Editor": "text",
+        "Select": "string",
+        "Long Text": "string",
+        "Small Text": "string",
+        "Text": "string",
+        "Text Editor": "string",
         "Table": "doctype"
     }
     
@@ -355,7 +355,14 @@ class DoctypeProcessor:
         if doctype_name in self.processed_doctypes:
             return None
         
-        if doctype_name not in self.doctypes_data.get("all_doctypes", {}):
+        # Check if doctype exists in data           
+        if "all_doctypes" in self.doctypes_data:
+            all_ = self.doctypes_data.get("all_doctypes", {})
+        else:
+            all_ = self.doctypes_data        
+
+        #if doctype_name not in self.doctypes_data.get("all_doctypes", {}):
+        if doctype_name not in all_:
             return None
         
         self.processed_doctypes.add(doctype_name)
@@ -376,7 +383,13 @@ class DoctypeProcessor:
     
     def _add_regular_fields(self, entity: Entity, doctype_name: str) -> None:
         """Add regular (non-relationship) fields to entity"""
-        fields = self.doctypes_data["all_doctypes"].get(doctype_name, [])
+        # Check if doctype exists in data           
+        if "all_doctypes" in self.doctypes_data:
+            all_ = self.doctypes_data.get("all_doctypes", {})
+        else:
+            all_ = self.doctypes_data           
+        #fields = self.doctypes_data["all_doctypes"].get(doctype_name, [])
+        fields = all_.get(doctype_name, [])
         
         for field in fields:
             # Skip relationship fields
@@ -400,7 +413,15 @@ class DoctypeProcessor:
     
     def _add_optional_relationships(self, entity: Entity, doctype_name: str) -> None:
         """Add optional relationships based on field options"""
-        fields = self.doctypes_data["all_doctypes"].get(doctype_name, [])
+
+        # Check if doctype exists in data           
+        if "all_doctypes" in self.doctypes_data:
+            all_ = self.doctypes_data.get("all_doctypes", {})
+        else:
+            all_ = self.doctypes_data   
+
+        #fields = self.doctypes_data["all_doctypes"].get(doctype_name, [])
+        fields = all_.get(doctype_name, []) 
         
         for field in fields:
             if field.get("fieldtype") != "Table" or not field.get("options"):
@@ -541,14 +562,20 @@ class HierarchicalTreeBuilder:
         entities = []
         
         # Process root doctypes (those without mandatory parents)
-        for doctype_name in all_doctypes.get("all_doctypes", {}).keys():
+        if "all_doctypes" in all_doctypes:
+            all_ = all_doctypes.get("all_doctypes", {})
+        else:
+            all_ = all_doctypes
+        #for doctype_name in all_doctypes.get("all_doctypes", {}).keys():
+        for doctype_name in all_.keys():
             if not mapping_manager.has_mandatory_parent(doctype_name):
                 entity = doctype_processor.process_doctype(doctype_name, is_root=True)
                 if entity:
                     entities.append(entity)
         
         # Process any remaining doctypes
-        for doctype_name in all_doctypes.get("all_doctypes", {}).keys():
+        #for doctype_name in all_doctypes.get("all_doctypes", {}).keys():
+        for doctype_name in all_.keys():
             if doctype_name not in doctype_processor.processed_doctypes:
                 entity = doctype_processor.process_doctype(doctype_name, is_root=True)
                 if entity:

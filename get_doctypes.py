@@ -760,49 +760,49 @@ class DoctypeProcessor:
         return keys
 
 
-def main():
-    """Main entry point"""
-    try:
-        processor = DoctypeProcessor()
+# def main():
+#     """Main entry point"""
+#     try:
+#         processor = DoctypeProcessor()
         
-        #processor.get_default_data(using_cached_data=True)
+#         #processor.get_default_data(using_cached_data=True)
 
-        # Uncomment to get data for specific contract
-        contract_data = processor.get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e")
+#         # Uncomment to get data for specific contract
+#         contract_data = processor.get_data("0196b01a-2163-7cb2-93b9-c8b1342e3a4e")
 
-        formulas = processor.get_formula_data(using_cached_data=True)
+#         formulas = processor.get_formula_data(using_cached_data=True)
 
-         # Get formula to contract
-        group_formula = [item for item in contract_data['data'] if 'Contract' in item][0]['Contract'][0]['grupoformulas']
+#          # Get formula to contract
+#         group_formula = [item for item in contract_data['data'] if 'Contract' in item][0]['Contract'][0]['grupoformulas']
 
-        # Filter formulas based on group
-        contract_formula = [f for f in formulas if f.get("name") in group_formula]    
+#         # Filter formulas based on group
+#         contract_formula = [f for f in formulas if f.get("name") in group_formula]    
 
-        # Build engine data
-        builder = EngineDataBuilder(
-            contract_data['hierarchical'], 
-            contract_formula, 
-            contract_data['data'], 
-            "data",
-            compact_mode=True
-        )
-        engine_data = builder.build()
+#         # Build engine data
+#         builder = EngineDataBuilder(
+#             contract_data['hierarchical'], 
+#             contract_formula, 
+#             contract_data['data'], 
+#             "data",
+#             compact_mode=True
+#         )
+#         engine_data = builder.build()
 
-        # save engine data to tree_data.json
-        processor.data_manager.save_json("data", engine_data, "tree_data")
+#         # save engine data to tree_data.json
+#         processor.data_manager.save_json("data", engine_data, "tree_data")
 
-        # # Get formula data
-        # processor.get_formula_data()
+#         # # Get formula data
+#         # processor.get_formula_data()
         
-        # # Get hierarchical structure
-        # processor.get_hierarchical_structure()
+#         # # Get hierarchical structure
+#         # processor.get_hierarchical_structure()
                 
-        # logger.info("Processing completed successfully!")
+#         # logger.info("Processing completed successfully!")
         
-    except Exception as e:
-        logger.error(f"Processing failed: {e}")
-        raise
+#     except Exception as e:
+#         logger.error(f"Processing failed: {e}")
+#         raise
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
